@@ -37,7 +37,6 @@ export const getPageProps = async (
     slug: string;
   } & Record<string, string>
 ) => {
-  // eslint-disable-next-line unused-imports/no-unused-vars
   const { slug: slugArgs, locale } = args;
 
   const isPreview = true;

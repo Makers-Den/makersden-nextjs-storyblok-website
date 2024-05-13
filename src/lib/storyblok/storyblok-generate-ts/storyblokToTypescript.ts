@@ -28,9 +28,9 @@ export default async function storyblokToTypescript({
     ...compilerOptions,
   };
   const tsString: string[] = [
-    `/* eslint-disable @typescript-eslint/no-explicit-any */`,
-    `/* eslint-disable unused-imports/no-unused-imports */`,
-    `import { SbAsset, SbMultiasset, SbMultilink, SbRichtext, SbTable, StoryblokStory } from './sbInternalTypes';`,
+    '/* eslint-disable @typescript-eslint/no-explicit-any */',
+    '/* eslint-disable @typescript-eslint/no-unused-vars */',
+    "import { SbAsset, SbMultiasset, SbMultilink, SbRichtext, SbTable, StoryblokStory } from './sbInternalTypes';",
   ];
   const getTitle = (t: string) => titlePrefix + t + titleSuffix;
   const pascalcase = (t: string) => camelcase(t, { pascalCase: true });

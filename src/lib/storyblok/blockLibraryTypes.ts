@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable unused-imports/no-unused-imports */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { SbAsset, SbMultiasset, SbMultilink, SbRichtext, SbTable, StoryblokStory } from './sbInternalTypes';
 export type BlockComponents = "Feature" | "Grid" | "RichTextContent" | "SplitContentSection" | "Teaser";
 
