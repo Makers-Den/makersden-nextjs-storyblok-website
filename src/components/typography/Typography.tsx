@@ -1,0 +1,248 @@
+import React, { CSSProperties } from 'react';
+import Balancer from 'react-wrap-balancer';
+
+import clsxm from '../../lib/clsxm';
+
+import { WithHighlighMetadata } from '@/types';
+
+export type TypographyVariant =
+  | 'smallText'
+  | 'text'
+  | 'largeText'
+  | 'hugeHeading'
+  | 'bigHeading'
+  | 'mediumHeading'
+  | 'smallHeading'
+  | 'quotation'
+  | 'tagText'
+  | 'SmallTagText'
+  | 'Text'
+  | 'bold'
+  | 'italic'
+  | 'lightEmphasis'
+  | 'darkEmphasis';
+
+export type Tag =
+  | 'p'
+  | 'h1'
+  | 'h2'
+  | 'h3'
+  | 'h4'
+  | 'h5'
+  | 'h6'
+  | 'span'
+  | 'div'
+  | 'section'
+  | 'strong'
+  | 'ul'
+  | 'ol'
+  | 'li'
+  | 'figText'
+  | 'b'
+  | 'em';
+export interface TypographyProps {
+  variant?: TypographyVariant;
+  as?: Tag;
+  className?: string;
+  children?: React.ReactNode;
+  id?: string;
+  style?: CSSProperties | undefined;
+  useBalancer?: boolean;
+}
+
+export const variantToClasses: { [key in TypographyVariant]: string[] } = {
+  smallText: [
+    'text-xs',
+    'leading-[1.25] md:leading-[2.08]',
+    'text-current',
+    'font-primary',
+  ],
+  text: [
+    'text-sm md:text-base',
+    'leading-[1.43] md:leading-[1.56]',
+    'font-primary',
+  ],
+  largeText: [
+    'text-base md:text-lg',
+    'leading-[1.38] md:leading-[1.44]',
+    'font-primary',
+  ],
+  hugeHeading: [
+    'text-current',
+    'font-display',
+    'font-black',
+    'text-superWhite',
+    'uppercase',
+    'antialiased',
+    'text-[clamp(3.125rem,6.5vw,5.75rem)]',
+    'leading-[1.09] md:leading-[1]',
+    'break-words',
+    'whitespace-pre-line',
+    'tracking-wide',
+  ],
+  bigHeading: [
+    'antialiased',
+    'font-extrabold',
+    'text-current',
+    'font-display',
+    'text-[clamp(2.25rem,4.18vw,4.375rem)]',
+    'tracking-[0.01em]',
+    'leading-[1.09] md:leading-[1]',
+    'break-words',
+  ],
+  mediumHeading: [
+    'antialiased',
+    'font-extrabold',
+    'text-current',
+    'font-display',
+    'text-[clamp(2rem,2.39vw,2.5rem)]',
+    'tracking-[0.01em]',
+    'leading-[1] md:leading-[1.03]',
+    'break-words',
+  ],
+  smallHeading: [
+    'antialiased',
+    'font-bold',
+    'text-current',
+    'font-display',
+    'text-[clamp(1.25rem,2vw,1.875rem)]',
+    'tracking-[0.01em]',
+    'leading-[1.20] md:leading-[1.10]',
+    'break-words',
+  ],
+  tagText: [
+    'text-sm',
+    'md:text-base',
+    'font-normal',
+    'text-current',
+    'font-tag',
+    'leading-[1.14] md:leading-[1]',
+  ],
+  SmallTagText: [
+    'text-xs',
+    'md:text-sm',
+    'font-light',
+    'text-current',
+    'font-tag',
+    'leading-[1.14] md:leading-[1]',
+  ],
+  quotation: ['text-xl', 'font-normal', 'leading-[1.5] italic'],
+  bold: ['font-semibold', 'not-italic'],
+  italic: ['px-1', 'italic'],
+  Text: ['text-[0.625rem]'],
+  lightEmphasis: ['font-primary', 'not-italic', 'text-green-400'],
+  darkEmphasis: ['bg-dullViolet', 'not-italic', 'text-white', 'font-semibold'],
+};
+/**
+ * Simple typography component
+ */
+export const Typography = ({
+  variant = 'text',
+  as = 'p',
+  className,
+  children,
+  useBalancer = false,
+  ...rest
+}: TypographyProps) =>
+  React.createElement(
+    as,
+    {
+      className: clsxm(variantToClasses[variant], className),
+      ...rest,
+    },
+    useBalancer ? <Balancer>{children}</Balancer> : children
+  );
+
+export type TypographyPropsWithoutVariant = Omit<TypographyProps, 'variant'> &
+  WithHighlighMetadata['__highlightMetadata'];
+
+// * Body Text
+
+export const SmallText = (props: TypographyPropsWithoutVariant) => (
+  <Typography variant='smallText' as='p' {...props} />
+);
+
+/** Equivalent to "Paragraph" in Design System */
+export const Text = (props: TypographyPropsWithoutVariant) => (
+  <Typography variant='text' as='p' {...props} />
+);
+
+export const LargeText = (props: TypographyPropsWithoutVariant) => (
+  <Typography variant='largeText' as='p' {...props} />
+);
+
+// * Headings
+
+export const SmallHeading = (props: TypographyPropsWithoutVariant) => (
+  <Typography variant='smallHeading' as='h4' {...props} />
+);
+
+export const MediumHeading = (props: TypographyPropsWithoutVariant) => (
+  <Typography variant='mediumHeading' as='h3' {...props} />
+);
+
+export const BigHeading = (props: TypographyPropsWithoutVariant) => (
+  <Typography variant='bigHeading' as='h2' {...props} />
+);
+
+/** There should only be one instance of an HugeHeading (H1) tag on the page.
+ *  Used in Hero block and on Blog Post pages and Contact (as H2).
+ */
+export const HugeHeading = (props: TypographyPropsWithoutVariant) => {
+  return <Typography variant='hugeHeading' as='h1' {...props} />;
+};
+// *
+
+// * Others
+
+export const Bold = ({
+  as = 'b',
+  variant = 'bold',
+  className,
+  children,
+  ...rest
+}: TypographyProps) =>
+  React.createElement(
+    as,
+    { className: clsxm(variantToClasses[variant], className), ...rest },
+    children
+  );
+
+/** Used in Richtext */
+export const LightEmphasis = ({
+  as = 'em',
+  variant = 'lightEmphasis',
+  className,
+  children,
+  ...rest
+}: TypographyProps) =>
+  React.createElement(
+    as,
+    { className: clsxm(variantToClasses[variant], className), ...rest },
+    children
+  );
+
+export const Italic = ({
+  as = 'em',
+  variant = 'italic',
+  className,
+  children,
+  ...rest
+}: TypographyProps) =>
+  React.createElement(
+    as,
+    { className: clsxm(variantToClasses[variant], className), ...rest },
+    children
+  );
+
+export const Quotation = (props: TypographyPropsWithoutVariant) => (
+  <Typography variant='quotation' as='p' {...props} />
+);
+
+export const SmallTagText = (props: TypographyPropsWithoutVariant) => (
+  <Typography variant='SmallTagText' as='p' {...props} />
+);
+
+export const TagText = (props: TypographyPropsWithoutVariant) => (
+  <Typography variant='tagText' as='p' {...props} />
+);
