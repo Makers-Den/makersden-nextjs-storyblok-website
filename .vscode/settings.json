@@ -6,5 +6,12 @@
     "source.fixAll": "explicit"
   },
   "headwind.runOnSave": false,
-  "cSpell.words": ["clsxm", "Datasources", "Jiti", "nextjs"]
+  "cSpell.words": [
+    "camelcase",
+    "clsxm",
+    "commitlint",
+    "Datasources",
+    "Jiti",
+    "nextjs"
+  ]
 }
