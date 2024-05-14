@@ -4,7 +4,8 @@ import { notFound } from 'next/navigation';
 import { type PageSbContent, type StoryblokStory } from '@/lib/storyblok';
 import { findStories } from '@/lib/storyblok/storyblokRepository';
 
-import { CommonContextProviders } from '@/components/common-context-providers/CommonContextProviders';
+import CommonContextProviders from '@/components/common-context-providers/CommonContextProviders';
+import Layout from '@/components/layout/Layout';
 
 import { getMetadata, getPageProps } from '../getPageProps';
 
@@ -23,7 +24,9 @@ const StoryblokPage = async ({ params, searchParams }: PageProps) => {
 
   return (
     <CommonContextProviders>
-      <StoryblokComponent blok={data.story.content} />
+      <Layout globalSettings={globalSettingsStory}>
+        <StoryblokComponent blok={data.story.content} />
+      </Layout>
     </CommonContextProviders>
   );
 };
