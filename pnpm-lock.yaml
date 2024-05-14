@@ -96,9 +96,6 @@ importers:
       '@types/react':
         specifier: ^18.3.2
         version: 18.3.2
-      '@types/tailwindcss':
-        specifier: ^2.2.4
-        version: 2.2.4
       '@typescript-eslint/eslint-plugin':
         specifier: ^7.1.1
         version: 7.9.0(@typescript-eslint/parser@7.9.0(eslint@8.57.0)(typescript@5.4.5))(eslint@8.57.0)(typescript@5.4.5)
@@ -175,7 +172,7 @@ importers:
         specifier: ^3.20.0
         version: 3.30.0
       tailwindcss:
-        specifier: ^3.1.8
+        specifier: ^3.4.3
         version: 3.4.3(ts-node@10.9.2(@swc/core@1.5.5(@swc/helpers@0.5.5))(@types/node@20.12.11)(typescript@5.4.5))
       ts-command-line-args:
         specifier: ^2.3.1
@@ -1670,9 +1667,6 @@ packages:
 
   '@types/stack-utils@2.0.3':
     resolution: {integrity: sha512-9aEbYZ3TbYMznPdcdr3SmIrLXwC/AKZXQeCf9Pgao5CKb8CyHuEX5jzWPTkvregvhRJHcpRO6BFoGW9ycaOkYw==}
-
-  '@types/tailwindcss@2.2.4':
-    resolution: {integrity: sha512-8mIk+0BoReKiaBI4e3hjaz9YDQto+rdZ2eEExHf6AfS38FZcALQ6s8mTd+74N8BtBaLnTzLdNe5GbkzObWlSXw==}
 
   '@types/yargs-parser@21.0.3':
     resolution: {integrity: sha512-I4q9QU9MQv4oEOz4tAHJtNz1cwuLxn2F3xcc2iV5WdqLPpUnj30aUuxt1mAxYTG+oe8CZMV/+6rU4S4gRDzqtQ==}
@@ -7284,8 +7278,6 @@ snapshots:
   '@types/semver@7.5.8': {}
 
   '@types/stack-utils@2.0.3': {}
-
-  '@types/tailwindcss@2.2.4': {}
 
   '@types/yargs-parser@21.0.3': {}
 
