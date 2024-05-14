@@ -33,7 +33,7 @@ export default async function storyblokToTypescript({
   const tsString: string[] = [
     '/* eslint-disable @typescript-eslint/no-explicit-any */',
     '/* eslint-disable @typescript-eslint/no-unused-vars */',
-    "import { SbAsset, SbMultiasset, SbMultilink, SbRichtext, SbTable, StoryblokStory } from './sbInternalTypes';",
+    "import type { SbAsset, SbMultiasset, SbMultilink, SbRichtext, SbTable, StoryblokStory } from './sbInternalTypes';",
   ];
   const getTitle = (t: string) => titlePrefix + t + titleSuffix;
   const pascalcase = (t: string) => camelcase(t, { pascalCase: true });

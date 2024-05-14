@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { type SbAsset, type SbMultilink, type SbRichtext, SbMultiasset, SbTable, StoryblokStory } from './sbInternalTypes';
+import type { SbAsset, SbMultiasset, SbMultilink, SbRichtext, SbTable, StoryblokStory } from './sbInternalTypes';
 export type BlockComponents = "Feature" | "Grid" | "RichTextContent" | "SplitContentSection" | "Teaser";
 
 export type Icons = "twitter" | "facebook";
