@@ -41,9 +41,6 @@ importers:
       next:
         specifier: ^14.2.3
         version: 14.2.3(@babel/core@7.24.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.1)
-      next-router-mock:
-        specifier: ^0.8.0
-        version: 0.8.0(next@14.2.3(@babel/core@7.24.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.1))(react@18.3.1)
       next-sitemap:
         specifier: ^3.1.24
         version: 3.1.55(@next/env@14.2.3)(next@14.2.3(@babel/core@7.24.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.1))
@@ -54,7 +51,7 @@ importers:
         specifier: ^18.3.1
         version: 18.3.1(react@18.3.1)
       react-wrap-balancer:
-        specifier: ^0.4.0
+        specifier: ^0.4.1
         version: 0.4.1(react@18.3.1)
       server-only:
         specifier: ^0.0.1
@@ -66,7 +63,7 @@ importers:
         specifier: ^2.9.2
         version: 2.9.2(react@18.3.1)
       tailwind-merge:
-        specifier: ^1.6.1
+        specifier: ^1.14.0
         version: 1.14.0
       zod:
         specifier: ^3.23.8
@@ -4167,12 +4164,6 @@ packages:
 
   netrc@0.1.4:
     resolution: {integrity: sha512-ye8AIYWQcP9MvoM1i0Z2jV0qed31Z8EWXYnyGNkiUAd+Fo8J+7uy90xTV8g/oAbhtjkY7iZbNTizQaXdKUuwpQ==}
-
-  next-router-mock@0.8.0:
-    resolution: {integrity: sha512-aw/QnDFRqGDIkC3y4mCL5HQCNK94IzIfrEYy2c17WVp6Q4V5GUarFx751Sccf8fUPdkzD2/RsldyScvNZGA8lw==}
-    peerDependencies:
-      next: '>=10.0.0'
-      react: '>=17.0.0'
 
   next-sitemap@3.1.55:
     resolution: {integrity: sha512-ZjkRfkqoSLbU+e8W9TWWe0zfOGNA47lpvm35kNcUCmj73gpLX2PIn51gwHT/B6bgGVAFYY0OXixJDrxIIwcEHw==}
@@ -10413,11 +10404,6 @@ snapshots:
   neo-async@2.6.2: {}
 
   netrc@0.1.4: {}
-
-  next-router-mock@0.8.0(next@14.2.3(@babel/core@7.24.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.1))(react@18.3.1):
-    dependencies:
-      next: 14.2.3(@babel/core@7.24.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.1)
-      react: 18.3.1
 
   next-sitemap@3.1.55(@next/env@14.2.3)(next@14.2.3(@babel/core@7.24.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.1)):
     dependencies:
