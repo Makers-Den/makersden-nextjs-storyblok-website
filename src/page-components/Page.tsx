@@ -10,7 +10,7 @@ function Page({ blok }: { blok: PageSbContent }) {
   return (
     <Layout>
       {blok.additionalMetadata?.map((el: JsonLdMetadataSbContent) => (
-        <JsonLdMetadata jsonLd={el.jsonLd as unknown as JSON} key={el._uid} />
+        <JsonLdMetadata jsonLd={el.jsonLd as unknown as string} key={el._uid} />
       ))}
       <main {...storyblokEditable(blok)}>
         {!blok.body && (
