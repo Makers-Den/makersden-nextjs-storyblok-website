@@ -7,7 +7,7 @@ function Header({ navItems }: { navItems: LinkSbContent[] }) {
   return (
     <header className='bg-gray-900 px-4 py-3 text-white md:px-6 md:py-4'>
       <div className='container mx-auto flex max-w-6xl items-center justify-between'>
-        <Link className='flex items-center gap-2 font-semibold' href='#'>
+        <Link className='flex items-center gap-2 font-semibold' href='/'>
           <MountainIcon className='h-6 w-6' />
           <span>Acme Inc</span>
         </Link>
