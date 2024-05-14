@@ -1,4 +1,6 @@
-const SITE_URL = process.env.SITE_URL || 'https://makersden.io';
+import { env } from '@/env';
+
+const SITE_URL = env.NEXT_PUBLIC_SITE_URL;
 /**
  * @type {import('next-sitemap').IConfig}
  * @see https://github.com/iamvishnusankar/next-sitemap#readme

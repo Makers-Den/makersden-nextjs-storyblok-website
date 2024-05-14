@@ -39,7 +39,7 @@ const isStoryblokBlock = (value: BlockFields): value is SbBlock[] => {
   return Array.isArray(value);
 };
 
-export const convertCompontentToString = (component: SbBlock) => {
+export const convertComponentToString = (component: SbBlock) => {
   const result: string = Object.entries(component)
     .map(([key, value]) => {
       if (fieldsFilter.includes(key) || typeof value === 'boolean' || !value) {
@@ -60,7 +60,7 @@ export const convertCompontentToString = (component: SbBlock) => {
             return undefined; // ? this will ensure that linked stories are changed to undefined
           }
           return value
-            .map((block) => convertCompontentToString(block))
+            .map((block) => convertComponentToString(block))
             .join('\n');
         }
 

@@ -1,6 +1,7 @@
+import { env } from '@/env';
+
 /** Base url of the production/canonical deployment without trailing slash */
-export const CANONICAL_BASE_URL_NO_SLASH =
-  process.env.SITE_URL ?? 'https://makersden.io';
+export const CANONICAL_BASE_URL_NO_SLASH = env.NEXT_PUBLIC_SITE_URL;
 
 /** Base url of the production/canonical deployment (with trailing slash) */
 export const CANONICAL_BASE_URL = `${CANONICAL_BASE_URL_NO_SLASH}/`;
