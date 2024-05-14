@@ -13,13 +13,11 @@ export const getDimensionsFromStoryblokAssetFilename = (filename: string) => ({
 });
 
 export const getFirstItemFromArray = <T>(arr: T[]): T | null =>
-  arr.at(0) || null;
+  arr.at(0) ?? null;
 
 export const getHrefFromFullSlug = (fullSlug: string) => '/' + fullSlug;
 
-interface PathsObject {
-  [key: string]: string;
-}
+type PathsObject = Record<string, string>;
 
 export const getBreadcrumbNameFromBlogOverviewPaths = (obj: PathsObject) => {
   return Object.fromEntries(

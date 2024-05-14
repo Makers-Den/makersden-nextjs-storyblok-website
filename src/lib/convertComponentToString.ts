@@ -1,5 +1,5 @@
 import { richTextToString } from '@/lib/richTextUtils';
-import { BlockFields, SbBlock } from '@/lib/storyblok';
+import { type BlockFields, type SbBlock } from '@/lib/storyblok';
 
 import { isValidRichtext } from './isRichtext';
 

@@ -14,7 +14,7 @@ import { HiMenu } from '@react-icons/all-files/hi/HiMenu';
 import { HiOutlineX } from '@react-icons/all-files/hi/HiOutlineX';
 import { HiRefresh } from '@react-icons/all-files/hi/HiRefresh';
 import { HiShieldCheck } from '@react-icons/all-files/hi/HiShieldCheck';
-import { SVGProps } from 'react';
+import { type SVGProps } from 'react';
 export type SvgIconComponent = (props: SVGProps<SVGSVGElement>) => JSX.Element;
 
 const iconMap = {

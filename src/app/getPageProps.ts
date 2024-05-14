@@ -1,25 +1,22 @@
-import { Metadata } from 'next';
+import { type Metadata } from 'next';
 import { RedirectType } from 'next/dist/client/components/redirect';
 import { notFound, redirect } from 'next/navigation';
 
 import { buildOgImageUrl } from '@/lib/buildOgImageUrl';
 import { CANONICAL_BASE_URL_NO_SLASH } from '@/lib/constants';
 import { isRichtextNotEmpty } from '@/lib/isRichtext';
-import { createNamedLoggerFromFilename } from '@/lib/log';
 import { richtextToString } from '@/lib/richTextUtils';
 import {
-  GlobalSettingsSbContent,
-  PageSbContent,
-  StoryblokStory,
+  type GlobalSettingsSbContent,
+  type PageSbContent,
+  type StoryblokStory,
 } from '@/lib/storyblok';
 import {
   findStory,
   RESOLVED_RELATIONS,
 } from '@/lib/storyblok/storyblokRepository';
 
-import { PageProps, StoryContent } from '@/types';
-
-const log = createNamedLoggerFromFilename(__filename);
+import { type PageProps, type StoryContent } from '@/types';
 
 /**
  * Props passed to our CMS backed page.
@@ -66,7 +63,7 @@ export const getPageProps = async (
       }
     );
 
-    if (!globalData || !globalData.story) {
+    if (!globalData?.story) {
       throw new Error('No global data received from repo');
     }
 
@@ -81,7 +78,7 @@ export const getPageProps = async (
   }
 
   // Look for Content manager defined redirects
-  const redirectItems = globalStory.content.redirects || [];
+  const redirectItems = globalStory.content.redirects ?? [];
   const redirectItem = redirectItems.find((item) => item.from === slug);
 
   try {
@@ -92,7 +89,7 @@ export const getPageProps = async (
       resolveRelations: RESOLVED_RELATIONS,
     });
 
-    if (!pageData || !pageData.story) {
+    if (!pageData?.story) {
       throw new Error(`No data or data didn't contain story for ${slug}`);
     }
 
@@ -105,11 +102,8 @@ export const getPageProps = async (
       locale,
     };
   } catch (err) {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const httpErr = err as any;
-
     // No story exists for this slug
-    if (httpErr?.status === 404) {
+    if ((err as { status?: number })?.status === 404) {
       if (redirectItem) {
         // this non-existant slug has a redirect setup
         redirect(
@@ -120,14 +114,6 @@ export const getPageProps = async (
         notFound();
       }
     }
-
-    const statusText = httpErr?.response?.statusText as string;
-    log.error(
-      `Unexpected error during StoryblokPage generation for slug ${slug}: ${JSON.stringify(
-        err
-      )}, ${statusText}`,
-      err
-    );
 
     throw err;
   }

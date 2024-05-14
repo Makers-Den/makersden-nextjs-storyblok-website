@@ -1,4 +1,4 @@
-import { BlockFields, SbRichtext } from './storyblok';
+import { type BlockFields, type SbRichtext } from './storyblok';
 
 export const isValidRichtext = (
   value: BlockFields | undefined

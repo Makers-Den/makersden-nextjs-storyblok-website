@@ -1,4 +1,4 @@
-import { MetadataRoute } from 'next';
+import { type MetadataRoute } from 'next';
 
 import { CANONICAL_BASE_URL_NO_SLASH } from '@/lib/constants';
 import {
@@ -16,10 +16,9 @@ const sitemap = async (): Promise<MetadataRoute.Sitemap> => {
   });
 
   const sitemapFields = sitemapSlugs.map((sitemapSlug) => {
-    const slug =
-      sitemapSlug[sitemapSlug.length - 1] === '/'
-        ? sitemapSlug.slice(0, -1)
-        : sitemapSlug;
+    const slug = sitemapSlug.endsWith('/')
+      ? sitemapSlug.slice(0, -1)
+      : sitemapSlug;
 
     return {
       url: `${CANONICAL_BASE_URL_NO_SLASH}/${slug}`,

@@ -1,5 +1,5 @@
-import { SbRichtext } from './lib/storyblok';
-import { SbAsset } from './lib/storyblok';
+import type { SbRichtext } from './lib/storyblok';
+import type { SbAsset } from './lib/storyblok';
 
 export type WithClassName = { className: string };
 

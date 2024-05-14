@@ -7,13 +7,14 @@ import type {
 } from './storyblok';
 export const isLinkWithAnchor = (
   link: SbMultilink
-): link is SbAssetLink | SbStoryLink => !!(link as any)?.anchor;
+): link is SbAssetLink | SbStoryLink =>
+  !!(link as SbAssetLink | SbStoryLink)?.anchor;
 
 export const isLinkEmail = (link: SbMultilink): link is SbEmailLink =>
-  (link as any)?.linktype === 'email';
+  link?.linktype === 'email';
 
 export const isLinkStory = (link: SbMultilink): link is SbStoryLink =>
-  (link as any)?.linktype === 'story';
+  link?.linktype === 'story';
 
 export const isLinkAsset = (link: SbMultilink): link is SbAssetLink =>
-  (link as any)?.linktype === 'asset' || (link as any)?.linktype === 'url';
+  link.linktype === 'asset' || link.linktype === 'url';

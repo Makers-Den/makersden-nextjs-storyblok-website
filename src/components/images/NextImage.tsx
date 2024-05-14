@@ -1,5 +1,5 @@
 'use client';
-import Image, { ImageProps } from 'next/image';
+import Image, { type ImageProps } from 'next/image';
 import * as React from 'react';
 
 import clsxm from '@/lib/clsxm';

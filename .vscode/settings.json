@@ -12,6 +12,8 @@
     "commitlint",
     "Datasources",
     "Jiti",
+    "linktype",
+    "Multilink",
     "nextjs"
   ]
 }

@@ -18,7 +18,7 @@ type LinkProps = {
 };
 
 const removeTrailingSlash = (path: string) => {
-  if (path.substring(path.length - 1) === '/') {
+  if (path.endsWith('/')) {
     return path.substring(0, path.length - 1);
   }
 
@@ -74,7 +74,7 @@ export const sbLinkToButtonLinkProps = (
 
   if (
     !(
-      (sbLink as SbAssetLink | SbAbstractLink | SbStoryLink).cached_url ||
+      (sbLink as SbAssetLink | SbAbstractLink | SbStoryLink).cached_url ??
       (sbLink as SbAssetLink).url
     )
   ) {
@@ -116,7 +116,7 @@ export const ensurePrecedingSlash = (href: string) => {
     return href;
   }
 
-  if (href.substring(0, 1) !== '/') {
+  if (!href.startsWith('/')) {
     return `/${href}`;
   }
 

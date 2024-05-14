@@ -1,19 +1,19 @@
-import React from 'react';
-
 interface JsonLdMetadataProps {
-  jsonLd: JSON;
+  jsonLd: string;
 }
 
 export const JsonLdMetadata = ({ jsonLd }: JsonLdMetadataProps) => {
-  const jsonObject = JSON.parse(`${jsonLd}`);
+  try {
+    JSON.parse(jsonLd);
+  } catch (error) {
+    console.error('JSON-LD is not valid JSON', error);
+    return null;
+  }
 
-  const jsonMetadata = JSON.stringify(jsonObject, null, 0);
   return (
     <script
       type='application/ld+json'
-      dangerouslySetInnerHTML={{
-        __html: `${jsonMetadata}`,
-      }}
+      dangerouslySetInnerHTML={{ __html: jsonLd }}
     />
   );
 };

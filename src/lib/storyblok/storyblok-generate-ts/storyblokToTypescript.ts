@@ -1,14 +1,17 @@
-/* eslint-disable no-console */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
 import camelcase from 'camelcase';
 import fs from 'fs';
-import { JSONSchema4 } from 'json-schema';
+import { type JSONSchema4 } from 'json-schema';
 import { compile } from 'json-schema-to-typescript';
 
 import defaultCustomMapper from './defaultCustomMapper';
 import { getDatasourceEntries } from './getDatasourceEntries';
 import {
-  StoryblokSchemaElement,
-  StoryblokTsOptions,
+  type StoryblokSchemaElement,
+  type StoryblokTsOptions,
 } from './storyblokSchemaTypes';
 
 const genericTypes = ['asset', 'multiasset', 'multilink', 'table', 'richtext'];
@@ -37,7 +40,7 @@ export default async function storyblokToTypescript({
   const getStoryTypeTitle = (t: string) =>
     `StoryblokStory<${pascalcase(getTitle(t))}>`;
 
-  const groupUuids: { [k: string]: JSONSchema4 } = {};
+  const groupUuids: Record<string, JSONSchema4> = {};
   const globalBlockComponents: string[] = [];
   const generatedDatasourceTypes: string[] = [];
 
@@ -76,7 +79,7 @@ export default async function storyblokToTypescript({
         title: getTitle(values.name),
         type: 'object',
       };
-      obj.properties = await typeMapper(values.schema, obj.title as string);
+      obj.properties = await typeMapper(values.schema, obj.title!);
       obj.properties._uid = {
         type: 'string',
       };

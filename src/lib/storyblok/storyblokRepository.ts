@@ -1,20 +1,20 @@
-import { ISbStoriesParams } from '@storyblok/react/rsc';
+import { type ISbStoriesParams } from '@storyblok/react/rsc';
 
 import type { PageSbContent } from './blockLibraryTypes';
 import type { StoryblokStory } from './sbInternalTypes';
 import { storyblokClient } from './storyblokClient';
 import {
-  ContentTypeName,
-  DatasourceEntry,
-  Filter,
-  FindDatasourcesEntriesArgs,
-  FindDatasourcesEntriesFn,
-  FindStoriesArgs,
-  FindStoriesFn,
-  FindStoryArgs,
-  FindStoryFn,
-  HasPosition,
-  WithTotal,
+  type ContentTypeName,
+  type DatasourceEntry,
+  type Filter,
+  type FindDatasourcesEntriesArgs,
+  type FindDatasourcesEntriesFn,
+  type FindStoriesArgs,
+  type FindStoriesFn,
+  type FindStoryArgs,
+  type FindStoryFn,
+  type HasPosition,
+  type WithTotal,
 } from './storyblokRepositoryTypes';
 import { isDevelopment } from '../constants';
 
@@ -59,7 +59,7 @@ export const findStory: FindStoryFn = async <
     storiesParams.version = 'draft';
   }
 
-  if (isPreview || isDevelopment) {
+  if (isPreview ?? isDevelopment) {
     // Forces the latest content version
     storiesParams.cv = Date.now();
   }
@@ -98,7 +98,7 @@ export const findAllPageSlugs = async (locales?: string[]) => {
   // if you have 100+ of a page type you'll have to implement paging
 
   const allPageStoryResults = await Promise.all(
-    (locales || [undefined])
+    (locales ?? [undefined])
       .map((locale) =>
         ALL_PAGE_TYPES.map((contentType) =>
           findStories({ contentType, perPage: 100, locale })
@@ -113,7 +113,7 @@ export const findAllPageSlugs = async (locales?: string[]) => {
 
   const allSlugsWithoutLocale = allSlugsWithLocale.filter((slug) => {
     const maybeLocaleId = slug.split('/')[0];
-    return !(locales || []).includes(maybeLocaleId);
+    return !(locales ?? []).includes(maybeLocaleId);
   });
 
   return {
@@ -123,7 +123,7 @@ export const findAllPageSlugs = async (locales?: string[]) => {
 };
 
 /** Returns an empty object unless values are set for the keys in the opts */
-const emptyOr = (opts: { [key: string]: unknown }) =>
+const emptyOr = (opts: Record<string, unknown>) =>
   Object.keys(opts).some((key) => typeof opts[key] !== 'undefined') ? opts : {};
 
 const buildFilterQuery = (query: Filter | Filter[] | undefined) => {
@@ -179,7 +179,7 @@ export const findStories: FindStoriesFn = async <
     storiesParams.version = 'draft';
   }
 
-  if (isPreview || isDevelopment) {
+  if (isPreview ?? isDevelopment) {
     // Forces the latest content version
     storiesParams.cv = Date.now();
   }
@@ -190,7 +190,7 @@ export const findStories: FindStoriesFn = async <
     stories?: (StoryType & HasPosition)[];
   } | null;
 
-  if (!data || !data.stories) {
+  if (!data?.stories) {
     throw new Error(
       `No story data received from Storyblok query ${JSON.stringify(
         storiesParams

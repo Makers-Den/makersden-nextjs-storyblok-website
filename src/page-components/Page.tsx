@@ -1,6 +1,6 @@
 import { StoryblokComponent, storyblokEditable } from '@storyblok/react/rsc';
 
-import { JsonLdMetadataSbContent, PageSbContent } from '@/lib/storyblok';
+import type { JsonLdMetadataSbContent, PageSbContent } from '@/lib/storyblok';
 
 import { JsonLdMetadata } from '@/components/json-ld-metadata/JsonLdMetadata';
 import { Layout } from '@/components/layout/Layout';

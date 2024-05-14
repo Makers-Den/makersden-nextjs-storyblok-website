@@ -1,6 +1,6 @@
 import { storyblokEditable } from '@storyblok/react/rsc';
 
-import { TeaserSbContent } from '@/lib/storyblok';
+import { type TeaserSbContent } from '@/lib/storyblok';
 
 function Teaser({ blok }: { blok: TeaserSbContent }) {
   return (

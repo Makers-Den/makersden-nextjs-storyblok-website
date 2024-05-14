@@ -1,6 +1,6 @@
 import { StoryblokComponent, storyblokEditable } from '@storyblok/react/rsc';
 
-import { GridSbContent } from '@/lib/storyblok';
+import { type GridSbContent } from '@/lib/storyblok';
 
 function Grid({ blok }: { blok: GridSbContent }) {
   return (

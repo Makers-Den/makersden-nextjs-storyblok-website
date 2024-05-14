@@ -1,9 +1,9 @@
-import React, { CSSProperties } from 'react';
+import React, { type CSSProperties } from 'react';
 import Balancer from 'react-wrap-balancer';
 
 import clsxm from '../../lib/clsxm';
 
-import { WithHighlighMetadata } from '@/types';
+import { type WithHighlighMetadata } from '@/types';
 
 export type TypographyVariant =
   | 'smallText'

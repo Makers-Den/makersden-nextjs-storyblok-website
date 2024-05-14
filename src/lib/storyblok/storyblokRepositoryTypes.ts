@@ -1,5 +1,5 @@
-import { Datasources, PageSbContent } from './blockLibraryTypes';
-import { StoryblokStory } from './sbInternalTypes';
+import { type Datasources, type PageSbContent } from './blockLibraryTypes';
+import { type StoryblokStory } from './sbInternalTypes';
 
 export type WithTotal<T> = { total: number; stories: T };
 

@@ -1,6 +1,11 @@
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unsafe-return */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import { isValidElement, ReactNode } from 'react';
+import { type ReactNode, isValidElement } from 'react';
 import {
+  type RenderOptions,
   MARK_BOLD,
   MARK_STYLED,
   MARK_UNDERLINE,
@@ -13,28 +18,27 @@ import {
   NODE_QUOTE,
   NODE_UL,
   render,
-  RenderOptions,
 } from 'storyblok-rich-text-react-renderer';
 import 'server-only';
 
 import { StoryblokImage } from '@/components/images/StoryblokImage';
 import {
+  type Tag,
+  type TypographyVariant,
   BigHeading,
   HugeHeading,
   LargeText,
   LightEmphasis,
   MediumHeading,
   SmallHeading,
-  Tag,
   Text,
   Typography,
-  TypographyVariant,
 } from '@/components/typography/Typography';
 
 import clsxm from './clsxm';
 import { getStringFromReactNode } from './getStringFromReactNode';
 import { sentenceToId } from './sentenceToId';
-import { SbAsset, SbRichtext } from './storyblok';
+import { type SbAsset, type SbRichtext } from './storyblok';
 
 export type RichTextType = {
   type: string;
@@ -71,26 +75,27 @@ export const richTextToString = (richText: SbRichtext): string =>
     nodeResolvers: {
       //@ts-expect-error
       [NODE_HEADING]: (children) =>
-        convertChildrenWithPropsToString(children) || '',
+        convertChildrenWithPropsToString(children) ?? '',
       //@ts-expect-error
       [NODE_CODEBLOCK]: (children) =>
-        convertChildrenWithPropsToString(children) || '',
+        convertChildrenWithPropsToString(children) ?? '',
       //@ts-expect-error
       [NODE_IMAGE]: (children) =>
-        convertChildrenWithPropsToString(children) || '',
+        convertChildrenWithPropsToString(children) ?? '',
       //@ts-expect-error
       [NODE_PARAGRAPH]: (children) =>
-        convertChildrenWithPropsToString(children) || '',
+        convertChildrenWithPropsToString(children) ?? '',
       //@ts-expect-error
       [NODE_QUOTE]: (children) =>
-        convertChildrenWithPropsToString(children) || '',
+        convertChildrenWithPropsToString(children) ?? '',
       //@ts-expect-error
-      [NODE_OL]: (children) => convertChildrenWithPropsToString(children) || '',
+      [NODE_OL]: (children) => convertChildrenWithPropsToString(children) ?? '',
       //@ts-expect-error
-      [NODE_UL]: (children) => convertChildrenWithPropsToString(children) || '',
+      [NODE_UL]: (children) => convertChildrenWithPropsToString(children) ?? '',
       //@ts-expect-error
-      [NODE_LI]: (children) => convertChildrenWithPropsToString(children) || '',
+      [NODE_LI]: (children) => convertChildrenWithPropsToString(children) ?? '',
     },
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
   })?.join(' ');
 
 export const defaultRenderOptions: RenderOptions = {
@@ -129,7 +134,7 @@ export const defaultRenderOptions: RenderOptions = {
 
       if (cls === 'quoteRight') {
         return (
-          <q className='mb-4 text-center text-3xl font-bold md:float-right md:ml-10 md:-mr-20 md:max-w-[45%] md:text-left'>
+          <q className='mb-4 text-center text-3xl font-bold md:float-right md:-mr-20 md:ml-10 md:max-w-[45%] md:text-left'>
             {children}
           </q>
         );
@@ -308,7 +313,7 @@ export const renderTextWithOptions = (
     useBalancer?: boolean;
   }
 ) => {
-  const { className, variant = 'text', useBalancer } = options || {};
+  const { className, variant = 'text', useBalancer } = options ?? {};
   return renderText(text, {
     nodeResolvers: {
       [NODE_PARAGRAPH]: (children) => (

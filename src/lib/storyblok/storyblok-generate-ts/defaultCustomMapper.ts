@@ -1,4 +1,4 @@
-import { JSONSchema4 } from 'json-schema';
+import { type JSONSchema4 } from 'json-schema';
 
 export default function defaultCustomMapper(key: string, obj: JSONSchema4) {
   switch (obj.field_type) {

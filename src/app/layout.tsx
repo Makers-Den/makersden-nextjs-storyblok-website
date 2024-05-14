@@ -5,7 +5,7 @@ import {
   storyblokInit,
 } from '@storyblok/react/rsc';
 import { draftMode } from 'next/headers';
-import { ReactNode, Suspense } from 'react';
+import { type ReactNode, Suspense } from 'react';
 
 import '@/styles/globals.css';
 

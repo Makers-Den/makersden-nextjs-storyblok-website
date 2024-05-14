@@ -1,3 +1,3 @@
-export const sentenceToId = (sentance: string, numOfWords = 5) => {
-  return sentance.split(' ').slice(0, numOfWords).join('-').toLowerCase();
+export const sentenceToId = (sentence: string, numOfWords = 5) => {
+  return sentence.split(' ').slice(0, numOfWords).join('-').toLowerCase();
 };

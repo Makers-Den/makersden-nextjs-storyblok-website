@@ -1,6 +1,6 @@
 import { storyblokEditable } from '@storyblok/react/rsc';
 
-import { FeatureSbContent } from '@/lib/storyblok';
+import { type FeatureSbContent } from '@/lib/storyblok';
 
 function Feature({ blok }: { blok: FeatureSbContent }) {
   return (

@@ -1,5 +1,5 @@
 import { ImageResponse } from '@vercel/og';
-import { NextRequest } from 'next/server';
+import { type NextRequest } from 'next/server';
 
 import { MakersDenFullLogo } from '@/components/icons/MakersDenFullLogo';
 import { BackgroundGrid } from '@/components/images/BackgroundGridSVG';

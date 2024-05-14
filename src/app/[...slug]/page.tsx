@@ -1,14 +1,14 @@
 import { StoryblokComponent } from '@storyblok/react/rsc';
 import { notFound } from 'next/navigation';
 
-import { PageSbContent, StoryblokStory } from '@/lib/storyblok';
+import { type PageSbContent, type StoryblokStory } from '@/lib/storyblok';
 import { findStories } from '@/lib/storyblok/storyblokRepository';
 
 import { CommonContextProviders } from '@/components/common-context-providers/CommonContextProviders';
 
 import { getMetadata, getPageProps } from '../getPageProps';
 
-import { PageProps } from '@/types';
+import { type PageProps } from '@/types';
 
 const StoryblokPage = async ({ params, searchParams }: PageProps) => {
   const pathname = params.slug?.length ? '/' + params?.slug?.join('/') : '';

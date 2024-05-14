@@ -1,7 +1,7 @@
-import Image, { ImageProps } from 'next/image';
+import Image, { type ImageProps } from 'next/image';
 
 import clsxm from '@/lib/clsxm';
-import { SbAsset } from '@/lib/storyblok';
+import { type SbAsset } from '@/lib/storyblok';
 import { getDimensionsFromStoryblokAssetFilename } from '@/lib/utils/getters';
 
 interface StoryBlokImageProps extends Omit<ImageProps, 'src' | 'alt'> {
@@ -38,7 +38,7 @@ export const StoryblokImage = ({
   fill,
   ...props
 }: StoryBlokImageProps) => {
-  const { filename, alt } = storyblokImage || fallbackImage || {};
+  const { filename, alt } = storyblokImage ?? fallbackImage ?? {};
 
   const isSvg = filename?.includes('.svg');
 
@@ -54,7 +54,7 @@ export const StoryblokImage = ({
   }
 
   const dimensions = getDimensionsFromStoryblokAssetFilename(
-    computedFilename || ''
+    computedFilename ?? ''
   );
   return (
     <>
@@ -62,7 +62,7 @@ export const StoryblokImage = ({
         <Image
           className={clsxm('h-auto max-w-full', className)}
           src={computedFilename + '/m/' || ''}
-          alt={alt || 'image'}
+          alt={alt ?? 'image'}
           width={calcWidthOrHeight(width, dimensions.width, fill)}
           height={calcWidthOrHeight(height, dimensions.height, fill)}
           fill={fill}
@@ -76,7 +76,7 @@ export const StoryblokImage = ({
           src={computedFilename}
           width={width}
           height={height}
-          alt={alt || 'vector image'}
+          alt={alt ?? 'vector image'}
           loading='lazy'
         />
       )}

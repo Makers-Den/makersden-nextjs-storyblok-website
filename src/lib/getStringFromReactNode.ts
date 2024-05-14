@@ -1,9 +1,10 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-//@ts-nocheck
-import { ReactNode } from 'react';
+import { type ReactNode } from 'react';
 
+/* eslint-disable */
 export const getStringFromReactNode = (element: ReactNode): string => {
-  const retriveNestedString = (item) => {
+  const retrieveNestedString = (
+    item: { props: { children: string } } | string
+  ) => {
     while (typeof item !== 'string') {
       item = item?.props.children ?? '';
       if (typeof item === 'string') {
@@ -12,9 +13,13 @@ export const getStringFromReactNode = (element: ReactNode): string => {
     }
   };
 
-  return element
-    ?.map((item) =>
-      typeof item === 'string' ? item : retriveNestedString(item)
-    )
-    .join('');
+  if (Array.isArray(element)) {
+    return element
+      .map((item: any) =>
+        typeof item === 'string' ? item : retrieveNestedString(item)
+      )
+      .join('');
+  }
+
+  return '';
 };
