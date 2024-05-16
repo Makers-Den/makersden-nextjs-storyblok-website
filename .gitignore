@@ -51,4 +51,4 @@ localhost-key.pem
 
 # Storyblok Type Generator
 scripts-dist/storyblokToTypescript.js
-storyblok-components/*
+storyblok-components/components*.*
