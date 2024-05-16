@@ -5,13 +5,6 @@ import { ENABLE_GTM, GTM_ID } from '@/lib/constants';
 
 /**
  * Adds GTM script. Will only do so if it is enabled in this environment.
- *
- * NOTE:
- * We are loading GTM from a custom location (sgtm.makersden.io), enabled by our stape.io account
- *
- * See here for details:
- * https://app.eu.stape.io/container/emiqdkmo/power-up/custom-loader
- *
  */
 export const GTMScripts = () => {
   if (!ENABLE_GTM) {
@@ -22,7 +15,7 @@ export const GTMScripts = () => {
     <>
       <noscript>
         <iframe
-          src={`https://sgtm.makersden.io/ns.html?id=${GTM_ID}`}
+          src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
           height='0'
           width='0'
           style={{ display: 'none', visibility: 'hidden' }}
@@ -36,7 +29,7 @@ export const GTMScripts = () => {
     (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
     j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://sgtm.makersden.io/emiqdkmo.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','${GTM_ID}');
   `,
         }}
