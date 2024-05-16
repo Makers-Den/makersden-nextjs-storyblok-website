@@ -1,41 +1,9 @@
-import { StoryblokComponent } from '@storyblok/react/rsc';
-import { notFound } from 'next/navigation';
-
 import { type PageSbContent, type StoryblokStory } from '@/lib/storyblok';
 import { findStories } from '@/lib/storyblok/storyblokRepository';
 
-import { CommonContextProviders } from '@/components/common-context-providers/CommonContextProviders';
-import { Layout } from '@/components/layout/Layout';
-
-import { getMetadata, getPageProps } from '../getPageProps';
-
-import { type PageProps } from '@/types';
-
-const StoryblokPage = async ({ params, searchParams }: PageProps) => {
-  const pathname = params.slug?.length ? '/' + params?.slug?.join('/') : '';
-
-  const data = await getPageProps({ slug: pathname, ...searchParams });
-
-  const { globalSettingsStory, story } = data;
-
-  if (!story || !globalSettingsStory) {
-    notFound();
-  }
-
-  return (
-    <CommonContextProviders>
-      <Layout globalSettings={globalSettingsStory}>
-        <StoryblokComponent blok={data.story.content} />
-      </Layout>
-    </CommonContextProviders>
-  );
-};
-
-export default StoryblokPage;
-
-export const generateMetadata = getMetadata;
-
 /**
+ * Builds a `generateStaticParams` function.
+ *
  * This should return all the paths that are generated during build time.
  * For a server side rendered site, also for ISG, everything will work even if
  * this doesn't return anything.
@@ -44,14 +12,19 @@ export const generateMetadata = getMetadata;
  *
  * I assume it's a good idea to at least have the highest traffic
  * pages generated during build time. E.g. all regular "Page" content and maybe 6 latest blog posts.
+ *
+ *
+ *
+ * @param locale Leave undefined if you want the default locale
  */
-export const generateStaticParams = async () => {
+export const buildGenerateStaticParams = (locale?: string) => async () => {
   // Note, will only work for up to the 100 first stories,
   // if you have 100+ of a page type you'll have to implement paging
   const [pagesResult] = await Promise.all([
     findStories<StoryblokStory<PageSbContent>>({
       contentType: 'Page',
       perPage: 100,
+      locale,
     }),
   ]);
 
@@ -59,6 +32,7 @@ export const generateStaticParams = async () => {
     .filter(({ full_slug }) => full_slug !== 'home')
     .map((story) => ({
       slug: story.full_slug.split('/'),
+      locale,
     }));
 
   return paths;

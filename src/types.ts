@@ -69,6 +69,7 @@ export type GetPropsFromSbContent<T> = Omit<T, 'component' | '_uid'> &
 
 export interface PageProps {
   params: { slug: string[] };
+  locale?: string;
   searchParams: Record<string, string>;
 }
 

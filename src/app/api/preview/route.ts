@@ -8,9 +8,14 @@ export const GET = async (req: NextRequest) => {
   const slug = req.nextUrl.searchParams.get('slug') ?? '';
   const secret = req.nextUrl.searchParams.get('secret');
   const url = req.url || '';
+
   // get the storyblok params for the bridge to work
-  // TODO: check the validity of this
-  const params = url.split('?');
+  // NOTE: I don't think we need the query params for the sb bridge anymore
+  const queryParamsAsStr = url.split('?')[1];
+
+  const lang = req.nextUrl.searchParams.get('_storyblok_lang');
+
+  const isDefaultLocale = lang === 'default' || !lang;
 
   // Check the secret and next parameters
   // This secret should only be known to this API route and the CMS
@@ -38,7 +43,9 @@ export const GET = async (req: NextRequest) => {
       urlBase.replace('https://localhost:3000', 'https://localhost:3010')
     : urlBase.replace('http://localhost:3000', 'https://localhost:3010');
 
-  console.log('SLUG', slug);
+  const computedSlug = isDefaultLocale ? slug : `${lang}/${slug}`;
 
-  return NextResponse.redirect(`${computedOrigin}/${slug}?${params[1]}`);
+  return NextResponse.redirect(
+    `${computedOrigin}/${computedSlug}?${queryParamsAsStr}`
+  );
 };
