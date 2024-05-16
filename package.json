@@ -22,9 +22,9 @@
     "prepare": "husky install",
     "proxy": "local-ssl-proxy --source 3010 --target 3000 --cert localhost.pem --key localhost-key.pem",
     "analyze-bundle": "ANALYZE=true pnpm run build",
-    "pull-sb-components": "dotenv -e .env.local -- bash -c 'npx storyblok pull-components --space=$STORYBLOK_SPACE_ID --path ./storyblok-components/'",
+    "pull-sb-components": "dotenv -e .env.local -- bash -c 'storyblok pull-components --space=$STORYBLOK_SPACE_ID --path ./storyblok-components/'",
     "build-sb-generator": "tsup src/lib/storyblok/storyblok-generate-ts/storyblokToTypescript.ts --outDir ./scripts-dist",
-    "generate-sb-types": "dotenv -e .env.local -- bash -c 'npx storyblok login && pnpm run pull-sb-components && pnpm run build-sb-generator && cross-env STORYBLOK_SPACE_ID=$STORYBLOK_SPACE_ID STORYBLOK_ACCESS_TOKEN=$NEXT_PUBLIC_STORYBLOK_TOKEN node ./scripts/generateSbTypes.js'"
+    "generate-sb-types": "dotenv -e .env.local -- bash -c 'storyblok login && pnpm run pull-sb-components && pnpm run build-sb-generator && cross-env STORYBLOK_SPACE_ID=$STORYBLOK_SPACE_ID STORYBLOK_ACCESS_TOKEN=$NEXT_PUBLIC_STORYBLOK_TOKEN node ./scripts/generateSbTypes.js'"
   },
   "dependencies": {
     "@next/bundle-analyzer": "^13.1.5",
@@ -100,5 +100,5 @@
   "resolutions": {
     "webpack": "^5"
   },
-  "packageManager": "pnpm@9.0.6"
+  "packageManager": "pnpm@9.1.1"
 }

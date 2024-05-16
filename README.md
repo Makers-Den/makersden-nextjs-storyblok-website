@@ -14,6 +14,13 @@ Run `pnpm install` to install all dependencies for a project.
 
 After installing all dependencies run `pnpm dev` to run project locally on [localhost](http://localhost:3000/ 'localhost')
 
+## Install needed tools globally
+
+```
+pnpm install -g dotenv-cli
+pnpm install -g storyblok
+```
+
 # Deployment
 
 [Production Link](https://makersden.io/ 'Production Link')
@@ -34,7 +41,7 @@ To setup local dev url run `pnpm dev && pnpm proxy`. (This cmd will setup https 
 To update type definitions run `pnpm generate-sb-types`.
 
 Note:
-Made sure that you have [storyblok cli](https://www.storyblok.com/docs/Guides/command-line-interface 'storyblok cli') installed and you are logged in (the account has to have access to the [Makers' Den storyblok](https://app.storyblok.com/#/me/spaces/188026/dashboard "Makers' Den storyblok") space).
+Make sure that you have [storyblok cli](https://www.storyblok.com/docs/Guides/command-line-interface 'storyblok cli') installed and you are logged in (the account has to have access to the [Makers' Den storyblok](https://app.storyblok.com/#/me/spaces/188026/dashboard "Makers' Den storyblok") space).
 
 # Page structure
 
