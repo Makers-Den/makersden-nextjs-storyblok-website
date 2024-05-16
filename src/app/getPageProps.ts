@@ -36,39 +36,33 @@ export const getPageProps = async (
     };
   }
 
-  // If no slug we assume home
-  let slug = slugAsStr || 'home';
-  if (slug === 'global-settings' || slug.startsWith('globals')) {
-    slug = 'home';
-  }
+  // Default to 'home' for globals and empty slug
+  const slug: string =
+    !slugAsStr || slugAsStr.startsWith('globals') ? 'home' : slugAsStr;
 
-  let globalStory: StoryblokStory<GlobalSettingsSbContent> | undefined =
+  let globalSettingsStory: StoryblokStory<GlobalSettingsSbContent> | undefined =
     undefined;
 
   try {
-    const globalData = await findStory<StoryblokStory<GlobalSettingsSbContent>>(
-      {
-        slug: 'global-settings',
-        isPreview,
-      }
-    );
+    const globalSettingsResponseData = await findStory<
+      StoryblokStory<GlobalSettingsSbContent>
+    >({
+      slug: 'globals/settings',
+      isPreview,
+    });
 
-    if (!globalData?.story) {
-      throw new Error('No global data received from repo');
-    }
-
-    globalStory = globalData.story;
+    globalSettingsStory = globalSettingsResponseData?.story;
   } catch (err) {
     // eslint-disable-next-line no-console
     console.error('Unable to load global from Storyblok', err);
   }
 
-  if (!globalStory) {
+  if (!globalSettingsStory) {
     throw new Error('Unable to load global settings');
   }
 
   // Look for Content manager defined redirects
-  const redirectItems = globalStory.content.redirects ?? [];
+  const redirectItems = globalSettingsStory.content.redirects ?? [];
   const redirectItem = redirectItems.find((item) => item.from === slug);
 
   try {
@@ -86,7 +80,7 @@ export const getPageProps = async (
     const pageStory = pageData.story;
 
     return {
-      globalSettingsStory: globalStory,
+      globalSettingsStory: globalSettingsStory,
       story: pageStory,
       preview: !!isPreview,
       locale,
@@ -95,7 +89,7 @@ export const getPageProps = async (
     // No story exists for this slug
     if ((err as { status?: number })?.status === 404) {
       if (redirectItem) {
-        // this non-existant slug has a redirect setup
+        // this non-existent slug has a redirect setup
         redirect(
           redirectItem.to ?? '',
           redirectItem.isPermanent ? RedirectType.replace : RedirectType.push
@@ -124,9 +118,9 @@ export const getMetadata = async ({
   params,
 }: Omit<PageProps, 'searchParams'>): Promise<Metadata> => {
   const pathname = params.slug?.length ? '/' + params?.slug?.join('/') : '';
-  const data = await getPageProps({ slug: pathname });
+  const pageProps = await getPageProps({ slug: pathname });
 
-  const { globalSettingsStory, story } = data;
+  const { globalSettingsStory, story } = pageProps;
 
   if (!story || !globalSettingsStory) {
     return {};
