@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 import { type LinkSbContent, sbLinkToHref } from '@/lib/storyblok';
 
-function Footer({ footerItems }: { footerItems: LinkSbContent[] }) {
+export function Footer({ footerItems }: { footerItems: LinkSbContent[] }) {
   return (
     <footer className='flex bg-gray-900 px-4 py-6 text-white md:px-6 md:py-8'>
       <div className='container mx-auto flex max-w-6xl justify-between'>
@@ -22,5 +22,3 @@ function Footer({ footerItems }: { footerItems: LinkSbContent[] }) {
     </footer>
   );
 }
-
-export default Footer;

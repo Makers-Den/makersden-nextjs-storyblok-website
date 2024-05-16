@@ -1,15 +1,15 @@
 import { type GlobalSettingsSbContent } from '@/lib/storyblok/blockLibraryTypes';
 import { type StoryblokStory } from '@/lib/storyblok/sbInternalTypes';
 
-import Footer from '@/block-components/Footer/Footer';
-import Header from '@/block-components/Header/Header';
+import { Footer } from '@/block-components/footer/Footer';
+import { Header } from '@/block-components/header/Header';
 
 type LayoutProps = {
   children: React.ReactNode;
   globalSettings: StoryblokStory<GlobalSettingsSbContent>;
 };
 
-function Layout({ children, globalSettings }: LayoutProps) {
+export function Layout({ children, globalSettings }: LayoutProps) {
   const { navItems = [], footerItems = [] } = globalSettings.content;
 
   return (
@@ -20,5 +20,3 @@ function Layout({ children, globalSettings }: LayoutProps) {
     </div>
   );
 }
-
-export default Layout;

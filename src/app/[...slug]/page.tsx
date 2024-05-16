@@ -4,8 +4,8 @@ import { notFound } from 'next/navigation';
 import { type PageSbContent, type StoryblokStory } from '@/lib/storyblok';
 import { findStories } from '@/lib/storyblok/storyblokRepository';
 
-import CommonContextProviders from '@/components/common-context-providers/CommonContextProviders';
-import Layout from '@/components/layout/Layout';
+import { CommonContextProviders } from '@/components/common-context-providers/CommonContextProviders';
+import { Layout } from '@/components/layout/Layout';
 
 import { getMetadata, getPageProps } from '../getPageProps';
 

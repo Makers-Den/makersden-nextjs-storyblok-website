@@ -11,9 +11,9 @@ import '@/styles/globals.css';
 
 import { GTMScripts } from '@/components/gtm-scripts/GTMScripts';
 
-import Feature from '@/block-components/Feature/Feature';
-import Grid from '@/block-components/Grid/Grid';
-import Teaser from '@/block-components/Teaser/Teaser';
+import { Feature } from '@/block-components/feature/Feature';
+import { Grid } from '@/block-components/grid/Grid';
+import { Teaser } from '@/block-components/teaser/Teaser';
 import { env } from '@/env';
 import Page from '@/page-components/Page';
 

@@ -3,7 +3,7 @@ import { type SVGProps } from 'react';
 
 import { type LinkSbContent, sbLinkToHref } from '@/lib/storyblok';
 
-function Header({ navItems }: { navItems: LinkSbContent[] }) {
+export function Header({ navItems }: { navItems: LinkSbContent[] }) {
   return (
     <header className='bg-gray-900 px-4 py-3 text-white md:px-6 md:py-4'>
       <div className='container mx-auto flex max-w-6xl items-center justify-between'>
@@ -45,5 +45,3 @@ function MountainIcon(props: SVGProps<SVGSVGElement>) {
     </svg>
   );
 }
-
-export default Header;
