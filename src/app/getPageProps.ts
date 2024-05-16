@@ -1,5 +1,6 @@
 import { type Metadata } from 'next';
 import { RedirectType } from 'next/dist/client/components/redirect';
+import { draftMode } from 'next/headers';
 import { notFound, redirect } from 'next/navigation';
 
 import { buildOgImageUrl } from '@/lib/buildOgImageUrl';
@@ -18,17 +19,6 @@ import {
 
 import { type PageProps, type StoryContent } from '@/types';
 
-/**
- * Props passed to our CMS backed page.
- * Returned from `getStaticProps`
- */
-
-export const postsOverviewPath = {
-  article: 'articles',
-  video: 'videos',
-  'case-study': 'case-studies',
-};
-
 export const getPageProps = async (
   args: {
     slug: string;
@@ -36,7 +26,7 @@ export const getPageProps = async (
 ) => {
   const { slug: slugArgs, locale } = args;
 
-  const isPreview = true;
+  const isPreview = draftMode().isEnabled;
   const slugAsStr = slugArgs;
 
   // "/home" as a path should only work within Storyblok

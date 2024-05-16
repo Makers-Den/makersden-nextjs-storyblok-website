@@ -10,7 +10,7 @@ export const isDevelopment = process.env.NODE_ENV === 'development';
 export const isProduction = process.env.NODE_ENV === 'production';
 
 /** Configured in CMS preview url as a query param */
-export const PREVIEW_SECRET = ''; //TODO
+export const PREVIEW_SECRET = '1337_m4k3r5_c0d1nG';
 
 /**
  * Google Tag Manager id. https://tagmanager.google.com
@@ -19,5 +19,3 @@ export const PREVIEW_SECRET = ''; //TODO
 export const GTM_ID = '';
 
 export const ENABLE_GTM = process.env.NEXT_PUBLIC_ENABLE_GTM === 'true';
-
-export const GA_TRACKING_ID = '';
