@@ -26,6 +26,7 @@
     ]
   },
   "include": [
+    "next.config.mjs",
     ".eslintrc.cjs",
     "**/*.d.ts",
     "next-env.d.ts",
