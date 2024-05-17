@@ -16,9 +16,9 @@ export async function StoryblokPage({
   const pathname = params?.slug?.length ? '/' + params?.slug?.join('/') : '';
 
   const data = await getPageProps({
+    ...searchParams,
     slug: pathname,
     locale,
-    ...searchParams,
   });
 
   const { globalSettingsStory, story } = data;
