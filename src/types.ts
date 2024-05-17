@@ -1,3 +1,5 @@
+import { type Locale } from 'i18n.config';
+
 import type { SbRichtext } from './lib/storyblok';
 import type { SbAsset } from './lib/storyblok';
 
@@ -68,8 +70,7 @@ export type GetPropsFromSbContent<T> = Omit<T, 'component' | '_uid'> &
   Partial<WithHighlighMetadata>;
 
 export interface PageProps {
-  params: { slug: string[] };
-  locale?: string;
+  params: { slug: string[]; locale?: Locale };
   searchParams: Record<string, string>;
 }
 

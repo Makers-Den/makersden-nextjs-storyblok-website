@@ -8,11 +8,8 @@ import { getPageProps } from './getPageProps';
 
 import { type PageProps } from '@/types';
 
-export async function StoryblokPage({
-  params,
-  searchParams,
-  locale,
-}: PageProps) {
+export async function StoryblokPage({ params, searchParams }: PageProps) {
+  const locale = params.locale;
   const pathname = params?.slug?.length ? '/' + params?.slug?.join('/') : '';
 
   const data = await getPageProps({
@@ -29,7 +26,7 @@ export async function StoryblokPage({
 
   return (
     <CommonContextProviders>
-      <Layout globalSettings={globalSettingsStory}>
+      <Layout locale={locale} globalSettings={globalSettingsStory}>
         <StoryblokComponent blok={data.story.content} />
       </Layout>
     </CommonContextProviders>

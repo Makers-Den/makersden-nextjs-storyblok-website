@@ -7,6 +7,8 @@ import {
 } from '@/lib/storyblok/storyblokRepository';
 
 const sitemap = async (): Promise<MetadataRoute.Sitemap> => {
+  // TODO: this should take locales into account
+
   const { allSlugsWithLocale } = await findAllPageSlugs();
 
   const sitemapSlugs = allSlugsWithLocale.filter((slug) => {

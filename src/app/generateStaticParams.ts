@@ -2,8 +2,6 @@ import { type PageSbContent, type StoryblokStory } from '@/lib/storyblok';
 import { findStories } from '@/lib/storyblok/storyblokRepository';
 
 /**
- * Builds a `generateStaticParams` function.
- *
  * This should return all the paths that are generated during build time.
  * For a server side rendered site, also for ISG, everything will work even if
  * this doesn't return anything.
@@ -14,17 +12,17 @@ import { findStories } from '@/lib/storyblok/storyblokRepository';
  * pages generated during build time. E.g. all regular "Page" content and maybe 6 latest blog posts.
  *
  *
- *
  * @param locale Leave undefined if you want the default locale
  */
-export const buildGenerateStaticParams = (locale?: string) => async () => {
+export const generateStaticParams = async () => {
+  // TODO: this should generate entries for each locale in the case that each page exists in every locale
+
   // Note, will only work for up to the 100 first stories,
   // if you have 100+ of a page type you'll have to implement paging
   const [pagesResult] = await Promise.all([
     findStories<StoryblokStory<PageSbContent>>({
       contentType: 'Page',
       perPage: 100,
-      locale,
     }),
   ]);
 
@@ -32,7 +30,6 @@ export const buildGenerateStaticParams = (locale?: string) => async () => {
     .filter(({ full_slug }) => full_slug !== 'home')
     .map((story) => ({
       slug: story.full_slug.split('/'),
-      locale,
     }));
 
   return paths;
