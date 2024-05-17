@@ -25,13 +25,13 @@ import { StoryblokImage } from '@/components/images/StoryblokImage';
 import {
   type Tag,
   type TypographyVariant,
-  BigHeading,
-  HugeHeading,
-  LargeText,
+  HeadingLg,
+  HeadingMd,
+  HeadingSm,
+  HeadingXl,
   LightEmphasis,
-  MediumHeading,
-  SmallHeading,
   Text,
+  TextLg,
   Typography,
 } from '@/components/typography/Typography';
 
@@ -102,7 +102,7 @@ export const defaultRenderOptions: RenderOptions = {
   blokResolvers: {},
   markResolvers: {
     [MARK_BOLD]: (children) => (
-      <strong className='font-bold text-grey-100'>{children}</strong>
+      <strong className='text-grey-100 font-bold'>{children}</strong>
     ),
     [MARK_UNDERLINE]: (children) => (
       <u className=' text-primary-600'>{children}</u>
@@ -122,14 +122,14 @@ export const defaultRenderOptions: RenderOptions = {
 
       if (cls === 'highlightBox') {
         return (
-          <span className='block rounded-sm border border-grey-400 bg-grey-200 p-3 font-bold text-grey-900'>
+          <span className='border-grey-400 bg-grey-200 text-grey-900 block rounded-sm border p-3 font-bold'>
             {children}
           </span>
         );
       }
 
       if (cls === 'markGreen') {
-        return <span className='inline-block text-green'>{children}</span>;
+        return <span className='text-green inline-block'>{children}</span>;
       }
 
       if (cls === 'quoteRight') {
@@ -156,7 +156,7 @@ export const defaultRenderOptions: RenderOptions = {
       </blockquote>
     ),
     [NODE_PARAGRAPH]: (children) => (
-      <Text className='my-7 text-grey-200'>{children}</Text>
+      <Text className='text-grey-200 my-7'>{children}</Text>
     ),
     [NODE_UL]: (children) => (
       <ul className='ml-[1rem] list-disc'>{children}</ul>
@@ -171,42 +171,42 @@ export const defaultRenderOptions: RenderOptions = {
       const tag = `h${level}` as 'h1' | 'h2' | 'h3' | 'h4';
 
       if (tag === 'h1') {
-        return <BigHeading as='h1'>{children}</BigHeading>;
+        return <HeadingLg as='h1'>{children}</HeadingLg>;
       }
 
       if (tag === 'h2') {
         return (
-          <MediumHeading
+          <HeadingMd
             as='h2'
             className='mb-6 mt-16 md:mt-20'
             id={sentenceToId(getStringFromReactNode(children) || '')}
           >
             {children}
-          </MediumHeading>
+          </HeadingMd>
         );
       }
 
       if (tag === 'h3') {
         return (
-          <SmallHeading
+          <HeadingSm
             as='h3'
             className='mb-6 mt-10 md:mt-14'
             id={sentenceToId(getStringFromReactNode(children) || '')}
           >
             {children}
-          </SmallHeading>
+          </HeadingSm>
         );
       }
 
       if (tag === 'h4') {
         return (
-          <SmallHeading
+          <HeadingSm
             as='h4'
             className='mb-6 mt-6'
             id={sentenceToId(getStringFromReactNode(children) || '')}
           >
             {children}
-          </SmallHeading>
+          </HeadingSm>
         );
       }
 
@@ -262,44 +262,44 @@ export const renderText = (text: SbRichtext, overrides: RenderOptions = {}) =>
   render(text, mergeInOverrides(overrides));
 
 /** Renders paragraphs as large text */
-export const renderTextLarge = (text: SbRichtext) =>
+export const renderTextLg = (text: SbRichtext) =>
   renderText(text, {
     nodeResolvers: {
       [NODE_PARAGRAPH]: (children) => (
-        <LargeText className='my-7'>{children}</LargeText>
+        <TextLg className='my-7'>{children}</TextLg>
       ),
     },
   });
 
 /** Render paragraphs as visual huge headings, but still remain semantic paragraphs by default */
-export const renderHugeHeading = (text: SbRichtext, tag: Tag = 'p') =>
+export const renderHeadingXl = (text: SbRichtext, tag: Tag = 'p') =>
   renderText(text, {
     nodeResolvers: {
       [NODE_PARAGRAPH]: (children) => (
-        <HugeHeading as={tag}>{children}</HugeHeading>
+        <HeadingXl as={tag}>{children}</HeadingXl>
       ),
     },
   });
 
 /** Render paragraphs as visual big headings, but still remain semantic paragraphs by default */
-export const renderBigHeading = (text: SbRichtext, tag: Tag = 'p') =>
+export const renderHeadingLg = (text: SbRichtext, tag: Tag = 'p') =>
   renderText(text, {
     nodeResolvers: {
       [NODE_PARAGRAPH]: (children) => (
-        <BigHeading as={tag} className='my-0'>
+        <HeadingLg as={tag} className='my-0'>
           {children}
-        </BigHeading>
+        </HeadingLg>
       ),
     },
   });
 
-export const renderMediumHeading = (text: SbRichtext, tag: Tag = 'p') =>
+export const renderHeadingMd = (text: SbRichtext, tag: Tag = 'p') =>
   renderText(text, {
     nodeResolvers: {
       [NODE_PARAGRAPH]: (children) => (
-        <MediumHeading as={tag} className='my-0'>
+        <HeadingMd as={tag} className='my-0'>
           {children}
-        </MediumHeading>
+        </HeadingMd>
       ),
     },
   });
@@ -319,7 +319,7 @@ export const renderTextWithOptions = (
       [NODE_PARAGRAPH]: (children) => (
         <Typography
           useBalancer={useBalancer}
-          className={clsxm('my-2 text-grey-200', className)}
+          className={clsxm('text-grey-200 my-2', className)}
           variant={variant}
         >
           {children}

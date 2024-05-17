@@ -47,6 +47,14 @@ Make sure that you have [storyblok cli](https://www.storyblok.com/docs/Guides/co
 
 All CMS generated pages are generated via the catch-all [...slug.tsx]
 
+# Shadcn
+
+Basic components can be generate using shadcn e.g.
+
+```
+npx shadcn-ui@latest add accordion
+```
+
 # Commit Message Convention
 
 This starter is using [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/), it is mandatory to use it to commit changes.

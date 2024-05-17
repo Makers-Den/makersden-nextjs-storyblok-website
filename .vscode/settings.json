@@ -8,6 +8,7 @@
   "headwind.runOnSave": false,
   "cSpell.words": [
     "camelcase",
+    "clsx",
     "clsxm",
     "commitlint",
     "Datasources",
@@ -15,6 +16,9 @@
     "linktype",
     "Multilink",
     "nextjs",
-    "Storyblok"
-  ]
+    "Storyblok",
+    "Styleguide",
+    "tailwindcss"
+  ],
+  "typescript.tsdk": "node_modules/typescript/lib"
 }

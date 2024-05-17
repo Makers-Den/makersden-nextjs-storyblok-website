@@ -1,4 +1,5 @@
 import { StoryblokComponent } from '@storyblok/react/rsc';
+import { defaultLocale } from 'i18n.config';
 import { notFound } from 'next/navigation';
 
 import { CommonContextProviders } from '@/components/common-context-providers/CommonContextProviders';
@@ -26,7 +27,10 @@ export async function StoryblokPage({ params, searchParams }: PageProps) {
 
   return (
     <CommonContextProviders>
-      <Layout locale={locale} globalSettings={globalSettingsStory}>
+      <Layout
+        locale={locale ?? defaultLocale}
+        globalSettings={globalSettingsStory}
+      >
         <StoryblokComponent blok={data.story.content} />
       </Layout>
     </CommonContextProviders>

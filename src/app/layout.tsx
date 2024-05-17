@@ -1,7 +1,7 @@
 import { type ReactNode } from 'react';
 
-function FallbackLayout({ children }: { children: ReactNode }) {
+function RootLayout({ children }: { children: ReactNode }) {
   return <>{children}</>;
 }
 
-export default FallbackLayout;
+export default RootLayout;

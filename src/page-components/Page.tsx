@@ -3,7 +3,7 @@ import { StoryblokComponent, storyblokEditable } from '@storyblok/react/rsc';
 import type { JsonLdMetadataSbContent, PageSbContent } from '@/lib/storyblok';
 
 import { JsonLdMetadata } from '@/components/json-ld-metadata/JsonLdMetadata';
-import { BigHeading } from '@/components/typography/Typography';
+import { HeadingLg } from '@/components/typography/Typography';
 
 function Page({ blok }: { blok: PageSbContent }) {
   return (
@@ -16,9 +16,9 @@ function Page({ blok }: { blok: PageSbContent }) {
         {...storyblokEditable(blok)}
       >
         {!blok.body && (
-          <BigHeading className='mt-20'>
+          <HeadingLg className='mt-20'>
             Add your first block to see some content
-          </BigHeading>
+          </HeadingLg>
         )}
         {blok.body?.map((nestedBlok) => (
           <StoryblokComponent blok={nestedBlok} key={nestedBlok._uid} />

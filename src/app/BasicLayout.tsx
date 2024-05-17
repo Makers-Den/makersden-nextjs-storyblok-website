@@ -4,18 +4,27 @@ import {
   StoryblokBridgeLoader,
   storyblokInit,
 } from '@storyblok/react/rsc';
+import { Inter as FontSans } from 'next/font/google';
 import { draftMode } from 'next/headers';
 import { type ReactNode, Suspense } from 'react';
 
 import '@/styles/globals.css';
 
+import clsxm from '@/lib/clsxm';
+
 import { GTMScripts } from '@/components/gtm-scripts/GTMScripts';
 
+import { FaqSection } from '@/block-components/faq-section/FaqSection';
 import { Feature } from '@/block-components/feature/Feature';
 import { Grid } from '@/block-components/grid/Grid';
 import { Teaser } from '@/block-components/teaser/Teaser';
 import { env } from '@/env';
 import Page from '@/page-components/Page';
+
+const fontSans = FontSans({
+  subsets: ['latin'],
+  variable: '--font-sans',
+});
 
 type Favicons = {
   rel: string;
@@ -24,6 +33,7 @@ type Favicons = {
   type?: string;
 };
 
+// TODO: Move this somewhere more sensible and discoverable
 storyblokInit({
   accessToken: env.NEXT_PUBLIC_STORYBLOK_TOKEN,
   use: [apiPlugin],
@@ -32,6 +42,7 @@ storyblokInit({
     Grid: Grid,
     Page: Page,
     Teaser: Teaser,
+    FaqSection: FaqSection,
   },
 });
 
@@ -86,20 +97,7 @@ export function BasicLayout({
           type='font/woff2'
           crossOrigin='anonymous'
         />
-        <link
-          rel='preload'
-          href='/fonts/MD-Formula.woff2'
-          as='font'
-          type='font/woff'
-          crossOrigin='anonymous'
-        />
-        <link
-          rel='preload'
-          href='/fonts/IBMPlexMono-Regular-Latin1.woff2'
-          as='font'
-          type='font/ttf'
-          crossOrigin='anonymous'
-        />
+
         {favicons.map((linkProps) => (
           <link key={linkProps.href} {...linkProps} />
         ))}
@@ -110,7 +108,14 @@ export function BasicLayout({
           </Suspense>
         )}
       </head>
-      <body>{children}</body>
+      <body
+        className={clsxm(
+          'bg-background min-h-screen font-sans antialiased',
+          fontSans.variable
+        )}
+      >
+        {children}
+      </body>
       <StoryblokBridgeLoader options={{}} />
     </html>
   );

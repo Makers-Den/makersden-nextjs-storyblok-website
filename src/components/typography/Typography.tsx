@@ -6,17 +6,16 @@ import clsxm from '../../lib/clsxm';
 import { type WithHighlighMetadata } from '@/types';
 
 export type TypographyVariant =
-  | 'smallText'
+  | 'textSm'
   | 'text'
-  | 'largeText'
-  | 'hugeHeading'
-  | 'bigHeading'
-  | 'mediumHeading'
-  | 'smallHeading'
+  | 'textLg'
+  | 'headingXl'
+  | 'headingLg'
+  | 'headingMd'
+  | 'headingSm'
   | 'quotation'
   | 'tagText'
-  | 'SmallTagText'
-  | 'Text'
+  | 'tagTextSm'
   | 'bold'
   | 'italic'
   | 'lightEmphasis'
@@ -51,7 +50,7 @@ export interface TypographyProps {
 }
 
 export const variantToClasses: { [key in TypographyVariant]: string[] } = {
-  smallText: [
+  textSm: [
     'text-xs',
     'leading-[1.25] md:leading-[2.08]',
     'text-current',
@@ -62,12 +61,12 @@ export const variantToClasses: { [key in TypographyVariant]: string[] } = {
     'leading-[1.43] md:leading-[1.56]',
     'font-primary',
   ],
-  largeText: [
+  textLg: [
     'text-base md:text-lg',
     'leading-[1.38] md:leading-[1.44]',
     'font-primary',
   ],
-  hugeHeading: [
+  headingXl: [
     'text-current',
     'font-display',
     'font-black',
@@ -80,7 +79,7 @@ export const variantToClasses: { [key in TypographyVariant]: string[] } = {
     'whitespace-pre-line',
     'tracking-wide',
   ],
-  bigHeading: [
+  headingLg: [
     'antialiased',
     'font-extrabold',
     'text-current',
@@ -90,7 +89,7 @@ export const variantToClasses: { [key in TypographyVariant]: string[] } = {
     'leading-[1.09] md:leading-[1]',
     'break-words',
   ],
-  mediumHeading: [
+  headingMd: [
     'antialiased',
     'font-extrabold',
     'text-current',
@@ -100,7 +99,7 @@ export const variantToClasses: { [key in TypographyVariant]: string[] } = {
     'leading-[1] md:leading-[1.03]',
     'break-words',
   ],
-  smallHeading: [
+  headingSm: [
     'antialiased',
     'font-bold',
     'text-current',
@@ -118,7 +117,7 @@ export const variantToClasses: { [key in TypographyVariant]: string[] } = {
     'font-tag',
     'leading-[1.14] md:leading-[1]',
   ],
-  SmallTagText: [
+  tagTextSm: [
     'text-xs',
     'md:text-sm',
     'font-light',
@@ -129,7 +128,6 @@ export const variantToClasses: { [key in TypographyVariant]: string[] } = {
   quotation: ['text-xl', 'font-normal', 'leading-[1.5] italic'],
   bold: ['font-semibold', 'not-italic'],
   italic: ['px-1', 'italic'],
-  Text: ['text-[0.625rem]'],
   lightEmphasis: ['font-primary', 'not-italic', 'text-green-400'],
   darkEmphasis: ['bg-dullViolet', 'not-italic', 'text-white', 'font-semibold'],
 };
@@ -158,8 +156,8 @@ export type TypographyPropsWithoutVariant = Omit<TypographyProps, 'variant'> &
 
 // * Body Text
 
-export const SmallText = (props: TypographyPropsWithoutVariant) => (
-  <Typography variant='smallText' as='p' {...props} />
+export const TextSm = (props: TypographyPropsWithoutVariant) => (
+  <Typography variant='textSm' as='p' {...props} />
 );
 
 /** Equivalent to "Paragraph" in Design System */
@@ -167,29 +165,29 @@ export const Text = (props: TypographyPropsWithoutVariant) => (
   <Typography variant='text' as='p' {...props} />
 );
 
-export const LargeText = (props: TypographyPropsWithoutVariant) => (
-  <Typography variant='largeText' as='p' {...props} />
+export const TextLg = (props: TypographyPropsWithoutVariant) => (
+  <Typography variant='textLg' as='p' {...props} />
 );
 
 // * Headings
 
-export const SmallHeading = (props: TypographyPropsWithoutVariant) => (
-  <Typography variant='smallHeading' as='h4' {...props} />
+export const HeadingSm = (props: TypographyPropsWithoutVariant) => (
+  <Typography variant='headingSm' as='h4' {...props} />
 );
 
-export const MediumHeading = (props: TypographyPropsWithoutVariant) => (
-  <Typography variant='mediumHeading' as='h3' {...props} />
+export const HeadingMd = (props: TypographyPropsWithoutVariant) => (
+  <Typography variant='headingMd' as='h3' {...props} />
 );
 
-export const BigHeading = (props: TypographyPropsWithoutVariant) => (
-  <Typography variant='bigHeading' as='h2' {...props} />
+export const HeadingLg = (props: TypographyPropsWithoutVariant) => (
+  <Typography variant='headingLg' as='h2' {...props} />
 );
 
 /** There should only be one instance of an HugeHeading (H1) tag on the page.
  *  Used in Hero block and on Blog Post pages and Contact (as H2).
  */
-export const HugeHeading = (props: TypographyPropsWithoutVariant) => {
-  return <Typography variant='hugeHeading' as='h1' {...props} />;
+export const HeadingXl = (props: TypographyPropsWithoutVariant) => {
+  return <Typography variant='headingXl' as='h1' {...props} />;
 };
 // *
 
@@ -239,8 +237,8 @@ export const Quotation = (props: TypographyPropsWithoutVariant) => (
   <Typography variant='quotation' as='p' {...props} />
 );
 
-export const SmallTagText = (props: TypographyPropsWithoutVariant) => (
-  <Typography variant='SmallTagText' as='p' {...props} />
+export const TagTextSm = (props: TypographyPropsWithoutVariant) => (
+  <Typography variant='tagTextSm' as='p' {...props} />
 );
 
 export const TagText = (props: TypographyPropsWithoutVariant) => (

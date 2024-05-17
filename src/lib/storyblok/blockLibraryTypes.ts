@@ -3,6 +3,24 @@
 import type { SbAsset, SbMultiasset, SbMultilink, SbRichtext, SbTable, StoryblokStory } from './sbInternalTypes';
 export type BlockComponents = "Feature" | "Grid" | "RichTextContent" | "SplitContentSection" | "Teaser";
 
+export interface FaqItemSbContent {
+  question?: SbRichtext;
+  answer?: SbRichtext;
+  _uid: string;
+  component: "FaqItem";
+  [k: string]: any;
+}
+
+export type FaqSectionFaqItemsBlockType = "FaqItem";
+
+export interface FaqSectionSbContent {
+  title?: SbRichtext;
+  faqItems: FaqItemSbContent[];
+  _uid: string;
+  component: "FaqSection";
+  [k: string]: any;
+}
+
 export type Icons = "twitter" | "facebook";
 
 export interface FeatureSbContent {
