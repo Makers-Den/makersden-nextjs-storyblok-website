@@ -2,8 +2,6 @@ import createMiddleware from 'next-intl/middleware';
 
 import { locales } from '../i18n.config';
 
-console.log('Middleware file was read');
-
 export default createMiddleware({
   // Use this locale when we can't match
   // another with our user's preferred locales
