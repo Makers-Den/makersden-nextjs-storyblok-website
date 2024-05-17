@@ -1,9 +1,17 @@
-import Link from 'next/link';
+import { type Locale, Link } from 'i18n.config';
 import { type SVGProps } from 'react';
 
 import { type LinkSbContent, sbLinkToHref } from '@/lib/storyblok';
 
-export function Header({ navItems }: { navItems: LinkSbContent[] }) {
+import LocaleSwitcher from '@/components/local-switcher/LocaleSwitcher';
+
+export function Header({
+  navItems,
+  locale,
+}: {
+  navItems: LinkSbContent[];
+  locale: Locale;
+}) {
   return (
     <header className='bg-gray-900 px-4 py-3 text-white md:px-6 md:py-4'>
       <div className='container mx-auto flex max-w-6xl items-center justify-between'>
@@ -22,6 +30,8 @@ export function Header({ navItems }: { navItems: LinkSbContent[] }) {
             </Link>
           ))}
         </nav>
+
+        <LocaleSwitcher locale={locale} />
       </div>
     </header>
   );

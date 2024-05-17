@@ -117,12 +117,11 @@ const defaultMeta = {
 
 export const getMetadata = async ({
   params,
-  locale,
 }: Omit<PageProps, 'searchParams'>): Promise<Metadata> => {
   const pathname = params.slug?.length ? '/' + params?.slug?.join('/') : '';
   const pageProps = await getPageProps({
     slug: pathname,
-    locale,
+    locale: params.locale,
   });
 
   const { globalSettingsStory, story } = pageProps;

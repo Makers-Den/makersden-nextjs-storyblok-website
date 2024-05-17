@@ -69,15 +69,15 @@ const favicons: Array<Favicons> = [
 
 export function BasicLayout({
   children,
-  lang,
+  locale,
 }: {
-  lang: string;
+  locale: string;
   children: ReactNode;
 }) {
   const isPreview = draftMode().isEnabled;
 
   return (
-    <html lang={lang}>
+    <html lang={locale}>
       <head>
         <link
           rel='preload'
