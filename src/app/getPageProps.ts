@@ -22,7 +22,8 @@ import { type PageProps, type StoryContent } from '@/types';
 export const getPageProps = async (
   args: {
     slug: string;
-  } & Record<string, string>
+    locale: string | undefined;
+  } & Record<string, string | undefined>
 ) => {
   const { slug: slugArgs, locale } = args;
 
@@ -116,9 +117,13 @@ const defaultMeta = {
 
 export const getMetadata = async ({
   params,
+  locale,
 }: Omit<PageProps, 'searchParams'>): Promise<Metadata> => {
   const pathname = params.slug?.length ? '/' + params?.slug?.join('/') : '';
-  const pageProps = await getPageProps({ slug: pathname });
+  const pageProps = await getPageProps({
+    slug: pathname,
+    locale,
+  });
 
   const { globalSettingsStory, story } = pageProps;
 
