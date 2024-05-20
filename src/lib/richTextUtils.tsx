@@ -211,7 +211,7 @@ export const defaultRenderOptions: RenderOptions = {
       }
 
       return (
-        <Typography variant='smallHeading' as={tag} className='mb-4'>
+        <Typography variant='headingSm' as={tag} className='mb-4'>
           {children}
         </Typography>
       );
