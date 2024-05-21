@@ -30,6 +30,7 @@ export const generateStaticParams = async () => {
     .filter(({ full_slug }) => full_slug !== 'home')
     .map((story) => ({
       slug: story.full_slug.split('/'),
+      locale: 'en',
     }));
 
   return paths;
