@@ -2,7 +2,7 @@ import { type ReactNode } from 'react';
 
 import { BasicLayout } from '@/app/BasicLayout';
 
-export function LocaleLayout({
+function LocaleLayout({
   children,
   params: { locale },
 }: Readonly<{
