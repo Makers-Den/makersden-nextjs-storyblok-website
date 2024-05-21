@@ -4,6 +4,9 @@ const config = {
   parserOptions: {
     project: true,
   },
+  env: {
+    jest: true,
+  },
   plugins: ['@typescript-eslint', 'simple-import-sort'],
   extends: [
     'next/core-web-vitals',
