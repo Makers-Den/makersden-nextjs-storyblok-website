@@ -27,5 +27,9 @@ export const getDatasourceEntries = (
   datasource_slug: string
 ): Promise<Datasource[]> =>
   storyblokClient
-    .get(`cdn/datasource_entries`, { datasource: datasource_slug })
+    .get(`cdn/datasource_entries`, {
+      // version: draft is required to get most recent data from datasource, otherwise it will return cached/old data
+      version: 'draft',
+      datasource: datasource_slug,
+    })
     .then((response) => response.data.datasource_entries);
