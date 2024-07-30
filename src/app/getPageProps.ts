@@ -50,6 +50,7 @@ export const getPageProps = async (
     >({
       slug: 'globals/settings',
       isPreview,
+      resolveLinks: 'url',
     });
 
     globalSettingsStory = globalSettingsResponseData?.story;
