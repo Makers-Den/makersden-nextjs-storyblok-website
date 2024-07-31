@@ -31,7 +31,7 @@ const prependSlash = (path: string) => {
     return path;
   }
 
-  return '/' + path;
+  return `/${path}`;
 };
 
 const computeLink = (link: string) => {
@@ -41,7 +41,7 @@ const computeLink = (link: string) => {
 const generateHrefFromSbStoryLink = (sbLink: SbStoryLink, anchor: string) => {
   const link = sbLink.story
     ? computeLink(sbLink.story.full_slug)
-    : `${sbLink.cached_url}`;
+    : `${sbLink.cached_url ?? ''}`;
 
   // If it's an empty string then it hasn't been defined in CMS.
   if (link === '') {
