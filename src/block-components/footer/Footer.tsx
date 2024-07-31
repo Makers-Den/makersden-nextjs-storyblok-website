@@ -1,6 +1,6 @@
-import Link from 'next/link';
+import { type LinkSbContent } from '@/lib/storyblok';
 
-import { type LinkSbContent, sbLinkToHref } from '@/lib/storyblok';
+import { StoryblokLink } from '@/components/storyblok-link/StoryblokLink';
 
 export function Footer({ footerItems }: { footerItems: LinkSbContent[] }) {
   return (
@@ -9,13 +9,13 @@ export function Footer({ footerItems }: { footerItems: LinkSbContent[] }) {
         <p className='text-sm'>© 2024 Acme Inc. All rights reserved.</p>
         <div className='space-x-4 md:flex'>
           {footerItems.map((item) => (
-            <Link
+            <StoryblokLink
               className='hover:text-gray-900 hover:underline dark:hover:text-gray-50'
-              href={sbLinkToHref(item.link)}
+              link={item.link}
               key={item._uid}
             >
               {item.name}
-            </Link>
+            </StoryblokLink>
           ))}
         </div>
       </div>

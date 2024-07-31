@@ -1,9 +1,10 @@
 import { type Locale, Link } from 'i18n.config';
 import { type SVGProps } from 'react';
 
-import { type LinkSbContent, sbLinkToHref } from '@/lib/storyblok';
+import { type LinkSbContent } from '@/lib/storyblok';
 
 import LocaleSwitcher from '@/components/local-switcher/LocaleSwitcher';
+import { StoryblokLink } from '@/components/storyblok-link/StoryblokLink';
 
 export function Header({
   navItems,
@@ -21,13 +22,13 @@ export function Header({
         </Link>
         <nav className='hidden space-x-4 md:flex'>
           {navItems.map((item) => (
-            <Link
+            <StoryblokLink
               className='hover:underline'
-              href={sbLinkToHref(item.link)}
+              link={item.link}
               key={item._uid}
             >
               {item.name}
-            </Link>
+            </StoryblokLink>
           ))}
         </nav>
 
