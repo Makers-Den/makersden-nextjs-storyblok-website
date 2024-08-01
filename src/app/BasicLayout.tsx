@@ -1,9 +1,5 @@
 /* eslint-disable @next/next/next-script-for-ga */
-import {
-  apiPlugin,
-  StoryblokBridgeLoader,
-  storyblokInit,
-} from '@storyblok/react/rsc';
+import { StoryblokBridgeLoader } from '@storyblok/react/rsc';
 import { Inter as FontSans } from 'next/font/google';
 import { draftMode } from 'next/headers';
 import { type ReactNode, Suspense } from 'react';
@@ -14,12 +10,7 @@ import clsxm from '@/lib/clsxm';
 
 import { GTMScripts } from '@/components/gtm-scripts/GTMScripts';
 
-import { FaqSection } from '@/block-components/faq-section/FaqSection';
-import { Feature } from '@/block-components/feature/Feature';
-import { Grid } from '@/block-components/grid/Grid';
-import { Teaser } from '@/block-components/teaser/Teaser';
-import { env } from '@/env';
-import Page from '@/page-components/Page';
+import { initStoryblok } from '@/storyblok';
 
 const fontSans = FontSans({
   subsets: ['latin'],
@@ -32,19 +23,7 @@ type Favicons = {
   sizes?: string;
   type?: string;
 };
-
-// TODO: Move this somewhere more sensible and discoverable
-storyblokInit({
-  accessToken: env.NEXT_PUBLIC_STORYBLOK_TOKEN,
-  use: [apiPlugin],
-  components: {
-    Feature: Feature,
-    Grid: Grid,
-    Page: Page,
-    Teaser: Teaser,
-    FaqSection: FaqSection,
-  },
-});
+initStoryblok();
 
 const favicons: Array<Favicons> = [
   {
