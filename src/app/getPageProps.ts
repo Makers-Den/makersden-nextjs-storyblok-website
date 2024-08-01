@@ -11,6 +11,7 @@ import {
   type GlobalSettingsSbContent,
   type PageSbContent,
   type StoryblokStory,
+  type TranslationsSbContent,
 } from '@/lib/storyblok';
 import {
   findStory,
@@ -62,6 +63,27 @@ export const getPageProps = async (
     throw new Error('Unable to load global settings');
   }
 
+  let translations: StoryblokStory<TranslationsSbContent> | undefined =
+    undefined;
+
+  try {
+    const translationsResponseData = await findStory<
+      StoryblokStory<TranslationsSbContent>
+    >({
+      slug: 'globals/translations',
+      locale,
+      isPreview,
+    });
+
+    translations = translationsResponseData?.story;
+  } catch (err) {
+    console.error('Unable to load global from Storyblok', err);
+  }
+
+  if (!translations) {
+    throw new Error('Unable to load translations');
+  }
+
   // Look for Content manager defined redirects
   const redirectItems = globalSettingsStory.content.redirects ?? [];
   const redirectItem = redirectItems.find((item) => item.from === slug);
@@ -82,6 +104,7 @@ export const getPageProps = async (
 
     return {
       globalSettingsStory: globalSettingsStory,
+      translations: translations.content,
       story: pageStory,
       preview: !!isPreview,
       locale,

@@ -1,7 +1,10 @@
 import { type Locale } from 'i18n.config';
 
-import type { SbRichtext } from './lib/storyblok';
-import type { SbAsset } from './lib/storyblok';
+import type {
+  SbAsset,
+  SbRichtext,
+  TranslationsSbContent,
+} from './lib/storyblok';
 
 export type WithClassName = { className: string };
 
@@ -84,3 +87,18 @@ export interface StoryContent {
   name?: string;
   intro?: string;
 }
+
+type NoStringIndex<T> = {
+  [K in keyof T as string extends K ? never : K]: T[K];
+};
+
+export type Translations = Omit<
+  NoStringIndex<TranslationsSbContent>,
+  'component' | '_uid'
+>;
+
+export type PageComponentProps<T> = {
+  blok: T;
+  translations: Translations;
+  locale: Locale;
+};
