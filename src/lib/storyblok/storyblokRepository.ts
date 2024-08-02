@@ -47,11 +47,13 @@ export const findStory: FindStoryFn = async <
   locale,
   isPreview,
   resolveRelations,
+  resolveLinks,
 }: FindStoryArgs) => {
   const storiesParams: ISbStoriesParams = {
     version: 'published',
     language: locale,
     resolve_relations: resolveRelations,
+    resolve_links: resolveLinks,
   };
 
   if (isPreview) {

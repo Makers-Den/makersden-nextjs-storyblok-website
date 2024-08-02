@@ -4,6 +4,7 @@ import type {
   SbEmailLink,
   SbMultilink,
   SbStoryLink,
+  SbUrlLink,
 } from './storyblok';
 export const isLinkWithAnchor = (
   link: SbMultilink
@@ -17,4 +18,7 @@ export const isLinkStory = (link: SbMultilink): link is SbStoryLink =>
   link?.linktype === 'story';
 
 export const isLinkAsset = (link: SbMultilink): link is SbAssetLink =>
-  link.linktype === 'asset' || link.linktype === 'url';
+  link.linktype === 'asset';
+
+export const isLinkUrl = (link: SbMultilink): link is SbUrlLink =>
+  link.linktype === 'url';

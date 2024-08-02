@@ -57,6 +57,7 @@ export type FindStoryArgs = {
   isPreview?: boolean;
   /** E.g. Post.categories,FeaturedPosts.posts, otherwise it'll just be an array of uids */
   resolveRelations?: string;
+  resolveLinks?: 'link' | 'url' | 'story';
 };
 
 export type FindStoryFn = <StoryType = StoryblokStory<PageSbContent>>(

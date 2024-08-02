@@ -125,6 +125,7 @@ export type SbStoryLink = {
     content?: any;
     slug: string;
     full_slug: string;
+    url: string;
     sort_by_date?: null | string;
     position?: number;
     tag_list?: string[];
@@ -146,19 +147,33 @@ export type SbAssetLink = {
   url?: string;
   cached_url?: string;
   anchor?: string;
-  linktype?: 'asset' | 'url';
+  linktype?: 'asset';
+};
+
+export type SbUrlLink = {
+  url?: string;
+  cached_url?: string;
+  anchor?: string;
+  linktype?: 'url';
 };
 
 export type SbAbstractLink = {
   cached_url?: string;
+  url?: string;
   linktype?: string;
 };
 
-export type SbMultilink =
+export type Multilink =
   | SbAbstractLink
   | SbStoryLink
   | SbAssetLink
   | SbEmailLink;
+
+export type SbMultilink = Multilink & {
+  target?: string;
+  rel?: string;
+  title?: string;
+};
 
 export type SbBlok<T extends string> = {
   _uid: string;
