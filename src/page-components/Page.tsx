@@ -1,11 +1,14 @@
-import { StoryblokComponent, storyblokEditable } from '@storyblok/react/rsc';
+import { storyblokEditable } from '@storyblok/react/rsc';
 
 import type { JsonLdMetadataSbContent, PageSbContent } from '@/lib/storyblok';
 
+import { GenericStoryblokComponent } from '@/components/generic-storyblok-component/GenericStoryblokComponent';
 import { JsonLdMetadata } from '@/components/json-ld-metadata/JsonLdMetadata';
 import { HeadingLg } from '@/components/typography/Typography';
 
-function Page({ blok }: { blok: PageSbContent }) {
+import { type PageComponentProps } from '@/types';
+
+function Page({ blok, translations }: PageComponentProps<PageSbContent>) {
   return (
     <>
       {blok.additionalMetadata?.map((el: JsonLdMetadataSbContent) => (
@@ -21,7 +24,11 @@ function Page({ blok }: { blok: PageSbContent }) {
           </HeadingLg>
         )}
         {blok.body?.map((nestedBlok) => (
-          <StoryblokComponent blok={nestedBlok} key={nestedBlok._uid} />
+          <GenericStoryblokComponent
+            blok={nestedBlok}
+            key={nestedBlok._uid}
+            translations={translations}
+          />
         ))}
       </main>
     </>

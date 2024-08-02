@@ -1,8 +1,8 @@
-import { StoryblokComponent } from '@storyblok/react/rsc';
 import { defaultLocale } from 'i18n.config';
 import { notFound } from 'next/navigation';
 
 import { CommonContextProviders } from '@/components/common-context-providers/CommonContextProviders';
+import { GenericStoryblokComponent } from '@/components/generic-storyblok-component/GenericStoryblokComponent';
 import { Layout } from '@/components/layout/Layout';
 
 import { getPageProps } from './getPageProps';
@@ -19,7 +19,7 @@ export async function StoryblokPage({ params, searchParams }: PageProps) {
     locale,
   });
 
-  const { globalSettingsStory, story } = data;
+  const { globalSettingsStory, translations, story } = data;
 
   if (!story || !globalSettingsStory) {
     notFound();
@@ -31,7 +31,10 @@ export async function StoryblokPage({ params, searchParams }: PageProps) {
         locale={locale ?? defaultLocale}
         globalSettings={globalSettingsStory}
       >
-        <StoryblokComponent blok={data.story.content} />
+        <GenericStoryblokComponent
+          blok={data.story.content}
+          translations={translations}
+        />
       </Layout>
     </CommonContextProviders>
   );

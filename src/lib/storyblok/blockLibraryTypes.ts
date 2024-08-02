@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import type { SbAsset, SbMultiasset, SbMultilink, SbRichtext, SbTable, StoryblokStory } from './sbInternalTypes';
-export type BlockComponents = "Feature" | "Grid" | "RichTextContent" | "SplitContentSection" | "Teaser";
+import type { SbAsset, SbMultilink, SbRichtext } from './sbInternalTypes';
+export type BlockComponents = "FaqSection" | "Feature" | "RichTextContent" | "SplitContentSection" | "Teaser";
 
 export interface FaqItemSbContent {
   question?: SbRichtext;
@@ -50,8 +50,8 @@ export interface GlobalSettingsSbContent {
 
 export interface GridSbContent {
   columns?: (
+    | FaqSectionSbContent
     | FeatureSbContent
-    | GridSbContent
     | RichTextContentSbContent
     | SplitContentSectionSbContent
     | TeaserSbContent
@@ -80,8 +80,8 @@ export type PageAdditionalMetadataBlockType = "JsonLdMetadata";
 
 export interface PageSbContent {
   body?: (
+    | FaqSectionSbContent
     | FeatureSbContent
-    | GridSbContent
     | RichTextContentSbContent
     | SplitContentSectionSbContent
     | TeaserSbContent
@@ -128,6 +128,13 @@ export interface TeaserSbContent {
   headline?: string;
   _uid: string;
   component: "Teaser";
+  [k: string]: any;
+}
+
+export interface TranslationsSbContent {
+  example: string;
+  _uid: string;
+  component: "Translations";
   [k: string]: any;
 }
 
