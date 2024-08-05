@@ -4,10 +4,7 @@ export const isValidRichtext = (
   value: BlockFields | undefined
 ): value is SbRichtext => {
   if (!value) return false;
-  return (
-    Object.prototype.hasOwnProperty.call(value, 'type') &&
-    (value as SbRichtext)?.type === 'doc'
-  );
+  return typeof value === 'object' && 'type' in value && value.type === 'doc';
 };
 
 export const isRichtextNotEmpty = (

@@ -1,9 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-/* eslint-disable @typescript-eslint/no-unsafe-return */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
-/* eslint-disable @typescript-eslint/ban-ts-comment */
-import { type ReactNode, isValidElement } from 'react';
+import { type ReactElement, type ReactNode, isValidElement } from 'react';
 import {
   type RenderOptions,
   MARK_BOLD,
@@ -17,7 +12,7 @@ import {
   NODE_PARAGRAPH,
   NODE_QUOTE,
   NODE_UL,
-  render,
+  render as renderStoryblokRichText,
 } from 'storyblok-rich-text-react-renderer';
 import 'server-only';
 
@@ -51,52 +46,89 @@ export type RichTextType = {
   }[];
 };
 
-const convertChildrenWithPropsToString = (children: ReactNode): ReactNode => {
+interface CustomRenderOptions extends RenderOptions {
+  nodeResolvers?: Record<
+    string,
+    (children: ReactNode, props: Record<string, unknown>) => string
+  >;
+}
+
+const renderString = (
+  richText: SbRichtext,
+  options?: CustomRenderOptions
+): string[] => {
+  const renderedText: string[] = renderStoryblokRichText(
+    richText,
+    options
+  ) as string[];
+
+  return renderedText;
+};
+
+const render = (
+  richText: SbRichtext,
+  options?: RenderOptions
+): ReactElement => {
+  const renderedText: ReactElement = renderStoryblokRichText(
+    richText,
+    options
+  ) as ReactElement;
+
+  return renderedText;
+};
+
+function getChildren(nestedElement: unknown): ReactNode {
+  if (nestedElement === null) {
+    return undefined;
+  }
+  if (typeof nestedElement === 'string') {
+    return nestedElement;
+  }
+  if (typeof nestedElement === 'object' && 'children' in nestedElement) {
+    return nestedElement.children as ReactNode;
+  }
+  return undefined;
+}
+
+const convertChildrenWithPropsToString = (children: ReactNode): string => {
   if (Array.isArray(children)) {
     return children
-      .map((nestedElement) => {
-        if (Object.prototype.hasOwnProperty.call(nestedElement, 'props')) {
-          return convertChildrenWithPropsToString(nestedElement.props.children);
+      .map((nestedElement: ReactNode) => {
+        if (isValidElement(nestedElement) && 'props' in nestedElement) {
+          return convertChildrenWithPropsToString(
+            getChildren(nestedElement.props)
+          );
         }
         return nestedElement;
       })
       .join('');
-  } else if (
-    isValidElement(children) &&
-    Object.prototype.hasOwnProperty.call(children, 'props')
-  ) {
-    return convertChildrenWithPropsToString(children.props.children);
+  } else if (isValidElement(children) && 'props' in children) {
+    return convertChildrenWithPropsToString(getChildren(children.props));
   }
-  return children;
+  return children?.toString() ?? '';
 };
 
-export const richTextToString = (richText: SbRichtext): string =>
-  render(richText, {
+export const richTextToString = (richText: SbRichtext): string => {
+  const textNodes: Array<string> = renderString(richText, {
     nodeResolvers: {
-      //@ts-expect-error
-      [NODE_HEADING]: (children) =>
+      heading: (children, _) =>
         convertChildrenWithPropsToString(children) ?? '',
-      //@ts-expect-error
-      [NODE_CODEBLOCK]: (children) =>
+      [NODE_CODEBLOCK]: (children, _) =>
         convertChildrenWithPropsToString(children) ?? '',
-      //@ts-expect-error
-      [NODE_IMAGE]: (children) =>
+      [NODE_IMAGE]: (children, _) =>
         convertChildrenWithPropsToString(children) ?? '',
-      //@ts-expect-error
       [NODE_PARAGRAPH]: (children) =>
         convertChildrenWithPropsToString(children) ?? '',
-      //@ts-expect-error
       [NODE_QUOTE]: (children) =>
         convertChildrenWithPropsToString(children) ?? '',
-      //@ts-expect-error
       [NODE_OL]: (children) => convertChildrenWithPropsToString(children) ?? '',
-      //@ts-expect-error
       [NODE_UL]: (children) => convertChildrenWithPropsToString(children) ?? '',
-      //@ts-expect-error
       [NODE_LI]: (children) => convertChildrenWithPropsToString(children) ?? '',
     },
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-  })?.join(' ');
+  });
+
+  return textNodes?.join(' ');
+};
 
 export const defaultRenderOptions: RenderOptions = {
   blokResolvers: {},
@@ -329,14 +361,14 @@ export const renderTextWithOptions = (
   });
 };
 
-export const richtextToString = (richtext: SbRichtext) => {
-  return (richtext as RichTextType).content
-    .map((block) => {
-      return block.content.map((inline) => inline.text).join('');
-    })
-    .join('\n');
+export const convertSbRichTextToInlineString = (richtext: SbRichtext) => {
+  return (
+    richtext.content
+      ?.map((block) => block.content?.map((inline) => inline.text).join(''))
+      .join('\n') ?? ''
+  );
 };
 
 export const checkIfPropertyExist = (entries: unknown, key: string) => {
-  return Object.prototype.hasOwnProperty.call(entries, key);
+  return !!entries && typeof entries === 'object' && key in entries;
 };
