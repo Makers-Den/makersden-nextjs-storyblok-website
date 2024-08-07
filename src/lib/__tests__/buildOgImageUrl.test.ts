@@ -1,5 +1,8 @@
 import { buildOgImageUrl } from '@/lib/buildOgImageUrl';
 
+jest.mock('@/lib/constants', () => ({
+  isDevelopment: false,
+}));
 describe('Open Graph function should work correctly', () => {
   const imageLink =
     'https://post.medicalnewstoday.com/wp-content/uploads/sites/3/2020/02/290814_2200-732x549.jpg';

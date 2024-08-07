@@ -77,18 +77,15 @@ const render = (
   return renderedText;
 };
 
-function getChildren(nestedElement: unknown): ReactNode {
+const getChildren = (nestedElement: unknown): ReactNode => {
   if (nestedElement === null) {
     return undefined;
-  }
-  if (typeof nestedElement === 'string') {
-    return nestedElement;
   }
   if (typeof nestedElement === 'object' && 'children' in nestedElement) {
     return nestedElement.children as ReactNode;
   }
   return undefined;
-}
+};
 
 const convertChildrenWithPropsToString = (children: ReactNode): string => {
   if (Array.isArray(children)) {
