@@ -6,7 +6,7 @@ import { notFound, redirect } from 'next/navigation';
 import { buildOgImageUrl } from '@/lib/buildOgImageUrl';
 import { CANONICAL_BASE_URL_NO_SLASH } from '@/lib/constants';
 import { isRichtextNotEmpty } from '@/lib/isRichtext';
-import { richtextToString } from '@/lib/richTextUtils';
+import { convertSbRichTextToInlineString } from '@/lib/richTextUtils';
 import {
   type GlobalSettingsSbContent,
   type PageSbContent,
@@ -186,7 +186,7 @@ export const getMetadata = async ({
   let description = contentDescription ?? defaultMeta.description;
 
   if (component === 'Post' && isRichtextNotEmpty(intro)) {
-    description = richtextToString(intro);
+    description = convertSbRichTextToInlineString(intro);
   }
 
   const ogType = 'article';
