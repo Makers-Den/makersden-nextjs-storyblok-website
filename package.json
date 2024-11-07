@@ -27,6 +27,7 @@
     "generate-sb-types": "dotenv -e .env.local -- bash -c 'storyblok login && pnpm run pull-sb-components && pnpm run build-sb-generator && cross-env STORYBLOK_SPACE_ID=$STORYBLOK_SPACE_ID STORYBLOK_ACCESS_TOKEN=$NEXT_PUBLIC_STORYBLOK_TOKEN node ./scripts/generateSbTypes.js'"
   },
   "dependencies": {
+    "@mux/mux-player-react": "^3.1.0",
     "@next/bundle-analyzer": "^13.1.5",
     "@radix-ui/react-accordion": "^1.1.2",
     "@react-icons/all-files": "^4.1.0",
