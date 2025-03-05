@@ -2,13 +2,15 @@ import { type ReactNode } from 'react';
 
 import { BasicLayout } from '@/app/BasicLayout';
 
-function LocaleLayout({
+async function LocaleLayout({
   children,
-  params: { locale },
+  params,
 }: Readonly<{
   children: ReactNode;
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 }>) {
+  const { locale } = await params;
+
   return <BasicLayout locale={locale}>{children}</BasicLayout>;
 }
 

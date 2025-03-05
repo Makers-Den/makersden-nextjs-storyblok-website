@@ -1,3 +1,5 @@
+import { type JSX } from 'react';
+
 /* eslint-disable @typescript-eslint/no-explicit-any */
 export type BlockComponent = (props: any) => JSX.Element;
 

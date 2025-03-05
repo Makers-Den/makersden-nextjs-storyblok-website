@@ -41,7 +41,7 @@ export const RESOLVED_RELATIONS = RESOLVED_RELATIONS_ARRAY.join(',');
  * @returns story data
  */
 export const findStory: FindStoryFn = async <
-  StoryType = StoryblokStory<PageSbContent>
+  StoryType = StoryblokStory<PageSbContent>,
 >({
   slug,
   locale,
@@ -68,7 +68,7 @@ export const findStory: FindStoryFn = async <
 
   const response = await storyblokClient.get(
     `cdn/stories/${slug}`,
-    storiesParams
+    storiesParams,
   );
 
   const data = response.data as { story?: StoryType } | null;
@@ -103,10 +103,10 @@ export const findAllPageSlugs = async (locales?: string[]) => {
     (locales ?? [undefined])
       .map((locale) =>
         ALL_PAGE_TYPES.map((contentType) =>
-          findStories({ contentType, perPage: 100, locale })
-        )
+          findStories({ contentType, perPage: 100, locale }),
+        ),
       )
-      .flat()
+      .flat(),
   );
 
   const allSlugsWithLocale = allPageStoryResults
@@ -146,7 +146,7 @@ const buildFilterQuery = (query: Filter | Filter[] | undefined) => {
  * @returns list
  */
 export const findStories: FindStoriesFn = async <
-  StoryType = StoryblokStory<PageSbContent>
+  StoryType = StoryblokStory<PageSbContent>,
 >({
   startsWith,
   excludingSlugs,
@@ -195,8 +195,8 @@ export const findStories: FindStoriesFn = async <
   if (!data?.stories) {
     throw new Error(
       `No story data received from Storyblok query ${JSON.stringify(
-        storiesParams
-      )}`
+        storiesParams,
+      )}`,
     );
   }
 
@@ -211,7 +211,7 @@ export type DatasourceEntriesResponse<Val extends string = string> = {
 };
 
 export const findDatasourcesEntries: FindDatasourcesEntriesFn = async <
-  Val extends string = string
+  Val extends string = string,
 >({
   datasource,
   dimension,

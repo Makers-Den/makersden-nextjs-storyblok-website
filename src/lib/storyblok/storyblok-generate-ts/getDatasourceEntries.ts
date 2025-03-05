@@ -13,7 +13,7 @@ const storyblokClient = new StoryblokClient(
       type: 'memory',
     },
   },
-  'https://api.storyblok.com/v2'
+  'https://api.storyblok.com/v2',
 );
 
 type Datasource = {
@@ -24,7 +24,7 @@ type Datasource = {
 };
 
 export const getDatasourceEntries = (
-  datasource_slug: string
+  datasource_slug: string,
 ): Promise<Datasource[]> =>
   storyblokClient
     .get(`cdn/datasource_entries`, {

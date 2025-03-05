@@ -12,7 +12,7 @@ interface StoryBlokImageProps extends Omit<ImageProps, 'src' | 'alt'> {
 const calcWidthOrHeight = (
   givenWidth: string | number | undefined,
   parsedWidth: number,
-  fill: ImageProps['fill']
+  fill: ImageProps['fill'],
 ): number | undefined => {
   if (fill) {
     return undefined;
@@ -54,7 +54,7 @@ export const StoryblokImage = ({
   }
 
   const dimensions = getDimensionsFromStoryblokAssetFilename(
-    computedFilename ?? ''
+    computedFilename ?? '',
   );
   return (
     <>

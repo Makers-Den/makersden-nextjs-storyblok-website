@@ -1,8 +1,8 @@
-module.exports = {
+export default {
   arrowParens: 'always',
   singleQuote: true,
   jsxSingleQuote: true,
   tabWidth: 2,
   semi: true,
-  plugins: [require('prettier-plugin-tailwindcss')],
+  plugins: ['prettier-plugin-tailwindcss'],
 };

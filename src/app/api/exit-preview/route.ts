@@ -1,12 +1,12 @@
-import { cookies, draftMode } from 'next/dist/client/components/headers';
+import { cookies, draftMode } from 'next/headers';
 import { type NextRequest, NextResponse } from 'next/server';
 
 export const GET = async (req: NextRequest) => {
   const slug = req.nextUrl.searchParams.get('slug') ?? '';
 
-  draftMode().disable();
+  (await draftMode()).disable();
 
-  const cookieStore = cookies();
+  const cookieStore = await cookies();
   const bypassCookie = cookieStore.get('__prerender_bypass');
   if (bypassCookie) {
     cookieStore.set({

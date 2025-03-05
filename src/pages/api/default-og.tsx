@@ -11,7 +11,10 @@ export const config = {
 };
 
 const font = fetch(
-  new URL('../../../public/fonts/PPFormula-CondensedBlack.ttf', import.meta.url)
+  new URL(
+    '../../../public/fonts/PPFormula-CondensedBlack.ttf',
+    import.meta.url,
+  ),
 ).then((res) => res.arrayBuffer());
 
 /**
@@ -55,7 +58,7 @@ const handler = async (req: NextRequest) => {
       width: 1200,
       height: 630,
       fonts: [{ data: fontData, name: 'PPFormula', style: 'normal' }],
-    }
+    },
   );
 };
 

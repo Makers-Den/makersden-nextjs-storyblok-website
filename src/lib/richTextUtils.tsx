@@ -2,10 +2,9 @@
 /* eslint-disable @typescript-eslint/no-unsafe-return */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
-/* eslint-disable @typescript-eslint/ban-ts-comment */
-import { type ReactNode, isValidElement } from 'react';
+
+import { isValidElement, type ReactNode } from 'react';
 import {
-  type RenderOptions,
   MARK_BOLD,
   MARK_STYLED,
   MARK_UNDERLINE,
@@ -18,21 +17,22 @@ import {
   NODE_QUOTE,
   NODE_UL,
   render,
+  type RenderOptions,
 } from 'storyblok-rich-text-react-renderer';
 import 'server-only';
 
 import { StoryblokImage } from '@/components/images/StoryblokImage';
 import {
-  type Tag,
-  type TypographyVariant,
   HeadingLg,
   HeadingMd,
   HeadingSm,
   HeadingXl,
   LightEmphasis,
+  type Tag,
   Text,
   TextLg,
   Typography,
+  type TypographyVariant,
 } from '@/components/typography/Typography';
 
 import clsxm from './clsxm';
@@ -65,7 +65,8 @@ const convertChildrenWithPropsToString = (children: ReactNode): ReactNode => {
     isValidElement(children) &&
     Object.prototype.hasOwnProperty.call(children, 'props')
   ) {
-    return convertChildrenWithPropsToString(children.props.children);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    return convertChildrenWithPropsToString((children.props as any).children);
   }
   return children;
 };
@@ -73,29 +74,20 @@ const convertChildrenWithPropsToString = (children: ReactNode): ReactNode => {
 export const richTextToString = (richText: SbRichtext): string =>
   render(richText, {
     nodeResolvers: {
-      //@ts-expect-error
       [NODE_HEADING]: (children) =>
         convertChildrenWithPropsToString(children) ?? '',
-      //@ts-expect-error
       [NODE_CODEBLOCK]: (children) =>
         convertChildrenWithPropsToString(children) ?? '',
-      //@ts-expect-error
       [NODE_IMAGE]: (children) =>
         convertChildrenWithPropsToString(children) ?? '',
-      //@ts-expect-error
       [NODE_PARAGRAPH]: (children) =>
         convertChildrenWithPropsToString(children) ?? '',
-      //@ts-expect-error
       [NODE_QUOTE]: (children) =>
         convertChildrenWithPropsToString(children) ?? '',
-      //@ts-expect-error
       [NODE_OL]: (children) => convertChildrenWithPropsToString(children) ?? '',
-      //@ts-expect-error
       [NODE_UL]: (children) => convertChildrenWithPropsToString(children) ?? '',
-      //@ts-expect-error
       [NODE_LI]: (children) => convertChildrenWithPropsToString(children) ?? '',
     },
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
   })?.join(' ');
 
 export const defaultRenderOptions: RenderOptions = {
@@ -105,7 +97,7 @@ export const defaultRenderOptions: RenderOptions = {
       <strong className='text-grey-100 font-bold'>{children}</strong>
     ),
     [MARK_UNDERLINE]: (children) => (
-      <u className=' text-primary-600'>{children}</u>
+      <u className='text-primary-600'>{children}</u>
     ),
     [MARK_STYLED]: (children, { class: cls }) => {
       if (cls === 'subscript') {
@@ -151,7 +143,7 @@ export const defaultRenderOptions: RenderOptions = {
   },
   nodeResolvers: {
     [NODE_QUOTE]: (children) => (
-      <blockquote className='border-gray mb-5 pl-4 italic text-black'>
+      <blockquote className='border-gray mb-5 pl-4 text-black italic'>
         {children}
       </blockquote>
     ),
@@ -178,7 +170,7 @@ export const defaultRenderOptions: RenderOptions = {
         return (
           <HeadingMd
             as='h2'
-            className='mb-6 mt-16 md:mt-20'
+            className='mt-16 mb-6 md:mt-20'
             id={sentenceToId(getStringFromReactNode(children) || '')}
           >
             {children}
@@ -190,7 +182,7 @@ export const defaultRenderOptions: RenderOptions = {
         return (
           <HeadingSm
             as='h3'
-            className='mb-6 mt-10 md:mt-14'
+            className='mt-10 mb-6 md:mt-14'
             id={sentenceToId(getStringFromReactNode(children) || '')}
           >
             {children}
@@ -202,7 +194,7 @@ export const defaultRenderOptions: RenderOptions = {
         return (
           <HeadingSm
             as='h4'
-            className='mb-6 mt-6'
+            className='mt-6 mb-6'
             id={sentenceToId(getStringFromReactNode(children) || '')}
           >
             {children}
@@ -217,7 +209,6 @@ export const defaultRenderOptions: RenderOptions = {
       );
     },
     [NODE_IMAGE]: (children, { src }) => {
-      // eslint-disable-next-line @next/next/no-img-element
       const image = {
         filename: src,
       } as SbAsset;
@@ -240,7 +231,7 @@ type RenderOptionKey = keyof RenderOptions;
  */
 const mergeInOverrides = (overrides: RenderOptions) => {
   const opts: RenderOptions = Object.keys(
-    defaultRenderOptions
+    defaultRenderOptions,
   ).reduce<RenderOptions>((acc: RenderOptions, key: string) => {
     return {
       ...acc,
@@ -311,7 +302,7 @@ export const renderTextWithOptions = (
     className?: string;
     variant?: TypographyVariant;
     useBalancer?: boolean;
-  }
+  },
 ) => {
   const { className, variant = 'text', useBalancer } = options ?? {};
   return renderText(text, {

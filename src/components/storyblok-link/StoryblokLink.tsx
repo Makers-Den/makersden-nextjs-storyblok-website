@@ -1,7 +1,7 @@
 import Link, { type LinkProps } from 'next/link';
 import { type HTMLProps } from 'react';
 
-import { type SbMultilink, sbLinkToHref } from '@/lib/storyblok';
+import { sbLinkToHref, type SbMultilink } from '@/lib/storyblok';
 
 type Props = Omit<LinkProps, 'href' | 'children' | 'target' | 'rel'> &
   HTMLProps<HTMLAnchorElement> & {

@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import type {
   SbAssetLink,
   SbEmailLink,
@@ -7,7 +6,7 @@ import type {
   SbUrlLink,
 } from './storyblok';
 export const isLinkWithAnchor = (
-  link: SbMultilink
+  link: SbMultilink,
 ): link is SbAssetLink | SbStoryLink =>
   !!(link as SbAssetLink | SbStoryLink)?.anchor;
 

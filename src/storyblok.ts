@@ -1,6 +1,6 @@
 import {
-  type SbReactSDKOptions,
   apiPlugin,
+  type SbReactSDKOptions,
   storyblokInit,
 } from '@storyblok/react/rsc';
 

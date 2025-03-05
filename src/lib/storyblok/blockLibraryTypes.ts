@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/no-unused-vars */
+ 
 import type { SbAsset, SbMultilink, SbRichtext } from './sbInternalTypes';
 export type BlockComponents = "FaqSection" | "Feature" | "RichTextContent" | "SplitContentSection" | "Teaser";
 
