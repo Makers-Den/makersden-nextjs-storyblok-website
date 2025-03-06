@@ -1,3 +1,5 @@
+import { type Locale, locales } from 'i18n.config';
+
 import { type PageSbContent, type StoryblokStory } from '@/lib/storyblok';
 import { findStories } from '@/lib/storyblok/storyblokRepository';
 
@@ -15,10 +17,6 @@ import { findStories } from '@/lib/storyblok/storyblokRepository';
  * @param locale Leave undefined if you want the default locale
  */
 export const generateStaticParams = async () => {
-  // TODO: this should generate entries for each locale in the case that each page exists in every locale
-
-  // Note, will only work for up to the 100 first stories,
-  // if you have 100+ of a page type you'll have to implement paging
   const [pagesResult] = await Promise.all([
     findStories<StoryblokStory<PageSbContent>>({
       contentType: 'Page',
@@ -26,12 +24,20 @@ export const generateStaticParams = async () => {
     }),
   ]);
 
-  const paths = [...pagesResult.stories]
-    .filter(({ full_slug }) => full_slug !== 'home')
-    .map((story) => ({
-      slug: story.full_slug.split('/'),
-      locale: 'en',
-    }));
+  const paths: Array<{ slug: string[]; locale: Locale }> = [];
+
+  for (const story of pagesResult.stories) {
+    const slug = story.full_slug.split('/');
+
+    for (const locale of locales) {
+      if (slug.length === 1 && slug[0] === 'home') {
+        paths.push({ slug: [], locale });
+        continue;
+      }
+
+      paths.push({ slug, locale });
+    }
+  }
 
   return paths;
 };
