@@ -95,13 +95,7 @@ const unique = (arr: string[]) => {
   return Array.from(new Set(arr));
 };
 
-/**
- * Note: this will include separate entries for localized stories, with the locale encoded in slug.
- */
-export const findAllPageSlugs = async (locales?: string[]) => {
-  // Note, will only work for up to the 100 first stories,
-  // if you have 100+ of a page type you'll have to implement paging
-
+export const findAllPageStories = async (locales?: string[]) => {
   const allPageStoryResults = await Promise.all(
     (locales ?? [undefined])
       .map((locale) =>
@@ -111,6 +105,18 @@ export const findAllPageSlugs = async (locales?: string[]) => {
       )
       .flat(),
   );
+
+  return allPageStoryResults;
+};
+
+/**
+ * Note: this will include separate entries for localized stories, with the locale encoded in slug.
+ */
+export const findAllPageSlugs = async (locales?: string[]) => {
+  // Note, will only work for up to the 100 first stories,
+  // if you have 100+ of a page type you'll have to implement paging
+
+  const allPageStoryResults = await findAllPageStories(locales);
 
   const allSlugsWithLocale = allPageStoryResults
     .map((result) => result.stories.map((story) => story.full_slug))
