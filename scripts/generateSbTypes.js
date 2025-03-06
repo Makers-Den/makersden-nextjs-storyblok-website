@@ -5,7 +5,7 @@ require('dotenv').config();
 
 if (!process.env.STORYBLOK_SPACE_ID) {
   console.error(
-    'STORYBLOK_SPACE_ID env var is not set. Set it via e.g. .env file'
+    'STORYBLOK_SPACE_ID env var is not set. Set it via e.g. .env file',
   );
   process.exit(-1);
 }
@@ -14,7 +14,9 @@ const storyblokToTypescript = require('../scripts-dist/storyblokToTypescript');
 
 storyblokToTypescript.default({
   // required
-  componentsJson: require(`../storyblok-components/components.${process.env.STORYBLOK_SPACE_ID}.json`), // pull components with storyblok
+  componentsJson: require(
+    `../storyblok-components/components.${process.env.STORYBLOK_SPACE_ID}.json`,
+  ), // pull components with storyblok
   // required
   path: __dirname + '/../src/lib/storyblok/blockLibraryTypes.ts', // make sure path exists
   // optional type prefix (default: none)

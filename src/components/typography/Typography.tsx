@@ -49,7 +49,7 @@ export interface TypographyProps {
   useBalancer?: boolean;
 }
 
-export const variantToClasses: { [key in TypographyVariant]: string[] } = {
+export const variantToClasses: Record<TypographyVariant, string[]> = {
   textSm: [
     'text-xs',
     'leading-[1.25] md:leading-[2.08]',
@@ -148,7 +148,7 @@ export const Typography = ({
       className: clsxm(variantToClasses[variant], className),
       ...rest,
     },
-    useBalancer ? <Balancer>{children}</Balancer> : children
+    useBalancer ? <Balancer>{children}</Balancer> : children,
   );
 
 export type TypographyPropsWithoutVariant = Omit<TypographyProps, 'variant'> &
@@ -203,7 +203,7 @@ export const Bold = ({
   React.createElement(
     as,
     { className: clsxm(variantToClasses[variant], className), ...rest },
-    children
+    children,
   );
 
 /** Used in Richtext */
@@ -217,7 +217,7 @@ export const LightEmphasis = ({
   React.createElement(
     as,
     { className: clsxm(variantToClasses[variant], className), ...rest },
-    children
+    children,
   );
 
 export const Italic = ({
@@ -230,7 +230,7 @@ export const Italic = ({
   React.createElement(
     as,
     { className: clsxm(variantToClasses[variant], className), ...rest },
-    children
+    children,
   );
 
 export const Quotation = (props: TypographyPropsWithoutVariant) => (

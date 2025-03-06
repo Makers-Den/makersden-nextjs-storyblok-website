@@ -1,8 +1,9 @@
 import { type ISbStoriesParams } from '@storyblok/react/rsc';
 
+import { getStoryblokApi } from '@/storyblok';
+
 import type { PageSbContent } from './blockLibraryTypes';
 import type { StoryblokStory } from './sbInternalTypes';
-import { storyblokClient } from './storyblokClient';
 import {
   type ContentTypeName,
   type DatasourceEntry,
@@ -41,7 +42,7 @@ export const RESOLVED_RELATIONS = RESOLVED_RELATIONS_ARRAY.join(',');
  * @returns story data
  */
 export const findStory: FindStoryFn = async <
-  StoryType = StoryblokStory<PageSbContent>
+  StoryType = StoryblokStory<PageSbContent>,
 >({
   slug,
   locale,
@@ -66,9 +67,11 @@ export const findStory: FindStoryFn = async <
     storiesParams.cv = Date.now();
   }
 
+  const storyblokClient = getStoryblokApi();
+
   const response = await storyblokClient.get(
     `cdn/stories/${slug}`,
-    storiesParams
+    storiesParams,
   );
 
   const data = response.data as { story?: StoryType } | null;
@@ -103,10 +106,10 @@ export const findAllPageSlugs = async (locales?: string[]) => {
     (locales ?? [undefined])
       .map((locale) =>
         ALL_PAGE_TYPES.map((contentType) =>
-          findStories({ contentType, perPage: 100, locale })
-        )
+          findStories({ contentType, perPage: 100, locale }),
+        ),
       )
-      .flat()
+      .flat(),
   );
 
   const allSlugsWithLocale = allPageStoryResults
@@ -146,7 +149,7 @@ const buildFilterQuery = (query: Filter | Filter[] | undefined) => {
  * @returns list
  */
 export const findStories: FindStoriesFn = async <
-  StoryType = StoryblokStory<PageSbContent>
+  StoryType = StoryblokStory<PageSbContent>,
 >({
   startsWith,
   excludingSlugs,
@@ -186,6 +189,8 @@ export const findStories: FindStoriesFn = async <
     storiesParams.cv = Date.now();
   }
 
+  const storyblokClient = getStoryblokApi();
+
   const response = await storyblokClient.get(`cdn/stories`, storiesParams);
 
   const data = response.data as {
@@ -195,8 +200,8 @@ export const findStories: FindStoriesFn = async <
   if (!data?.stories) {
     throw new Error(
       `No story data received from Storyblok query ${JSON.stringify(
-        storiesParams
-      )}`
+        storiesParams,
+      )}`,
     );
   }
 
@@ -211,13 +216,15 @@ export type DatasourceEntriesResponse<Val extends string = string> = {
 };
 
 export const findDatasourcesEntries: FindDatasourcesEntriesFn = async <
-  Val extends string = string
+  Val extends string = string,
 >({
   datasource,
   dimension,
   perPage = 25,
   page = 1,
 }: FindDatasourcesEntriesArgs) => {
+  const storyblokClient = getStoryblokApi();
+
   const response = await storyblokClient.get('cdn/datasource_entries', {
     datasource,
     ...emptyOr({ dimension }),

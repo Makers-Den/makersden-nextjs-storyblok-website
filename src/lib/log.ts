@@ -1,21 +1,18 @@
 export const info = (message?: string, ...optionalParams: unknown[]) => {
-  // eslint-disable-next-line no-console
   console.info(message, ...optionalParams);
 };
 
 export const error = (message?: string, ...optionalParams: unknown[]) => {
-  // eslint-disable-next-line no-console
   console.error(message, ...optionalParams);
 };
 
 export const debug = (message?: string, ...optionalParams: unknown[]) => {
-  // eslint-disable-next-line no-console
   console.debug(message, ...optionalParams);
 };
 
 const withName = (
   name: string,
-  logFn: (message?: string, ...optionalParams: unknown[]) => void
+  logFn: (message?: string, ...optionalParams: unknown[]) => void,
 ) => {
   return (message?: string, ...optionalParams: unknown[]) => {
     logFn(`[${name}]: ${message}`, ...optionalParams);

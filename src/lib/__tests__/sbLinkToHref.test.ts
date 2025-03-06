@@ -39,7 +39,7 @@ describe('sbLinkToHref', () => {
     'should convert a valid SbMultilink to href',
     ({ input, expectedOutput }) => {
       expect(sbLinkToHref(input)).toBe(expectedOutput);
-    }
+    },
   );
 
   it('should return # for an invalid story link', () => {

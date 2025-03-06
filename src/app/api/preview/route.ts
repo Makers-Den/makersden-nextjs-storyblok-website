@@ -22,11 +22,11 @@ export const GET = async (req: NextRequest) => {
     return new Response('Invalid token', { status: 401 });
   }
 
-  draftMode().enable();
+  (await draftMode()).enable();
   const cookieStore = cookies();
-  const bypassCookie = cookieStore.get('__prerender_bypass');
+  const bypassCookie = (await cookieStore).get('__prerender_bypass');
   if (bypassCookie) {
-    cookieStore.set('__prerender_bypass', bypassCookie.value, {
+    (await cookieStore).set('__prerender_bypass', bypassCookie.value, {
       httpOnly: true,
       path: '/',
       secure: true,
@@ -52,6 +52,6 @@ export const GET = async (req: NextRequest) => {
   }
 
   return NextResponse.redirect(
-    `${computedOrigin}/${computedSlug}?${queryParamsAsStr}`
+    `${computedOrigin}/${computedSlug}?${queryParamsAsStr}`,
   );
 };

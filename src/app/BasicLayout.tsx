@@ -1,7 +1,6 @@
-/* eslint-disable @next/next/next-script-for-ga */
-import { StoryblokBridgeLoader } from '@storyblok/react/rsc';
 import { Inter as FontSans } from 'next/font/google';
 import { draftMode } from 'next/headers';
+import { NextIntlClientProvider } from 'next-intl';
 import { type ReactNode, Suspense } from 'react';
 
 import '@/styles/globals.css';
@@ -9,8 +8,7 @@ import '@/styles/globals.css';
 import clsxm from '@/lib/clsxm';
 
 import { GTMScripts } from '@/components/gtm-scripts/GTMScripts';
-
-import { initStoryblok } from '@/storyblok';
+import StoryblokProvider from '@/components/storyblok/StoryblokProvider';
 
 const fontSans = FontSans({
   subsets: ['latin'],
@@ -23,7 +21,6 @@ type Favicons = {
   sizes?: string;
   type?: string;
 };
-initStoryblok();
 
 const favicons: Array<Favicons> = [
   {
@@ -57,26 +54,18 @@ const favicons: Array<Favicons> = [
   },
 ];
 
-export function BasicLayout({
+export async function BasicLayout({
   children,
   locale,
 }: {
   locale: string;
   children: ReactNode;
 }) {
-  const isPreview = draftMode().isEnabled;
+  const isPreview = (await draftMode()).isEnabled;
 
   return (
     <html lang={locale}>
       <head>
-        <link
-          rel='preload'
-          href='/fonts/inter-var-latin.woff2'
-          as='font'
-          type='font/woff2'
-          crossOrigin='anonymous'
-        />
-
         {favicons.map((linkProps) => (
           <link key={linkProps.href} {...linkProps} />
         ))}
@@ -87,15 +76,17 @@ export function BasicLayout({
           </Suspense>
         )}
       </head>
+
       <body
         className={clsxm(
           'bg-background min-h-screen font-sans antialiased',
-          fontSans.variable
+          fontSans.variable,
         )}
       >
-        {children}
+        <NextIntlClientProvider>
+          <StoryblokProvider>{children}</StoryblokProvider>
+        </NextIntlClientProvider>
       </body>
-      <StoryblokBridgeLoader options={{}} />
     </html>
   );
 }

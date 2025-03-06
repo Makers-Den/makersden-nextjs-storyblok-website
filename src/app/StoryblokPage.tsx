@@ -1,17 +1,21 @@
+import { StoryblokStory } from '@storyblok/react/rsc';
 import { defaultLocale } from 'i18n.config';
 import { notFound } from 'next/navigation';
 
 import { CommonContextProviders } from '@/components/common-context-providers/CommonContextProviders';
-import { GenericStoryblokComponent } from '@/components/generic-storyblok-component/GenericStoryblokComponent';
 import { Layout } from '@/components/layout/Layout';
 
 import { getPageProps } from './getPageProps';
 
 import { type PageProps } from '@/types';
 
-export async function StoryblokPage({ params, searchParams }: PageProps) {
-  const locale = params.locale;
-  const pathname = params?.slug?.length ? '/' + params?.slug?.join('/') : '';
+export async function StoryblokPage({
+  params,
+  searchParams: searchParamsPromise,
+}: PageProps) {
+  const { slug, locale } = await params;
+  const searchParams = await searchParamsPromise;
+  const pathname = slug?.length ? '/' + slug?.join('/') : '';
 
   const data = await getPageProps({
     ...searchParams,
@@ -31,10 +35,7 @@ export async function StoryblokPage({ params, searchParams }: PageProps) {
         locale={locale ?? defaultLocale}
         globalSettings={globalSettingsStory}
       >
-        <GenericStoryblokComponent
-          blok={data.story.content}
-          translations={translations}
-        />
+        <StoryblokStory story={data.story} translations={translations} />
       </Layout>
     </CommonContextProviders>
   );

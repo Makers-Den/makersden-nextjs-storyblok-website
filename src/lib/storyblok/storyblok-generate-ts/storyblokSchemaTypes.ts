@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { type JSONSchema4 } from 'json-schema';
 import { type Options } from 'json-schema-to-typescript';
 

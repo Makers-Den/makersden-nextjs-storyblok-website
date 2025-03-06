@@ -61,11 +61,11 @@ export type FindStoryArgs = {
 };
 
 export type FindStoryFn = <StoryType = StoryblokStory<PageSbContent>>(
-  args: FindStoryArgs
+  args: FindStoryArgs,
 ) => Promise<{ story?: StoryType | undefined }>;
 
 export type FindStoriesFn = <StoryType = StoryblokStory<PageSbContent>>(
-  args: FindStoriesArgs
+  args: FindStoriesArgs,
 ) => Promise<WithTotal<(StoryType & HasPosition)[]>>;
 
 export type FindDatasourcesEntriesArgs = {
@@ -84,5 +84,5 @@ export type DatasourceEntry<Val extends string = string> = {
 };
 
 export type FindDatasourcesEntriesFn = <Val extends string = string>(
-  args: FindDatasourcesEntriesArgs
+  args: FindDatasourcesEntriesArgs,
 ) => Promise<DatasourceEntry<Val>[]>;

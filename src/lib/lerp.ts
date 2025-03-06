@@ -8,5 +8,5 @@ export const range = (
   y1: number,
   x2: number,
   y2: number,
-  a: number
+  a: number,
 ) => lerp(x2, y2, invlerp(x1, y1, a));

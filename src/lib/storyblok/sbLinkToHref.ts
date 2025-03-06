@@ -48,7 +48,7 @@ const generateHrefFromSbStoryLink = (sbLink: SbStoryLink, anchor: string) => {
     return '#';
   }
 
-  const storyLink = sbLink.story?.url ? sbLink.story.url : link;
+  const storyLink = sbLink.story?.url ?? link;
   return `${computeLink(storyLink)}${anchor}`;
 };
 
@@ -80,7 +80,7 @@ export const sbLinkToHref = (sbLink: SbMultilink | undefined): string => {
 export const sbLinkToButtonLinkProps = (
   sbLink: LinkSbContent['link'] | undefined,
   name: string | undefined,
-  props?: Omit<LinkProps, 'href' | 'children'>
+  props?: Omit<LinkProps, 'href' | 'children'>,
 ): LinkProps | undefined => {
   if (!sbLink) {
     return undefined;
@@ -107,7 +107,7 @@ export const sbLinkToButtonLinkProps = (
 };
 
 export const linkContentsToButtonLinkProps = (
-  linkContents: LinkSbContent[] | undefined
+  linkContents: LinkSbContent[] | undefined,
 ): undefined | LinkProps => {
   if (!linkContents) {
     return undefined;

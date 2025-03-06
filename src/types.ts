@@ -73,8 +73,8 @@ export type GetPropsFromSbContent<T> = Omit<T, 'component' | '_uid'> &
   Partial<WithHighlighMetadata>;
 
 export interface PageProps {
-  params: { slug: string[]; locale?: Locale };
-  searchParams: Record<string, string>;
+  params: Promise<{ slug: string[]; locale?: Locale }>;
+  searchParams: Promise<Record<string, string>>;
 }
 
 export interface StoryContent {

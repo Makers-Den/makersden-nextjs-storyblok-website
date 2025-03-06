@@ -3,7 +3,7 @@ import { type ReactNode } from 'react';
 /* eslint-disable */
 export const getStringFromReactNode = (element: ReactNode): string => {
   const retrieveNestedString = (
-    item: { props: { children: string } } | string
+    item: { props: { children: string } } | string,
   ) => {
     while (typeof item !== 'string') {
       item = item?.props.children ?? '';
@@ -16,7 +16,7 @@ export const getStringFromReactNode = (element: ReactNode): string => {
   if (Array.isArray(element)) {
     return element
       .map((item: any) =>
-        typeof item === 'string' ? item : retrieveNestedString(item)
+        typeof item === 'string' ? item : retrieveNestedString(item),
       )
       .join('');
   }

@@ -1,5 +1,5 @@
-import { StoryblokComponent as BaseStoryblokComponent } from '@storyblok/react/rsc';
-import React from 'react';
+import { StoryblokServerComponent as BaseStoryblokComponent } from '@storyblok/react/rsc';
+import React, { type JSX } from 'react';
 
 import { type Translations } from '@/types';
 

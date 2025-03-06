@@ -1,4 +1,4 @@
-import { type Locale, Link } from 'i18n.config';
+import { Link, type Locale } from 'i18n.config';
 import { type SVGProps } from 'react';
 
 import { type LinkSbContent } from '@/lib/storyblok';

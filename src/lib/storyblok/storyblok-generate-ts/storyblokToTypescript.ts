@@ -53,7 +53,7 @@ export default async function storyblokToTypescript({
         groupUuids[value.component_group_uuid] = [];
       }
       groupUuids[value.component_group_uuid].push(
-        pascalcase(getTitle(value.name))
+        pascalcase(getTitle(value.name)),
       );
     }
   });
@@ -106,7 +106,6 @@ export default async function storyblokToTypescript({
         const ts = await compile(obj, values.name, compilerOptions);
         tsString.push(ts);
       } catch (e) {
-        // eslint-disable-next-line no-console
         console.log('ERROR', e);
       }
     }
@@ -163,10 +162,9 @@ export default async function storyblokToTypescript({
                       ...currentGroup,
                     ];
                   } else {
-                    // eslint-disable-next-line no-console
                     console.log('Group has no members: ', groupId);
                   }
-                }
+                },
               );
               if (currentGroupElements.length == 0) {
                 obj[key].tsType = `never[]`;
@@ -188,21 +186,19 @@ export default async function storyblokToTypescript({
                 .map((i: string) => pascalcase(getTitle(i)))
                 .join(' | ')})[]`;
             } else {
-              // eslint-disable-next-line no-console
               console.log('No whitelisted component found');
             }
           }
         } else {
-          // eslint-disable-next-line no-console
           console.log(
             'Type: bloks array but not whitelisted (will result in all elements):',
-            title
+            title,
           );
         }
       }
       await genEnumType(
         `${pascalcase(`${title.replace(titleSuffix, '')}-${key}-block-type`)}`,
-        blockComponents
+        blockComponents,
       );
       Object.assign(parseObj, obj);
     }
@@ -256,7 +252,7 @@ export default async function storyblokToTypescript({
         } else {
           return {
             tsType: `(${getStoryTypeTitle(
-              element.filter_content_type
+              element.filter_content_type,
             )} | string )`,
           };
         }
@@ -272,7 +268,7 @@ export default async function storyblokToTypescript({
         } else {
           return {
             tsType: `(${getStoryTypeTitle(
-              element.filter_content_type
+              element.filter_content_type,
             )} | string )[]`,
           };
         }
@@ -290,17 +286,16 @@ export default async function storyblokToTypescript({
         if (!generatedDatasourceTypes.includes(datasourceSlug)) {
           generatedDatasourceTypes.push(datasourceSlug);
           try {
-            const datasourceEntries = await getDatasourceEntries(
-              datasourceSlug
-            );
+            const datasourceEntries =
+              await getDatasourceEntries(datasourceSlug);
             const datasourceEntriesValues = datasourceEntries.map(
-              (entry) => entry.value
+              (entry) => entry.value,
             );
             await genEnumType(datasourceSlug, datasourceEntriesValues);
           } catch (e) {
             console.error(
               `Error during datasource fetch (${datasourceSlug}) enum generation: `,
-              JSON.stringify(e)
+              JSON.stringify(e),
             );
 
             process.exit(1);

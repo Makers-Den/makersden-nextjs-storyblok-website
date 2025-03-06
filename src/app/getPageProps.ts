@@ -1,7 +1,6 @@
 import { type Metadata } from 'next';
-import { RedirectType } from 'next/dist/client/components/redirect';
 import { draftMode } from 'next/headers';
-import { notFound, redirect } from 'next/navigation';
+import { notFound, redirect, RedirectType } from 'next/navigation';
 
 import { buildOgImageUrl } from '@/lib/buildOgImageUrl';
 import { CANONICAL_BASE_URL_NO_SLASH } from '@/lib/constants';
@@ -24,11 +23,11 @@ export const getPageProps = async (
   args: {
     slug: string;
     locale: string | undefined;
-  } & Record<string, string | undefined>
+  } & Record<string, string | undefined>,
 ) => {
   const { slug: slugArgs, locale } = args;
 
-  const isPreview = draftMode().isEnabled;
+  const isPreview = (await draftMode()).isEnabled;
   const slugAsStr = slugArgs;
 
   // "/home" as a path should only work within Storyblok
@@ -56,7 +55,6 @@ export const getPageProps = async (
 
     globalSettingsStory = globalSettingsResponseData?.story;
   } catch (err) {
-    // eslint-disable-next-line no-console
     console.error('Unable to load global from Storyblok', err);
   }
 
@@ -117,7 +115,7 @@ export const getPageProps = async (
         // this non-existent slug has a redirect setup
         redirect(
           redirectItem.to ?? '',
-          redirectItem.isPermanent ? RedirectType.replace : RedirectType.push
+          redirectItem.isPermanent ? RedirectType.replace : RedirectType.push,
         );
       } else {
         notFound();
@@ -142,10 +140,12 @@ const defaultMeta = {
 export const getMetadata = async ({
   params,
 }: Omit<PageProps, 'searchParams'>): Promise<Metadata> => {
-  const pathname = params.slug?.length ? '/' + params?.slug?.join('/') : '';
+  const { slug, locale } = await params;
+
+  const pathname = slug?.length ? '/' + slug?.join('/') : '';
   const pageProps = await getPageProps({
     slug: pathname,
-    locale: params.locale,
+    locale: locale,
   });
 
   const { globalSettingsStory, story } = pageProps;
@@ -168,9 +168,9 @@ export const getMetadata = async ({
   const ogImage = buildOgImageUrl({
     title: contentTitle,
     image: image?.filename,
-    illustration: illustration?.filename
-      ? illustration.filename
-      : globalSettingsStory.content.illustration?.filename,
+    illustration:
+      illustration?.filename ??
+      globalSettingsStory.content.illustration?.filename,
   });
 
   let title = contentTitle ?? defaultMeta.title;
@@ -191,6 +191,7 @@ export const getMetadata = async ({
 
   const ogType = 'article';
   return {
+    metadataBase: new URL(defaultMeta.url),
     title,
     description,
     robots: nonIndexable ? 'noindex' : 'follow, follow',
@@ -210,7 +211,7 @@ export const getMetadata = async ({
       images: ogImage,
     },
     alternates: {
-      canonical: `${defaultMeta.url}${pathname}`,
+      canonical: pathname,
     },
   };
 };

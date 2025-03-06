@@ -11,7 +11,7 @@ export const useIsActivePath = (path: string | string[]) => {
       router,
       isActive: path.reduce(
         (acc, p) => acc || Boolean(routerPath?.includes(p)),
-        false
+        false,
       ),
     };
   }
