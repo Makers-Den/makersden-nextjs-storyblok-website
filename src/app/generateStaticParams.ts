@@ -17,6 +17,8 @@ import { findStories } from '@/lib/storyblok/storyblokRepository';
  * @param locale Leave undefined if you want the default locale
  */
 export const generateStaticParams = async () => {
+  // Note, will only work for up to the 100 first stories,
+  // if you have 100+ of a page type you'll have to implement paging
   const [pagesResult] = await Promise.all([
     findStories<StoryblokStory<PageSbContent>>({
       contentType: 'Page',
