@@ -9,16 +9,11 @@ import { getPageProps } from './getPageProps';
 
 import { type PageProps } from '@/types';
 
-export async function StoryblokPage({
-  params,
-  searchParams: searchParamsPromise,
-}: PageProps) {
+export async function StoryblokPage({ params }: PageProps) {
   const { slug, locale } = await params;
-  const searchParams = await searchParamsPromise;
   const pathname = slug?.length ? '/' + slug?.join('/') : '';
 
   const data = await getPageProps({
-    ...searchParams,
     slug: pathname,
     locale,
   });
