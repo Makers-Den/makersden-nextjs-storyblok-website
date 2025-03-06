@@ -8,8 +8,7 @@ import '@/styles/globals.css';
 import clsxm from '@/lib/clsxm';
 
 import { GTMScripts } from '@/components/gtm-scripts/GTMScripts';
-
-import { initStoryblok } from '@/storyblok';
+import StoryblokProvider from '@/components/storyblok/StoryblokProvider';
 
 const fontSans = FontSans({
   subsets: ['latin'],
@@ -22,8 +21,6 @@ type Favicons = {
   sizes?: string;
   type?: string;
 };
-
-initStoryblok();
 
 const favicons: Array<Favicons> = [
   {
@@ -86,7 +83,9 @@ export async function BasicLayout({
           fontSans.variable,
         )}
       >
-        <NextIntlClientProvider>{children}</NextIntlClientProvider>
+        <NextIntlClientProvider>
+          <StoryblokProvider>{children}</StoryblokProvider>
+        </NextIntlClientProvider>
       </body>
     </html>
   );

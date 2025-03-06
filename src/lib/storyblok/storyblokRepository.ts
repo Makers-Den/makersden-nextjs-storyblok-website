@@ -1,8 +1,9 @@
 import { type ISbStoriesParams } from '@storyblok/react/rsc';
 
+import { getStoryblokApi } from '@/storyblok';
+
 import type { PageSbContent } from './blockLibraryTypes';
 import type { StoryblokStory } from './sbInternalTypes';
-import { storyblokClient } from './storyblokClient';
 import {
   type ContentTypeName,
   type DatasourceEntry,
@@ -65,6 +66,8 @@ export const findStory: FindStoryFn = async <
     // Forces the latest content version
     storiesParams.cv = Date.now();
   }
+
+  const storyblokClient = getStoryblokApi();
 
   const response = await storyblokClient.get(
     `cdn/stories/${slug}`,
@@ -186,6 +189,8 @@ export const findStories: FindStoriesFn = async <
     storiesParams.cv = Date.now();
   }
 
+  const storyblokClient = getStoryblokApi();
+
   const response = await storyblokClient.get(`cdn/stories`, storiesParams);
 
   const data = response.data as {
@@ -218,6 +223,8 @@ export const findDatasourcesEntries: FindDatasourcesEntriesFn = async <
   perPage = 25,
   page = 1,
 }: FindDatasourcesEntriesArgs) => {
+  const storyblokClient = getStoryblokApi();
+
   const response = await storyblokClient.get('cdn/datasource_entries', {
     datasource,
     ...emptyOr({ dimension }),
