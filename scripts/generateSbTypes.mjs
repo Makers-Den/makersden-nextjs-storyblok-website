@@ -1,7 +1,10 @@
 /* eslint-disable no-console */
 /* eslint-disable @typescript-eslint/no-var-requires */
+import dotenv from 'dotenv';
+import storyblokToTypescript from '../scripts-dist/storyblokToTypescript.mjs';
+import fs from 'node:fs';
 
-require('dotenv').config();
+dotenv.config();
 
 if (!process.env.STORYBLOK_SPACE_ID) {
   console.error(
@@ -10,13 +13,16 @@ if (!process.env.STORYBLOK_SPACE_ID) {
   process.exit(-1);
 }
 
-const storyblokToTypescript = require('../scripts-dist/storyblokToTypescript');
+const __dirname = new URL('.', import.meta.url).pathname;
+const componentsJson = fs.readFileSync(
+  __dirname +
+    `/../storyblok-components/components.${process.env.STORYBLOK_SPACE_ID}.json`,
+  'utf-8',
+); // pull components with storyblok
 
-storyblokToTypescript.default({
+storyblokToTypescript({
   // required
-  componentsJson: require(
-    `../storyblok-components/components.${process.env.STORYBLOK_SPACE_ID}.json`,
-  ), // pull components with storyblok
+  componentsJson: JSON.parse(componentsJson),
   // required
   path: __dirname + '/../src/lib/storyblok/blockLibraryTypes.ts', // make sure path exists
   // optional type prefix (default: none)
