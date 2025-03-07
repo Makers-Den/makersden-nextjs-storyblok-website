@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
- 
-import type { SbAsset, SbMultilink, SbRichtext } from './sbInternalTypes';
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import type { SbAsset, SbMultiasset, SbMultilink, SbRichtext, SbTable, StoryblokStory } from './sbInternalTypes';
 export type BlockComponents = "FaqSection" | "Feature" | "RichTextContent" | "SplitContentSection" | "Teaser";
 
 export interface FaqItemSbContent {

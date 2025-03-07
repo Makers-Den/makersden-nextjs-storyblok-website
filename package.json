@@ -23,8 +23,8 @@
     "proxy": "local-ssl-proxy --source 3010 --target 3000 --cert localhost.pem --key localhost-key.pem",
     "analyze-bundle": "ANALYZE=true pnpm run build",
     "pull-sb-components": "dotenv -e .env.local -- bash -c 'storyblok pull-components --space=$STORYBLOK_SPACE_ID --path ./storyblok-components/'",
-    "build-sb-generator": "tsup src/lib/storyblok/storyblok-generate-ts/storyblokToTypescript.ts --outDir ./scripts-dist",
-    "generate-sb-types": "dotenv -e .env.local -- bash -c 'storyblok login && pnpm run pull-sb-components && pnpm run build-sb-generator && cross-env STORYBLOK_SPACE_ID=$STORYBLOK_SPACE_ID STORYBLOK_ACCESS_TOKEN=$NEXT_PUBLIC_STORYBLOK_TOKEN node ./scripts/generateSbTypes.js'"
+    "build-sb-generator": "tsup-node src/lib/storyblok/storyblok-generate-ts/storyblokToTypescript.ts --outDir ./scripts-dist --format esm",
+    "generate-sb-types": "dotenv -e .env.local -- bash -c 'storyblok login && pnpm run pull-sb-components && pnpm run build-sb-generator && cross-env STORYBLOK_SPACE_ID=$STORYBLOK_SPACE_ID STORYBLOK_ACCESS_TOKEN=$NEXT_PUBLIC_STORYBLOK_TOKEN node ./scripts/generateSbTypes.mjs'"
   },
   "dependencies": {
     "@mux/mux-player-react": "^3.3.0",

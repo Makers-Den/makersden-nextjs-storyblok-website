@@ -41,14 +41,13 @@ yarn-error.log*
 sitemap.xml
 sitemap-0.xml
 
-
 ./idea
 
 # HTTPS Proxy certificates
 localhost.pem
 localhost-key.pem
 
-
 # Storyblok Type Generator
 scripts-dist/storyblokToTypescript.js
+scripts-dist/storyblokToTypescript.mjs
 storyblok-components/components*.*
