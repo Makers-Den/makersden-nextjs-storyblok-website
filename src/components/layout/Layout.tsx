@@ -1,10 +1,9 @@
-import { type Locale } from 'i18n.config';
-
 import { type GlobalSettingsSbContent } from '@/lib/storyblok/blockLibraryTypes';
 import { type StoryblokStory } from '@/lib/storyblok/sbInternalTypes';
 
 import { Footer } from '@/block-components/footer/Footer';
 import { Header } from '@/block-components/header/Header';
+import { type Locale } from '@/i18n/config';
 
 type LayoutProps = {
   children: React.ReactNode;
