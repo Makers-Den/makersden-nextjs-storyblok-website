@@ -1,9 +1,10 @@
 import { StoryblokStory } from '@storyblok/react/rsc';
-import { defaultLocale } from 'i18n.config';
 import { notFound } from 'next/navigation';
 
 import { CommonContextProviders } from '@/components/common-context-providers/CommonContextProviders';
 import { Layout } from '@/components/layout/Layout';
+
+import { defaultLocale } from '@/i18n/config';
 
 import { getPageProps } from './getPageProps';
 

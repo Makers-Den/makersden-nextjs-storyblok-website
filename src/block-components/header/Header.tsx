@@ -1,10 +1,12 @@
-import { Link, type Locale } from 'i18n.config';
 import { type SVGProps } from 'react';
 
 import { type LinkSbContent } from '@/lib/storyblok';
 
 import LocaleSwitcher from '@/components/local-switcher/LocaleSwitcher';
 import { StoryblokLink } from '@/components/storyblok-link/StoryblokLink';
+
+import { type Locale } from '@/i18n/config';
+import { Link } from '@/i18n/navigation';
 
 export function Header({
   navItems,

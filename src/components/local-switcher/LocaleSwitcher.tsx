@@ -1,6 +1,7 @@
 'use client';
 
-import { type Locale, locales, usePathname, useRouter } from 'i18n.config';
+import { type Locale, locales } from '@/i18n/config';
+import { usePathname, useRouter } from '@/i18n/navigation';
 
 export default function LocaleSwitcher({ locale }: { locale: Locale }) {
   // `pathname` will contain the current route without the locale e.g. `/about`

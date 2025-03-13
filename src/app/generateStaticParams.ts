@@ -1,7 +1,7 @@
-import { type Locale, locales } from 'i18n.config';
-
 import { type PageSbContent, type StoryblokStory } from '@/lib/storyblok';
 import { findStories } from '@/lib/storyblok/storyblokRepository';
+
+import { type Locale, locales } from '@/i18n/config';
 
 /**
  * This should return all the paths that are generated during build time.
