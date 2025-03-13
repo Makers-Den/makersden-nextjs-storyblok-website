@@ -1,6 +1,8 @@
 import { StoryblokStory } from '@storyblok/react/rsc';
 import { notFound } from 'next/navigation';
 
+import { RESOLVED_RELATIONS } from '@/lib/storyblok/storyblokRepository';
+
 import { CommonContextProviders } from '@/components/common-context-providers/CommonContextProviders';
 import { Layout } from '@/components/layout/Layout';
 
@@ -31,7 +33,11 @@ export async function StoryblokPage({ params }: PageProps) {
         locale={locale ?? defaultLocale}
         globalSettings={globalSettingsStory}
       >
-        <StoryblokStory story={data.story} translations={translations} />
+        <StoryblokStory
+          bridgeOptions={{ resolveRelations: RESOLVED_RELATIONS }}
+          story={data.story}
+          translations={translations}
+        />
       </Layout>
     </CommonContextProviders>
   );
