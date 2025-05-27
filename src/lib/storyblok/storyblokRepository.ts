@@ -17,7 +17,7 @@ import {
   type HasPosition,
   type WithTotal,
 } from './storyblokRepositoryTypes';
-import { isDevelopment } from '../constants';
+import { isDevelopment, isPreviewEnv } from '../constants';
 
 /** These pages exist, but should not be included in site map */
 export const SITEMAP_EXCLUDED_SLUGS = ['home', 'not-found', 'dev-page'];
@@ -46,7 +46,7 @@ export const findStory: FindStoryFn = async <
 >({
   slug,
   locale,
-  isPreview,
+  isPreview: isPreviewViaProp,
   resolveRelations,
   resolveLinks,
 }: FindStoryArgs) => {
@@ -57,12 +57,14 @@ export const findStory: FindStoryFn = async <
     resolve_links: resolveLinks,
   };
 
-  if (isPreview) {
+  const isPreview = isPreviewViaProp || isPreviewEnv;
+
+  if (isPreview || isDevelopment) {
     // set the version to draft in the preview mode
     storiesParams.version = 'draft';
   }
 
-  if (isPreview ?? isDevelopment) {
+  if (isPreview || isDevelopment) {
     // Forces the latest content version
     storiesParams.cv = Date.now();
   }
@@ -166,7 +168,7 @@ export const findStories: FindStoriesFn = async <
   perPage = 10,
   page = 1,
   locale,
-  isPreview,
+  isPreview: isPreviewViaProp,
   contentType,
 }: FindStoriesArgs): Promise<WithTotal<(StoryType & HasPosition)[]>> => {
   const storiesParams: ISbStoriesParams = {
@@ -185,12 +187,14 @@ export const findStories: FindStoriesFn = async <
     ...emptyOr({ resolve_relations: resolveRelations }),
   };
 
-  if (isPreview) {
+  const isPreview = isPreviewViaProp || isPreviewEnv;
+
+  if (isPreview || isDevelopment) {
     // set the version to draft in the preview mode
     storiesParams.version = 'draft';
   }
 
-  if (isPreview ?? isDevelopment) {
+  if (isPreview || isDevelopment) {
     // Forces the latest content version
     storiesParams.cv = Date.now();
   }

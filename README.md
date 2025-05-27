@@ -63,4 +63,5 @@ This starter is using [conventional commits](https://www.conventionalcommits.org
 
 To optimize the font file size we used the solution from this article:
 https://barrd.dev/article/create-a-variable-font-subset-for-smaller-file-size/
- 
+
+#

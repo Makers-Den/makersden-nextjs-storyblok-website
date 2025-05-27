@@ -1,7 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-return */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
 
 import { isValidElement, type ReactNode } from 'react';
 import {
@@ -17,6 +14,7 @@ import {
   NODE_QUOTE,
   NODE_UL,
   render,
+  render as renderStoryblokRichText,
   type RenderOptions,
 } from 'storyblok-rich-text-react-renderer';
 import 'server-only';
@@ -51,28 +49,58 @@ export type RichTextType = {
   }[];
 };
 
-const convertChildrenWithPropsToString = (children: ReactNode): ReactNode => {
+interface CustomRenderOptions extends RenderOptions {
+  nodeResolvers?: Record<
+    string,
+    (children: ReactNode, props: Record<string, unknown>) => string
+  >;
+}
+
+function getChildren(nestedElement: unknown): ReactNode {
+  if (nestedElement === null) {
+    return undefined;
+  }
+  if (typeof nestedElement === 'string') {
+    return nestedElement;
+  }
+  if (typeof nestedElement === 'object' && 'children' in nestedElement) {
+    return nestedElement.children as ReactNode;
+  }
+  return undefined;
+}
+
+const convertChildrenWithPropsToString = (children: ReactNode): string => {
   if (Array.isArray(children)) {
     return children
-      .map((nestedElement) => {
-        if (Object.prototype.hasOwnProperty.call(nestedElement, 'props')) {
-          return convertChildrenWithPropsToString(nestedElement.props.children);
+      .map((nestedElement: ReactNode) => {
+        if (isValidElement(nestedElement) && 'props' in nestedElement) {
+          return convertChildrenWithPropsToString(
+            getChildren(nestedElement.props),
+          );
         }
         return nestedElement;
       })
       .join('');
-  } else if (
-    isValidElement(children) &&
-    Object.prototype.hasOwnProperty.call(children, 'props')
-  ) {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    return convertChildrenWithPropsToString((children.props as any).children);
+  } else if (isValidElement(children) && 'props' in children) {
+    return convertChildrenWithPropsToString(getChildren(children.props));
   }
-  return children;
+  return children?.toString() ?? '';
 };
 
-export const richTextToString = (richText: SbRichtext): string =>
-  render(richText, {
+const renderString = (
+  richText: SbRichtext,
+  options?: CustomRenderOptions,
+): string[] => {
+  const renderedText: string[] = renderStoryblokRichText(
+    richText,
+    options,
+  ) as string[];
+
+  return renderedText;
+};
+
+export const richTextToString = (richText: SbRichtext): string => {
+  const textNodes: Array<string> = renderString(richText, {
     nodeResolvers: {
       [NODE_HEADING]: (children) =>
         convertChildrenWithPropsToString(children) ?? '',
@@ -88,7 +116,10 @@ export const richTextToString = (richText: SbRichtext): string =>
       [NODE_UL]: (children) => convertChildrenWithPropsToString(children) ?? '',
       [NODE_LI]: (children) => convertChildrenWithPropsToString(children) ?? '',
     },
-  })?.join(' ');
+  });
+
+  return textNodes?.join(' ');
+};
 
 export const defaultRenderOptions: RenderOptions = {
   blokResolvers: {},
