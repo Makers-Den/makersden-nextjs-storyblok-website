@@ -18,6 +18,9 @@ module.exports = {
     '^.+\\.(jpg|jpeg|png|gif|webp|avif|svg)$':
       '<rootDir>/__mocks__/fileMock.js',
 
+    // Mock env module to avoid ESM issues
+    '^@/env$': '<rootDir>/__mocks__/env.ts',
+
     // Handle absolute import and module path alias
     '^@/(.*)$': '<rootDir>/src/$1',
   },
@@ -29,7 +32,7 @@ module.exports = {
     '^.+\\.(js|jsx|ts|tsx)$': ['babel-jest', { presets: ['next/babel'] }],
   },
   transformIgnorePatterns: [
-    '/node_modules/',
+    '/node_modules/(?!(@t3-oss|zod)/)',
     '^.+\\.module\\.(css|sass|scss)$',
   ],
 
