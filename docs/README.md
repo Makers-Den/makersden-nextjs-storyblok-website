@@ -2,11 +2,11 @@
 
 ## Overview
 
-This is a Next.js 15 (App Router) website template integrated with Storyblok CMS. It provides a type-safe, internationalized, and highly maintainable foundation for building content-driven websites.
+This is a Next.js 16 (App Router) website template integrated with Storyblok CMS. It provides a type-safe, internationalized, and highly maintainable foundation for building content-driven websites.
 
 ## Technology Stack
 
-- **Framework**: Next.js 15 with App Router
+- **Framework**: Next.js 16 with App Router
 - **CMS**: Storyblok (Headless CMS)
 - **Language**: TypeScript (strict mode)
 - **Styling**: Tailwind CSS v4 with custom design tokens

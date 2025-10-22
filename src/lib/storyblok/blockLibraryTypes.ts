@@ -1,8 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import type { SbAsset, SbMultiasset, SbMultilink, SbRichtext, SbTable, StoryblokStory } from './sbInternalTypes';
-export type BlockComponents = "FaqSection" | "Feature" | "RichTextContent" | "SplitContentSection" | "Teaser";
-
 export interface FaqItemSbContent {
   question?: SbRichtext;
   answer?: SbRichtext;
@@ -53,12 +51,24 @@ export interface GridSbContent {
   columns?: (
     | FaqSectionSbContent
     | FeatureSbContent
+    | HeroSectionSbContent
     | RichTextContentSbContent
     | SplitContentSectionSbContent
     | TeaserSbContent
   )[];
   _uid: string;
   component: "Grid";
+  [k: string]: any;
+}
+
+export type HeroSectionCtaLinksBlockType = "Link";
+
+export interface HeroSectionSbContent {
+  title?: SbRichtext;
+  backgroundImage?: SbAsset;
+  ctaLinks?: LinkSbContent[];
+  _uid: string;
+  component: "HeroSection";
   [k: string]: any;
 }
 
@@ -83,6 +93,7 @@ export interface PageSbContent {
   body?: (
     | FaqSectionSbContent
     | FeatureSbContent
+    | HeroSectionSbContent
     | RichTextContentSbContent
     | SplitContentSectionSbContent
     | TeaserSbContent

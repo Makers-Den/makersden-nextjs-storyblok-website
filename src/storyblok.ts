@@ -3,6 +3,7 @@ import { apiPlugin, storyblokInit } from '@storyblok/react/rsc';
 import { FaqSection } from '@/block-components/faq-section/FaqSection';
 import { Feature } from '@/block-components/feature/Feature';
 import { Grid } from '@/block-components/grid/Grid';
+import { HeroSection } from '@/block-components/hero-section/HeroSection';
 import { RichTextContent } from '@/block-components/rich-text-content/RichTextContent';
 import { Teaser } from '@/block-components/teaser/Teaser';
 import { env } from '@/env';
@@ -24,6 +25,7 @@ export const getStoryblokApi = storyblokInit({
     Grid: Grid,
     Teaser: Teaser,
     FaqSection: FaqSection,
+    HeroSection: HeroSection,
     RichTextContent: RichTextContent,
     ...dynamicComponents,
   },

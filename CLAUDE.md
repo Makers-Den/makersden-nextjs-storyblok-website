@@ -2,11 +2,11 @@
 
 ## Project Overview
 
-This is the **Makers' Den Next.js Storyblok Website Template** - a production-ready, type-safe, internationalized web application built with Next.js 15 (App Router) and Storyblok CMS.
+This is the **Makers' Den Next.js Storyblok Website Template** - a production-ready, type-safe, internationalized web application built with Next.js 16 (App Router) and Storyblok CMS.
 
 **Key Technologies:**
 
-- Next.js 15 (App Router, React Server Components)
+- Next.js 16 (App Router, React Server Components)
 - Storyblok CMS (Headless)
 - TypeScript (Strict Mode)
 - Tailwind CSS v4

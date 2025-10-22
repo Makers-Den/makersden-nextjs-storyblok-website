@@ -14,7 +14,7 @@ export default function LocaleSwitcher({ locale }: { locale: Locale }) {
   };
 
   return (
-    <div className='text-black'>
+    <div className='text-white'>
       <select value={locale} onChange={changeLocale} className='...'>
         {locales.map((loc) => (
           <option key={loc} value={loc}>

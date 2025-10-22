@@ -16,13 +16,17 @@ if (!process.env.STORYBLOK_SPACE_ID) {
 const __dirname = new URL('.', import.meta.url).pathname;
 const componentsJson = fs.readFileSync(
   __dirname +
-    `/../storyblok-components/components.${process.env.STORYBLOK_SPACE_ID}.json`,
+    `/../storyblok-components/components/${process.env.STORYBLOK_SPACE_ID}/components.json`,
   'utf-8',
 ); // pull components with storyblok
 
+const componentsJsonArr = JSON.parse(componentsJson);
+
 storyblokToTypescript({
   // required
-  componentsJson: JSON.parse(componentsJson),
+  componentsJson: {
+    components: componentsJsonArr,
+  },
   // required
   path: __dirname + '/../src/lib/storyblok/blockLibraryTypes.ts', // make sure path exists
   // optional type prefix (default: none)

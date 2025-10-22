@@ -2,7 +2,7 @@
 
 ## Overview
 
-This application uses Next.js 15 App Router with a dynamic, content-driven architecture powered by Storyblok CMS. All pages are generated dynamically based on content structure in Storyblok.
+This application uses Next.js 16 App Router with a dynamic, content-driven architecture powered by Storyblok CMS. All pages are generated dynamically based on content structure in Storyblok.
 
 ## Routing Architecture
 

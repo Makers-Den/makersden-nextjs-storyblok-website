@@ -262,6 +262,51 @@
     "metadata": {}
   },
   {
+    "name": "HeroSection",
+    "display_name": null,
+    "description": "",
+    "created_at": "2025-10-22T10:30:34.059Z",
+    "updated_at": "2025-10-22T10:33:01.096Z",
+    "id": 104199921912729,
+    "schema": {
+      "title": {
+        "type": "richtext",
+        "pos": 0,
+        "id": "_U696Ie5SNWBs0VukwC2wA"
+      },
+      "backgroundImage": {
+        "type": "asset",
+        "pos": 1,
+        "id": "GbnhpeTmQKiDqhgWfgTZVw"
+      },
+      "ctaLinks": {
+        "type": "bloks",
+        "pos": 2,
+        "restrict_type": "",
+        "restrict_components": true,
+        "component_whitelist": [
+          "Link"
+        ],
+        "id": "5mCn8ugOSyqKRhCgAZCDZQ"
+      }
+    },
+    "image": null,
+    "preview_field": null,
+    "is_root": false,
+    "preview_tmpl": null,
+    "is_nestable": true,
+    "all_presets": [],
+    "preset_id": null,
+    "real_name": "HeroSection",
+    "component_group_uuid": "50ca5cce-644a-4acc-ae72-2df68aa836cc",
+    "color": null,
+    "icon": null,
+    "internal_tags_list": [],
+    "internal_tag_ids": [],
+    "content_type_asset_preview": null,
+    "metadata": {}
+  },
+  {
     "name": "JsonLdMetadata",
     "display_name": null,
     "description": null,
