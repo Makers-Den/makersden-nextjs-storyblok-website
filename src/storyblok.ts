@@ -1,5 +1,6 @@
 import { apiPlugin, storyblokInit } from '@storyblok/react/rsc';
 
+import { CtaLink } from '@/block-components/cta-link';
 import { FaqSection } from '@/block-components/faq-section/FaqSection';
 import { Feature } from '@/block-components/feature/Feature';
 import { Grid } from '@/block-components/grid/Grid';
@@ -20,6 +21,7 @@ export const getStoryblokApi = storyblokInit({
   },
   use: [apiPlugin],
   components: {
+    CtaLink: CtaLink,
     Feature: Feature,
     Page: Page,
     Grid: Grid,

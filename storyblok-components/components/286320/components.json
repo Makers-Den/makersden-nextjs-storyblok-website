@@ -1,5 +1,75 @@
 [
   {
+    "name": "CtaLink",
+    "display_name": null,
+    "description": "",
+    "created_at": "2025-10-22T14:07:07.498Z",
+    "updated_at": "2025-10-22T14:09:22.315Z",
+    "id": 104253143036076,
+    "schema": {
+      "name": {
+        "type": "text",
+        "pos": 0,
+        "id": "r_iYFx0fT6SWjruckObCIA"
+      },
+      "type": {
+        "type": "option",
+        "pos": 1,
+        "id": "swbP6RqNRHqNbmyVjOzDcQ",
+        "use_uuid": true,
+        "options": [
+          {
+            "_uid": "5b7433cb-f0e4-40af-beb5-248f6a4b7fd0",
+            "name": "default",
+            "value": "default"
+          },
+          {
+            "_uid": "971d6524-a326-4022-a1d3-03a207c89c82",
+            "value": "secondary",
+            "name": "secondary"
+          },
+          {
+            "_uid": "c0e73ed6-fd64-4dd3-aded-97606e99d2e3",
+            "value": "outline",
+            "name": "outline"
+          },
+          {
+            "_uid": "cd6b2d62-0e68-4f5a-ad53-3ebb02033076",
+            "value": "ghost",
+            "name": "ghost"
+          },
+          {
+            "_uid": "3fe47e4e-6f0e-449c-912f-3e6f182b9dde",
+            "value": "link",
+            "name": "link"
+          }
+        ]
+      },
+      "link": {
+        "type": "multilink",
+        "pos": 2,
+        "id": "YPa04JaEQS62FLbTmflA0w",
+        "allow_target_blank": true,
+        "show_anchor": true
+      }
+    },
+    "image": null,
+    "preview_field": null,
+    "is_root": false,
+    "preview_tmpl": null,
+    "is_nestable": true,
+    "all_presets": [],
+    "preset_id": null,
+    "real_name": "CtaLink",
+    "component_group_uuid": null,
+    "color": null,
+    "icon": null,
+    "internal_tags_list": [],
+    "internal_tag_ids": [],
+    "content_type_asset_preview": null,
+    "metadata": {}
+  },
+  {
     "name": "FaqItem",
     "display_name": null,
     "description": null,
@@ -234,13 +304,15 @@
     "display_name": null,
     "description": "",
     "created_at": "2025-10-22T10:30:34.059Z",
-    "updated_at": "2025-10-22T10:33:01.096Z",
+    "updated_at": "2025-10-22T10:59:45.455Z",
     "id": 104199921912729,
     "schema": {
       "title": {
         "type": "richtext",
         "pos": 0,
-        "id": "_U696Ie5SNWBs0VukwC2wA"
+        "id": "_U696Ie5SNWBs0VukwC2wA",
+        "customize_toolbar": true,
+        "toolbar": ["paragraph", "paste-action"]
       },
       "backgroundImage": {
         "type": "asset",

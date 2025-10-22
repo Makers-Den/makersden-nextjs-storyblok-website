@@ -1,6 +1,15 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import type { SbAsset, SbMultiasset, SbMultilink, SbRichtext, SbTable, StoryblokStory } from './sbInternalTypes';
+export interface CtaLinkSbContent {
+  name?: string;
+  type?: "" | "default" | "secondary" | "outline" | "ghost" | "link";
+  link?: SbMultilink;
+  _uid: string;
+  component: "CtaLink";
+  [k: string]: any;
+}
+
 export interface FaqItemSbContent {
   question?: SbRichtext;
   answer?: SbRichtext;
