@@ -182,25 +182,81 @@ Uses Tailwind's default spacing scale (4px base unit):
 
 ### Typography
 
+**File**: `src/components/typography/Typography.tsx`
+
+**CRITICAL**: Always use Typography component variants instead of raw Tailwind typography classes. This ensures consistency across the entire site.
+
+#### Typography Components (Preferred)
+
+```tsx
+import {
+  HeadingXl,
+  HeadingLg,
+  HeadingMd,
+  HeadingSm,
+  Text,
+  TextLg,
+  TextSm,
+} from '@/components/typography/Typography';
+
+// Headings - use these for all headings
+<HeadingXl as='h1'>Hero Title</HeadingXl>     // Extra large (H1)
+<HeadingLg as='h2'>Section Title</HeadingLg>  // Large (H2)
+<HeadingMd as='h3'>Card Title</HeadingMd>     // Medium (H3)
+<HeadingSm as='h4'>Small Title</HeadingSm>    // Small (H4)
+
+// Body text - use these for all text content
+<Text>Regular paragraph</Text>                 // Default
+<TextLg>Large intro text</TextLg>             // Large paragraph
+<TextSm>Small helper text</TextSm>            // Small text
+```
+
+**Features:**
+- Responsive font sizes with fluid scaling
+- Consistent line heights and letter spacing
+- Design system integration
+- Semantic HTML with polymorphic `as` prop
+
+**Important Rules:**
+1. **Never use raw Tailwind typography classes** (text-sm, text-xl, font-bold, etc.) for content text
+2. **Always select the closest Typography variant** that matches your design needs
+3. **If unsure which variant to use**, ask for guidance
+4. **One HeadingXl (H1) per page** - use `HeadingXl as='h2'` if you need XL styling elsewhere
+
+#### Tailwind Typography Classes (Avoid for Content)
+
+Only use these for very specific edge cases or overrides:
+
+```tsx
+// ❌ Avoid - use Typography components instead
+<p className='text-sm'>...</p>
+<h2 className='text-2xl font-bold'>...</h2>
+
+// ✅ Correct
+<TextSm>...</TextSm>
+<HeadingLg as='h2'>...</HeadingLg>
+
+// ✅ OK for utility purposes (badges, buttons, etc.)
+<span className='text-xs uppercase tracking-wide'>Badge</span>
+```
+
+#### Raw Tailwind Reference (for rare overrides only)
+
 ```tsx
 // Text sizes
-<p className='text-sm'>   {/* 0.875rem */}
-<p className='text-base'> {/* 1rem */}
-<p className='text-lg'>   {/* 1.125rem */}
-<p className='text-xl'>   {/* 1.25rem */}
-<p className='text-2xl'>  {/* 1.5rem */}
-<p className='text-3xl'>  {/* 1.875rem */}
+text-sm    {/* 0.875rem */}
+text-base  {/* 1rem */}
+text-lg    {/* 1.125rem */}
+text-xl    {/* 1.25rem */}
 
 // Font weights
-<p className='font-normal'>  {/* 400 */}
-<p className='font-medium'>  {/* 500 */}
-<p className='font-semibold'> {/* 600 */}
-<p className='font-bold'>    {/* 700 */}
+font-normal    {/* 400 */}
+font-semibold  {/* 600 */}
+font-bold      {/* 700 */}
 
 // Line height
-<p className='leading-tight'>  {/* 1.25 */}
-<p className='leading-normal'> {/* 1.5 */}
-<p className='leading-relaxed'> {/* 1.75 */}
+leading-tight   {/* 1.25 */}
+leading-normal  {/* 1.5 */}
 ```
 
 ### Colors

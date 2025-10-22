@@ -31,6 +31,7 @@ Before working on any task:
 | Adding/modifying components | [component-patterns.md](./docs/component-patterns.md), [storyblok-integration.md](./docs/storyblok-integration.md) |
 | Working with Storyblok      | [storyblok-integration.md](./docs/storyblok-integration.md), [type-system.md](./docs/type-system.md)               |
 | Styling changes             | [styling.md](./docs/styling.md)                                                                                    |
+| Typography/text styling     | [component-patterns.md#typography-components](./docs/component-patterns.md#typography-components), [styling.md#typography](./docs/styling.md#typography) |
 | Adding translations         | [internationalization.md](./docs/internationalization.md)                                                          |
 | Routing/architecture        | [architecture.md](./docs/architecture.md)                                                                          |
 | Using utilities             | [utilities.md](./docs/utilities.md)                                                                                |
@@ -50,6 +51,37 @@ Before working on any task:
 8. **Links**: Use `StoryblokLink` component
 9. **Error Handling**: Handle optional fields safely
 10. **Code Quality**: Follow linting, formatting, and TypeScript strict mode
+
+### Typography Best Practices
+
+**CRITICAL**: Always use Typography component variants for consistent text styling.
+
+```typescript
+import { HeadingLg, HeadingMd, Text, TextLg } from '@/components/typography/Typography';
+import { renderHeadingLg, renderHeadingMd, renderText } from '@/lib/richTextUtils';
+
+// For plain string fields - use Typography components
+<HeadingLg as='h2'>{blok.title}</HeadingLg>
+<Text>{blok.description}</Text>
+
+// For Storyblok rich text content - use renderText()
+{renderText(blok.bodyContent)}
+
+// For Storyblok rich text TITLE fields - use heading render functions
+{renderHeadingXl(blok.heroTitle, 'h1')}  // Hero titles
+{renderHeadingLg(blok.sectionTitle, 'h2')}  // Section titles
+{renderHeadingMd(blok.cardTitle, 'h3')}  // Card/subsection titles
+```
+
+**Decision Tree:**
+1. **Plain string** → Use Typography components (`<HeadingLg>`, `<Text>`, etc.)
+2. **SbRichtext body content** → Use `renderText()`
+3. **SbRichtext title field** → Use `renderHeadingXl/Lg/Md()`
+4. **If unsure which variant** → Ask for guidance
+
+**Never:**
+- Use raw Tailwind classes (`text-2xl`, `font-bold`) for content text
+- Use `renderText()` for title fields (use `renderHeadingXl/Lg/Md()` instead)
 
 ### Before Submitting Code
 
@@ -113,13 +145,14 @@ src/
 import { storyblokEditable } from '@storyblok/react/rsc';
 import { type MyFeatureSbContent } from '@/lib/storyblok';
 import { Container } from '@/components/container/Container';
+import { HeadingMd, Text } from '@/components/typography/Typography';
 
 export function MyFeature({ blok }: { blok: MyFeatureSbContent }) {
   return (
     <Container className="py-12" {...storyblokEditable(blok)}>
-      {/* Component content - constrained to max-width */}
-      <h2>{blok.title}</h2>
-      <p>{blok.description}</p>
+      {/* Use Typography components for consistent styling */}
+      <HeadingMd as='h2'>{blok.title}</HeadingMd>
+      <Text>{blok.description}</Text>
     </Container>
   );
 }

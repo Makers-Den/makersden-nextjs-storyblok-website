@@ -451,6 +451,49 @@ renderText(content, {
 });
 ```
 
+### Title Field Rendering
+
+**IMPORTANT**: When rendering Storyblok rich text fields that are **titles**, use the specialized heading render functions:
+
+```typescript
+import {
+  renderHeadingXl,
+  renderHeadingLg,
+  renderHeadingMd,
+} from '@/lib/richTextUtils';
+
+export function MyBlock({ blok }: { blok: MyBlockSbContent }) {
+  return (
+    <Container>
+      {/* Hero/page title - Extra large */}
+      {renderHeadingXl(blok.heroTitle, 'h1')}
+
+      {/* Section title - Large */}
+      {renderHeadingLg(blok.sectionTitle, 'h2')}
+
+      {/* Card/subsection title - Medium */}
+      {renderHeadingMd(blok.cardTitle, 'h3')}
+
+      {/* Body content - Regular rich text */}
+      {renderText(blok.content)}
+    </Container>
+  );
+}
+```
+
+**Which render function for titles:**
+- `renderHeadingXl(field, 'h1')` - Hero titles, main page headers
+- `renderHeadingLg(field, 'h2')` - Primary section titles
+- `renderHeadingMd(field, 'h3')` - Secondary section/card titles
+- `renderText(field)` - Body content (NOT for titles)
+
+**If unsure which to use**, ask for guidance.
+
+**Why not use `renderText()` for titles?**
+- `renderText()` applies paragraph styling which is incorrect for titles
+- Title-specific functions apply proper heading styles from Typography system
+- Ensures visual consistency across all titles site-wide
+
 ## Preview Mode
 
 ### Enabling Preview

@@ -352,65 +352,225 @@ For images without Next.js Image wrapper (e.g., background images):
 
 **File**: `src/components/typography/Typography.tsx`
 
-Provides consistent typography with variants:
+**CRITICAL**: Always prefer using Typography component variants over custom text styles to ensure consistency across the site.
+
+#### Available Typography Variants
+
+**Convenience Components** (preferred):
 
 ```typescript
-// Base Typography component
+import {
+  HeadingXl,
+  HeadingLg,
+  HeadingMd,
+  HeadingSm,
+  Text,
+  TextLg,
+  TextSm,
+  TagText,
+  TagTextSm,
+  Quotation,
+} from '@/components/typography/Typography';
+
+// Headings
+<HeadingXl as='h1'>Hero Headline</HeadingXl>      // Huge (only one per page)
+<HeadingLg as='h2'>Section Title</HeadingLg>      // Large
+<HeadingMd as='h3'>Subsection Title</HeadingMd>   // Medium
+<HeadingSm as='h4'>Smaller Heading</HeadingSm>    // Small
+
+// Body Text
+<Text>Regular paragraph text</Text>               // Default paragraph
+<TextLg>Larger paragraph text</TextLg>            // Large paragraph
+<TextSm>Small paragraph text</TextSm>             // Small paragraph
+
+// Special
+<TagText>Category Tag</TagText>                   // Tag/label text
+<Quotation>Quote text here</Quotation>            // Quotations
+```
+
+**Base Typography Component**:
+
+```typescript
 <Typography variant='text' as='p' className='my-4'>
   Content here
 </Typography>
-
-// Convenience components
-<HeadingXl as='h1'>Main Heading</HeadingXl>
-<HeadingLg as='h2'>Subheading</HeadingLg>
-<HeadingMd as='h3'>Section Title</HeadingMd>
-<HeadingSm as='h4'>Subsection</HeadingSm>
-<Text>Body text</Text>
-<TextLg>Large body text</TextLg>
 ```
 
-**Variants**:
+#### Typography Selection Guidelines
 
-- `headingXl` - Extra large headings
-- `headingLg` - Large headings
-- `headingMd` - Medium headings
-- `headingSm` - Small headings
-- `textLg` - Large body text
-- `text` - Regular body text
+**When implementing a new block component:**
 
-**Features**:
+1. **Identify the text element** (heading, body, label, etc.)
+2. **Choose the closest Typography variant** that matches the design
+3. **If unsure which variant to use**, ask for guidance
+4. **Never create custom text styles** - always use Typography variants
 
-- Polymorphic `as` prop (renders different HTML tags)
-- Optional text balancing with `react-wrap-balancer`
-- Consistent spacing and sizing
-- Responsive typography
+**Examples by Use Case:**
+
+```typescript
+// Page hero section
+<HeadingXl as='h1'>{blok.heroTitle}</HeadingXl>
+
+// Section titles
+<HeadingLg as='h2'>{blok.sectionTitle}</HeadingLg>
+
+// Card titles
+<HeadingMd as='h3'>{blok.cardTitle}</HeadingMd>
+
+// Body content
+<Text>{blok.description}</Text>
+
+// Intro/lead text
+<TextLg>{blok.intro}</TextLg>
+
+// Category labels
+<TagText>{blok.category}</TagText>
+```
+
+#### Important Rules
+
+**HeadingXl (H1) Usage**:
+- There should only be **ONE** `HeadingXl` with `as='h1'` per page
+- Typically used in hero sections
+- Can use `HeadingXl` with `as='h2'` for visual XL styling on other elements
+
+**Polymorphic `as` Prop**:
+- Controls the actual HTML element rendered
+- Allows semantic HTML while maintaining visual style
+- Example: `<HeadingLg as='h2'>` renders `<h2>` with large heading styles
+
+#### Features
+
+- **Responsive sizing** - Font sizes adjust across breakpoints
+- **Text balancing** - Optional `useBalancer` prop prevents orphans
+- **Consistent spacing** - Predefined line heights and tracking
+- **Accessible** - Semantic HTML tags with proper hierarchy
 
 ## Rich Text Pattern
 
-### Rendering Rich Text
+### When to Use Typography vs Rich Text Utilities
+
+**File**: `src/lib/richTextUtils.tsx`
+
+**Decision Tree:**
+
+1. **Plain string fields** → Use Typography components directly
+2. **Storyblok rich text content (`SbRichtext` type)** → Use `renderText()` functions
+3. **Title fields from Storyblok (`SbRichtext` type)** → Use `renderHeadingXl/Lg/Md()`
+
+### Typography Components (for plain strings)
+
+Use Typography components when the field is a **plain string**:
 
 ```typescript
-import { renderText } from '@/lib/richTextUtils';
+import { HeadingLg, Text } from '@/components/typography/Typography';
 
-export function RichTextContent({ blok }: { blok: RichTextContentSbContent }) {
+export function SimpleBlock({ blok }: { blok: SimpleBlockSbContent }) {
   return (
-    <div className='prose'>
-      {renderText(blok.text)}
-    </div>
+    <Container>
+      {/* Plain string field */}
+      <HeadingLg as='h2'>{blok.title}</HeadingLg>
+      <Text>{blok.description}</Text>
+    </Container>
   );
 }
 ```
 
-### Custom Rich Text Styling
+### Rich Text Utilities (for Storyblok rich text)
+
+Use `renderText()` functions when the field is **Storyblok rich text** (`SbRichtext` type):
 
 ```typescript
-import { renderTextWithOptions } from '@/lib/richTextUtils';
+import { renderText } from '@/lib/richTextUtils';
+
+export function RichTextBlock({ blok }: { blok: RichTextBlockSbContent }) {
+  return (
+    <Container>
+      {/* SbRichtext field - full rich text with formatting */}
+      {renderText(blok.content)}
+    </Container>
+  );
+}
+```
+
+### Title Fields (Storyblok rich text as headings)
+
+**IMPORTANT**: When a block component has a **title property** that is `SbRichtext` type, use the heading render functions:
+
+```typescript
+import {
+  renderHeadingXl,
+  renderHeadingLg,
+  renderHeadingMd,
+} from '@/lib/richTextUtils';
+
+export function ContentSection({ blok }: { blok: ContentSectionSbContent }) {
+  return (
+    <Container>
+      {/* Title as XL heading (hero sections) */}
+      {renderHeadingXl(blok.title, 'h1')}
+
+      {/* Title as Large heading (main sections) */}
+      {renderHeadingLg(blok.sectionTitle, 'h2')}
+
+      {/* Title as Medium heading (subsections) */}
+      {renderHeadingMd(blok.cardTitle, 'h3')}
+
+      {/* Body content as regular rich text */}
+      {renderText(blok.bodyContent)}
+    </Container>
+  );
+}
+```
+
+**Which render function to use for titles:**
+- `renderHeadingXl()` - Hero titles, page headers (H1)
+- `renderHeadingLg()` - Main section titles (H2)
+- `renderHeadingMd()` - Subsection titles (H3)
+- **If unsure**, ask for guidance
+
+### Available Rich Text Render Functions
+
+```typescript
+// Default rendering (paragraphs, headings, lists, images)
+renderText(blok.content)
+
+// Large paragraph text
+renderTextLg(blok.intro)
+
+// Title as XL heading
+renderHeadingXl(blok.title, 'h1')
+
+// Title as Large heading
+renderHeadingLg(blok.title, 'h2')
+
+// Title as Medium heading
+renderHeadingMd(blok.title, 'h3')
+
+// Custom rendering with options
+renderTextWithOptions(blok.intro, {
+  className: 'text-gray-600',
+  variant: 'textLg',
+  useBalancer: true,
+})
+```
+
+### Custom Rich Text Styling
+
+Override specific node types when needed:
+
+```typescript
+import { renderText } from '@/lib/richTextUtils';
+import { NODE_PARAGRAPH } from 'storyblok-rich-text-react-renderer';
+import { TextLg } from '@/components/typography/Typography';
 
 {
-  renderTextWithOptions(blok.intro, {
-    className: 'text-lg text-gray-600',
-    variant: 'textLg',
-    useBalancer: true,
+  renderText(blok.intro, {
+    nodeResolvers: {
+      [NODE_PARAGRAPH]: (children) => (
+        <TextLg className='text-gray-600'>{children}</TextLg>
+      ),
+    },
   });
 }
 ```
@@ -634,7 +794,59 @@ export function TextSection({ blok }: { blok: TextSectionSbContent }) {
 }
 ```
 
-### 2. Always Use Type Safety
+### 2. Use Typography Components for Text Consistency
+
+```typescript
+// Good - uses Typography components
+import { HeadingLg, Text } from '@/components/typography/Typography';
+
+export function ContentBlock({ blok }: { blok: ContentBlockSbContent }) {
+  return (
+    <Container>
+      <HeadingLg as='h2'>{blok.title}</HeadingLg>
+      <Text>{blok.description}</Text>
+    </Container>
+  );
+}
+
+// Bad - custom text styles
+export function ContentBlock({ blok }: { blok: ContentBlockSbContent }) {
+  return (
+    <Container>
+      <h2 className='text-4xl font-bold'>{blok.title}</h2>
+      <p className='text-base'>{blok.description}</p>
+    </Container>
+  );
+}
+```
+
+**For Storyblok rich text title fields:**
+
+```typescript
+// Good - uses renderHeadingLg for SbRichtext title
+import { renderHeadingLg, renderText } from '@/lib/richTextUtils';
+
+export function Section({ blok }: { blok: SectionSbContent }) {
+  return (
+    <Container>
+      {renderHeadingLg(blok.title, 'h2')}
+      {renderText(blok.content)}
+    </Container>
+  );
+}
+
+// Bad - uses renderText for titles
+export function Section({ blok }: { blok: SectionSbContent }) {
+  return (
+    <Container>
+      {renderText(blok.title)} {/* Wrong - titles need heading functions */}
+      {renderText(blok.content)}
+    </Container>
+  );
+}
+```
+
+### 3. Always Use Type Safety
 
 ```typescript
 // Good
@@ -645,7 +857,7 @@ export function Feature({ blok }: { blok: FeatureSbContent }) {}
 export function Feature({ blok }: { blok: any }) {}
 ```
 
-### 3. Use storyblokEditable
+### 4. Use storyblokEditable
 
 ```typescript
 // Good - enables Visual Editor
@@ -655,7 +867,7 @@ export function Feature({ blok }: { blok: any }) {}
 <div>
 ```
 
-### 4. Handle Optional Fields
+### 5. Handle Optional Fields
 
 ```typescript
 // Good - handles undefined
@@ -665,7 +877,7 @@ export function Feature({ blok }: { blok: any }) {}
 {blok.items.map((item) => ...)}
 ```
 
-### 5. Use Semantic HTML
+### 6. Use Semantic HTML
 
 ```typescript
 // Good
@@ -685,7 +897,7 @@ export function Feature({ blok }: { blok: any }) {}
 </div>
 ```
 
-### 6. Extract Complex Logic
+### 7. Extract Complex Logic
 
 ```typescript
 // Good - logic extracted
@@ -716,7 +928,7 @@ export function SocialLinks({ blok }) {
 }
 ```
 
-### 7. Use Utilities
+### 8. Use Utilities
 
 ```typescript
 // Good - use utility
