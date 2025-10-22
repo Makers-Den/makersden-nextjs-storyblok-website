@@ -70,12 +70,12 @@ export interface GridSbContent {
   [k: string]: any;
 }
 
-export type HeroSectionCtaLinksBlockType = "Link";
+export type HeroSectionCtaLinksBlockType = "CtaLink";
 
 export interface HeroSectionSbContent {
   title?: SbRichtext;
   backgroundImage?: SbAsset;
-  ctaLinks?: LinkSbContent[];
+  ctaLinks?: CtaLinkSbContent[];
   _uid: string;
   component: "HeroSection";
   [k: string]: any;

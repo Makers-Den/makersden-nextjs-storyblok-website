@@ -304,7 +304,7 @@
     "display_name": null,
     "description": "",
     "created_at": "2025-10-22T10:30:34.059Z",
-    "updated_at": "2025-10-22T10:59:45.455Z",
+    "updated_at": "2025-10-22T14:54:33.682Z",
     "id": 104199921912729,
     "schema": {
       "title": {
@@ -324,7 +324,7 @@
         "pos": 2,
         "restrict_type": "",
         "restrict_components": true,
-        "component_whitelist": ["Link"],
+        "component_whitelist": ["CtaLink"],
         "id": "5mCn8ugOSyqKRhCgAZCDZQ"
       }
     },
