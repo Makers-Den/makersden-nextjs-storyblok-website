@@ -78,7 +78,7 @@ Generic React components not directly mapped to Storyblok.
 
 **Location**: `src/components/[component-name]/`
 
-**Examples**: `Typography`, `Container`, `StoryblokImage`
+**Examples**: `Typography`, `Container`, `Button`, `StoryblokImage`
 
 ```typescript
 export function Container({ children, className }: ContainerProps) {
@@ -88,6 +88,14 @@ export function Container({ children, className }: ContainerProps) {
     </div>
   );
 }
+```
+
+```typescript
+import { Button } from '@/components/button';
+
+<Button variant="default">Click me</Button>
+<Button variant="outline" size="sm">Small</Button>
+<Button variant="destructive">Delete</Button>
 ```
 
 **Characteristics**:
@@ -346,6 +354,161 @@ For images without Next.js Image wrapper (e.g., background images):
 - Next.js Link integration
 - External link detection
 
+## Button Component
+
+### Button System
+
+**File**: `src/components/button/Button.tsx`
+
+A versatile button component based on shadcn/ui with multiple variants and sizes, built using `class-variance-authority`.
+
+#### Basic Usage
+
+```typescript
+import { Button } from '@/components/button';
+
+// Basic button
+<Button>Click me</Button>
+
+// With variants
+<Button variant="default">Primary</Button>
+<Button variant="outline">Outline</Button>
+<Button variant="destructive">Delete</Button>
+<Button variant="secondary">Secondary</Button>
+<Button variant="ghost">Ghost</Button>
+<Button variant="link">Link Style</Button>
+
+// With sizes
+<Button size="sm">Small</Button>
+<Button size="default">Default</Button>
+<Button size="lg">Large</Button>
+
+// Icon buttons
+<Button size="icon">
+  <IconComponent />
+</Button>
+```
+
+#### Available Variants
+
+- `default` - Primary button with solid background (uses `--primary`)
+- `destructive` - For destructive actions like delete (uses `--destructive`)
+- `outline` - Outlined button with transparent background
+- `secondary` - Secondary styling with muted colors
+- `ghost` - Minimal styling, only visible on hover
+- `link` - Styled as a link with underline on hover
+
+#### Available Sizes
+
+- `default` - Standard size (h-9, px-4, py-2)
+- `sm` - Small (h-8, px-3, text-xs)
+- `lg` - Large (h-10, px-8)
+- `icon` - Square for icons (h-9, w-9)
+- `icon-sm` - Small icon button (h-8, w-8)
+- `icon-lg` - Large icon button (h-10, w-10)
+
+#### Common Patterns
+
+**Form Submit Button**:
+
+```typescript
+<form onSubmit={handleSubmit}>
+  <Button type="submit">Submit</Button>
+</form>
+```
+
+**Action Buttons**:
+
+```typescript
+<div className="flex gap-2">
+  <Button variant="outline" onClick={onCancel}>
+    Cancel
+  </Button>
+  <Button variant="destructive" onClick={onDelete}>
+    Delete
+  </Button>
+</div>
+```
+
+**Icon Buttons with Lucide**:
+
+```typescript
+import { Trash2, Edit, Download } from 'lucide-react';
+
+<Button variant="ghost" size="icon" aria-label="Delete">
+  <Trash2 />
+</Button>
+```
+
+**Loading State**:
+
+```typescript
+<Button disabled={isLoading}>
+  {isLoading ? 'Loading...' : 'Submit'}
+</Button>
+```
+
+#### Props
+
+Extends all native HTML button attributes:
+
+- `variant` - Button visual style
+- `size` - Button size
+- `className` - Additional CSS classes
+- Standard props: `onClick`, `disabled`, `type`, `children`, etc.
+
+#### Accessibility
+
+- Use descriptive button text or `aria-label` for icon buttons
+- Set `type="button"` explicitly for non-submit buttons in forms
+- Use `disabled` prop for disabled state
+- Ensure sufficient color contrast
+
+### ButtonLink Component
+
+**File**: `src/components/button/ButtonLink.tsx`
+
+A convenience component that combines Button styling with Next.js Link navigation. Use this for internal navigation with button appearance.
+
+#### Usage
+
+```typescript
+import { ButtonLink } from '@/components/button';
+
+// Navigation with button styling
+<ButtonLink href="/about">About Us</ButtonLink>
+
+// With variants and sizes
+<ButtonLink href="/contact" variant="outline" size="sm">
+  Contact
+</ButtonLink>
+
+<ButtonLink href="/get-started" variant="default" size="lg">
+  Get Started
+</ButtonLink>
+```
+
+#### When to Use
+
+- **Internal navigation** - Links to pages within your app
+- **Call-to-action links** - Button styling with link semantics
+- **SEO-friendly** - Links are crawlable by search engines
+
+#### When NOT to Use
+
+- **Form submissions** - Use `Button` with `type="submit"`
+- **JavaScript actions** - Use `Button` with `onClick`
+- **Non-navigation** - Dialogs, toggles, etc.
+
+#### Props
+
+Accepts all `Button` props plus Next.js `Link` props:
+
+- All Button props: `variant`, `size`, `className`
+- `href` - Link destination (required)
+- `prefetch` - Next.js prefetch behavior
+- All standard anchor attributes
+
 ## Typography Components
 
 ### Typography System
@@ -430,11 +593,13 @@ import {
 #### Important Rules
 
 **HeadingXl (H1) Usage**:
+
 - There should only be **ONE** `HeadingXl` with `as='h1'` per page
 - Typically used in hero sections
 - Can use `HeadingXl` with `as='h2'` for visual XL styling on other elements
 
 **Polymorphic `as` Prop**:
+
 - Controls the actual HTML element rendered
 - Allows semantic HTML while maintaining visual style
 - Example: `<HeadingLg as='h2'>` renders `<h2>` with large heading styles
@@ -524,6 +689,7 @@ export function ContentSection({ blok }: { blok: ContentSectionSbContent }) {
 ```
 
 **Which render function to use for titles:**
+
 - `renderHeadingXl()` - Hero titles, page headers (H1)
 - `renderHeadingLg()` - Main section titles (H2)
 - `renderHeadingMd()` - Subsection titles (H3)
@@ -533,26 +699,26 @@ export function ContentSection({ blok }: { blok: ContentSectionSbContent }) {
 
 ```typescript
 // Default rendering (paragraphs, headings, lists, images)
-renderText(blok.content)
+renderText(blok.content);
 
 // Large paragraph text
-renderTextLg(blok.intro)
+renderTextLg(blok.intro);
 
 // Title as XL heading
-renderHeadingXl(blok.title, 'h1')
+renderHeadingXl(blok.title, 'h1');
 
 // Title as Large heading
-renderHeadingLg(blok.title, 'h2')
+renderHeadingLg(blok.title, 'h2');
 
 // Title as Medium heading
-renderHeadingMd(blok.title, 'h3')
+renderHeadingMd(blok.title, 'h3');
 
 // Custom rendering with options
 renderTextWithOptions(blok.intro, {
   className: 'text-gray-600',
   variant: 'textLg',
   useBalancer: true,
-})
+});
 ```
 
 ### Custom Rich Text Styling

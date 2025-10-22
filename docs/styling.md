@@ -159,13 +159,16 @@ export function HeroSection({ blok }) {
 - Components that intentionally break out of container bounds
 
 #### Flex Layouts
+
 <div className='flex items-center justify-between'>
 <div className='flex flex-col gap-4'>
 
 // Grid layouts
+
 <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
 
 // Full height
+
 <div className='min-h-screen flex flex-col'>
 ```
 
@@ -212,12 +215,14 @@ import {
 ```
 
 **Features:**
+
 - Responsive font sizes with fluid scaling
 - Consistent line heights and letter spacing
 - Design system integration
 - Semantic HTML with polymorphic `as` prop
 
 **Important Rules:**
+
 1. **Never use raw Tailwind typography classes** (text-sm, text-xl, font-bold, etc.) for content text
 2. **Always select the closest Typography variant** that matches your design needs
 3. **If unsure which variant to use**, ask for guidance

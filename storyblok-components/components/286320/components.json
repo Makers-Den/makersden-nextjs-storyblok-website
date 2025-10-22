@@ -10,19 +10,13 @@
       "question": {
         "type": "richtext",
         "customize_toolbar": true,
-        "toolbar": [
-          "bold"
-        ],
+        "toolbar": ["bold"],
         "translatable": true
       },
       "answer": {
         "type": "richtext",
         "customize_toolbar": true,
-        "toolbar": [
-          "bold",
-          "list",
-          "paragraph"
-        ],
+        "toolbar": ["bold", "list", "paragraph"],
         "translatable": true
       }
     },
@@ -53,10 +47,7 @@
       "title": {
         "type": "richtext",
         "customize_toolbar": true,
-        "toolbar": [
-          "bold",
-          "paragraph"
-        ],
+        "toolbar": ["bold", "paragraph"],
         "translatable": true
       },
       "faqItems": {
@@ -65,9 +56,7 @@
         "minimum": 1,
         "restrict_type": "",
         "restrict_components": true,
-        "component_whitelist": [
-          "FaqItem"
-        ]
+        "component_whitelist": ["FaqItem"]
       }
     },
     "image": null,
@@ -130,9 +119,7 @@
     "schema": {
       "tab-3a2ef750-3fbf-4f25-8f66-73d400a2eb4a": {
         "display_name": "Nav",
-        "keys": [
-          "navItems"
-        ],
+        "keys": ["navItems"],
         "pos": 0,
         "type": "tab",
         "name": "tab-3a2ef750-3fbf-4f25-8f66-73d400a2eb4a"
@@ -142,62 +129,45 @@
         "pos": 0,
         "restrict_type": "",
         "restrict_components": true,
-        "component_whitelist": [
-          "Link"
-        ]
+        "component_whitelist": ["Link"]
       },
       "footerItems": {
         "type": "bloks",
         "restrict_type": "",
         "restrict_components": true,
-        "component_whitelist": [
-          "Link"
-        ]
+        "component_whitelist": ["Link"]
       },
       "redirects": {
         "type": "bloks",
         "restrict_type": "",
         "restrict_components": true,
-        "component_whitelist": [
-          "RedirectItem"
-        ]
+        "component_whitelist": ["RedirectItem"]
       },
       "logo": {
         "type": "asset",
-        "filetypes": [
-          "images"
-        ]
+        "filetypes": ["images"]
       },
       "illustration": {
         "type": "asset",
-        "filetypes": [
-          "images"
-        ]
+        "filetypes": ["images"]
       },
       "tab-c19e2682-9817-4e49-b5ee-0560a7bb15cf": {
         "display_name": "Footer",
-        "keys": [
-          "footerItems"
-        ],
+        "keys": ["footerItems"],
         "pos": 1,
         "type": "tab",
         "name": "tab-c19e2682-9817-4e49-b5ee-0560a7bb15cf"
       },
       "tab-aaf5a952-bc6c-4f60-bbc0-c96cb2d4f7a6": {
         "display_name": "Redirects",
-        "keys": [
-          "redirects"
-        ],
+        "keys": ["redirects"],
         "pos": 2,
         "type": "tab",
         "name": "tab-aaf5a952-bc6c-4f60-bbc0-c96cb2d4f7a6"
       },
       "tab-7a86758a-0873-485d-b11a-def792a1de4d": {
         "display_name": "SEO",
-        "keys": [
-          "logo",
-          "illustration"
-        ],
+        "keys": ["logo", "illustration"],
         "pos": 3,
         "type": "tab",
         "name": "tab-7a86758a-0873-485d-b11a-def792a1de4d"
@@ -238,9 +208,7 @@
         "restrict_type": "groups",
         "restrict_components": true,
         "component_whitelist": [],
-        "component_group_whitelist": [
-          "50ca5cce-644a-4acc-ae72-2df68aa836cc"
-        ],
+        "component_group_whitelist": ["50ca5cce-644a-4acc-ae72-2df68aa836cc"],
         "pos": 1,
         "id": "7HnQ4PcfTp6Y8w668YplMA"
       }
@@ -284,9 +252,7 @@
         "pos": 2,
         "restrict_type": "",
         "restrict_components": true,
-        "component_whitelist": [
-          "Link"
-        ],
+        "component_whitelist": ["Link"],
         "id": "5mCn8ugOSyqKRhCgAZCDZQ"
       }
     },
@@ -384,18 +350,11 @@
         "restrict_type": "groups",
         "restrict_components": true,
         "component_whitelist": [],
-        "component_group_whitelist": [
-          "50ca5cce-644a-4acc-ae72-2df68aa836cc"
-        ]
+        "component_group_whitelist": ["50ca5cce-644a-4acc-ae72-2df68aa836cc"]
       },
       "tab-0afb0a79-9125-4513-a7c3-8cab38289c04": {
         "display_name": "SEO",
-        "keys": [
-          "title",
-          "description",
-          "nonIndexable",
-          "additionalMetadata"
-        ],
+        "keys": ["title", "description", "nonIndexable", "additionalMetadata"],
         "pos": 0,
         "type": "tab"
       },
@@ -419,9 +378,7 @@
         "type": "bloks",
         "restrict_type": "",
         "restrict_components": true,
-        "component_whitelist": [
-          "JsonLdMetadata"
-        ]
+        "component_whitelist": ["JsonLdMetadata"]
       }
     },
     "image": null,
@@ -543,18 +500,14 @@
         "maximum": 1,
         "restrict_type": "",
         "restrict_components": true,
-        "component_whitelist": [
-          "RichTextContent"
-        ]
+        "component_whitelist": ["RichTextContent"]
       },
       "rightSection": {
         "type": "bloks",
         "maximum": 1,
         "restrict_type": "",
         "restrict_components": true,
-        "component_whitelist": [
-          "RichTextContent"
-        ]
+        "component_whitelist": ["RichTextContent"]
       }
     },
     "image": null,

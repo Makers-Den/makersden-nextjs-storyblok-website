@@ -482,6 +482,7 @@ export function MyBlock({ blok }: { blok: MyBlockSbContent }) {
 ```
 
 **Which render function for titles:**
+
 - `renderHeadingXl(field, 'h1')` - Hero titles, main page headers
 - `renderHeadingLg(field, 'h2')` - Primary section titles
 - `renderHeadingMd(field, 'h3')` - Secondary section/card titles
@@ -490,6 +491,7 @@ export function MyBlock({ blok }: { blok: MyBlockSbContent }) {
 **If unsure which to use**, ask for guidance.
 
 **Why not use `renderText()` for titles?**
+
 - `renderText()` applies paragraph styling which is incorrect for titles
 - Title-specific functions apply proper heading styles from Typography system
 - Ensures visual consistency across all titles site-wide

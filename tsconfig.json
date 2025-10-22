@@ -1,11 +1,7 @@
 {
   "compilerOptions": {
     "target": "es2015",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -19,12 +15,8 @@
     "jsx": "react-jsx",
     "baseUrl": ".",
     "paths": {
-      "@/*": [
-        "./src/*"
-      ],
-      "~/*": [
-        "./public/*"
-      ]
+      "@/*": ["./src/*"],
+      "~/*": ["./public/*"]
     },
     "incremental": true,
     "plugins": [
@@ -44,12 +36,6 @@
     "commitlint.config.js",
     ".next/dev/types/**/*.ts"
   ],
-  "exclude": [
-    "node_modules"
-  ],
-  "moduleResolution": [
-    "node_modules",
-    ".next",
-    "node"
-  ]
+  "exclude": ["node_modules"],
+  "moduleResolution": ["node_modules", ".next", "node"]
 }

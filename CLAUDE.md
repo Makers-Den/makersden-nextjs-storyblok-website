@@ -26,16 +26,16 @@ Before working on any task:
 
 ### Quick Reference
 
-| Task Type                   | Read These Docs                                                                                                    |
-| --------------------------- | ------------------------------------------------------------------------------------------------------------------ |
-| Adding/modifying components | [component-patterns.md](./docs/component-patterns.md), [storyblok-integration.md](./docs/storyblok-integration.md) |
-| Working with Storyblok      | [storyblok-integration.md](./docs/storyblok-integration.md), [type-system.md](./docs/type-system.md)               |
-| Styling changes             | [styling.md](./docs/styling.md)                                                                                    |
+| Task Type                   | Read These Docs                                                                                                                                          |
+| --------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Adding/modifying components | [component-patterns.md](./docs/component-patterns.md), [storyblok-integration.md](./docs/storyblok-integration.md)                                       |
+| Working with Storyblok      | [storyblok-integration.md](./docs/storyblok-integration.md), [type-system.md](./docs/type-system.md)                                                     |
+| Styling changes             | [styling.md](./docs/styling.md)                                                                                                                          |
 | Typography/text styling     | [component-patterns.md#typography-components](./docs/component-patterns.md#typography-components), [styling.md#typography](./docs/styling.md#typography) |
-| Adding translations         | [internationalization.md](./docs/internationalization.md)                                                          |
-| Routing/architecture        | [architecture.md](./docs/architecture.md)                                                                          |
-| Using utilities             | [utilities.md](./docs/utilities.md)                                                                                |
-| Type issues                 | [type-system.md](./docs/type-system.md)                                                                            |
+| Adding translations         | [internationalization.md](./docs/internationalization.md)                                                                                                |
+| Routing/architecture        | [architecture.md](./docs/architecture.md)                                                                                                                |
+| Using utilities             | [utilities.md](./docs/utilities.md)                                                                                                                      |
+| Type issues                 | [type-system.md](./docs/type-system.md)                                                                                                                  |
 
 ## Critical Rules from AGENTS.md
 
@@ -74,18 +74,42 @@ import { renderHeadingLg, renderHeadingMd, renderText } from '@/lib/richTextUtil
 ```
 
 **Decision Tree:**
+
 1. **Plain string** → Use Typography components (`<HeadingLg>`, `<Text>`, etc.)
 2. **SbRichtext body content** → Use `renderText()`
 3. **SbRichtext title field** → Use `renderHeadingXl/Lg/Md()`
 4. **If unsure which variant** → Ask for guidance
 
 **Never:**
+
 - Use raw Tailwind classes (`text-2xl`, `font-bold`) for content text
 - Use `renderText()` for title fields (use `renderHeadingXl/Lg/Md()` instead)
 
 ### Before Submitting Code
 
 Run through the checklist in [AGENTS.md](./AGENTS.md#summary-checklist).
+
+## Common Components
+
+### Button & ButtonLink
+
+```typescript
+import { Button, ButtonLink } from '@/components/button';
+
+// Standard button
+<Button variant="default">Click me</Button>
+<Button variant="outline" size="sm">Small</Button>
+<Button variant="destructive">Delete</Button>
+
+// Link styled as button (for navigation)
+<ButtonLink href="/about">About Us</ButtonLink>
+<ButtonLink href="/contact" variant="outline">Contact</ButtonLink>
+```
+
+**Available variants**: `default`, `outline`, `destructive`, `secondary`, `ghost`, `link`
+**Available sizes**: `default`, `sm`, `lg`, `icon`, `icon-sm`, `icon-lg`
+
+See [component-patterns.md#button-component](./docs/component-patterns.md#button-component) for full documentation.
 
 ## Common Commands
 
