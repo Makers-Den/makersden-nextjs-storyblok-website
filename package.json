@@ -28,7 +28,7 @@
   },
   "dependencies": {
     "@mux/mux-player-react": "^3.6.1",
-    "@next/bundle-analyzer": "15.4.0-canary.51",
+    "@next/bundle-analyzer": "16.0.0",
     "@radix-ui/react-accordion": "^1.2.12",
     "@react-icons/all-files": "^4.1.0",
     "@storyblok/react": "^5.4.16",
@@ -42,7 +42,7 @@
     "jest-environment-jsdom": "^30.2.0",
     "local-ssl-proxy": "^2.0.5",
     "lucide-react": "^0.546.0",
-    "next": "^15.3.2",
+    "next": "^16.0.0",
     "next-intl": "^4.3.12",
     "next-sitemap": "^4.2.3",
     "react": "^19.2.0",
@@ -53,7 +53,7 @@
     "storyblok-rich-text-react-renderer": "^3.0.1",
     "tailwind-merge": "^3.3.1",
     "tailwindcss-animate": "^1.0.7",
-    "zod": "^3.25.28"
+    "zod": "^4.1.12"
   },
   "devDependencies": {
     "@babel/core": "^7.28.4",
@@ -78,7 +78,7 @@
     "dotenv": "^17.2.3",
     "dotenv-cli": "^10.0.0",
     "eslint": "9.38.0",
-    "eslint-config-next": "15.4.0-canary.51",
+    "eslint-config-next": "16.0.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-prefer-arrow": "^1.2.3",
     "eslint-plugin-simple-import-sort": "^12.1.1",
