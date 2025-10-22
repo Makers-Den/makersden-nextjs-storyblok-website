@@ -78,7 +78,7 @@ export const findStory: FindStoryFn = async <
 
   const data = response.data as { story?: StoryType } | null;
 
-  if (!data || !data.story) {
+  if (!data?.story) {
     throw new Error(`No story data received from Storyblok for slug ${slug}`);
   }
 
