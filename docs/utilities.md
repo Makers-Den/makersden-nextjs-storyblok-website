@@ -16,19 +16,19 @@ Merges Tailwind CSS classes intelligently, handling conflicts:
 import clsxm from '@/lib/clsxm';
 
 // Basic usage
-clsxm('base-class', 'another-class')
+clsxm('base-class', 'another-class');
 // → 'base-class another-class'
 
 // Conditional classes
-clsxm('base', isActive && 'active', isDisabled && 'disabled')
+clsxm('base', isActive && 'active', isDisabled && 'disabled');
 // → 'base active' (if both true)
 
 // Handles Tailwind conflicts
-clsxm('px-4 py-2', 'px-6')
+clsxm('px-4 py-2', 'px-6');
 // → 'py-2 px-6' (px-6 overrides px-4)
 
 // Arrays and objects
-clsxm(['base', 'more'], { active: isActive, disabled: isDisabled })
+clsxm(['base', 'more'], { active: isActive, disabled: isDisabled });
 ```
 
 **Use Case**: Combining conditional classes and avoiding Tailwind conflicts.
@@ -44,10 +44,10 @@ Truncates text to specified length:
 ```typescript
 import { truncate } from '@/lib/truncate';
 
-truncate('Long text here', 10)
+truncate('Long text here', 10);
 // → 'Long te...'
 
-truncate('Short', 10)
+truncate('Short', 10);
 // → 'Short'
 ```
 
@@ -68,6 +68,7 @@ sentenceToId('This is a Heading!')
 ```
 
 **Features**:
+
 - Lowercase
 - Removes special characters
 - Replaces spaces with hyphens
@@ -78,7 +79,7 @@ sentenceToId('This is a Heading!')
 
 ```typescript
 // Capitalize first letter
-capitalize('hello world')
+capitalize('hello world');
 // → 'Hello world'
 
 // Other string utilities...
@@ -175,13 +176,13 @@ const linkProps = linkContentsToButtonLinkProps(blok.links);
 Ensures internal links start with slash:
 
 ```typescript
-ensurePrecedingSlash('about-us')
+ensurePrecedingSlash('about-us');
 // → '/about-us'
 
-ensurePrecedingSlash('/about-us')
+ensurePrecedingSlash('/about-us');
 // → '/about-us'
 
-ensurePrecedingSlash('https://example.com')
+ensurePrecedingSlash('https://example.com');
 // → 'https://example.com'
 ```
 
@@ -194,7 +195,7 @@ Builds canonical URLs:
 ```typescript
 import { getCanonicalUrl } from '@/lib/getCanonicalUrl';
 
-getCanonicalUrl('/about-us')
+getCanonicalUrl('/about-us');
 // → 'https://yourdomain.com/about-us'
 ```
 
@@ -211,11 +212,12 @@ buildOgImageUrl({
   title: 'Page Title',
   image: 'https://cdn.storyblok.com/...',
   illustration: 'https://cdn.storyblok.com/...',
-})
+});
 // → URL to generated OG image
 ```
 
 **Logic**:
+
 - Uses custom image if provided
 - Falls back to illustration
 - Generates dynamic image via `/api/og`
@@ -341,14 +343,15 @@ Type-safe environment variable access:
 import { env } from '@/env';
 
 // Server-side only
-env.STORYBLOK_SPACE_ID
+env.STORYBLOK_SPACE_ID;
 
 // Client-side accessible
-env.NEXT_PUBLIC_STORYBLOK_TOKEN
-env.NEXT_PUBLIC_SITE_URL
+env.NEXT_PUBLIC_STORYBLOK_TOKEN;
+env.NEXT_PUBLIC_SITE_URL;
 ```
 
 **Features**:
+
 - Runtime validation with Zod
 - Type-safe access
 - Automatic environment detection
@@ -383,6 +386,7 @@ log('debug', 'State updated', { state });
 ```
 
 **Features**:
+
 - Structured logging
 - Development-only output
 - Type-safe log levels
@@ -413,10 +417,10 @@ Linear interpolation:
 ```typescript
 import { lerp } from '@/lib/lerp';
 
-lerp(0, 100, 0.5)
+lerp(0, 100, 0.5);
 // → 50
 
-lerp(10, 20, 0.25)
+lerp(10, 20, 0.25);
 // → 12.5
 ```
 
@@ -449,6 +453,7 @@ export function NavItem({ href, children }) {
 ```
 
 **Features**:
+
 - Exact or partial matching
 - Handles localized paths
 - Works with Next.js router
@@ -483,14 +488,14 @@ Helper functions for extracting data:
 
 ```typescript
 // Get first item from array safely
-getFirst([1, 2, 3])
+getFirst([1, 2, 3]);
 // → 1
 
-getFirst([])
+getFirst([]);
 // → undefined
 
 // Get property safely
-getProperty(obj, 'nested.deep.property', 'default')
+getProperty(obj, 'nested.deep.property', 'default');
 ```
 
 ## Image URL Utilities
@@ -502,15 +507,12 @@ Storyblok provides image service parameters:
 ```typescript
 // Resize
 `${imageUrl}/m/800x600`
-
 // Filters
 `${imageUrl}/filters:quality(80)`
-
 // Format
 `${imageUrl}/filters:format(webp)`
-
 // Combined
-`${imageUrl}/m/800x600/filters:quality(80):format(webp)`
+`${imageUrl}/m/800x600/filters:quality(80):format(webp)`;
 ```
 
 **StoryblokImage component handles this automatically.**
@@ -571,10 +573,14 @@ if (process.env.NODE_ENV === 'development') {
 
 ```typescript
 // Good
-{isRichtextNotEmpty(blok.content) && renderText(blok.content)}
+{
+  isRichtextNotEmpty(blok.content) && renderText(blok.content);
+}
 
 // Bad - might render empty divs
-{renderText(blok.content)}
+{
+  renderText(blok.content);
+}
 ```
 
 ## Testing Utilities
@@ -603,12 +609,14 @@ describe('sbLinkToHref', () => {
 ## When to Create New Utilities
 
 Create a utility when:
+
 1. Logic is used in 3+ places
 2. Function is pure (no side effects)
 3. Functionality is generic and reusable
 4. Testing logic separately is valuable
 
 Place in:
+
 - `src/lib/` for general utilities
 - `src/lib/storyblok/` for Storyblok-specific
 - `src/lib/utils/` for categorized helpers

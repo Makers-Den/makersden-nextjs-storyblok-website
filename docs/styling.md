@@ -38,15 +38,16 @@ The project uses OKLCH color space for better perceptual uniformity:
 
 ```css
 :root {
-  --background: oklch(1 0 0);              /* White */
-  --foreground: oklch(0.145 0 0);          /* Near black */
-  --primary: oklch(0.205 0 0);             /* Dark gray */
-  --primary-foreground: oklch(0.985 0 0);  /* Light */
+  --background: oklch(1 0 0); /* White */
+  --foreground: oklch(0.145 0 0); /* Near black */
+  --primary: oklch(0.205 0 0); /* Dark gray */
+  --primary-foreground: oklch(0.985 0 0); /* Light */
   /* ... more colors */
 }
 ```
 
 **Benefits of OKLCH**:
+
 - Perceptually uniform
 - Better interpolation for gradients
 - More predictable lightness adjustments
@@ -324,8 +325,12 @@ Define in globals.css if needed:
 
 ```css
 @keyframes custom-animation {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(100%); }
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(100%);
+  }
 }
 ```
 
@@ -368,6 +373,7 @@ import {
 ```
 
 **Features**:
+
 - Polymorphic `as` prop (semantic HTML)
 - Consistent sizing and spacing
 - Optional text balancing
@@ -481,23 +487,16 @@ className={`base ${isActive ? 'active' : ''} ${className || ''}`}
 ### Card Pattern
 
 ```tsx
-<div className='rounded-lg border bg-card p-6 shadow-sm'>
+<div className='bg-card rounded-lg border p-6 shadow-sm'>
   <h3 className='text-lg font-semibold'>Card Title</h3>
-  <p className='text-sm text-muted-foreground'>Card content</p>
+  <p className='text-muted-foreground text-sm'>Card content</p>
 </div>
 ```
 
 ### Button Pattern
 
 ```tsx
-<button className='
-  inline-flex items-center justify-center
-  rounded-md px-4 py-2
-  bg-primary text-primary-foreground
-  hover:bg-primary/90
-  transition-colors
-  disabled:opacity-50 disabled:pointer-events-none
-'>
+<button className='bg-primary text-primary-foreground hover:bg-primary/90 inline-flex items-center justify-center rounded-md px-4 py-2 transition-colors disabled:pointer-events-none disabled:opacity-50'>
   Button Text
 </button>
 ```
@@ -506,16 +505,8 @@ className={`base ${isActive ? 'active' : ''} ${className || ''}`}
 
 ```tsx
 <input
-  type="text"
-  className='
-    w-full rounded-md
-    border border-input
-    bg-background
-    px-3 py-2
-    text-sm
-    placeholder:text-muted-foreground
-    focus:outline-none focus:ring-2 focus:ring-ring
-  '
+  type='text'
+  className='border-input bg-background placeholder:text-muted-foreground focus:ring-ring w-full rounded-md border px-3 py-2 text-sm focus:ring-2 focus:outline-none'
 />
 ```
 
@@ -527,7 +518,7 @@ className={`base ${isActive ? 'active' : ''} ${className || ''}`}
     <HeadingLg as='h2' className='mb-8'>
       Section Title
     </HeadingLg>
-    <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
+    <div className='grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3'>
       {/* Content */}
     </div>
   </div>
@@ -539,6 +530,7 @@ className={`base ${isActive ? 'active' : ''} ${className || ''}`}
 ### Tailwind CSS IntelliSense
 
 VSCode extension provides:
+
 - Autocomplete for classes
 - Hover previews
 - Linting
@@ -547,6 +539,7 @@ VSCode extension provides:
 ### Browser DevTools
 
 Use DevTools to:
+
 - Inspect computed styles
 - See which Tailwind classes are applied
 - Debug responsive breakpoints
@@ -563,6 +556,7 @@ Test styles at https://play.tailwindcss.com
 Tailwind automatically removes unused styles in production.
 
 **Only generated classes are included**:
+
 - Static: `className='text-lg'` ✓
 - Template literals with full classes: `className='text-${size}'` ✗
 - Dynamic with complete classes: `className={size === 'lg' ? 'text-lg' : 'text-sm'}` ✓
@@ -570,6 +564,7 @@ Tailwind automatically removes unused styles in production.
 ### JIT Mode
 
 Tailwind v4 uses Just-In-Time compilation by default:
+
 - Generates styles on-demand
 - Smaller development builds
 - Arbitrary values supported: `w-[37px]`
@@ -579,6 +574,7 @@ Tailwind v4 uses Just-In-Time compilation by default:
 ### From Tailwind v3 to v4
 
 Key differences:
+
 1. No `tailwind.config.js` - use CSS `@theme`
 2. `@import` instead of `@tailwind`
 3. Design tokens in CSS custom properties

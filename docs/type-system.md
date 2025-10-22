@@ -26,6 +26,7 @@ This project uses TypeScript in strict mode with comprehensive type safety throu
 ```
 
 **Key settings**:
+
 - `strict: true` - All strict checks enabled
 - Path aliases: `@/` for `src/`, `~/` for `public/`
 - ES2015 target for modern browser support
@@ -54,7 +55,7 @@ export interface PageSbContent {
   nonIndexable?: boolean;
   additionalMetadata?: JsonLdMetadataSbContent[];
   _uid: string;
-  component: "Page";
+  component: 'Page';
   [k: string]: any;
 }
 
@@ -62,19 +63,20 @@ export interface FeatureSbContent {
   name?: string;
   icons?: Icons;
   _uid: string;
-  component: "Feature";
+  component: 'Feature';
   [k: string]: any;
 }
 
 export type BlockComponents =
-  | "FaqSection"
-  | "Feature"
-  | "RichTextContent"
-  | "SplitContentSection"
-  | "Teaser";
+  | 'FaqSection'
+  | 'Feature'
+  | 'RichTextContent'
+  | 'SplitContentSection'
+  | 'Teaser';
 ```
 
 **Key patterns**:
+
 - Interface name: `{ComponentName}SbContent`
 - Always includes `_uid: string`
 - Always includes `component: string` with literal type
@@ -86,8 +88,8 @@ export type BlockComponents =
 Generated enum types for Storyblok datasources:
 
 ```typescript
-export type Icons = "twitter" | "facebook";
-export type Datasources = "icons";
+export type Icons = 'twitter' | 'facebook';
+export type Datasources = 'icons';
 ```
 
 ### Block Type Enums
@@ -95,8 +97,8 @@ export type Datasources = "icons";
 For fields that accept specific blocks:
 
 ```typescript
-export type PageAdditionalMetadataBlockType = "JsonLdMetadata";
-export type FaqSectionFaqItemsBlockType = "FaqItem";
+export type PageAdditionalMetadataBlockType = 'JsonLdMetadata';
+export type FaqSectionFaqItemsBlockType = 'FaqItem';
 ```
 
 ## Core Storyblok Types
@@ -273,7 +275,11 @@ export type PageComponentProps<T> = {
 };
 
 // Usage
-function Page({ blok, translations, locale }: PageComponentProps<PageSbContent>) {
+function Page({
+  blok,
+  translations,
+  locale,
+}: PageComponentProps<PageSbContent>) {
   // ...
 }
 ```
@@ -337,7 +343,7 @@ export interface FindStoryArgs {
 }
 
 export type FindStoryFn = <StoryType = StoryblokStory<PageSbContent>>(
-  args: FindStoryArgs
+  args: FindStoryArgs,
 ) => Promise<{ story: StoryType }>;
 ```
 
@@ -364,7 +370,7 @@ export type WithTotal<T> = {
 };
 
 export type FindStoriesFn = <StoryType = StoryblokStory<PageSbContent>>(
-  args: FindStoriesArgs
+  args: FindStoriesArgs,
 ) => Promise<WithTotal<(StoryType & HasPosition)[]>>;
 ```
 
@@ -406,9 +412,7 @@ export function isLinkEmail(link: any): link is SbEmailLink {
   return link?.linktype === 'email';
 }
 
-export function isLinkWithAnchor(
-  link: any
-): link is { anchor: string } {
+export function isLinkWithAnchor(link: any): link is { anchor: string } {
   return typeof link?.anchor === 'string' && link.anchor.length > 0;
 }
 
@@ -455,10 +459,10 @@ type TranslatableComponent<T> = {
 ```typescript
 // Good - type-safe
 import { type PageSbContent } from '@/lib/storyblok';
-function Page({ blok }: { blok: PageSbContent }) { }
+function Page({ blok }: { blok: PageSbContent }) {}
 
 // Bad - no type safety
-function Page({ blok }: { blok: any }) { }
+function Page({ blok }: { blok: any }) {}
 ```
 
 ### 2. Type Component Props
@@ -470,10 +474,10 @@ interface FeatureProps {
   translations?: Translations;
 }
 
-export function Feature({ blok, translations }: FeatureProps) { }
+export function Feature({ blok, translations }: FeatureProps) {}
 
 // Acceptable - inline for simple cases
-export function Feature({ blok }: { blok: FeatureSbContent }) { }
+export function Feature({ blok }: { blok: FeatureSbContent }) {}
 ```
 
 ### 3. Use Type Guards
@@ -539,10 +543,7 @@ interface Props {
   optional?: string;
 }
 
-function MyComponent({
-  required,
-  optional = 'default'
-}: Props) { }
+function MyComponent({ required, optional = 'default' }: Props) {}
 ```
 
 ### Extending Types
@@ -579,10 +580,7 @@ function List<T>({ items, renderItem }: ListProps<T>) {
 type ButtonProps = React.ComponentProps<typeof Button>;
 
 // Omit props
-type DivWithoutChildren = Omit<
-  React.HTMLProps<HTMLDivElement>,
-  'children'
->;
+type DivWithoutChildren = Omit<React.HTMLProps<HTMLDivElement>, 'children'>;
 
 // Pick props
 type OnlyClassNameAndId = Pick<
@@ -596,6 +594,7 @@ type OnlyClassNameAndId = Pick<
 ### When to Regenerate
 
 Run `pnpm generate-sb-types` when:
+
 1. Adding new Storyblok components
 2. Modifying component schemas
 3. Adding/changing fields
@@ -630,6 +629,7 @@ node ./scripts/generateSbTypes.mjs
 ### Unknown Type Errors
 
 Check:
+
 1. Import path is correct
 2. Type is exported
 3. File is included in tsconfig

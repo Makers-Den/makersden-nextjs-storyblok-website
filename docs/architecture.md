@@ -20,6 +20,7 @@ The entire application uses a single catch-all route that handles all page reque
 ```
 
 **Key Files:**
+
 - `src/app/[locale]/[[...slug]]/page.tsx` - Main page component
 - `src/app/[locale]/[[...slug]]/layout.tsx` - Locale-specific layout
 - `src/app/StoryblokPage.tsx` - Core page rendering logic
@@ -78,6 +79,7 @@ export const getPageProps = async ({
 ```
 
 **Special Cases:**
+
 - Empty slug → defaults to 'home'
 - `/home` path → only accessible in preview mode
 - Missing content → triggers 404
@@ -95,6 +97,7 @@ export const dynamicParams = true; // Allow new pages
 ```
 
 At build time:
+
 - Fetches all pages from Storyblok
 - Generates static params for known pages
 - New pages are generated on-demand
@@ -119,16 +122,19 @@ RootLayout
 ### Component Types
 
 **1. Page Components** (`src/page-components/`)
+
 - Top-level content types (Page, Post, Category, etc.)
 - Receive full story and translations
 - Render body blocks
 
 **2. Block Components** (`src/block-components/`)
+
 - Reusable content blocks (Grid, Feature, Teaser, etc.)
 - Mapped in `src/storyblok.ts`
 - Nestable within pages and other blocks
 
 **3. UI Components** (`src/components/`)
+
 - Generic React components
 - Not directly mapped to Storyblok
 - Used by block/page components
@@ -142,13 +148,13 @@ export const getStoryblokApi = storyblokInit({
   accessToken: env.NEXT_PUBLIC_STORYBLOK_TOKEN,
   use: [apiPlugin],
   components: {
-    Feature: Feature,      // Maps "Feature" CMS component
-    Page: Page,           // Maps "Page" CMS component
-    Grid: Grid,           // Maps "Grid" CMS component
-    Teaser: Teaser,       // Maps "Teaser" CMS component
+    Feature: Feature, // Maps "Feature" CMS component
+    Page: Page, // Maps "Page" CMS component
+    Grid: Grid, // Maps "Grid" CMS component
+    Teaser: Teaser, // Maps "Teaser" CMS component
     FaqSection: FaqSection,
   },
-})
+});
 ```
 
 When Storyblok returns content with `component: "Feature"`, it automatically renders the `Feature` React component.
@@ -158,6 +164,7 @@ When Storyblok returns content with `component: "Feature"`, it automatically ren
 ### Server Components
 
 All page and block components are React Server Components by default, allowing:
+
 - Direct database/API access
 - Zero client-side JavaScript for content
 - Better SEO and performance
@@ -165,10 +172,12 @@ All page and block components are React Server Components by default, allowing:
 ### Preview Mode
 
 **Files**:
+
 - `src/app/api/preview/route.ts` - Enable preview
 - `src/app/api/exit-preview/route.ts` - Disable preview
 
 Preview mode uses Next.js `draftMode()`:
+
 - Enables viewing unpublished content
 - Fetches 'draft' version instead of 'published'
 - Bypasses cache with `cv` parameter
@@ -185,6 +194,7 @@ if (isPreview || isDevelopment) {
 **File**: `src/app/getPageProps.ts:140`
 
 Metadata is generated per-page:
+
 - Title from page content or default
 - Description from page or rich text intro
 - Open Graph images (dynamic generation)
@@ -209,16 +219,19 @@ export const generateMetadata = async ({ params }): Promise<Metadata> => {
 ## Environment-Specific Behavior
 
 ### Development
+
 - Fetches draft content
 - Cache-busted requests
 - Verbose error messages
 
 ### Preview
+
 - Fetches draft content
 - Enabled via `/api/preview` route
 - Allows Visual Editor bridge
 
 ### Production
+
 - Fetches published content
 - ISR with 5-minute revalidation
 - Optimized caching
@@ -226,11 +239,13 @@ export const generateMetadata = async ({ params }): Promise<Metadata> => {
 ## Performance Optimizations
 
 ### 1. Incremental Static Regeneration (ISR)
+
 - Pages regenerate every 5 minutes
 - Stale content served instantly
 - Background regeneration
 
 ### 2. Storyblok Client Caching
+
 ```typescript
 cache: {
   clear: 'auto',
@@ -239,38 +254,46 @@ cache: {
 ```
 
 ### 3. Resolved Relations
+
 Only relations defined in `RESOLVED_RELATIONS` are fetched:
+
 ```typescript
 export const RESOLVED_RELATIONS_ARRAY = [];
 export const RESOLVED_RELATIONS = RESOLVED_RELATIONS_ARRAY.join(',');
 ```
 
 ### 4. Parallel Data Fetching
+
 Global settings, translations, and page content are fetched concurrently.
 
 ## Error Handling
 
 ### Not Found
+
 - 404 status when slug doesn't exist
 - Custom `not-found.tsx` page
 
 ### Redirects
+
 - Content manager can define redirects in Global Settings
 - Supports permanent and temporary redirects
 
 ### Missing Global Settings
+
 - Throws error if global settings/translations missing
 - Prevents partial page renders
 
 ## Special Routes
 
 ### API Routes
+
 - `/api/preview` - Enable draft mode
 - `/api/exit-preview` - Disable draft mode
 - `/api/og` - Dynamic OG image generation
 - `/api/default-og` - Default OG image
 
 ### Sitemap
+
 - `src/app/sitemap.ts` - Dynamic sitemap generation
 - Fetches all pages from Storyblok
 - Excludes specific slugs (home, not-found, dev-page)

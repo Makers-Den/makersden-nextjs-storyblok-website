@@ -44,6 +44,8 @@ export const GET = async (req: NextRequest) => {
 
   let computedSlug = slug;
 
+  console.log('computedSlug', computedSlug);
+
   if (!isDefaultLocale) {
     // Storyblok will tweak slug to contain locale, but not for home
     if (!slug.startsWith(`${storyblokLang}`)) {

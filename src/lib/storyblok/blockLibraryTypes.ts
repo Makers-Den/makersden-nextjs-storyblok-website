@@ -49,6 +49,7 @@ export interface GlobalSettingsSbContent {
 }
 
 export interface GridSbContent {
+  gap?: number;
   columns?: (
     | FaqSectionSbContent
     | FeatureSbContent

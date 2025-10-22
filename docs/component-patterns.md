@@ -36,6 +36,7 @@ export default Page;
 ```
 
 **Characteristics**:
+
 - Exported as default
 - Receives `blok`, `translations`, and `locale`
 - Uses `PageComponentProps<T>` type
@@ -64,6 +65,7 @@ export function Feature({ blok }: { blok: FeatureSbContent }) {
 ```
 
 **Characteristics**:
+
 - Named export (not default)
 - Each component in its own directory
 - Receives `blok` prop with typed content
@@ -89,6 +91,7 @@ export function Container({ children, className }: ContainerProps) {
 ```
 
 **Characteristics**:
+
 - Standard React components
 - Reusable across block/page components
 - Not registered in Storyblok
@@ -113,6 +116,7 @@ export function MyComponent({ blok }: { blok: MyComponentSbContent }) {
 ```
 
 The `storyblokEditable()` function adds:
+
 - `data-blok-c` attribute (component info)
 - `data-blok-uid` attribute (unique ID)
 
@@ -140,6 +144,7 @@ export function Grid({ blok }: { blok: GridSbContent }) {
 ```
 
 **Key Points**:
+
 - Use `StoryblokServerComponent` to render nested blocks
 - Always provide `key` prop (use `_uid`)
 - TypeScript knows which components are allowed in `columns`
@@ -189,6 +194,7 @@ export function Layout({ children, locale, globalSettings }: LayoutProps) {
 ```
 
 **Characteristics**:
+
 - Wraps all pages
 - Provides header/footer from global settings
 - Ensures consistent structure
@@ -236,6 +242,7 @@ Optimized image component for Storyblok assets:
 ```
 
 **Features**:
+
 - Automatic Storyblok Image Service optimization
 - Next.js Image component integration
 - Responsive sizing
@@ -269,6 +276,7 @@ For images without Next.js Image wrapper (e.g., background images):
 ```
 
 **Features**:
+
 - Automatic href conversion
 - Handles target and rel
 - Next.js Link integration
@@ -298,6 +306,7 @@ Provides consistent typography with variants:
 ```
 
 **Variants**:
+
 - `headingXl` - Extra large headings
 - `headingLg` - Large headings
 - `headingMd` - Medium headings
@@ -306,6 +315,7 @@ Provides consistent typography with variants:
 - `text` - Regular body text
 
 **Features**:
+
 - Polymorphic `as` prop (renders different HTML tags)
 - Optional text balancing with `react-wrap-balancer`
 - Consistent spacing and sizing
@@ -332,11 +342,13 @@ export function RichTextContent({ blok }: { blok: RichTextContentSbContent }) {
 ```typescript
 import { renderTextWithOptions } from '@/lib/richTextUtils';
 
-{renderTextWithOptions(blok.intro, {
-  className: 'text-lg text-gray-600',
-  variant: 'textLg',
-  useBalancer: true,
-})}
+{
+  renderTextWithOptions(blok.intro, {
+    className: 'text-lg text-gray-600',
+    variant: 'textLg',
+    useBalancer: true,
+  });
+}
 ```
 
 ## FAQ Pattern
@@ -368,6 +380,7 @@ export function FaqSection({ blok }: { blok: FaqSectionSbContent }) {
 ```
 
 **Pattern**:
+
 - Outer component with `storyblokEditable()`
 - Maps over nested items
 - Uses UI library components (Accordion)
@@ -438,6 +451,7 @@ export function Feature({ blok }: { blok: FeatureSbContent }) {
 ```
 
 **Benefits**:
+
 - Zero JavaScript sent to client
 - Direct data fetching
 - Better SEO and performance
@@ -463,6 +477,7 @@ export function InteractiveComponent() {
 ```
 
 **Use When**:
+
 - Event handlers needed
 - Browser APIs required
 - React hooks (useState, useEffect)
@@ -471,14 +486,17 @@ export function InteractiveComponent() {
 ## Component Naming Conventions
 
 ### File Names
+
 - PascalCase for component files: `MyComponent.tsx`
 - Match component name exactly
 
 ### Component Names
+
 - PascalCase: `MyComponent`
 - Descriptive and specific: `FaqSection` not `Faq`
 
 ### Directory Structure
+
 - One directory per block component
 - Co-locate related files
 
@@ -520,7 +538,7 @@ interface Props {
 export function MyComponent({
   required,
   optional,
-  withDefault = 'default value'
+  withDefault = 'default value',
 }: Props) {
   // ...
 }
@@ -533,10 +551,10 @@ export function MyComponent({
 ```typescript
 // Good
 import { type FeatureSbContent } from '@/lib/storyblok';
-export function Feature({ blok }: { blok: FeatureSbContent }) { }
+export function Feature({ blok }: { blok: FeatureSbContent }) {}
 
 // Bad
-export function Feature({ blok }: { blok: any }) { }
+export function Feature({ blok }: { blok: any }) {}
 ```
 
 ### 2. Use storyblokEditable
@@ -664,11 +682,11 @@ export function StaticContent({ content }) {
 
 ```typescript
 // Bad - Page components
-export function Page() { }
+export function Page() {}
 
 // Good - Page components use default export
-export default function Page() { }
+export default function Page() {}
 
 // Good - Block components use named export
-export function Feature() { }
+export function Feature() {}
 ```

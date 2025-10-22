@@ -17,6 +17,7 @@ export type Locale = (typeof locales)[number];
 ```
 
 **Current locales**:
+
 - `en` - English (default)
 - `de` - German
 
@@ -36,6 +37,7 @@ export const routing = defineRouting({
 ```
 
 **Key settings**:
+
 - `localePrefix: 'as-needed'` - Default locale has no prefix
   - `/about` → English
   - `/de/ueber-uns` → German
@@ -82,13 +84,12 @@ import { routing } from './i18n/routing';
 export default createMiddleware(routing);
 
 export const config = {
-  matcher: [
-    '/((?!api|_next|_vercel|.*\\..*)*)',
-  ],
+  matcher: ['/((?!api|_next|_vercel|.*\\..*)*)'],
 };
 ```
 
 **Middleware handles**:
+
 - Locale detection from URL
 - Redirects to localized paths
 - Sets locale cookie
@@ -194,6 +195,7 @@ menu('services.web');
 ### Interpolation
 
 **Translation file**:
+
 ```json
 {
   "welcome": "Welcome, {name}!",
@@ -202,6 +204,7 @@ menu('services.web');
 ```
 
 **Usage**:
+
 ```typescript
 const t = useTranslations('common');
 
@@ -215,6 +218,7 @@ t('itemCount', { count: 5 });
 ### Pluralization
 
 **Translation file**:
+
 ```json
 {
   "items": {
@@ -226,10 +230,11 @@ t('itemCount', { count: 5 });
 ```
 
 **Usage**:
+
 ```typescript
-t('items', { count: 0 });  // → "No items"
-t('items', { count: 1 });  // → "One item"
-t('items', { count: 5 });  // → "5 items"
+t('items', { count: 0 }); // → "No items"
+t('items', { count: 1 }); // → "One item"
+t('items', { count: 5 }); // → "5 items"
 ```
 
 ## Locale Switching
@@ -277,9 +282,7 @@ export function LocaleSwitcher({ locale }: { locale: Locale }) {
 Provides locale-aware navigation components:
 
 ```typescript
-import {
-  createNavigation
-} from 'next-intl/navigation';
+import { createNavigation } from 'next-intl/navigation';
 import { routing } from './routing';
 
 export const { Link, redirect, usePathname, useRouter } =
@@ -365,6 +368,7 @@ await findStory({
 ### Folder Structure in Storyblok
 
 **Option 1: Separate folders per locale**
+
 ```
 Storyblok/
   en/
@@ -376,6 +380,7 @@ Storyblok/
 ```
 
 **Option 2: Field-level translation**
+
 - Single story with translated fields
 - Storyblok's built-in translation feature
 
@@ -484,8 +489,8 @@ export const generateMetadata = async ({ params }) => {
     alternates: {
       canonical: `/${locale}${slug}`,
       languages: {
-        'en': `/en${slug}`,
-        'de': `/de${slug}`,
+        en: `/en${slug}`,
+        de: `/de${slug}`,
         'x-default': `/en${slug}`,
       },
     },
@@ -599,7 +604,7 @@ t.has('key') ? t('key') : 'Default';
 t('common.loading');
 
 // Bad - hardcoded
-"Loading..."
+('Loading...');
 ```
 
 ## Testing
@@ -628,6 +633,7 @@ render(
 **Error**: "Translation key not found"
 
 **Solutions**:
+
 1. Check translation file exists
 2. Verify key path is correct
 3. Ensure namespace matches
@@ -636,6 +642,7 @@ render(
 ### Locale Not Applied
 
 **Solutions**:
+
 1. Verify middleware is running
 2. Check matcher pattern
 3. Ensure `setRequestLocale()` is called

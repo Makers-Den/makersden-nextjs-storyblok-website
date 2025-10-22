@@ -52,6 +52,7 @@ The project automatically generates TypeScript types from Storyblok component sc
 **Command**: `pnpm generate-sb-types`
 
 **Process**:
+
 1. Logs into Storyblok CLI
 2. Pulls component schemas to `./storyblok-components/`
 3. Builds the generator script
@@ -62,6 +63,7 @@ The project automatically generates TypeScript types from Storyblok component sc
 **File**: `src/lib/storyblok/storyblok-generate-ts/storyblokToTypescript.ts`
 
 The generator:
+
 - Converts Storyblok JSON schemas to TypeScript interfaces
 - Handles nested blocks with proper typing
 - Generates enum types for datasources
@@ -84,7 +86,7 @@ export interface PageSbContent {
   nonIndexable?: boolean;
   additionalMetadata?: JsonLdMetadataSbContent[];
   _uid: string;
-  component: "Page";
+  component: 'Page';
   [k: string]: any;
 }
 ```
@@ -94,6 +96,7 @@ export interface PageSbContent {
 **File**: `src/lib/storyblok/blockLibraryTypes.ts` (generated)
 
 Contains:
+
 - Interface for each Storyblok component
 - Enum types for datasources
 - Union types for block groups
@@ -102,6 +105,7 @@ Contains:
 **File**: `src/lib/storyblok/sbInternalTypes.ts`
 
 Contains Storyblok core types:
+
 - `SbRichtext` - Rich text field type
 - `SbAsset` - Image/file asset type
 - `SbMultilink` - Link field type
@@ -118,6 +122,7 @@ Contains Storyblok core types:
 Provides high-level functions for fetching Storyblok content:
 
 #### `findStory<T>(args)`
+
 Fetches a single story by slug.
 
 ```typescript
@@ -131,6 +136,7 @@ const { story } = await findStory<StoryblokStory<PageSbContent>>({
 ```
 
 **Parameters**:
+
 - `slug` - Full slug path (e.g., 'about-us', 'blog/my-post')
 - `locale` - Language code (optional)
 - `isPreview` - Fetch draft vs published
@@ -138,11 +144,13 @@ const { story } = await findStory<StoryblokStory<PageSbContent>>({
 - `resolveLinks` - 'url' or 'story' link resolution
 
 **Behavior**:
+
 - Throws error if story not found
 - Automatically switches to draft in preview/dev mode
 - Cache-busts with `cv` parameter in preview/dev
 
 #### `findStories<T>(args)`
+
 Fetches multiple stories with filtering and pagination.
 
 ```typescript
@@ -159,6 +167,7 @@ const { stories, total } = await findStories<StoryblokStory<PostSbContent>>({
 ```
 
 **Parameters**:
+
 - `startsWith` - Filter by slug prefix
 - `excludingSlugs` - Exclude specific slugs
 - `filterQuery` - Advanced filtering (single or array)
@@ -172,6 +181,7 @@ const { stories, total } = await findStories<StoryblokStory<PostSbContent>>({
 - `contentType` - Filter by content type
 
 **Returns**:
+
 ```typescript
 {
   stories: Array<StoryType & HasPosition>,
@@ -180,20 +190,25 @@ const { stories, total } = await findStories<StoryblokStory<PostSbContent>>({
 ```
 
 #### `findAllPageSlugs(locales?)`
+
 Fetches all page slugs for static generation.
 
 ```typescript
-const { allSlugsWithLocale, allSlugsWithoutLocale } =
-  await findAllPageSlugs(['en', 'de']);
+const { allSlugsWithLocale, allSlugsWithoutLocale } = await findAllPageSlugs([
+  'en',
+  'de',
+]);
 ```
 
 Returns:
+
 - `allSlugsWithLocale` - Full slugs including locale prefix
 - `allSlugsWithoutLocale` - Unique slugs without locale
 
 **Note**: Currently limited to 100 stories per content type. Implement pagination for larger sites.
 
 #### `findDatasourcesEntries<Val>(args)`
+
 Fetches datasource entries (for options/dropdowns).
 
 ```typescript
@@ -245,8 +260,8 @@ For code-splitting large components:
 
 ```typescript
 const dynamicComponents = {
-  HeavyComponent: dynamic(() =>
-    import('@/block-components/heavy/HeavyComponent')
+  HeavyComponent: dynamic(
+    () => import('@/block-components/heavy/HeavyComponent'),
   ),
 };
 
@@ -301,6 +316,7 @@ The `storyblokEditable()` function adds data attributes for Visual Editor.
 **Type**: `GlobalSettingsSbContent`
 
 Contains:
+
 - `navItems` - Header navigation links
 - `footerItems` - Footer links
 - `redirects` - Site-wide redirects
@@ -319,6 +335,7 @@ Contains translation strings used across the site.
 **Type**: `PageSbContent`
 
 Standard page with:
+
 - `body` - Array of block components
 - `title` - Page title (SEO)
 - `description` - Meta description
@@ -330,6 +347,7 @@ Standard page with:
 ### Link Types
 
 Storyblok supports multiple link types:
+
 - Story links (internal pages)
 - URL links (external)
 - Asset links (files/downloads)
@@ -347,6 +365,7 @@ const href = sbLinkToHref(link);
 ```
 
 **Handles**:
+
 - Internal story links with full_slug
 - External URL links
 - Asset/download links
@@ -367,6 +386,7 @@ Pre-built component for Storyblok links:
 ```
 
 Automatically:
+
 - Converts link to href
 - Handles target and rel attributes
 - Works with Next.js Link for client-side navigation
@@ -410,6 +430,7 @@ const plainText = richTextToString(blok.intro);
 ### Custom Node Resolvers
 
 The default rendering handles:
+
 - **Headings** (h1-h4) with auto-generated IDs
 - **Paragraphs** with custom styling
 - **Lists** (ordered and unordered)
@@ -448,7 +469,7 @@ GET /api/preview?slug=/about&secret=YOUR_SECRET
 **Route**: `/api/exit-preview`
 
 ```typescript
-GET /api/exit-preview
+GET / api / exit - preview;
 
 // Response: Clears draft mode cookie, redirects to referrer
 ```
@@ -462,6 +483,7 @@ const isPreview = (await draftMode()).isEnabled;
 ```
 
 When preview is enabled:
+
 - Fetches `draft` version instead of `published`
 - Adds cache-busting parameter
 - Enables Visual Editor bridge
@@ -492,7 +514,7 @@ pnpm generate-sb-types
 import { findStory } from '@/lib/storyblok/storyblokRepository';
 
 // Avoid - direct API calls bypass patterns
-getStoryblokApi().get('cdn/stories/...')
+getStoryblokApi().get('cdn/stories/...');
 ```
 
 ### 4. Handle Resolved Relations
@@ -506,7 +528,7 @@ export const RESOLVED_RELATIONS_ARRAY = ['blog_post.author'];
 // Use in queries
 await findStory({
   slug,
-  resolveRelations: RESOLVED_RELATIONS
+  resolveRelations: RESOLVED_RELATIONS,
 });
 ```
 
@@ -523,23 +545,27 @@ if (isLinkStory(link)) {
 ## Troubleshooting
 
 ### Types Not Updating
+
 1. Check Storyblok CLI is logged in: `storyblok login`
 2. Verify space access
 3. Run `pnpm generate-sb-types`
 4. Restart TypeScript server
 
 ### Component Not Rendering
+
 1. Check component is registered in `src/storyblok.ts`
 2. Verify component name matches exactly (case-sensitive)
 3. Check component file exports correct function
 
 ### Preview Not Working
+
 1. Verify `NEXT_PUBLIC_STORYBLOK_TOKEN` is set
 2. Check preview secret matches
 3. Ensure cookies are enabled
 4. Use HTTPS for Visual Editor (run `pnpm proxy`)
 
 ### Relations Not Resolving
+
 1. Add relation to `RESOLVED_RELATIONS_ARRAY`
 2. Ensure field is configured as relation in Storyblok
 3. Check relation format: `componentName.fieldName`

@@ -43,15 +43,19 @@ pnpm build
 ## Key Concepts
 
 ### 1. Content-Driven Architecture
+
 All pages are dynamically generated from Storyblok content using a catch-all route at `src/app/[locale]/[[...slug]]/page.tsx`.
 
 ### 2. Type Safety
+
 TypeScript types are automatically generated from Storyblok component schemas, ensuring type safety across the entire application.
 
 ### 3. Component Mapping
+
 Storyblok components are mapped to React components in `src/storyblok.ts`, creating a seamless connection between CMS and code.
 
 ### 4. Internationalization
+
 Built-in support for multiple locales (en, de) with automatic routing and content localization.
 
 ## Project Structure
@@ -116,6 +120,7 @@ Use the `StoryblokLink` component and `sbLinkToHref()` utility to handle Storybl
 ## Deployment
 
 The project is configured for Vercel deployment:
+
 - Automatic deployments on push to main branch
 - Preview deployments for pull requests
 - ISR (Incremental Static Regeneration) with 5-minute revalidation

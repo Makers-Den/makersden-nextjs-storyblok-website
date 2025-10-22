@@ -22,29 +22,33 @@ Before starting any work, consult the comprehensive documentation in the `docs/`
 ### 1. Type Safety First
 
 **MUST:**
+
 - Use generated TypeScript types from Storyblok (`src/lib/storyblok/blockLibraryTypes.ts`)
 - Type all component props explicitly
 - Never use `any` unless absolutely necessary
 - Use type guards from `src/lib/typeGuards.ts`
 
 **MUST NOT:**
+
 - Use loose typing (`any`, `unknown` without guards)
 - Skip type annotations on functions
 - Ignore TypeScript errors
 
 **Example:**
+
 ```typescript
 // ✅ CORRECT
 import { type FeatureSbContent } from '@/lib/storyblok';
-export function Feature({ blok }: { blok: FeatureSbContent }) { }
+export function Feature({ blok }: { blok: FeatureSbContent }) {}
 
 // ❌ WRONG
-export function Feature({ blok }: { blok: any }) { }
+export function Feature({ blok }: { blok: any }) {}
 ```
 
 ### 2. Component Structure
 
 **MUST:**
+
 - Place page components in `src/page-components/`
 - Place block components in `src/block-components/[component-name]/`
 - Place UI components in `src/components/[component-name]/`
@@ -52,11 +56,13 @@ export function Feature({ blok }: { blok: any }) { }
 - Use default exports for page components
 
 **MUST NOT:**
+
 - Mix component types in wrong directories
 - Create components without proper directory structure
 - Skip `storyblokEditable()` wrapper on block components
 
 **Example:**
+
 ```typescript
 // ✅ CORRECT - Block Component
 // File: src/block-components/feature/Feature.tsx
@@ -76,6 +82,7 @@ export default function Page({ blok, translations }: PageComponentProps<PageSbCo
 ### 3. Storyblok Integration
 
 **MUST:**
+
 - Register new components in `src/storyblok.ts`
 - Run `pnpm generate-sb-types` after schema changes
 - Use repository functions (`findStory`, `findStories`) for data fetching
@@ -83,12 +90,14 @@ export default function Page({ blok, translations }: PageComponentProps<PageSbCo
 - Add `{...storyblokEditable(blok)}` to make components editable
 
 **MUST NOT:**
+
 - Make direct Storyblok API calls bypassing repository layer
 - Modify generated types manually
 - Skip component registration
 - Forget to regenerate types after Storyblok changes
 
 **Example:**
+
 ```typescript
 // ✅ CORRECT
 import { findStory } from '@/lib/storyblok/storyblokRepository';
@@ -101,6 +110,7 @@ const response = await fetch('https://api.storyblok.com/...');
 ### 4. Styling with Tailwind
 
 **MUST:**
+
 - Use Tailwind utility classes
 - Use design tokens (`bg-primary`, `text-foreground`)
 - Use `clsxm` for conditional classes
@@ -108,12 +118,14 @@ const response = await fetch('https://api.storyblok.com/...');
 - Use Typography components for text
 
 **MUST NOT:**
+
 - Use inline styles unless absolutely necessary
 - Hardcode colors (use design tokens)
 - Skip responsive breakpoints
 - Create custom CSS files (use Tailwind)
 
 **Example:**
+
 ```typescript
 // ✅ CORRECT
 import clsxm from '@/lib/clsxm';
@@ -131,17 +143,20 @@ import clsxm from '@/lib/clsxm';
 ### 5. Server Components Default
 
 **MUST:**
+
 - Use React Server Components by default
 - Only add `'use client'` when necessary (interactivity, browser APIs, hooks)
 - Keep client components small and focused
 - Fetch data in Server Components
 
 **MUST NOT:**
+
 - Add `'use client'` unnecessarily
 - Fetch data in Client Components without good reason
 - Mix server and client logic inappropriately
 
 **Example:**
+
 ```typescript
 // ✅ CORRECT - Server Component (default)
 export async function Feature({ blok }: { blok: FeatureSbContent }) {
@@ -160,6 +175,7 @@ export function InteractiveFeature() {
 ### 6. Internationalization
 
 **MUST:**
+
 - Use `next-intl` for all translations
 - Import `Link` from `@/i18n/navigation`, not `next/link`
 - Add translations to `locales/[locale].json`
@@ -167,12 +183,14 @@ export function InteractiveFeature() {
 - Support all configured locales (en, de)
 
 **MUST NOT:**
+
 - Hardcode user-facing strings
 - Use `next/link` directly
 - Skip locale parameter when fetching Storyblok content
 - Forget to update both locale files
 
 **Example:**
+
 ```typescript
 // ✅ CORRECT
 import { Link } from '@/i18n/navigation';
@@ -193,17 +211,20 @@ export function Nav() {
 ### 7. Rich Text Handling
 
 **MUST:**
+
 - Use `renderText()` or variants from `src/lib/richTextUtils.tsx`
 - Check if rich text has content with `isRichtextNotEmpty()`
 - Use appropriate rendering function for context
 - Allow custom node resolvers when needed
 
 **MUST NOT:**
+
 - Render rich text fields directly
 - Skip empty checks
 - Create custom rich text renderers without good reason
 
 **Example:**
+
 ```typescript
 // ✅ CORRECT
 import { renderText, isRichtextNotEmpty } from '@/lib/richTextUtils';
@@ -219,15 +240,18 @@ import { renderText, isRichtextNotEmpty } from '@/lib/richTextUtils';
 ### 8. Link Handling
 
 **MUST:**
+
 - Use `StoryblokLink` component for Storyblok links
 - Use `sbLinkToHref()` when you need just the URL
 - Use type guards to check link types
 
 **MUST NOT:**
+
 - Assume link structure without type checking
 - Skip validation of link objects
 
 **Example:**
+
 ```typescript
 // ✅ CORRECT
 import { StoryblokLink } from '@/components/storyblok-link/StoryblokLink';
@@ -243,17 +267,20 @@ if (isLinkStory(blok.link)) {
 ### 9. Error Handling
 
 **MUST:**
+
 - Handle optional fields with optional chaining (`blok.items?.map()`)
 - Provide fallbacks for empty states
 - Handle loading and error states
 - Use try-catch for async operations
 
 **MUST NOT:**
+
 - Assume fields exist without checking
 - Leave unhandled promise rejections
 - Skip error boundaries for client components
 
 **Example:**
+
 ```typescript
 // ✅ CORRECT
 {blok.items?.length ? (
@@ -269,6 +296,7 @@ if (isLinkStory(blok.link)) {
 ### 10. Code Organization
 
 **MUST:**
+
 - Use path aliases (`@/` for src, `~/` for public)
 - Import from index files when available
 - Keep components focused and single-responsibility
@@ -276,12 +304,14 @@ if (isLinkStory(blok.link)) {
 - Co-locate related files
 
 **MUST NOT:**
+
 - Use relative imports across distant directories
 - Create large monolithic components
 - Duplicate logic across components
 - Mix concerns in single files
 
 **Example:**
+
 ```typescript
 // ✅ CORRECT
 import { findStory, type PageSbContent } from '@/lib/storyblok';

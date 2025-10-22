@@ -5,6 +5,7 @@
 This is the **Makers' Den Next.js Storyblok Website Template** - a production-ready, type-safe, internationalized web application built with Next.js 15 (App Router) and Storyblok CMS.
 
 **Key Technologies:**
+
 - Next.js 15 (App Router, React Server Components)
 - Storyblok CMS (Headless)
 - TypeScript (Strict Mode)
@@ -25,15 +26,15 @@ Before working on any task:
 
 ### Quick Reference
 
-| Task Type | Read These Docs |
-|-----------|----------------|
+| Task Type                   | Read These Docs                                                                                                    |
+| --------------------------- | ------------------------------------------------------------------------------------------------------------------ |
 | Adding/modifying components | [component-patterns.md](./docs/component-patterns.md), [storyblok-integration.md](./docs/storyblok-integration.md) |
-| Working with Storyblok | [storyblok-integration.md](./docs/storyblok-integration.md), [type-system.md](./docs/type-system.md) |
-| Styling changes | [styling.md](./docs/styling.md) |
-| Adding translations | [internationalization.md](./docs/internationalization.md) |
-| Routing/architecture | [architecture.md](./docs/architecture.md) |
-| Using utilities | [utilities.md](./docs/utilities.md) |
-| Type issues | [type-system.md](./docs/type-system.md) |
+| Working with Storyblok      | [storyblok-integration.md](./docs/storyblok-integration.md), [type-system.md](./docs/type-system.md)               |
+| Styling changes             | [styling.md](./docs/styling.md)                                                                                    |
+| Adding translations         | [internationalization.md](./docs/internationalization.md)                                                          |
+| Routing/architecture        | [architecture.md](./docs/architecture.md)                                                                          |
+| Using utilities             | [utilities.md](./docs/utilities.md)                                                                                |
+| Type issues                 | [type-system.md](./docs/type-system.md)                                                                            |
 
 ## Critical Rules from AGENTS.md
 
@@ -106,6 +107,7 @@ src/
 5. Test in Visual Editor
 
 **Example:**
+
 ```typescript
 // src/block-components/my-feature/MyFeature.tsx
 import { storyblokEditable } from '@storyblok/react/rsc';
@@ -121,6 +123,7 @@ export function MyFeature({ blok }: { blok: MyFeatureSbContent }) {
 ```
 
 Then in `src/storyblok.ts`:
+
 ```typescript
 components: {
   // ... existing
@@ -131,6 +134,7 @@ components: {
 ### Adding a Translation
 
 1. Add to `locales/en.json`:
+
 ```json
 {
   "mySection": {
@@ -141,6 +145,7 @@ components: {
 ```
 
 2. Add to `locales/de.json`:
+
 ```json
 {
   "mySection": {
@@ -151,6 +156,7 @@ components: {
 ```
 
 3. Use in component:
+
 ```typescript
 import { useTranslations } from 'next-intl';
 
