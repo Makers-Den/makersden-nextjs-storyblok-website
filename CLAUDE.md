@@ -112,15 +112,20 @@ src/
 // src/block-components/my-feature/MyFeature.tsx
 import { storyblokEditable } from '@storyblok/react/rsc';
 import { type MyFeatureSbContent } from '@/lib/storyblok';
+import { Container } from '@/components/container/Container';
 
 export function MyFeature({ blok }: { blok: MyFeatureSbContent }) {
   return (
-    <section {...storyblokEditable(blok)}>
-      {/* Component content */}
-    </section>
+    <Container className="py-12" {...storyblokEditable(blok)}>
+      {/* Component content - constrained to max-width */}
+      <h2>{blok.title}</h2>
+      <p>{blok.description}</p>
+    </Container>
   );
 }
 ```
+
+**IMPORTANT**: Always use `Container` for block components with constrained content to ensure consistent spacing and prevent content from extending to viewport edges. For full-bleed backgrounds (hero sections, etc.), nest `Container` inside for the text content.
 
 Then in `src/storyblok.ts`:
 
@@ -181,28 +186,32 @@ export function MyComponent() {
 
 ```typescript
 import clsxm from '@/lib/clsxm';
+import { Container } from '@/components/container/Container';
 import { HeadingLg, Text } from '@/components/typography/Typography';
 
-export function MyComponent({ className, isActive }: Props) {
+export function MyComponent({ blok, className, isActive }: Props) {
   return (
-    <div className={clsxm(
-      // Base styles - mobile first
-      'bg-background text-foreground',
-      'px-4 py-8 rounded-lg',
+    <Container
+      className={clsxm(
+        // Base styles - mobile first
+        'bg-background text-foreground',
+        'py-8 rounded-lg',
 
-      // Responsive
-      'md:px-6 md:py-12',
-      'lg:px-8',
+        // Responsive
+        'md:py-12',
+        'lg:py-16',
 
-      // Conditional
-      isActive && 'ring-2 ring-primary',
+        // Conditional
+        isActive && 'ring-2 ring-primary',
 
-      // Allow override
-      className
-    )}>
+        // Allow override
+        className
+      )}
+      {...storyblokEditable(blok)}
+    >
       <HeadingLg as="h2">Title</HeadingLg>
       <Text>Body text</Text>
-    </div>
+    </Container>
   );
 }
 ```

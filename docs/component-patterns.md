@@ -175,6 +175,70 @@ Usage:
 
 ## Layout Pattern
 
+### Content Container Pattern
+
+**File**: `src/components/container/Container.tsx`
+
+**IMPORTANT**: Block components with constrained content should **always** use the `Container` component to ensure content doesn't extend to the viewport edges. This provides consistent max-width and horizontal spacing across the site.
+
+```typescript
+import { Container } from '@/components/container/Container';
+
+export function MyBlock({ blok }: { blok: MyBlockSbContent }) {
+  return (
+    <Container className='py-12' {...storyblokEditable(blok)}>
+      <h2>{blok.title}</h2>
+      <p>{blok.description}</p>
+    </Container>
+  );
+}
+```
+
+**When to Use Container**:
+
+- ✅ Text content sections
+- ✅ Grid layouts with multiple columns
+- ✅ Form sections
+- ✅ FAQ sections
+- ✅ List content
+- ✅ Any content that should have consistent margins
+
+**When NOT to Use Container**:
+
+- ❌ Full-bleed background images or videos
+- ❌ Edge-to-edge graphics
+- ❌ Components that need to break out of container bounds
+
+**Full-Bleed with Constrained Content Pattern**:
+
+If you need a full-bleed background with constrained content, use Container inside:
+
+```typescript
+export function HeroSection({ blok }: { blok: HeroSectionSbContent }) {
+  return (
+    <section
+      className='bg-primary py-24'
+      {...storyblokEditable(blok)}
+    >
+      {/* Full-bleed background */}
+      <Container>
+        {/* Constrained content */}
+        <h1>{blok.headline}</h1>
+        <p>{blok.description}</p>
+      </Container>
+    </section>
+  );
+}
+```
+
+**Features**:
+
+- Applies Tailwind's `container` class (responsive max-width)
+- Centers content with `mx-auto`
+- Accepts `className` for additional styling
+- Renders as semantic `<section>` element
+- Optional `id` prop for anchor links
+
 ### Global Layout
 
 **File**: `src/components/layout/Layout.tsx`
@@ -546,7 +610,31 @@ export function MyComponent({
 
 ## Best Practices
 
-### 1. Always Use Type Safety
+### 1. Use Container for Constrained Content
+
+```typescript
+// Good - constrained content with Container
+import { Container } from '@/components/container/Container';
+
+export function TextSection({ blok }: { blok: TextSectionSbContent }) {
+  return (
+    <Container {...storyblokEditable(blok)}>
+      {renderText(blok.content)}
+    </Container>
+  );
+}
+
+// Bad - content extends to viewport edges
+export function TextSection({ blok }: { blok: TextSectionSbContent }) {
+  return (
+    <section {...storyblokEditable(blok)}>
+      {renderText(blok.content)}
+    </section>
+  );
+}
+```
+
+### 2. Always Use Type Safety
 
 ```typescript
 // Good
@@ -557,7 +645,7 @@ export function Feature({ blok }: { blok: FeatureSbContent }) {}
 export function Feature({ blok }: { blok: any }) {}
 ```
 
-### 2. Use storyblokEditable
+### 3. Use storyblokEditable
 
 ```typescript
 // Good - enables Visual Editor
@@ -567,7 +655,7 @@ export function Feature({ blok }: { blok: any }) {}
 <div>
 ```
 
-### 3. Handle Optional Fields
+### 4. Handle Optional Fields
 
 ```typescript
 // Good - handles undefined
@@ -577,7 +665,7 @@ export function Feature({ blok }: { blok: any }) {}
 {blok.items.map((item) => ...)}
 ```
 
-### 4. Use Semantic HTML
+### 5. Use Semantic HTML
 
 ```typescript
 // Good
@@ -597,7 +685,7 @@ export function Feature({ blok }: { blok: any }) {}
 </div>
 ```
 
-### 5. Extract Complex Logic
+### 6. Extract Complex Logic
 
 ```typescript
 // Good - logic extracted
@@ -628,7 +716,7 @@ export function SocialLinks({ blok }) {
 }
 ```
 
-### 6. Use Utilities
+### 7. Use Utilities
 
 ```typescript
 // Good - use utility

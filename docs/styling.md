@@ -93,11 +93,72 @@ All tokens are mapped in `@theme`:
 
 ### Layout
 
-```tsx
-// Container
-<div className='container mx-auto px-4'>
+#### Container Component
 
-// Flex layouts
+**File**: `src/components/container/Container.tsx`
+
+**IMPORTANT**: Always use the `Container` component for block components with constrained content. This ensures consistent max-width and centering across the site.
+
+```typescript
+import { Container } from '@/components/container/Container';
+
+// Block component with constrained content
+export function ContentSection({ blok }) {
+  return (
+    <Container className="py-16">
+      <h2>{blok.title}</h2>
+      <p>{blok.description}</p>
+    </Container>
+  );
+}
+```
+
+**Container Features**:
+
+- Applies Tailwind's `container` class (responsive max-width)
+- Centers content with `mx-auto`
+- Semantic `<section>` element
+- Accepts custom `className` for additional styling
+- Optional `id` prop for anchor links
+
+**Container Max Widths** (from Tailwind defaults):
+
+- No breakpoint: `100%`
+- `sm` (640px): `640px`
+- `md` (768px): `768px`
+- `lg` (1024px): `1024px`
+- `xl` (1280px): `1280px`
+- `2xl` (1536px): `1536px`
+
+**Pattern: Full-Bleed Background with Constrained Content**:
+
+```typescript
+export function HeroSection({ blok }) {
+  return (
+    <section
+      className="bg-cover bg-center py-24"
+      style={{ backgroundImage: `url(${imageUrl})` }}
+      {...storyblokEditable(blok)}
+    >
+      {/* Full-bleed background extends to edges */}
+      <Container>
+        {/* Content is constrained */}
+        <h1 className="text-4xl">{blok.headline}</h1>
+        <p>{blok.description}</p>
+      </Container>
+    </section>
+  );
+}
+```
+
+**When NOT to use Container**:
+
+- Full-width hero images/videos
+- Edge-to-edge galleries
+- Background sections that should span full viewport
+- Components that intentionally break out of container bounds
+
+#### Flex Layouts
 <div className='flex items-center justify-between'>
 <div className='flex flex-col gap-4'>
 

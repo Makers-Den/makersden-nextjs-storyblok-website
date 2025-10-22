@@ -532,7 +532,53 @@ await findStory({
 });
 ```
 
-### 5. Use Type Guards
+### 5. Use Container for Block Components
+
+**File**: `src/components/container/Container.tsx`
+
+Always wrap block component content with `Container` to ensure proper spacing:
+
+```typescript
+// Good - uses Container for constrained content
+import { Container } from '@/components/container/Container';
+
+export function MyBlock({ blok }: { blok: MyBlockSbContent }) {
+  return (
+    <Container {...storyblokEditable(blok)}>
+      <h2>{blok.title}</h2>
+      {renderText(blok.content)}
+    </Container>
+  );
+}
+
+// Bad - content extends to viewport edges
+export function MyBlock({ blok }: { blok: MyBlockSbContent }) {
+  return (
+    <section {...storyblokEditable(blok)}>
+      <h2>{blok.title}</h2>
+      {renderText(blok.content)}
+    </section>
+  );
+}
+```
+
+**Exception**: Skip Container for full-bleed components (hero sections with background images, edge-to-edge galleries). In these cases, nest Container inside for text content:
+
+```typescript
+export function HeroSection({ blok }: { blok: HeroSectionSbContent }) {
+  return (
+    <section className="bg-cover" {...storyblokEditable(blok)}>
+      {/* Full-bleed background */}
+      <Container>
+        {/* Constrained text content */}
+        <h1>{blok.headline}</h1>
+      </Container>
+    </section>
+  );
+}
+```
+
+### 6. Use Type Guards
 
 **File**: `src/lib/typeGuards.ts`
 
