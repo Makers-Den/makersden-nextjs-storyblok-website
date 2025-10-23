@@ -7,6 +7,7 @@ import {
 import { type FaqSectionSbContent } from '@/lib/storyblok';
 
 import { Container } from '@/components/container/Container';
+import { SectionWrapper } from '@/components/section-wrapper/SectionWrapper';
 import {
   Accordion,
   AccordionContent,
@@ -16,25 +17,27 @@ import {
 
 export function FaqSection({ blok }: { blok: FaqSectionSbContent }) {
   return (
-    <Container className='py-20'>
-      {blok.title && renderHeadingLg(blok.title)}
-      <Accordion
-        type='single'
-        collapsible
-        className='w-full'
-        {...storyblokEditable(blok)}
-      >
-        {blok.faqItems.map(({ _uid, question, answer }, idx) => (
-          <AccordionItem key={_uid} value={`item-${idx}`}>
-            {question && (
-              <AccordionTrigger>{renderText(question)}</AccordionTrigger>
-            )}
-            {answer && (
-              <AccordionContent>{renderText(answer)}</AccordionContent>
-            )}
-          </AccordionItem>
-        ))}
-      </Accordion>
-    </Container>
+    <SectionWrapper
+      color={blok.backgroundColor}
+      spacingTop={blok.spacingTop}
+      spacingBottom={blok.spacingBottom}
+      {...storyblokEditable(blok)}
+    >
+      <Container>
+        {blok.title && renderHeadingLg(blok.title)}
+        <Accordion type='single' collapsible className='w-full'>
+          {blok.faqItems.map(({ _uid, question, answer }, idx) => (
+            <AccordionItem key={_uid} value={`item-${idx}`}>
+              {question && (
+                <AccordionTrigger>{renderText(question)}</AccordionTrigger>
+              )}
+              {answer && (
+                <AccordionContent>{renderText(answer)}</AccordionContent>
+              )}
+            </AccordionItem>
+          ))}
+        </Accordion>
+      </Container>
+    </SectionWrapper>
   );
 }

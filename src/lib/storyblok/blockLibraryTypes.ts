@@ -18,11 +18,18 @@ export interface FaqItemSbContent {
   [k: string]: any;
 }
 
+export type Colors = "red" | "green" | "blue" | "black" | "white" | "transparent" | "gray";
+
 export type FaqSectionFaqItemsBlockType = "FaqItem";
 
+export type Spacing = "none" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | "4xl";
+
 export interface FaqSectionSbContent {
+  backgroundColor?: Colors;
   title?: SbRichtext;
   faqItems: FaqItemSbContent[];
+  spacingBottom?: Spacing;
+  spacingTop?: Spacing;
   _uid: string;
   component: "FaqSection";
   [k: string]: any;
@@ -159,4 +166,4 @@ export interface TranslationsSbContent {
   [k: string]: any;
 }
 
-export type Datasources = "icons";
+export type Datasources = "colors" | "spacing" | "icons";

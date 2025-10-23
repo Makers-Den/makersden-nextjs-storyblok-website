@@ -78,6 +78,14 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+
+  --red: oklch(0.5632 0.2565 29.23);
+  --green: oklch(0.5632 0.2164 147.71);
+  --blue: oklch(0.5632 0.2417 261);
+  --black: oklch(0 0 261);
+  --white: oklch(1 0 261);
+  --transparent: transparent;
+  --gray: oklch(0.5314 0 261);
 }
 
 .dark {
