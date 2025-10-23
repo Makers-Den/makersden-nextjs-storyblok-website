@@ -247,6 +247,95 @@ export function HeroSection({ blok }: { blok: HeroSectionSbContent }) {
 - Renders as semantic `<section>` element
 - Optional `id` prop for anchor links
 
+### Section Wrapper Pattern
+
+**File**: `src/components/section-wrapper/SectionWrapper.tsx`
+
+**IMPORTANT**: Block components that receive `backgroundColor`, `spacingTop`, and/or `spacingBottom` props from Storyblok **must** use the `SectionWrapper` component as their outermost element. This ensures consistent section styling and spacing across the site.
+
+**When to Use SectionWrapper**:
+
+- ✅ Component has `backgroundColor?: Colors` field in Storyblok
+- ✅ Component has `spacingTop?: Spacing` field in Storyblok
+- ✅ Component has `spacingBottom?: Spacing` field in Storyblok
+- ✅ Any combination of the above
+
+**Example**: `FaqSection.tsx`
+
+```typescript
+import { storyblokEditable } from '@storyblok/react/rsc';
+import { type FaqSectionSbContent } from '@/lib/storyblok';
+
+import { Container } from '@/components/container/Container';
+import { SectionWrapper } from '@/components/section-wrapper/SectionWrapper';
+
+export function FaqSection({ blok }: { blok: FaqSectionSbContent }) {
+  return (
+    <SectionWrapper
+      color={blok.backgroundColor}
+      spacingTop={blok.spacingTop}
+      spacingBottom={blok.spacingBottom}
+      {...storyblokEditable(blok)}
+    >
+      <Container>
+        {/* Component content */}
+      </Container>
+    </SectionWrapper>
+  );
+}
+```
+
+**Key Points**:
+
+- `SectionWrapper` should be the **outermost** element
+- Spread `{...storyblokEditable(blok)}` on the `SectionWrapper`
+- Pass `backgroundColor`, `spacingTop`, and `spacingBottom` props directly
+- Nest `Container` inside for content width constraints
+- The wrapper renders as a `<section>` element
+
+**How It Works**:
+
+- `color` prop: Maps Storyblok color to CSS custom property (e.g., `var(--color-primary)`)
+- `spacingTop` prop: Converts to Tailwind padding-top classes (e.g., `pt-8`, `pt-16`)
+- `spacingBottom` prop: Converts to Tailwind padding-bottom classes (e.g., `pb-8`, `pb-16`)
+
+**Typical Storyblok Schema**:
+
+```typescript
+export interface MyComponentSbContent {
+  backgroundColor?: Colors;
+  spacingTop?: Spacing;
+  spacingBottom?: Spacing;
+  // ... other fields
+  _uid: string;
+  component: "MyComponent";
+}
+```
+
+**Pattern Combination**:
+
+You can combine `SectionWrapper` with `Container` for full-bleed backgrounds with constrained content:
+
+```typescript
+export function FeatureSection({ blok }: { blok: FeatureSectionSbContent }) {
+  return (
+    <SectionWrapper
+      color={blok.backgroundColor}
+      spacingTop={blok.spacingTop}
+      spacingBottom={blok.spacingBottom}
+      {...storyblokEditable(blok)}
+    >
+      {/* Full-bleed background color */}
+      <Container>
+        {/* Constrained content */}
+        <h2>{blok.title}</h2>
+        <p>{blok.description}</p>
+      </Container>
+    </SectionWrapper>
+  );
+}
+```
+
 ### Global Layout
 
 **File**: `src/components/layout/Layout.tsx`

@@ -54,12 +54,14 @@ export function Feature({ blok }: { blok: any }) {}
 - Place UI components in `src/components/[component-name]/`
 - Use named exports for block components
 - Use default exports for page components
+- Use `SectionWrapper` for block components with `backgroundColor`, `spacingTop`, or `spacingBottom` props
 
 **MUST NOT:**
 
 - Mix component types in wrong directories
 - Create components without proper directory structure
 - Skip `storyblokEditable()` wrapper on block components
+- Implement custom spacing/background logic when component has section styling props
 
 **Example:**
 
@@ -70,6 +72,27 @@ import { storyblokEditable } from '@storyblok/react/rsc';
 
 export function Feature({ blok }: { blok: FeatureSbContent }) {
   return <div {...storyblokEditable(blok)}>{blok.name}</div>;
+}
+
+// ✅ CORRECT - Block Component with Section Styling
+// File: src/block-components/faq-section/FaqSection.tsx
+import { storyblokEditable } from '@storyblok/react/rsc';
+import { SectionWrapper } from '@/components/section-wrapper/SectionWrapper';
+import { Container } from '@/components/container/Container';
+
+export function FaqSection({ blok }: { blok: FaqSectionSbContent }) {
+  return (
+    <SectionWrapper
+      color={blok.backgroundColor}
+      spacingTop={blok.spacingTop}
+      spacingBottom={blok.spacingBottom}
+      {...storyblokEditable(blok)}
+    >
+      <Container>
+        {/* Component content */}
+      </Container>
+    </SectionWrapper>
+  );
 }
 
 // ✅ CORRECT - Page Component
@@ -508,6 +531,7 @@ Before submitting any code, verify:
 - [ ] Types regenerated if Storyblok changed
 - [ ] Using design tokens, not hardcoded values
 - [ ] Server Component unless client needed
+- [ ] `SectionWrapper` used if component has backgroundColor/spacing props
 - [ ] Translations added for user-facing text
 - [ ] Rich text rendered with utilities
 - [ ] Links use proper components/utilities

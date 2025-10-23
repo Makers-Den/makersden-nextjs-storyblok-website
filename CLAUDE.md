@@ -184,6 +184,30 @@ export function MyFeature({ blok }: { blok: MyFeatureSbContent }) {
 
 **IMPORTANT**: Always use `Container` for block components with constrained content to ensure consistent spacing and prevent content from extending to viewport edges. For full-bleed backgrounds (hero sections, etc.), nest `Container` inside for the text content.
 
+**Section Styling**: If your component has `backgroundColor`, `spacingTop`, or `spacingBottom` fields in Storyblok, use `SectionWrapper` as the outermost element:
+
+```typescript
+// src/block-components/my-section/MySection.tsx
+import { storyblokEditable } from '@storyblok/react/rsc';
+import { SectionWrapper } from '@/components/section-wrapper/SectionWrapper';
+import { Container } from '@/components/container/Container';
+
+export function MySection({ blok }: { blok: MySectionSbContent }) {
+  return (
+    <SectionWrapper
+      color={blok.backgroundColor}
+      spacingTop={blok.spacingTop}
+      spacingBottom={blok.spacingBottom}
+      {...storyblokEditable(blok)}
+    >
+      <Container>
+        {/* Component content */}
+      </Container>
+    </SectionWrapper>
+  );
+}
+```
+
 Then in `src/storyblok.ts`:
 
 ```typescript
