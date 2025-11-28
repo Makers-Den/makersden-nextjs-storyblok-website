@@ -3,9 +3,9 @@
     "name": "CtaLink",
     "display_name": null,
     "description": "",
-    "created_at": "2025-10-22T14:07:07.498Z",
-    "updated_at": "2025-10-22T14:09:22.315Z",
-    "id": 104253143036076,
+    "created_at": "2025-10-23T14:00:15.394Z",
+    "updated_at": "2025-10-23T14:00:15.394Z",
+    "id": 104605349460475,
     "schema": {
       "name": {
         "type": "text",
@@ -73,9 +73,9 @@
     "name": "CtaSection",
     "display_name": null,
     "description": "",
-    "created_at": "2025-11-28T14:39:42.074Z",
-    "updated_at": "2025-11-28T14:39:42.074Z",
-    "id": 117355241781053,
+    "created_at": "2025-11-13T20:41:48.943Z",
+    "updated_at": "2025-11-13T21:22:58.257Z",
+    "id": 112135819034782,
     "schema": {
       "title": {
         "type": "richtext",
@@ -174,9 +174,9 @@
     "name": "FaqItem",
     "display_name": null,
     "description": null,
-    "created_at": "2024-05-17T14:31:58.486Z",
-    "updated_at": "2025-11-28T14:39:39.887Z",
-    "id": 5811176,
+    "created_at": "2025-10-23T14:00:15.728Z",
+    "updated_at": "2025-10-23T14:00:15.728Z",
+    "id": 104605350832636,
     "schema": {
       "question": {
         "type": "richtext",
@@ -219,9 +219,9 @@
     "name": "FaqSection",
     "display_name": null,
     "description": null,
-    "created_at": "2024-05-17T14:30:58.666Z",
-    "updated_at": "2025-11-28T14:39:42.233Z",
-    "id": 5811118,
+    "created_at": "2025-10-23T14:00:16.493Z",
+    "updated_at": "2025-11-17T12:33:58.102Z",
+    "id": 104605353966081,
     "schema": {
       "backgroundColor": {
         "type": "option",
@@ -302,9 +302,9 @@
     "name": "FooterSection",
     "display_name": null,
     "description": "",
-    "created_at": "2025-11-28T14:39:42.398Z",
-    "updated_at": "2025-11-28T14:39:42.398Z",
-    "id": 117355243112254,
+    "created_at": "2025-11-10T15:43:19.899Z",
+    "updated_at": "2025-11-10T15:43:44.718Z",
+    "id": 111000780398208,
     "schema": {
       "title": {
         "type": "text",
@@ -342,9 +342,9 @@
     "name": "GlobalSettings",
     "display_name": null,
     "description": null,
-    "created_at": "2024-05-07T07:56:35.615Z",
-    "updated_at": "2025-11-28T14:39:43.412Z",
-    "id": 5758880,
+    "created_at": "2025-10-23T14:00:16.745Z",
+    "updated_at": "2025-11-10T19:50:16.567Z",
+    "id": 104605354994179,
     "schema": {
       "footerSections": {
         "type": "bloks",
@@ -484,9 +484,9 @@
     "name": "GridSection",
     "display_name": null,
     "description": "",
-    "created_at": "2025-11-28T14:39:42.576Z",
-    "updated_at": "2025-11-28T14:39:42.576Z",
-    "id": 117355243837247,
+    "created_at": "2025-11-13T14:36:03.738Z",
+    "updated_at": "2025-11-14T06:20:28.090Z",
+    "id": 112045931476789,
     "schema": {
       "title": {
         "type": "richtext",
@@ -593,9 +593,9 @@
     "name": "HeroNarrowSection",
     "display_name": null,
     "description": "",
-    "created_at": "2025-11-28T14:39:40.070Z",
-    "updated_at": "2025-11-28T14:39:40.070Z",
-    "id": 117355233576757,
+    "created_at": "2025-11-10T12:44:54.211Z",
+    "updated_at": "2025-11-10T12:45:00.960Z",
+    "id": 110956929931599,
     "schema": {
       "title": {
         "type": "textarea",
@@ -620,62 +620,12 @@
     "metadata": {}
   },
   {
-    "name": "HeroSection",
-    "display_name": null,
-    "description": "",
-    "created_at": "2025-10-22T10:30:34.059Z",
-    "updated_at": "2025-10-22T14:54:33.682Z",
-    "id": 104199921912729,
-    "schema": {
-      "title": {
-        "type": "richtext",
-        "pos": 0,
-        "id": "_U696Ie5SNWBs0VukwC2wA",
-        "customize_toolbar": true,
-        "toolbar": [
-          "paragraph",
-          "paste-action"
-        ]
-      },
-      "backgroundImage": {
-        "type": "asset",
-        "pos": 1,
-        "id": "GbnhpeTmQKiDqhgWfgTZVw"
-      },
-      "ctaLinks": {
-        "type": "bloks",
-        "pos": 2,
-        "restrict_type": "",
-        "restrict_components": true,
-        "component_whitelist": [
-          "CtaLink"
-        ],
-        "id": "5mCn8ugOSyqKRhCgAZCDZQ"
-      }
-    },
-    "image": null,
-    "preview_field": null,
-    "is_root": false,
-    "preview_tmpl": null,
-    "is_nestable": true,
-    "all_presets": [],
-    "preset_id": null,
-    "real_name": "HeroSection",
-    "component_group_uuid": "50ca5cce-644a-4acc-ae72-2df68aa836cc",
-    "color": null,
-    "icon": null,
-    "internal_tags_list": [],
-    "internal_tag_ids": [],
-    "content_type_asset_preview": null,
-    "metadata": {}
-  },
-  {
     "name": "HeroSplitSection",
     "display_name": null,
     "description": "",
-    "created_at": "2025-11-28T14:39:42.735Z",
-    "updated_at": "2025-11-28T14:39:42.735Z",
-    "id": 117355244488512,
+    "created_at": "2025-11-14T09:19:36.542Z",
+    "updated_at": "2025-11-14T12:04:01.122Z",
+    "id": 112322054321183,
     "schema": {
       "title": {
         "type": "richtext",
@@ -754,9 +704,9 @@
     "name": "IconAndTextCard",
     "display_name": null,
     "description": "",
-    "created_at": "2025-11-28T14:39:40.225Z",
-    "updated_at": "2025-11-28T14:39:40.225Z",
-    "id": 117355234207542,
+    "created_at": "2025-11-13T16:58:20.981Z",
+    "updated_at": "2025-11-13T17:04:06.929Z",
+    "id": 112080900025800,
     "schema": {
       "icon": {
         "type": "asset",
@@ -797,9 +747,9 @@
     "name": "Image",
     "display_name": null,
     "description": "",
-    "created_at": "2025-11-28T14:39:40.381Z",
-    "updated_at": "2025-11-28T14:39:40.381Z",
-    "id": 117355234846519,
+    "created_at": "2025-11-12T17:54:31.069Z",
+    "updated_at": "2025-11-14T12:13:13.374Z",
+    "id": 111740809504205,
     "schema": {
       "image": {
         "type": "asset",
@@ -883,9 +833,9 @@
     "name": "ImageAndTextCard",
     "display_name": null,
     "description": "",
-    "created_at": "2025-11-28T14:39:40.565Z",
-    "updated_at": "2025-11-28T14:39:40.565Z",
-    "id": 117355235600184,
+    "created_at": "2025-11-13T14:36:53.248Z",
+    "updated_at": "2025-11-13T14:37:15.614Z",
+    "id": 112046134269783,
     "schema": {
       "image": {
         "type": "asset",
@@ -923,9 +873,9 @@
     "name": "ImageCardLink",
     "display_name": null,
     "description": "",
-    "created_at": "2025-11-28T14:39:40.727Z",
-    "updated_at": "2025-11-28T14:39:40.727Z",
-    "id": 117355236263737,
+    "created_at": "2025-11-13T09:45:45.964Z",
+    "updated_at": "2025-11-13T09:46:29.446Z",
+    "id": 111974588276621,
     "schema": {
       "image": {
         "type": "asset",
@@ -963,9 +913,9 @@
     "name": "JsonLdMetadata",
     "display_name": null,
     "description": null,
-    "created_at": "2024-05-13T11:21:29.607Z",
-    "updated_at": "2025-11-28T14:39:40.898Z",
-    "id": 5785875,
+    "created_at": "2025-10-23T14:00:15.818Z",
+    "updated_at": "2025-10-23T14:00:15.818Z",
+    "id": 104605351205373,
     "schema": {
       "jsonLd": {
         "type": "textarea",
@@ -992,9 +942,9 @@
     "name": "Link",
     "display_name": null,
     "description": null,
-    "created_at": "2024-05-07T08:11:58.719Z",
-    "updated_at": "2025-11-28T14:39:41.072Z",
-    "id": 5759019,
+    "created_at": "2025-10-23T14:00:15.909Z",
+    "updated_at": "2025-10-23T14:00:15.909Z",
+    "id": 104605351569918,
     "schema": {
       "name": {
         "type": "text",
@@ -1031,9 +981,9 @@
     "name": "LogosSection",
     "display_name": null,
     "description": "",
-    "created_at": "2025-11-28T14:39:41.221Z",
-    "updated_at": "2025-11-28T14:39:41.221Z",
-    "id": 117355238287162,
+    "created_at": "2025-11-13T10:05:20.518Z",
+    "updated_at": "2025-11-13T10:31:12.618Z",
+    "id": 111979399250002,
     "schema": {
       "title": {
         "type": "richtext",
@@ -1108,9 +1058,9 @@
     "name": "NavSection",
     "display_name": null,
     "description": "",
-    "created_at": "2025-11-28T14:39:42.910Z",
-    "updated_at": "2025-11-28T14:39:42.910Z",
-    "id": 117355245209409,
+    "created_at": "2025-11-10T14:08:23.722Z",
+    "updated_at": "2025-11-10T15:32:33.143Z",
+    "id": 110977448868736,
     "schema": {
       "title": {
         "type": "text",
@@ -1148,9 +1098,9 @@
     "name": "NavSectionLinkItem",
     "display_name": null,
     "description": "",
-    "created_at": "2025-11-28T14:39:41.396Z",
-    "updated_at": "2025-11-28T14:39:41.396Z",
-    "id": 117355239003963,
+    "created_at": "2025-11-10T14:09:14.491Z",
+    "updated_at": "2025-11-10T14:09:39.482Z",
+    "id": 110977656826753,
     "schema": {
       "title": {
         "type": "text",
@@ -1188,9 +1138,9 @@
     "name": "Page",
     "display_name": "",
     "description": null,
-    "created_at": "2024-04-25T10:25:56.142Z",
-    "updated_at": "2025-11-28T16:29:16.803Z",
-    "id": 5708684,
+    "created_at": "2025-10-23T14:00:17.246Z",
+    "updated_at": "2025-11-10T10:06:12.683Z",
+    "id": 104605357046278,
     "schema": {
       "body": {
         "type": "bloks",
@@ -1318,9 +1268,9 @@
     "name": "RedirectItem",
     "display_name": null,
     "description": null,
-    "created_at": "2024-05-08T08:07:00.937Z",
-    "updated_at": "2025-11-28T14:39:41.561Z",
-    "id": 5767051,
+    "created_at": "2025-10-23T14:00:16.058Z",
+    "updated_at": "2025-10-23T14:00:16.058Z",
+    "id": 104605352184319,
     "schema": {
       "from": {
         "type": "text",
@@ -1358,40 +1308,12 @@
     "metadata": {}
   },
   {
-    "name": "RichTextContent",
-    "display_name": null,
-    "description": null,
-    "created_at": "2024-05-08T08:17:31.752Z",
-    "updated_at": "2024-05-13T04:45:08.081Z",
-    "id": 5767078,
-    "schema": {
-      "text": {
-        "type": "richtext"
-      }
-    },
-    "image": null,
-    "preview_field": null,
-    "is_root": false,
-    "preview_tmpl": null,
-    "is_nestable": true,
-    "all_presets": [],
-    "preset_id": null,
-    "real_name": "RichTextContent",
-    "component_group_uuid": "50ca5cce-644a-4acc-ae72-2df68aa836cc",
-    "color": null,
-    "icon": "block-text-l",
-    "internal_tags_list": [],
-    "internal_tag_ids": [],
-    "content_type_asset_preview": null,
-    "metadata": {}
-  },
-  {
     "name": "SocialLink",
     "display_name": null,
     "description": "",
-    "created_at": "2025-11-28T14:39:41.735Z",
-    "updated_at": "2025-11-28T14:39:41.735Z",
-    "id": 117355240396604,
+    "created_at": "2025-11-10T15:46:10.821Z",
+    "updated_at": "2025-11-10T15:47:10.386Z",
+    "id": 111001480494741,
     "schema": {
       "name": {
         "type": "text",
@@ -1427,77 +1349,12 @@
     "metadata": {}
   },
   {
-    "name": "SplitContentSection",
-    "display_name": null,
-    "description": null,
-    "created_at": "2024-05-08T08:14:46.539Z",
-    "updated_at": "2024-05-08T08:18:54.813Z",
-    "id": 5767070,
-    "schema": {
-      "sectionsProportions": {
-        "type": "option",
-        "use_uuid": true,
-        "options": [
-          {
-            "_uid": "26319195-684b-467d-adbe-9cbe68c16ffe",
-            "name": "33/66",
-            "value": "33/66"
-          },
-          {
-            "_uid": "1b8b9aa3-fbb4-47b6-ac15-15521c367d55",
-            "value": "50/50",
-            "name": "50/50"
-          },
-          {
-            "_uid": "90333166-0ce7-44e4-9769-ec49d805aef0",
-            "value": "66/33",
-            "name": "66/33"
-          }
-        ],
-        "default_value": "50/50"
-      },
-      "leftSection": {
-        "type": "bloks",
-        "maximum": 1,
-        "restrict_type": "",
-        "restrict_components": true,
-        "component_whitelist": [
-          "RichTextContent"
-        ]
-      },
-      "rightSection": {
-        "type": "bloks",
-        "maximum": 1,
-        "restrict_type": "",
-        "restrict_components": true,
-        "component_whitelist": [
-          "RichTextContent"
-        ]
-      }
-    },
-    "image": null,
-    "preview_field": null,
-    "is_root": false,
-    "preview_tmpl": null,
-    "is_nestable": true,
-    "all_presets": [],
-    "preset_id": null,
-    "real_name": "SplitContentSection",
-    "component_group_uuid": "50ca5cce-644a-4acc-ae72-2df68aa836cc",
-    "color": null,
-    "icon": "block-table",
-    "internal_tags_list": [],
-    "internal_tag_ids": [],
-    "content_type_asset_preview": null,
-    "metadata": {}
-  },
-  {
     "name": "SplitSection",
     "display_name": null,
     "description": null,
-    "created_at": "2025-11-28T14:39:43.584Z",
-    "updated_at": "2025-11-28T14:39:43.584Z",
-    "id": 117355247970115,
+    "created_at": "2025-10-23T14:00:17.744Z",
+    "updated_at": "2025-11-14T13:18:42.079Z",
+    "id": 104605359086089,
     "schema": {
       "title": {
         "type": "richtext",
@@ -1645,41 +1502,12 @@
     "metadata": {}
   },
   {
-    "name": "Teaser",
-    "display_name": null,
-    "description": null,
-    "created_at": "2024-04-25T10:25:56.159Z",
-    "updated_at": "2024-05-16T14:41:09.921Z",
-    "id": 5708685,
-    "schema": {
-      "headline": {
-        "type": "text",
-        "translatable": true
-      }
-    },
-    "image": null,
-    "preview_field": null,
-    "is_root": false,
-    "preview_tmpl": null,
-    "is_nestable": true,
-    "all_presets": [],
-    "preset_id": null,
-    "real_name": "Teaser",
-    "component_group_uuid": "50ca5cce-644a-4acc-ae72-2df68aa836cc",
-    "color": null,
-    "icon": null,
-    "internal_tags_list": [],
-    "internal_tag_ids": [],
-    "content_type_asset_preview": null,
-    "metadata": {}
-  },
-  {
     "name": "TitleAndText",
     "display_name": null,
     "description": "",
-    "created_at": "2025-11-28T14:39:43.239Z",
-    "updated_at": "2025-11-28T14:39:43.239Z",
-    "id": 117355246552898,
+    "created_at": "2025-11-12T17:58:53.363Z",
+    "updated_at": "2025-11-13T16:26:37.331Z",
+    "id": 111741883864527,
     "schema": {
       "title": {
         "type": "richtext",
@@ -1752,9 +1580,9 @@
     "name": "Translations",
     "display_name": null,
     "description": null,
-    "created_at": "2024-08-01T08:19:50.126Z",
-    "updated_at": "2025-11-28T14:39:41.899Z",
-    "id": 6117101,
+    "created_at": "2025-10-23T14:00:16.222Z",
+    "updated_at": "2025-10-23T14:00:16.222Z",
+    "id": 104605352851968,
     "schema": {
       "example": {
         "type": "text",

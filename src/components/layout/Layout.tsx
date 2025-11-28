@@ -9,16 +9,40 @@ type LayoutProps = {
   children: React.ReactNode;
   locale: Locale;
   globalSettings: StoryblokStory<GlobalSettingsSbContent>;
+  layoutType: 'default' | 'leadPage';
+  navType: 'white' | 'black' | 'transparent';
 };
 
-export function Layout({ children, locale, globalSettings }: LayoutProps) {
-  const { navItems = [], footerItems = [] } = globalSettings.content;
+export function Layout({
+  children,
+  locale,
+  globalSettings,
+  layoutType,
+  navType,
+}: LayoutProps) {
+  const {
+    navItems = [],
+    footerSections = [],
+    footerBottomLinks = [],
+    footerSocialLinks = [],
+    footerCopyrightNotice = '',
+  } = globalSettings.content;
 
   return (
     <div className='flex min-h-screen flex-col'>
-      <Header navItems={navItems} locale={locale} />
+      <Header
+        navItems={navItems}
+        locale={locale}
+        layoutType={layoutType}
+        navType={navType}
+      />
       {children}
-      <Footer footerItems={footerItems} />
+      <Footer
+        footerSections={footerSections}
+        footerBottomLinks={footerBottomLinks}
+        footerSocialLinks={footerSocialLinks}
+        copyrightNotice={footerCopyrightNotice}
+      />
     </div>
   );
 }

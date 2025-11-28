@@ -8,6 +8,7 @@ import '@/styles/globals.css';
 import clsxm from '@/lib/clsxm';
 
 import { GTMScripts } from '@/components/gtm-scripts/GTMScripts';
+import { OrganizationSchema } from '@/components/json-ld/OrganizationSchema';
 import StoryblokProvider from '@/components/storyblok/StoryblokProvider';
 
 const fontSans = FontSans({
@@ -69,6 +70,8 @@ export async function BasicLayout({
         {favicons.map((linkProps) => (
           <link key={linkProps.href} {...linkProps} />
         ))}
+        <OrganizationSchema />
+
         {/* We do not want to load GTM and analytics etc when doing content management in Storyblok */}
         {!isPreview && (
           <Suspense>

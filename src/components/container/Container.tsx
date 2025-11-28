@@ -9,7 +9,10 @@ export type ContainerProps = {
 };
 
 export const Container = ({ className, id, children }: ContainerProps) => (
-  <section {...(id && { id })} className={clsx('container mx-auto', className)}>
+  <section
+    {...(id && { id })}
+    className={clsx('container mx-auto px-4', className)}
+  >
     {children}
   </section>
 );

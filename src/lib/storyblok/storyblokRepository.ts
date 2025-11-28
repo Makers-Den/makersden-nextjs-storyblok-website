@@ -1,6 +1,6 @@
 import { type ISbStoriesParams } from '@storyblok/react/rsc';
 
-import { getStoryblokApi } from '@/storyblok';
+import { getStoryblokApi } from '@/lib/storyblok/getStoryblokApi';
 
 import type { PageSbContent } from './blockLibraryTypes';
 import type { StoryblokStory } from './sbInternalTypes';

@@ -3,6 +3,9 @@
 import { storyblokInit } from '@storyblok/react/rsc';
 import { type ReactNode } from 'react';
 
+/**
+ * TODO: check to see if this one has perf implications since it's run client side and inits storyblok.
+ */
 export default function StoryblokProvider({
   children,
 }: {

@@ -10,6 +10,7 @@ export type TypographyVariant =
   | 'text'
   | 'textLg'
   | 'headingXl'
+  | 'heading2Xl'
   | 'headingLg'
   | 'headingMd'
   | 'headingSm'
@@ -65,6 +66,18 @@ export const variantToClasses: Record<TypographyVariant, string[]> = {
     'text-base md:text-lg',
     'leading-[1.38] md:leading-[1.44]',
     'font-primary',
+  ],
+  heading2Xl: [
+    'text-current',
+    'font-display',
+    'font-black',
+    'uppercase',
+    'antialiased',
+    'text-[clamp(3.125rem,6.5vw,5.75rem)]',
+    'leading-[1.09] md:leading-[1]',
+    'break-words',
+    'whitespace-pre-line',
+    'tracking-wide',
   ],
   headingXl: [
     'text-current',
@@ -187,6 +200,13 @@ export const HeadingLg = (props: TypographyPropsWithoutVariant) => (
  *  Used in Hero block and on Blog Post pages and Contact (as H2).
  */
 export const HeadingXl = (props: TypographyPropsWithoutVariant) => {
+  return <Typography variant='headingXl' as='h1' {...props} />;
+};
+
+/** There should only be one instance of an HugeHeading (H1) tag on the page.
+ *  Used in Hero block and on Blog Post pages and Contact (as H2).
+ */
+export const Heading2Xl = (props: TypographyPropsWithoutVariant) => {
   return <Typography variant='headingXl' as='h1' {...props} />;
 };
 // *

@@ -4,7 +4,7 @@ import {
 } from '@storyblok/react/rsc';
 
 import clsxm from '@/lib/clsxm';
-import { renderHeadingLg } from '@/lib/richTextUtils';
+import { renderHeading2Xl } from '@/lib/richTextUtils';
 import { type HeroSectionSbContent } from '@/lib/storyblok';
 
 import { Container } from '@/components/container/Container';
@@ -13,7 +13,7 @@ import { StoryblokImage } from '@/components/images/StoryblokImage';
 export function HeroSection({ blok }: { blok: HeroSectionSbContent }) {
   return (
     <section
-      className='relative flex min-h-[400px] items-center justify-center overflow-hidden md:min-h-[500px] lg:min-h-[600px]'
+      className='relative mt-[calc(-1*var(--nav-h))] flex h-[95vh] min-h-[700px] items-center justify-center overflow-hidden pt-[calc(var(--nav-h)+100px)] pb-[calc(var(--nav-h))]'
       {...storyblokEditable(blok)}
     >
       {/* Background Image */}
@@ -29,7 +29,6 @@ export function HeroSection({ blok }: { blok: HeroSectionSbContent }) {
         </div>
       )}
 
-      {/* Content Container */}
       <Container className='relative z-10 flex flex-col items-center gap-8 py-16 text-center md:py-20 lg:gap-12 lg:py-24'>
         {/* Title */}
         {blok.title && (
@@ -44,7 +43,7 @@ export function HeroSection({ blok }: { blok: HeroSectionSbContent }) {
               'lg:text-6xl lg:leading-none',
             )}
           >
-            {renderHeadingLg(blok.title)}
+            {renderHeading2Xl(blok.title)}
           </div>
         )}
 

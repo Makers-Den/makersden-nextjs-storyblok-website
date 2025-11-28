@@ -21,6 +21,7 @@ import 'server-only';
 
 import { StoryblokImage } from '@/components/images/StoryblokImage';
 import {
+  Heading2Xl,
   HeadingLg,
   HeadingMd,
   HeadingSm,
@@ -289,6 +290,16 @@ export const renderTextLg = (text: SbRichtext) =>
     nodeResolvers: {
       [NODE_PARAGRAPH]: (children) => (
         <TextLg className='my-7'>{children}</TextLg>
+      ),
+    },
+  });
+
+/** Render paragraphs as visual huge headings, but still remain semantic paragraphs by default */
+export const renderHeading2Xl = (text: SbRichtext, tag: Tag = 'p') =>
+  renderText(text, {
+    nodeResolvers: {
+      [NODE_PARAGRAPH]: (children) => (
+        <Heading2Xl as={tag}>{children}</Heading2Xl>
       ),
     },
   });
