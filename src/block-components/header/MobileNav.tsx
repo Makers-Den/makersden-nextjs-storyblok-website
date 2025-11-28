@@ -10,8 +10,6 @@ import { Link } from '@/i18n/navigation';
 
 import { MobileNavSection } from './MobileNavSection';
 
-const LOGO_URL = '/images/logo-on-light.svg';
-
 // Type guards
 function isLink(
   item: LinkSbContent | NavSectionSbContent,

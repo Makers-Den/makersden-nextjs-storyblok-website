@@ -1,35 +1,22 @@
 import { storyblokEditable } from '@storyblok/react/rsc';
 
 import clsxm from '@/lib/clsxm';
-import { toCssVariableName } from '@/lib/colors';
 import { type IconAndTextCardSbContent } from '@/lib/storyblok';
 
 import { StoryblokImage } from '@/components/images/StoryblokImage';
 import { HeadingSm, Text } from '@/components/typography/Typography';
 
-import { type CardStyleProps } from '../grid-section/GridSection';
-
 export function IconAndTextCard({
   blok,
   isNested,
-  backgroundColor,
-  backgroundOpacity,
-  width,
 }: {
   blok: IconAndTextCardSbContent;
   isNested?: boolean;
-} & CardStyleProps) {
+}) {
   return (
     <div
-      style={{
-        backgroundColor:
-          backgroundColor &&
-          `color-mix(in srgb, var(${toCssVariableName(backgroundColor)}), transparent ${backgroundOpacity ? backgroundOpacity : 100}%)`,
-      }}
       className={clsxm(
-        (!width || width === 'auto') && 'w-auto max-w-[320px]',
-        width === 'stretchToFill' && 'w-full',
-        'flex flex-col',
+        'flex w-auto max-w-[320px] flex-col',
         isNested ? 'gap-0 p-0' : 'items-center gap-3 p-3',
       )}
       {...storyblokEditable(blok)}

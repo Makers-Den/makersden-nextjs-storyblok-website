@@ -5,11 +5,7 @@ import {
 
 import clsxm from '@/lib/clsxm';
 import { renderHeadingLg } from '@/lib/richTextUtils';
-import {
-  type Colors,
-  type GridSectionSbContent,
-  type Opacity,
-} from '@/lib/storyblok';
+import { type GridSectionSbContent } from '@/lib/storyblok';
 
 import { Container } from '@/components/container/Container';
 import { SectionWrapper } from '@/components/section-wrapper/SectionWrapper';
@@ -28,12 +24,6 @@ function getGridClasses(responsiveColumns?: string): string {
       return 'grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4';
   }
 }
-
-export type CardStyleProps = {
-  backgroundColor?: Colors;
-  backgroundOpacity?: Opacity;
-  width?: '' | 'auto' | 'stretchToFill';
-};
 
 export function GridSection({ blok }: { blok: GridSectionSbContent }) {
   const gridClasses = getGridClasses(blok.responsiveColumns);
@@ -60,13 +50,7 @@ export function GridSection({ blok }: { blok: GridSectionSbContent }) {
             )}
           >
             {blok.cards.map((card) => (
-              <StoryblokServerComponent
-                blok={card}
-                key={card._uid}
-                backgroundColor={blok.cardBackgroundColor}
-                backgroundOpacity={blok.cardBackgroundOpacity}
-                width={blok.cardWidth}
-              />
+              <StoryblokServerComponent blok={card} key={card._uid} />
             ))}
           </div>
         )}

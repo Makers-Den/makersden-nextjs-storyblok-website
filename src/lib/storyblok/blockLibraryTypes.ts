@@ -65,7 +65,7 @@ export type GlobalSettingsFooterBottomLinksBlockType = "Link";
 
 export type GlobalSettingsFooterSocialLinksBlockType = "SocialLink";
 
-export type GlobalSettingsNavItemsBlockType = "Link" | "NavSection" | "NavJournalSection";
+export type GlobalSettingsNavItemsBlockType = "Link" | "NavSection";
 
 export type GlobalSettingsRedirectsBlockType = "RedirectItem";
 
@@ -74,7 +74,7 @@ export interface GlobalSettingsSbContent {
   footerBottomLinks?: LinkSbContent[];
   footerSocialLinks?: SocialLinkSbContent[];
   footerCopyrightNotice?: string;
-  navItems?: (LinkSbContent | NavSectionSbContent | NavJournalSectionSbContent)[];
+  navItems?: (LinkSbContent | NavSectionSbContent)[];
   redirects?: RedirectItemSbContent[];
   logo?: SbAsset;
   illustration?: SbAsset;
@@ -115,14 +115,14 @@ export interface HeroSectionSbContent {
   [k: string]: any;
 }
 
-export type HeroSplitSectionRightSideBlockType = "Image" | "ImageCardLink" | "FeaturedAuthorStory";
+export type HeroSplitSectionRightSideBlockType = "Image" | "ImageCardLink";
 
 export type HeroSplitSectionRightSideFillBlockType = "Image";
 
 export interface HeroSplitSectionSbContent {
   title?: SbRichtext;
   text?: SbRichtext;
-  rightSide?: (ImageSbContent | ImageCardLinkSbContent | FeaturedAuthorStorySbContent)[];
+  rightSide?: (ImageSbContent | ImageCardLinkSbContent)[];
   rightSideFill?: ImageSbContent[];
   _uid: string;
   component: "HeroSplitSection";
@@ -277,16 +277,13 @@ export type SplitSectionLeftContentBlockType =
   | "RichTextContent"
   | "Image"
   | "TitleAndText"
-  | "FeaturedAuthorStory"
   | "ImageCardLink";
 
 export type SplitSectionRightContentBlockType =
   | "RichTextContent"
   | "Image"
   | "TitleAndText"
-  | "FeaturedAuthorStory"
-  | "ImageCardLink"
-  | "NestedGrid";
+  | "ImageCardLink";
 
 export interface SplitSectionSbContent {
   title?: SbRichtext;
@@ -294,16 +291,13 @@ export interface SplitSectionSbContent {
     | RichTextContentSbContent
     | ImageSbContent
     | TitleAndTextSbContent
-    | FeaturedAuthorStorySbContent
     | ImageCardLinkSbContent
   )[];
   rightContent?: (
     | RichTextContentSbContent
     | ImageSbContent
     | TitleAndTextSbContent
-    | FeaturedAuthorStorySbContent
     | ImageCardLinkSbContent
-    | NestedGridSbContent
   )[];
   proportions?: "" | "33/66" | "50/50" | "66/33";
   mobileOrder?: "" | "left on top" | "right on top";

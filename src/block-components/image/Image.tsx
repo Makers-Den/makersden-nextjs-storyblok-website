@@ -26,11 +26,7 @@ export function Image({ blok }: { blok: ImageSbContent }) {
   return (
     <div
       {...storyblokEditable(blok)}
-      className={clsxm(
-        isFullWidth && 'w-full',
-        isFullHeight && 'h-full',
-        blok.isSticky && 'sticky top-[15%]',
-      )}
+      className={clsxm(isFullWidth && 'w-full', isFullHeight && 'h-full')}
     >
       <StoryblokImage
         storyblokImage={blok.image}

@@ -1,34 +1,18 @@
 import { storyblokEditable } from '@storyblok/react/rsc';
 
-import clsxm from '@/lib/clsxm';
-import { toCssVariableName } from '@/lib/colors';
 import { type ImageAndTextCardSbContent } from '@/lib/storyblok';
 
 import { StoryblokImage } from '@/components/images/StoryblokImage';
 import { HeadingSm, Text } from '@/components/typography/Typography';
 
-import { type CardStyleProps } from '../grid-section/GridSection';
-
 export function ImageAndTextCard({
   blok,
-  backgroundColor,
-  backgroundOpacity,
-  width,
 }: {
   blok: ImageAndTextCardSbContent;
-} & CardStyleProps) {
+}) {
   return (
     <div
-      style={{
-        backgroundColor:
-          backgroundColor &&
-          `color-mix(in srgb, var(${toCssVariableName(backgroundColor)}), transparent ${backgroundOpacity ? backgroundOpacity : 100}%)`,
-      }}
-      className={clsxm(
-        (!width || width === 'auto') && 'w-auto max-w-[280px]',
-        width === 'stretchToFill' && 'w-full',
-        'flex flex-shrink-0 flex-col gap-[15px] overflow-hidden rounded-lg border-[1.5px] border-gray-200 bg-white',
-      )}
+      className='flex w-auto max-w-[280px] flex-shrink-0 flex-col gap-[15px] overflow-hidden rounded-lg border-[1.5px] border-gray-200 bg-white'
       {...storyblokEditable(blok)}
     >
       {/* Card Image with desaturated blueish filter */}
