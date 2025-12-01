@@ -706,11 +706,40 @@ import {
 
 **File**: `src/lib/richTextUtils.tsx`
 
+**🚨 CRITICAL WARNING: SERVER-ONLY MODULE**
+
+The `richTextUtils.tsx` file imports `'server-only'` and **CANNOT** be used in client components. If you need to render rich text in an interactive component:
+
+1. **Pre-render the rich text in a Server Component**
+2. **Pass the rendered content to the Client Component as a prop**
+3. See [Splitting Server and Client Components](#critical-splitting-server-and-client-components) for detailed patterns
+
+```typescript
+// ❌ WRONG - Will cause build error
+'use client';
+import { renderText } from '@/lib/richTextUtils'; // ERROR: Cannot import server-only module!
+
+// ✅ CORRECT - Pre-render in server component, pass as prop
+// Server Component
+export function MySection({ blok }) {
+  const content = renderText(blok.content); // ✅ OK in server component
+  return <MyClientComponent content={content} />;
+}
+
+// Client Component
+'use client';
+export function MyClientComponent({ content }: { content: ReactNode }) {
+  const [isOpen, setIsOpen] = useState(false);
+  return <div onClick={() => setIsOpen(!isOpen)}>{content}</div>;
+}
+```
+
 **Decision Tree:**
 
 1. **Plain string fields** → Use Typography components directly
 2. **Storyblok rich text content (`SbRichtext` type)** → Use `renderText()` functions
 3. **Title fields from Storyblok (`SbRichtext` type)** → Use `renderHeadingXl/Lg/Md()`
+4. **Rich text in interactive component** → Pre-render in server component, pass as `ReactNode` prop
 
 ### Typography Components (for plain strings)
 
@@ -957,10 +986,237 @@ export function InteractiveComponent() {
 
 **Use When**:
 
-- Event handlers needed
-- Browser APIs required
-- React hooks (useState, useEffect)
+- Event handlers needed (onClick, onChange, etc.)
+- Browser APIs required (localStorage, window, etc.)
+- React hooks (useState, useEffect, useRef, etc.)
 - Third-party interactive libraries
+
+### CRITICAL: Splitting Server and Client Components
+
+**IMPORTANT**: When a component needs interactivity (client-side JavaScript) but also renders rich text or uses other server-only utilities, you **MUST** split it into separate server and client components.
+
+#### The Problem
+
+```typescript
+// ❌ WRONG - This will cause an error!
+'use client';
+
+import { useState } from 'react';
+import { renderText } from '@/lib/richTextUtils'; // ERROR: server-only module in client component!
+
+export function InteractiveSection({ blok }: { blok: InteractiveSectionSbContent }) {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <div>
+      <button onClick={() => setIsOpen(!isOpen)}>Toggle</button>
+      {isOpen && renderText(blok.content)} {/* This won't work! */}
+    </div>
+  );
+}
+```
+
+**Why this fails:**
+- `richTextUtils.tsx` imports `'server-only'` (line 20)
+- Server-only modules cannot be imported in client components
+- This will throw a build error
+
+#### The Solution: Component Splitting Pattern
+
+Split into a **Server Component** (wrapper) and a **Client Component** (interactive part):
+
+**Step 1: Create the Client Component** (handles interactivity only)
+
+```typescript
+// src/block-components/interactive-section/InteractiveSectionClient.tsx
+'use client';
+
+import { useState, type ReactNode } from 'react';
+
+interface InteractiveSectionClientProps {
+  children: ReactNode; // Receives pre-rendered content
+}
+
+export function InteractiveSectionClient({ children }: InteractiveSectionClientProps) {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <div>
+      <button onClick={() => setIsOpen(!isOpen)}>
+        {isOpen ? 'Hide' : 'Show'} Content
+      </button>
+      {isOpen && <div>{children}</div>}
+    </div>
+  );
+}
+```
+
+**Step 2: Create the Server Component** (renders rich text)
+
+```typescript
+// src/block-components/interactive-section/InteractiveSection.tsx
+import { storyblokEditable } from '@storyblok/react/rsc';
+import { type InteractiveSectionSbContent } from '@/lib/storyblok';
+import { renderText } from '@/lib/richTextUtils'; // ✅ OK in server component
+import { Container } from '@/components/container/Container';
+
+import { InteractiveSectionClient } from './InteractiveSectionClient';
+
+export function InteractiveSection({ blok }: { blok: InteractiveSectionSbContent }) {
+  // ✅ Render rich text in Server Component
+  const renderedContent = renderText(blok.content);
+
+  return (
+    <Container {...storyblokEditable(blok)}>
+      {/* ✅ Pass pre-rendered content to Client Component */}
+      <InteractiveSectionClient>
+        {renderedContent}
+      </InteractiveSectionClient>
+    </Container>
+  );
+}
+```
+
+#### Common Patterns for Splitting
+
+**Pattern 1: Accordion/Collapsible Content**
+
+```typescript
+// Server Component
+export function FaqSection({ blok }: { blok: FaqSectionSbContent }) {
+  return (
+    <Container {...storyblokEditable(blok)}>
+      {blok.faqItems?.map((item) => (
+        <AccordionItem key={item._uid}>
+          {/* Pre-render rich text in server component */}
+          <AccordionItemClient
+            question={renderText(item.question)}
+            answer={renderText(item.answer)}
+          />
+        </AccordionItem>
+      ))}
+    </Container>
+  );
+}
+
+// Client Component
+'use client';
+export function AccordionItemClient({ question, answer }: { question: ReactNode; answer: ReactNode }) {
+  const [isOpen, setIsOpen] = useState(false);
+  return (
+    <div>
+      <button onClick={() => setIsOpen(!isOpen)}>{question}</button>
+      {isOpen && <div>{answer}</div>}
+    </div>
+  );
+}
+```
+
+**Pattern 2: Tabs with Rich Content**
+
+```typescript
+// Server Component
+export function TabsSection({ blok }: { blok: TabsSectionSbContent }) {
+  const tabs = blok.tabs?.map((tab) => ({
+    id: tab._uid,
+    title: tab.title,
+    content: renderText(tab.content), // Pre-render in server component
+  }));
+
+  return (
+    <Container {...storyblokEditable(blok)}>
+      <TabsClient tabs={tabs} />
+    </Container>
+  );
+}
+
+// Client Component
+'use client';
+export function TabsClient({ tabs }: { tabs: Array<{ id: string; title: string; content: ReactNode }> }) {
+  const [activeTab, setActiveTab] = useState(tabs[0]?.id);
+  // Interactive tab switching logic...
+}
+```
+
+**Pattern 3: Form with Rich Text Instructions**
+
+```typescript
+// Server Component
+export function FormSection({ blok }: { blok: FormSectionSbContent }) {
+  const instructions = renderText(blok.instructions);
+
+  return (
+    <Container {...storyblokEditable(blok)}>
+      <div>{instructions}</div>
+      <FormClient fields={blok.fields} />
+    </Container>
+  );
+}
+
+// Client Component
+'use client';
+export function FormClient({ fields }: { fields: FormField[] }) {
+  const [formData, setFormData] = useState({});
+  const handleSubmit = (e: FormEvent) => { /* ... */ };
+  // Form logic...
+}
+```
+
+#### Key Principles
+
+1. **Server Component = Data + Rich Text Rendering**
+   - Fetches data
+   - Renders rich text using `renderText()` utilities
+   - Pre-processes Storyblok content
+   - Passes rendered content to client components
+
+2. **Client Component = Interactivity Only**
+   - Receives pre-rendered content as props (`ReactNode`)
+   - Handles user interactions (clicks, form inputs, etc.)
+   - Manages component state (useState, useReducer)
+   - No imports from server-only modules
+
+3. **File Naming Convention**
+   - Server component: `ComponentName.tsx` (default export or named)
+   - Client component: `ComponentNameClient.tsx` (named export with 'Client' suffix)
+   - Co-locate both files in the same directory
+
+#### What NOT to Do
+
+```typescript
+// ❌ WRONG - Don't try to use server-only utilities in client components
+'use client';
+import { renderText } from '@/lib/richTextUtils'; // ERROR!
+
+// ❌ WRONG - Don't make entire component client when only part needs it
+'use client';
+export function MixedComponent({ blok }) {
+  const [state, setState] = useState(false);
+  return (
+    <div>
+      {renderText(blok.content)} {/* This won't work */}
+      <button onClick={() => setState(!state)}>Toggle</button>
+    </div>
+  );
+}
+
+// ❌ WRONG - Don't try to conditionally import server utilities
+'use client';
+export function BadComponent({ blok }) {
+  const content = typeof window === 'undefined'
+    ? renderText(blok.content) // Still won't work!
+    : blok.content;
+  // ...
+}
+```
+
+#### Summary
+
+- **Default to Server Components** - They're faster and more efficient
+- **Split when needed** - If you need both interactivity AND rich text rendering
+- **Server handles rendering** - Rich text, data fetching, Storyblok content
+- **Client handles interaction** - State, events, browser APIs
+- **Pass rendered content as props** - Server renders, client displays
 
 ## Component Naming Conventions
 

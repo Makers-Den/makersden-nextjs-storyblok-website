@@ -171,12 +171,14 @@ import clsxm from '@/lib/clsxm';
 - Only add `'use client'` when necessary (interactivity, browser APIs, hooks)
 - Keep client components small and focused
 - Fetch data in Server Components
+- **CRITICAL**: Split components when you need both interactivity AND rich text rendering
 
 **MUST NOT:**
 
 - Add `'use client'` unnecessarily
 - Fetch data in Client Components without good reason
 - Mix server and client logic inappropriately
+- Import `richTextUtils` or other server-only modules in client components
 
 **Example:**
 
@@ -193,7 +195,30 @@ export function InteractiveFeature() {
   const [count, setCount] = useState(0);
   return <button onClick={() => setCount(c => c + 1)}>{count}</button>;
 }
+
+// ✅ CORRECT - Split pattern for interactivity + rich text
+// Server Component
+export function InteractiveSection({ blok }: { blok: InteractiveSectionSbContent }) {
+  const content = renderText(blok.content); // Render in server component
+  return <InteractiveSectionClient content={content} />; // Pass to client
+}
+
+// Client Component
+'use client';
+export function InteractiveSectionClient({ content }: { content: ReactNode }) {
+  const [isOpen, setIsOpen] = useState(false);
+  return <button onClick={() => setIsOpen(!isOpen)}>{isOpen && content}</button>;
+}
 ```
+
+**Component Splitting Rule:**
+
+If a component needs:
+- ✅ **Only data/rich text** → Server Component
+- ✅ **Only interactivity** → Client Component
+- ⚠️ **Both interactivity + rich text** → **Split into Server (wrapper) + Client (interactive)**
+
+See [component-patterns.md#critical-splitting-server-and-client-components](./docs/component-patterns.md#critical-splitting-server-and-client-components) for detailed patterns.
 
 ### 6. Internationalization
 
@@ -233,15 +258,21 @@ export function Nav() {
 
 ### 7. Rich Text Handling
 
+**🚨 CRITICAL: `richTextUtils.tsx` is a SERVER-ONLY module**
+
+The `richTextUtils.tsx` file cannot be imported in client components. If you need rich text in an interactive component, you **MUST** split the component.
+
 **MUST:**
 
-- Use `renderText()` or variants from `src/lib/richTextUtils.tsx`
+- Use `renderText()` or variants from `src/lib/richTextUtils.tsx` **in Server Components only**
 - Check if rich text has content with `isRichtextNotEmpty()`
 - Use appropriate rendering function for context
 - Allow custom node resolvers when needed
+- **Split components** when combining interactivity with rich text rendering
 
 **MUST NOT:**
 
+- Import `richTextUtils` in client components (`'use client'`)
 - Render rich text fields directly
 - Skip empty checks
 - Create custom rich text renderers without good reason
@@ -249,16 +280,48 @@ export function Nav() {
 **Example:**
 
 ```typescript
-// ✅ CORRECT
+// ✅ CORRECT - Server Component
 import { renderText, isRichtextNotEmpty } from '@/lib/richTextUtils';
 
-{isRichtextNotEmpty(blok.content) && (
-  <div>{renderText(blok.content)}</div>
-)}
+export function ContentSection({ blok }) {
+  return (
+    <div>
+      {isRichtextNotEmpty(blok.content) && renderText(blok.content)}
+    </div>
+  );
+}
 
-// ❌ WRONG
-<div>{blok.content}</div>
+// ❌ WRONG - Client Component trying to import richTextUtils
+'use client';
+import { renderText } from '@/lib/richTextUtils'; // ERROR: Cannot import server-only module!
+
+// ✅ CORRECT - Split pattern for interactive component with rich text
+// Server Component (wrapper)
+export function InteractiveContent({ blok }) {
+  const content = renderText(blok.content); // Render here
+  return <InteractiveContentClient content={content} />; // Pass to client
+}
+
+// Client Component (interactive)
+'use client';
+export function InteractiveContentClient({ content }: { content: ReactNode }) {
+  const [isExpanded, setIsExpanded] = useState(false);
+  return (
+    <div>
+      <button onClick={() => setIsExpanded(!isExpanded)}>Toggle</button>
+      {isExpanded && content}
+    </div>
+  );
+}
+
+// ❌ WRONG - Mixing client and server
+'use client';
+export function MixedComponent({ blok }) {
+  return <div>{renderText(blok.content)}</div>; // ERROR!
+}
 ```
+
+See [component-patterns.md#critical-splitting-server-and-client-components](./docs/component-patterns.md#critical-splitting-server-and-client-components) for comprehensive splitting patterns.
 
 ### 8. Link Handling
 
@@ -441,6 +504,82 @@ export function StaticContent({ text }: { text: string }) {
 }
 ```
 
+### 6. Importing richTextUtils in Client Components
+
+```typescript
+// ❌ WRONG - Cannot import server-only module in client component
+'use client';
+import { renderText } from '@/lib/richTextUtils'; // BUILD ERROR!
+
+export function InteractiveSection({ blok }) {
+  const [isOpen, setIsOpen] = useState(false);
+  return (
+    <div>
+      <button onClick={() => setIsOpen(!isOpen)}>Toggle</button>
+      {isOpen && renderText(blok.content)} {/* Won't work */}
+    </div>
+  );
+}
+
+// ✅ CORRECT - Split into server and client components
+// Server Component
+export function InteractiveSection({ blok }) {
+  const content = renderText(blok.content); // Render in server component
+  return <InteractiveSectionClient content={content} />;
+}
+
+// Client Component
+'use client';
+export function InteractiveSectionClient({ content }: { content: ReactNode }) {
+  const [isOpen, setIsOpen] = useState(false);
+  return (
+    <div>
+      <button onClick={() => setIsOpen(!isOpen)}>Toggle</button>
+      {isOpen && content}
+    </div>
+  );
+}
+```
+
+### 7. Not Splitting Components When Mixing Interactivity and Rich Text
+
+```typescript
+// ❌ WRONG - Trying to do everything in one client component
+'use client';
+export function BadComponent({ blok }) {
+  const [expanded, setExpanded] = useState(false);
+  return (
+    <div>
+      <button onClick={() => setExpanded(!expanded)}>Expand</button>
+      {expanded && (
+        <div>
+          {renderText(blok.richContent)} {/* ERROR: can't import richTextUtils here */}
+        </div>
+      )}
+    </div>
+  );
+}
+
+// ✅ CORRECT - Server renders rich text, client handles interaction
+// Server Component (wrapper) - renders rich text
+export function GoodComponent({ blok }) {
+  const richContent = renderText(blok.richContent); // OK in server component
+  return <GoodComponentClient richContent={richContent} />;
+}
+
+// Client Component - handles interactivity only
+'use client';
+export function GoodComponentClient({ richContent }: { richContent: ReactNode }) {
+  const [expanded, setExpanded] = useState(false);
+  return (
+    <div>
+      <button onClick={() => setExpanded(!expanded)}>Expand</button>
+      {expanded && <div>{richContent}</div>}
+    </div>
+  );
+}
+```
+
 ### 4. Hardcoding Values
 
 ```typescript
@@ -531,9 +670,11 @@ Before submitting any code, verify:
 - [ ] Types regenerated if Storyblok changed
 - [ ] Using design tokens, not hardcoded values
 - [ ] Server Component unless client needed
+- [ ] **If mixing interactivity + rich text: Component is split into Server (wrapper) and Client (interactive)**
+- [ ] **`richTextUtils` NOT imported in client components (`'use client'`)**
 - [ ] `SectionWrapper` used if component has backgroundColor/spacing props
 - [ ] Translations added for user-facing text
-- [ ] Rich text rendered with utilities
+- [ ] Rich text rendered with utilities (in server components only)
 - [ ] Links use proper components/utilities
 - [ ] Optional fields handled safely
 - [ ] Key props on mapped elements

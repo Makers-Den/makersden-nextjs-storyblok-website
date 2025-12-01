@@ -45,12 +45,13 @@ Before working on any task:
 2. **Component Structure**: Right component in right directory
 3. **Storyblok Integration**: Register components, regenerate types
 4. **Server Components**: Default to Server Components, only use Client when needed
-5. **Styling**: Use Tailwind with design tokens, use `clsxm` for conditionals
-6. **i18n**: Use next-intl, import Link from `@/i18n/navigation`
-7. **Rich Text**: Use `renderText()` utilities
-8. **Links**: Use `StoryblokLink` component
-9. **Error Handling**: Handle optional fields safely
-10. **Code Quality**: Follow linting, formatting, and TypeScript strict mode
+5. **🚨 CRITICAL - Component Splitting**: When mixing interactivity + rich text, SPLIT into Server (wrapper) + Client (interactive). `richTextUtils` is SERVER-ONLY and cannot be imported in client components.
+6. **Styling**: Use Tailwind with design tokens, use `clsxm` for conditionals
+7. **i18n**: Use next-intl, import Link from `@/i18n/navigation`
+8. **Rich Text**: Use `renderText()` utilities (SERVER COMPONENTS ONLY)
+9. **Links**: Use `StoryblokLink` component
+10. **Error Handling**: Handle optional fields safely
+11. **Code Quality**: Follow linting, formatting, and TypeScript strict mode
 
 ### Typography Best Practices
 
@@ -374,7 +375,16 @@ export function Grid({ blok }: { blok: GridSbContent }) {
 
 ### Rich Text Rendering
 
+**🚨 CRITICAL: `richTextUtils.tsx` is SERVER-ONLY**
+
+Cannot be imported in client components! If you need interactivity + rich text:
+1. Pre-render rich text in Server Component
+2. Pass rendered content to Client Component as `ReactNode` prop
+
+See: [docs/component-patterns.md#critical-splitting-server-and-client-components](./docs/component-patterns.md#critical-splitting-server-and-client-components)
+
 ```typescript
+// ✅ CORRECT - Server Component
 import { renderText, isRichtextNotEmpty } from '@/lib/richTextUtils';
 
 {isRichtextNotEmpty(blok.content) && (
@@ -382,6 +392,24 @@ import { renderText, isRichtextNotEmpty } from '@/lib/richTextUtils';
     {renderText(blok.content)}
   </div>
 )}
+
+// ❌ WRONG - Client Component
+'use client';
+import { renderText } from '@/lib/richTextUtils'; // ERROR!
+
+// ✅ CORRECT - Split pattern for interactivity + rich text
+// Server Component (renders rich text)
+export function MySection({ blok }) {
+  const content = renderText(blok.content);
+  return <MySectionClient content={content} />;
+}
+
+// Client Component (handles interaction)
+'use client';
+export function MySectionClient({ content }: { content: ReactNode }) {
+  const [isOpen, setIsOpen] = useState(false);
+  return <button onClick={() => setIsOpen(!isOpen)}>{isOpen && content}</button>;
+}
 ```
 
 ### Locale-Aware Links
