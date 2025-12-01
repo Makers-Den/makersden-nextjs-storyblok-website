@@ -1,67 +1,113 @@
-<div align="center">
-  <h1>Makers' Den Website </h1>
-  <p>Next.js + Tailwind CSS + TypeScript .</p>
-</div>
+# Makers' Den Storyblok Website
 
-# Canonical repository location
+A production-ready Next.js website template with Storyblok CMS integration, built by [Makers' Den](https://makersden.io) - a Berlin-based ReactJS development agency specializing in [fast websites with headless CMS](https://makersden.io/services/fast-websites-headlesscms).
 
-Clone this repo to start off your new project.
-`git clone https://github.com/Makers-Den/makersden-storyblok-website.git`
+## Overview
 
-# Getting Started
+This is a modern, type-safe website template built with:
 
-Run `pnpm install` to install all dependencies for a project.
+- **Next.js 16** (App Router) with React Server Components
+- **Storyblok** (Headless CMS) with Visual Editor support
+- **TypeScript** (strict mode) with auto-generated types from Storyblok
+- **Tailwind CSS v4** with custom design tokens
+- **next-intl** for internationalization (i18n)
+- **pnpm** for package management
 
-After installing all dependencies run `pnpm dev` to run project locally on [localhost](http://localhost:3000/ 'localhost')
+## Quick Start
 
-## Install needed tools globally
+### Prerequisites
 
-```
-pnpm install -g dotenv-cli
-pnpm install -g storyblok
-```
+- Node.js >= v20.11.1
+- pnpm (install with `npm install -g pnpm`)
 
-# Deployment
+### Installation
 
-[Production Link](https://makersden.io/ 'Production Link')
+```bash
+# Clone the repository
+git clone https://github.com/Makers-Den/makersden-storyblok-website.git
+cd makersden-storyblok-website
 
-To make new production deployment push changes to main. Made sure that your github account is connected with makers@makersden.io vercel account.
+# Install dependencies
+pnpm install
 
-Login to makers@makersden.io vercel account using magic link.
-
-# Storyblok
-
-The website template assumes Storyblok as the Headless CMS.
-Template repository: [Makers' Den storyblok](https://app.storyblok.com/#/me/spaces/188026/dashboard "Makers' Den storyblok")
-
-To setup local dev url run `pnpm dev && pnpm proxy`. (This cmd will setup https proxy for localhost on [https://localhost:3010](https://localhost:3010))
-
-## Update the type definitions from Storyblok
-
-To update type definitions run `pnpm generate-sb-types`.
-
-Note:
-Make sure that you have [storyblok cli](https://www.storyblok.com/docs/Guides/command-line-interface 'storyblok cli') installed and you are logged in (the account has to have access to the [Makers' Den storyblok](https://app.storyblok.com/#/me/spaces/188026/dashboard "Makers' Den storyblok") space).
-
-# Page structure
-
-All CMS generated pages are generated via the catch-all [...slug.tsx]
-
-# Shadcn
-
-Basic components can be generate using shadcn e.g.
-
-```
-npx shadcn-ui@latest add accordion
+# Set up environment variables
+cp .env.local.example .env.local
+# Edit .env.local with your Storyblok credentials
 ```
 
-# Commit Message Convention
+### Development
 
-This starter is using [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/), it is mandatory to use it to commit changes.
+```bash
+# Start the development server
+pnpm dev
 
-# Font Optimization
+# The site will be available at http://localhost:3000
+```
 
-To optimize the font file size we used the solution from this article:
-https://barrd.dev/article/create-a-variable-font-subset-for-smaller-file-size/
+### Storyblok Visual Editor (Optional)
 
-#
+For local development with Storyblok's Visual Editor:
+
+```bash
+# Install global tools (one-time setup)
+pnpm install -g dotenv-cli storyblok
+
+# Run dev server with HTTPS proxy
+pnpm dev && pnpm proxy
+# Access via https://localhost:3010
+```
+
+### Generate TypeScript Types
+
+After creating or modifying components in Storyblok:
+
+```bash
+# Generate TypeScript types from Storyblok schemas
+pnpm generate-sb-types
+```
+
+## Documentation
+
+For comprehensive documentation, see:
+
+- **[AGENTS.md](./AGENTS.md)** - Development guidelines and coding standards for contributors
+- **[docs/](./docs/)** - Detailed technical documentation:
+  - [Architecture](./docs/architecture.md) - System architecture and routing
+  - [Storyblok Integration](./docs/storyblok-integration.md) - CMS integration patterns
+  - [Component Patterns](./docs/component-patterns.md) - Component structure and conventions
+  - [Styling](./docs/styling.md) - Tailwind CSS patterns
+  - [Internationalization](./docs/internationalization.md) - i18n implementation
+  - [Type System](./docs/type-system.md) - TypeScript patterns
+
+## Key Features
+
+- ✅ **Type Safety**: Auto-generated TypeScript types from Storyblok schemas
+- ✅ **Visual Editing**: Full Storyblok Visual Editor support with live preview
+- ✅ **Internationalization**: Built-in multi-language support (en, de)
+- ✅ **Performance**: Optimized for Core Web Vitals with ISR and image optimization
+- ✅ **Developer Experience**: Strict TypeScript, ESLint, Prettier, and Husky pre-commit hooks
+- ✅ **Server Components**: React Server Components by default for optimal performance
+
+## About Makers' Den
+
+[Makers' Den](https://makersden.io) is a Berlin-based ReactJS development agency that specializes in building high-performance websites and applications. We help companies achieve top 1% Core Web Vitals scores with modern tech stacks.
+
+**Our Services:**
+
+- [Fast Websites & Headless CMS](https://makersden.io/services/fast-websites-headlesscms) - Next.js + Storyblok/Sanity
+- ReactJS Web Frontends
+- Composable Commerce
+- React Native Mobile Development
+- NodeJS Backend Development
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](./LICENSE) file for details.
+
+## Support
+
+For questions about this template or to discuss your project, [contact Makers' Den](https://makersden.io).
+
+---
+
+Built with ❤️ by [Makers' Den](https://makersden.io)
