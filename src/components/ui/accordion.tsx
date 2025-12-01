@@ -4,7 +4,7 @@ import * as AccordionPrimitive from '@radix-ui/react-accordion';
 import { ChevronDown } from 'lucide-react';
 import * as React from 'react';
 
-import { cn } from '@/lib/utils';
+import clsxm from '@/lib/clsxm';
 
 const Accordion = AccordionPrimitive.Root;
 
@@ -15,7 +15,7 @@ function AccordionItem({
   return (
     <AccordionPrimitive.Item
       data-slot='accordion-item'
-      className={cn('border-b', className)}
+      className={clsxm('border-b', className)}
       {...props}
     />
   );
@@ -32,7 +32,7 @@ function AccordionTrigger({
     <AccordionPrimitive.Header className='flex'>
       <AccordionPrimitive.Trigger
         data-slot='accordion-trigger'
-        className={cn(
+        className={clsxm(
           'flex flex-1 items-center justify-between py-4 font-medium transition-all hover:underline [&[data-state=open]>svg]:rotate-180',
           className,
         )}
@@ -58,7 +58,7 @@ function AccordionContent({
       className='data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down overflow-hidden text-sm transition-all'
       {...props}
     >
-      <div className={cn('pt-0 pb-4', className)}>{children}</div>
+      <div className={clsxm('pt-0 pb-4', className)}>{children}</div>
     </AccordionPrimitive.Content>
   );
 }

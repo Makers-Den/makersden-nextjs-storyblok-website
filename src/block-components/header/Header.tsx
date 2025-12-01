@@ -1,6 +1,5 @@
 'use client';
 
-import { FaBeer } from '@react-icons/all-files/fa/FaBeer';
 import { useEffect, useRef, useState } from 'react';
 
 import clsxm from '@/lib/clsxm';
@@ -44,7 +43,6 @@ export function Header({
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const originalHeaderRef = useRef<HTMLHeadingElement>(null);
 
-  console.log('navItems', navItems, layoutType, navType);
   // Track original header height for CSS variable
   useEffect(() => {
     const setHeaderHeightCssVar = () => {
@@ -128,7 +126,15 @@ export function Header({
               )}
               href='/'
             >
-              <FaBeer className='color-inherit h-[60px] w-[60px] md:h-[80px] md:w-[80px]' />
+              {/* TODO: Replace with your logo component or image */}
+              <div
+                className={clsxm(
+                  'flex h-[60px] w-[60px] shrink-0 items-center justify-center rounded-lg font-bold md:h-[80px] md:w-[80px]',
+                  isTextWhite ? 'bg-white text-black' : 'bg-black text-white',
+                )}
+              >
+                <span className='text-[24px] md:text-[32px]'>L</span>
+              </div>
               <span className='color-inherit text-[32px] leading-normal font-semibold whitespace-nowrap'>
                 ACME
               </span>
@@ -206,7 +212,10 @@ export function Header({
           <div className='flex flex-1 items-center'>
             {/* Logo */}
             <Link className='flex shrink-0 items-center gap-2' href='/'>
-              <FaBeer className='h-[60px] w-[60px] md:h-[80px] md:w-[80px]' />
+              {/* TODO: Replace with your logo component or image */}
+              <div className='flex h-[60px] w-[60px] shrink-0 items-center justify-center rounded-lg bg-black font-bold text-white md:h-[80px] md:w-[80px]'>
+                <span className='text-[24px] md:text-[32px]'>L</span>
+              </div>
               <span className='text-[32px] leading-normal font-semibold whitespace-nowrap text-black'>
                 ACME
               </span>
