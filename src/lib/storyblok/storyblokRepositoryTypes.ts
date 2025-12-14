@@ -12,6 +12,7 @@ export type Filter = {
 export type ContentTypeName =
   | 'Page'
   | 'Post'
+  | 'Article'
   | 'GlobalSettings'
   | 'FaqSettings'
   | 'TeamMember'

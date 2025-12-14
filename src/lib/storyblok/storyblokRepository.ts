@@ -22,9 +22,13 @@ import { isDevelopment, isPreviewEnv } from '../constants';
 /** These pages exist, but should not be included in site map */
 export const SITEMAP_EXCLUDED_SLUGS = ['home', 'not-found', 'dev-page'];
 
-export const ALL_PAGE_TYPES: ContentTypeName[] = ['Page'];
+export const ALL_PAGE_TYPES: ContentTypeName[] = ['Page', 'Article'];
 
-export const RESOLVED_RELATIONS_ARRAY = [];
+export const RESOLVED_RELATIONS_ARRAY = [
+  'Article.author',
+  'Article.categories',
+  'FeaturedArticle.featuredArticle',
+];
 /**
  * The default set of story relations that should be resolved when fetching a story.
  * Each element is in the format of [block name].[field name]

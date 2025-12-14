@@ -1,6 +1,36 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import type { SbAsset, SbMultiasset, SbMultilink, SbRichtext, SbTable, StoryblokStory } from './sbInternalTypes';
+export interface ArticleSbContent {
+  title: string;
+  author: StoryblokStory<AuthorSbContent> | string;
+  date: string;
+  image: SbAsset;
+  intro?: SbRichtext;
+  content?: SbRichtext;
+  categories?: (StoryblokStory<CategorySbContent> | string)[];
+  _uid: string;
+  component: "Article";
+  [k: string]: any;
+}
+
+export interface AuthorSbContent {
+  image?: SbAsset;
+  name?: string;
+  _uid: string;
+  component: "Author";
+  [k: string]: any;
+}
+
+export interface CategorySbContent {
+  name?: string;
+  isFeatured?: boolean;
+  description?: string;
+  _uid: string;
+  component: "Category";
+  [k: string]: any;
+}
+
 export interface CtaLinkSbContent {
   name?: string;
   type?: "" | "default" | "secondary" | "outline" | "ghost" | "link";
@@ -49,6 +79,16 @@ export interface FaqSectionSbContent {
   [k: string]: any;
 }
 
+export interface FeaturedArticleSbContent {
+  featuredArticle: StoryblokStory<ArticleSbContent> | string;
+  backgroundColor?: Colors;
+  spacingTop?: Spacing;
+  spacingBottom?: Spacing;
+  _uid: string;
+  component: "FeaturedArticle";
+  [k: string]: any;
+}
+
 export type FooterSectionLinksBlockType = "Link";
 
 export interface FooterSectionSbContent {
@@ -65,7 +105,7 @@ export type GlobalSettingsFooterBottomLinksBlockType = "Link";
 
 export type GlobalSettingsFooterSocialLinksBlockType = "SocialLink";
 
-export type GlobalSettingsNavItemsBlockType = "Link" | "NavSection";
+export type GlobalSettingsNavItemsBlockType = "Link" | "NavSection" | "NavJournalSection";
 
 export type GlobalSettingsRedirectsBlockType = "RedirectItem";
 
@@ -115,7 +155,7 @@ export interface HeroSectionSbContent {
   [k: string]: any;
 }
 
-export type HeroSplitSectionRightSideBlockType = "Image" | "ImageCardLink";
+export type HeroSplitSectionRightSideBlockType = "Image" | "ImageCardLink" | "FeaturedAuthorStory";
 
 export type HeroSplitSectionRightSideFillBlockType = "Image";
 
@@ -215,15 +255,7 @@ export interface NavSectionLinkItemSbContent {
 export type PageAdditionalMetadataBlockType = "JsonLdMetadata";
 
 export interface PageSbContent {
-  body?: (
-    | CtaSectionSbContent
-    | FaqSectionSbContent
-    | GridSectionSbContent
-    | HeroNarrowSectionSbContent
-    | HeroSplitSectionSbContent
-    | LogosSectionSbContent
-    | SplitSectionSbContent
-  )[];
+  body?: any[];
   title?: string;
   description?: string;
   nonIndexable?: boolean;
@@ -232,6 +264,18 @@ export interface PageSbContent {
   layoutType?: "" | "default" | "lead page";
   _uid: string;
   component: "Page";
+  [k: string]: any;
+}
+
+export interface PaginatedSectionSbContent {
+  contentType: "Article";
+  title: string;
+  description?: SbRichtext;
+  backgroundColor?: Colors;
+  spacingTop?: Spacing;
+  spacingBottom?: Spacing;
+  _uid: string;
+  component: "PaginatedSection";
   [k: string]: any;
 }
 
@@ -273,28 +317,19 @@ export interface SplitContentSectionSbContent {
   [k: string]: any;
 }
 
-export type SplitSectionLeftContentBlockType =
-  | "RichTextContent"
-  | "Image"
-  | "TitleAndText"
-  | "ImageCardLink";
+export type SplitSectionLeftContentBlockType = "Image" | "TitleAndText" | "FeaturedAuthorStory" | "ImageCardLink";
 
 export type SplitSectionRightContentBlockType =
-  | "RichTextContent"
   | "Image"
   | "TitleAndText"
-  | "ImageCardLink";
+  | "FeaturedAuthorStory"
+  | "ImageCardLink"
+  | "NestedGrid";
 
 export interface SplitSectionSbContent {
   title?: SbRichtext;
-  leftContent?: (
-    | RichTextContentSbContent
-    | ImageSbContent
-    | TitleAndTextSbContent
-    | ImageCardLinkSbContent
-  )[];
+  leftContent?: (ImageSbContent | TitleAndTextSbContent | ImageCardLinkSbContent)[];
   rightContent?: (
-    | RichTextContentSbContent
     | ImageSbContent
     | TitleAndTextSbContent
     | ImageCardLinkSbContent
