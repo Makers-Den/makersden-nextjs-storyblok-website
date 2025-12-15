@@ -17,6 +17,7 @@ import { PaginatedSection } from '@/block-components/paginated-section/Paginated
 import { SplitSection } from '@/block-components/split-section/SplitSection';
 import { TitleAndText } from '@/block-components/title-and-text/TitleAndText';
 import { env } from '@/env';
+import ArticlePage from '@/page-components/ArticlePage';
 import Page from '@/page-components/Page';
 
 // using dynamic from 'next/dynamic'
@@ -30,6 +31,7 @@ export const getStoryblokApi = storyblokInit({
   },
   use: [apiPlugin],
   components: {
+    Article: ArticlePage,
     CtaLink: CtaLink,
     CtaSection: CtaSection,
     FaqSection: FaqSection,
