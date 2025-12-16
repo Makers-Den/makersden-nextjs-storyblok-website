@@ -11,6 +11,7 @@ import {
 } from '@/lib/storyblok';
 import { isStoryblokStory } from '@/lib/typeGuards';
 
+import { AnimateOnScroll } from '@/components/animate-on-scroll/AnimateOnScroll';
 import { Container } from '@/components/container/Container';
 import { StoryblokImage } from '@/components/images/StoryblokImage';
 import { SectionWrapper } from '@/components/section-wrapper/SectionWrapper';
@@ -44,16 +45,18 @@ export function FeaturedArticle({ blok }: { blok: FeaturedArticleSbContent }) {
     >
       <Container>
         <div className='bg-muted flex flex-col items-center gap-8 rounded-4xl p-5 lg:flex-row lg:gap-12 lg:p-14'>
-          {/* Image */}
-          <div
+          <AnimateOnScroll
+            animationType='fade'
+            delay={0.1}
             className={clsxm(
               'relative h-[400px] w-full overflow-hidden rounded-4xl',
               'lg:h-[500px] lg:w-1/2',
             )}
           >
+            {/* Image */}
             {article.content.image ? (
               <StoryblokImage
-                priority
+                preload
                 className='object-cover'
                 fill
                 sizes='(max-width: 1024px) 100vw, 50vw'
@@ -64,10 +67,14 @@ export function FeaturedArticle({ blok }: { blok: FeaturedArticleSbContent }) {
                 <Text className='text-muted-foreground'>No image</Text>
               </div>
             )}
-          </div>
+          </AnimateOnScroll>
 
           {/* Content */}
-          <div className='flex w-full flex-col justify-center lg:w-1/2'>
+          <AnimateOnScroll
+            animationType='fadeUp'
+            delay={0.3}
+            className='flex w-full flex-col justify-center lg:w-1/2'
+          >
             <div className='mx-auto max-w-2xl lg:mx-0'>
               {/* Category Badge */}
               {article.content.categories &&
@@ -104,7 +111,7 @@ export function FeaturedArticle({ blok }: { blok: FeaturedArticleSbContent }) {
                 <ArrowRightIcon className='h-5 w-5' />
               </Link>
             </div>
-          </div>
+          </AnimateOnScroll>
         </div>
       </Container>
     </SectionWrapper>

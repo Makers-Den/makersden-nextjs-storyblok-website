@@ -12,6 +12,7 @@ import {
   RESOLVED_RELATIONS,
 } from '@/lib/storyblok/storyblokRepository';
 
+import { AnimateOnScroll } from '@/components/animate-on-scroll/AnimateOnScroll';
 import { ArticleList } from '@/components/article-list/ArticleList';
 import { Container } from '@/components/container/Container';
 import { SectionWrapper } from '@/components/section-wrapper/SectionWrapper';
@@ -68,7 +69,7 @@ export async function PaginatedSection({
     >
       <Container>
         {/* Title */}
-        <div className='mb-12'>
+        <AnimateOnScroll animationType='fadeUp' delay={0.1} className='mb-12'>
           <div className='mb-8'>
             <HeadingMd className='mb-4'>{blok.title}</HeadingMd>
             <div className='bg-border h-px w-40' />
@@ -77,10 +78,12 @@ export async function PaginatedSection({
           {blok.description && isRichtextNotEmpty(blok.description) && (
             <div className='max-w-3xl'>{renderText(blok.description)}</div>
           )}
-        </div>
+        </AnimateOnScroll>
 
         {/* Article List */}
-        <ArticleList articles={articlesWithStringIntro} />
+        <AnimateOnScroll animationType='fadeUp' delay={0.3}>
+          <ArticleList articles={articlesWithStringIntro} />
+        </AnimateOnScroll>
       </Container>
     </SectionWrapper>
   );
