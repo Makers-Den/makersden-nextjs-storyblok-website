@@ -57,6 +57,25 @@ pnpm dev && pnpm proxy
 # Access via https://localhost:3010
 ```
 
+#### Local SSL Certificate Setup
+
+If you need local HTTPS in order to run `pnpm proxy` :
+
+```bash
+# Install mkcert
+# macOS:
+brew install mkcert
+
+# Linux: apt install mkcert (or download from https://github.com/FiloSottile/mkcert/releases)
+# Windows: choco install mkcert (or scoop install mkcert)
+
+# Install local CA (one-time setup)
+mkcert -install
+
+# Generate certificates in project root
+mkcert -key-file localhost-key.pem -cert-file localhost.pem localhost
+```
+
 ### Generate TypeScript Types
 
 After creating or modifying components in Storyblok:
