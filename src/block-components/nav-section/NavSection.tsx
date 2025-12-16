@@ -14,9 +14,7 @@ export function NavSection({ blok, textColor }: NavSectionProps) {
       {/* Trigger Button */}
       <button
         className={clsxm(
-          'cursor-pointer rounded-lg px-5 py-4 text-[20px] leading-normal font-medium transition-colors',
-          'hover:bg-gray-100 hover:text-black',
-          'group-hover:bg-gray-100 group-hover:text-black',
+          'cursor-pointer px-2 py-1 text-base font-normal transition-colors hover:opacity-70',
           textColor === 'white' ? 'text-white' : 'text-black',
         )}
         aria-haspopup='true'

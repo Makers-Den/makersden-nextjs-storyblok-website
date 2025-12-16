@@ -14,12 +14,7 @@ import { Container } from '@/components/container/Container';
 import { SvgIcon } from '@/components/icons/SvgIcon';
 import { StoryblokImage } from '@/components/images/StoryblokImage';
 import { StoryblokLink } from '@/components/storyblok-link/StoryblokLink';
-import {
-  HeadingLg,
-  HeadingSm,
-  Text,
-  TextSm,
-} from '@/components/typography/Typography';
+import { HeadingSm, Text, TextSm } from '@/components/typography/Typography';
 
 type FooterProps = {
   footerSections?: FooterSectionSbContent[];
@@ -70,6 +65,7 @@ export function Footer({
   copyrightNotice,
   logo,
 }: FooterProps) {
+  // Create link columns from Storyblok sections
   const linkColumns = (footerSections ?? [])
     .map((section) => ({
       ...section,
@@ -86,40 +82,40 @@ export function Footer({
   const showBottomRow = Boolean(copyrightNotice) || legalLinks.length > 0;
 
   return (
-    <footer className='bg-black text-white'>
-      <Container className='px-2 py-3 md:px-3 md:py-12'>
-        <div className='mb-3 flex flex-col gap-3 md:mb-12 md:gap-12 lg:flex-row lg:justify-between'>
-          {/* Left Section: Logo, Social Links, Newsletter */}
-          <div className='flex flex-col gap-6 md:gap-5'>
+    <footer className='bg-slate-900 text-white'>
+      <Container className='px-2 py-12 md:px-3 md:py-16'>
+        <div className='mb-12 flex flex-col gap-8 md:mb-16 md:gap-12 lg:flex-row lg:justify-between'>
+          {/* Left Section: Logo */}
+          <div className='flex flex-col gap-6 md:max-w-xs lg:max-w-sm'>
             {/* Logo */}
-            <div className='flex items-center gap-2'>
+            <div className='flex flex-col gap-3'>
               {logo?.filename ? (
                 <StoryblokImage
                   storyblokImage={logo}
-                  className='h-[60px] w-auto'
+                  className='h-8 w-auto'
                   width={120}
-                  height={60}
+                  height={32}
                 />
               ) : (
-                <HeadingLg as='span' className='font-semibold'>
+                <HeadingSm as='span' className='font-semibold'>
                   ACME Industries
-                </HeadingLg>
+                </HeadingSm>
               )}
             </div>
 
             {/* Social Media Icons */}
             {socialLinks.length > 0 && (
-              <div className='flex items-center gap-6 md:gap-3.5'>
+              <div className='flex items-center gap-3'>
                 {socialLinks.map((social) => {
                   const innerContent = social.icon?.filename ? (
                     <StoryblokImage
                       storyblokImage={social.icon}
-                      className='h-[26px] w-[26px] object-contain md:h-4 md:w-4'
-                      width={26}
-                      height={26}
+                      className='h-4 w-4 object-contain'
+                      width={16}
+                      height={16}
                     />
                   ) : (
-                    <span className='text-[10px] leading-none font-semibold uppercase'>
+                    <span className='text-xs font-semibold uppercase'>
                       {social.name}
                     </span>
                   );
@@ -130,7 +126,7 @@ export function Footer({
                         key={social._uid}
                         link={social.link}
                         aria-label={social.name ?? 'Social link'}
-                        className='flex items-center justify-center text-white transition-opacity hover:opacity-70'
+                        className='flex h-10 w-10 items-center justify-center rounded-full border border-slate-700 bg-slate-800 text-white transition-colors hover:bg-slate-700'
                       >
                         {innerContent}
                       </StoryblokLink>
@@ -140,7 +136,7 @@ export function Footer({
                   return (
                     <span
                       key={social._uid}
-                      className='flex items-center justify-center text-white/70'
+                      className='flex h-10 w-10 items-center justify-center rounded-full border border-slate-700 bg-slate-800 text-slate-400'
                     >
                       {innerContent}
                     </span>
@@ -154,22 +150,27 @@ export function Footer({
           {linkColumns.length > 0 && (
             <>
               {/* Mobile Accordion */}
-              <div className='py-3 md:hidden'>
+              <div className='md:hidden'>
                 <Accordion.Root type='single' collapsible>
                   {linkColumns.map((column) => (
                     <Accordion.Item
                       key={column._uid}
                       value={column._uid}
-                      className='border-b-0'
+                      className='border-b border-slate-700'
                     >
                       <Accordion.Header className='flex'>
                         <Accordion.Trigger
                           className={clsxm(
-                            'group flex w-full items-center justify-between py-3',
+                            'group flex w-full items-center justify-between py-4',
                             'transition-opacity hover:opacity-70',
                           )}
                         >
-                          <HeadingSm as='span'>{column.title}</HeadingSm>
+                          <TextSm
+                            as='span'
+                            className='font-semibold tracking-wide text-white uppercase'
+                          >
+                            {column.title}
+                          </TextSm>
                           <div className='flex h-8 w-8 items-center justify-center'>
                             <SvgIcon
                               name='ChevronDown'
@@ -181,6 +182,7 @@ export function Footer({
                           </div>
                         </Accordion.Trigger>
                       </Accordion.Header>
+
                       <Accordion.Content
                         className={clsxm(
                           'overflow-hidden',
@@ -189,7 +191,7 @@ export function Footer({
                         )}
                       >
                         {column.links.length > 0 && (
-                          <ul className='space-y-3 pb-3'>
+                          <ul className='space-y-3 pb-4'>
                             {column.links.map((link) => {
                               const label =
                                 link.name?.trim() || 'Untitled link';
@@ -198,12 +200,12 @@ export function Footer({
                                   {hasUsableLink(link.link) ? (
                                     <StoryblokLink
                                       link={link.link}
-                                      className='transition-opacity hover:opacity-70'
+                                      className='text-slate-400 transition-colors hover:text-white'
                                     >
                                       <Text as='span'>{label}</Text>
                                     </StoryblokLink>
                                   ) : (
-                                    <Text as='span' className='text-white/70'>
+                                    <Text as='span' className='text-slate-500'>
                                       {label}
                                     </Text>
                                   )}
@@ -219,29 +221,34 @@ export function Footer({
               </div>
 
               {/* Desktop: Link Columns */}
-              <div className='hidden flex-col gap-8 sm:flex-row sm:gap-12 md:flex lg:gap-0 lg:space-x-0'>
+              <div className='hidden gap-12 md:flex lg:gap-16'>
                 {linkColumns.map((column) => (
-                  <div key={column._uid} className='min-w-[150px]'>
+                  <div key={column._uid} className='min-w-[140px]'>
                     {column.title && (
-                      <HeadingSm as='h3' className='mb-3 text-[20px]'>
+                      <Text
+                        as='h3'
+                        className='mb-4 font-semibold tracking-wide text-white'
+                      >
                         {column.title}
-                      </HeadingSm>
+                      </Text>
                     )}
+
                     {column.links.length > 0 && (
                       <ul className='space-y-3'>
                         {column.links.map((link) => {
                           const label = link.name?.trim() || 'Untitled link';
+
                           return (
                             <li key={link._uid}>
                               {hasUsableLink(link.link) ? (
                                 <StoryblokLink
                                   link={link.link}
-                                  className='transition-opacity hover:opacity-70'
+                                  className='text-slate-400 transition-colors hover:text-white'
                                 >
                                   <Text as='span'>{label}</Text>
                                 </StoryblokLink>
                               ) : (
-                                <Text as='span' className='text-white/70'>
+                                <Text as='span' className='text-slate-500'>
                                   {label}
                                 </Text>
                               )}
@@ -259,25 +266,30 @@ export function Footer({
 
         {/* Bottom Section: Copyright and Legal Links */}
         {showBottomRow && (
-          <div className='flex flex-col items-start justify-between gap-3 border-t border-white/15 pt-3 md:flex-row md:items-center md:gap-4 md:pt-4'>
+          <div className='flex flex-col items-start justify-between gap-4 border-t border-slate-700 pt-6 md:flex-row md:items-center md:pt-8'>
+            {/* Copyright */}
+            {copyrightNotice && (
+              <TextSm as='p' className='text-slate-400'>
+                {copyrightNotice}
+              </TextSm>
+            )}
+
+            {/* Legal Links */}
             {legalLinks.length > 0 && (
-              <ul className='flex flex-wrap gap-5 md:gap-3'>
-                {legalLinks.map((link, idx) => {
+              <ul className='flex flex-wrap gap-6'>
+                {legalLinks.map((link) => {
                   const label = link.name?.trim() || 'Untitled link';
                   return (
-                    <li key={link._uid} className='flex items-center'>
-                      {idx > 0 && (
-                        <span className='mr-5 text-white/30 md:mr-3'>|</span>
-                      )}
+                    <li key={link._uid}>
                       {hasUsableLink(link.link) ? (
                         <StoryblokLink
                           link={link.link}
-                          className='transition-opacity hover:opacity-70'
+                          className='text-slate-400 transition-colors hover:text-white'
                         >
-                          <Text as='span'>{label}</Text>
+                          <TextSm as='span'>{label}</TextSm>
                         </StoryblokLink>
                       ) : (
-                        <TextSm as='span' className='text-white/70'>
+                        <TextSm as='span' className='text-slate-500'>
                           {label}
                         </TextSm>
                       )}
@@ -286,7 +298,6 @@ export function Footer({
                 })}
               </ul>
             )}
-            {copyrightNotice && <TextSm as='p'>{copyrightNotice}</TextSm>}
           </div>
         )}
       </Container>

@@ -8,6 +8,7 @@ import { isRichtextNotEmpty } from '@/lib/isRichtext';
 import { renderHeadingLg } from '@/lib/richTextUtils';
 import { type SplitSectionSbContent } from '@/lib/storyblok';
 
+import { AnimateOnScroll } from '@/components/animate-on-scroll/AnimateOnScroll';
 import { Container } from '@/components/container/Container';
 import { SectionWrapper } from '@/components/section-wrapper/SectionWrapper';
 
@@ -52,42 +53,54 @@ export function SplitSection({ blok }: { blok: SplitSectionSbContent }) {
       {...storyblokEditable(blok)}
     >
       <Container>
-        <div className={clsxm(hasTitle && 'flex flex-col gap-8 md:gap-12')}>
-          {/* Title */}
-          {hasTitle && <div>{renderHeadingLg(blok.title!, 'h2')}</div>}
-
-          {/* Split Grid */}
-          <div
-            className={clsxm(
-              'grid grid-cols-1 gap-8 md:gap-12',
-              getProportionClasses(),
+        <AnimateOnScroll>
+          <div className={clsxm(hasTitle && 'flex flex-col gap-10 md:gap-20')}>
+            {/* Title */}
+            {hasTitle && (
+              <div className='text-center'>
+                {renderHeadingLg(blok.title!, 'h2')}
+              </div>
             )}
-          >
-            {/* Left Column */}
-            <div
-              className={clsxm('flex flex-col gap-6', mobileOrderClasses.left)}
-            >
-              {blok.leftContent?.map((nestedBlok) => (
-                <StoryblokServerComponent
-                  blok={nestedBlok}
-                  key={nestedBlok._uid}
-                />
-              ))}
-            </div>
 
-            {/* Right Column */}
+            {/* Split Grid */}
             <div
-              className={clsxm('flex flex-col gap-6', mobileOrderClasses.right)}
+              className={clsxm(
+                'grid grid-cols-1 items-center gap-8 md:gap-12',
+                getProportionClasses(),
+              )}
             >
-              {blok.rightContent?.map((nestedBlok) => (
-                <StoryblokServerComponent
-                  blok={nestedBlok}
-                  key={nestedBlok._uid}
-                />
-              ))}
+              {/* Left Column */}
+              <div
+                className={clsxm(
+                  'flex flex-col items-start justify-center gap-6',
+                  mobileOrderClasses.left,
+                )}
+              >
+                {blok.leftContent?.map((nestedBlok) => (
+                  <StoryblokServerComponent
+                    blok={nestedBlok}
+                    key={nestedBlok._uid}
+                  />
+                ))}
+              </div>
+
+              {/* Right Column */}
+              <div
+                className={clsxm(
+                  'flex flex-col items-start justify-center gap-6',
+                  mobileOrderClasses.right,
+                )}
+              >
+                {blok.rightContent?.map((nestedBlok) => (
+                  <StoryblokServerComponent
+                    blok={nestedBlok}
+                    key={nestedBlok._uid}
+                  />
+                ))}
+              </div>
             </div>
           </div>
-        </div>
+        </AnimateOnScroll>
       </Container>
     </SectionWrapper>
   );
