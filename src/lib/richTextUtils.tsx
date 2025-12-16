@@ -202,7 +202,7 @@ export const defaultRenderOptions: RenderOptions = {
         return (
           <HeadingMd
             as='h2'
-            className='mt-16 mb-6 md:mt-20'
+            className='mt-6 mb-6 md:mt-6'
             id={sentenceToId(getStringFromReactNode(children) || '')}
           >
             {children}

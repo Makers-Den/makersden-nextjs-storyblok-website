@@ -18,7 +18,12 @@ export function CtaLink({ blok }: { blok: CtaLinkSbContent }) {
     blok.type === '' || !blok.type ? 'default' : blok.type;
 
   return (
-    <ButtonLink href={href} variant={variant} {...storyblokEditable(blok)}>
+    <ButtonLink
+      href={href}
+      variant={variant}
+      size='pill'
+      {...storyblokEditable(blok)}
+    >
       {blok.name}
     </ButtonLink>
   );
