@@ -26,6 +26,7 @@ export function Layout({
     footerBottomLinks = [],
     footerSocialLinks = [],
     footerCopyrightNotice = '',
+    logo,
   } = globalSettings.content;
 
   return (
@@ -42,6 +43,7 @@ export function Layout({
         footerBottomLinks={footerBottomLinks}
         footerSocialLinks={footerSocialLinks}
         copyrightNotice={footerCopyrightNotice}
+        logo={logo}
       />
     </div>
   );
