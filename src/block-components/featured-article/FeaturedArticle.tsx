@@ -43,7 +43,7 @@ export function FeaturedArticle({ blok }: { blok: FeaturedArticleSbContent }) {
       {...storyblokEditable(blok)}
     >
       <Container>
-        <div className='bg-muted flex flex-col items-center gap-8 rounded-4xl p-14 lg:flex-row lg:gap-12'>
+        <div className='bg-muted flex flex-col items-center gap-8 rounded-4xl p-5 lg:flex-row lg:gap-12 lg:p-14'>
           {/* Image */}
           <div
             className={clsxm(
