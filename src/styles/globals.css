@@ -44,24 +44,24 @@
 
 :root {
   /* Base colors - Light Mode */
-  --background: oklch(1 0 261);
+  --background: oklch(0.965 0.006 90);
   --foreground: oklch(0.1858 0 0);
 
-  /* Primary - Main brand color (buttons, links) */
-  --primary: oklch(0.1858 0 0);
-  --primary-foreground: oklch(0.9843 0 0);
+  /* Primary - Main brand color (dark buttons like header CTA) */
+  --primary: oklch(0.18 0 0);
+  --primary-foreground: oklch(0.98 0 0);
 
   /* Secondary - Subtle backgrounds, secondary buttons */
-  --secondary: oklch(0.9608 0.006 95);
-  --secondary-foreground: oklch(0.1858 0 0);
+  --secondary: oklch(0.88 0.025 85);
+  --secondary-foreground: oklch(0.25 0 0);
 
   /* Muted - Disabled states, subtle backgrounds */
-  --muted: oklch(0.9608 0.006 95);
-  --muted-foreground: oklch(0.3765 0.011 261);
+  --muted: oklch(0.94 0.015 90);
+  --muted-foreground: oklch(0.45 0.01 261);
 
-  /* Accent - Highlights, hover states */
-  --accent: oklch(0.9608 0.006 95);
-  --accent-foreground: oklch(0.1858 0 0);
+  /* Accent - Primary CTA buttons */
+  --accent: oklch(0.55 0.2 265);
+  --accent-foreground: oklch(1 0 0);
 
   /* Card - Elevated surfaces (same as base colors for cohesion) */
   --card: oklch(1 0 261);
@@ -107,8 +107,8 @@
   --muted-foreground: oklch(0.6667 0 0);
 
   /* Accent - Highlights, hover states */
-  --accent: oklch(0.2078 0.004 261);
-  --accent-foreground: oklch(0.9686 0.01 95);
+  --accent: oklch(0.55 0.2 260);
+  --accent-foreground: oklch(1 0 0);
 
   /* Card - Elevated surfaces (same as base colors for cohesion) */
   --card: oklch(0.1373 0.004 261);
