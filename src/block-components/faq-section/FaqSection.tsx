@@ -1,8 +1,9 @@
 import { storyblokEditable } from '@storyblok/react/rsc';
 
-import { renderHeadingLg, renderText, renderTextLg } from '@/lib/richTextUtils';
+import { renderHeadingMd, renderText, renderTextLg } from '@/lib/richTextUtils';
 import { type FaqSectionSbContent } from '@/lib/storyblok';
 
+import { AnimateOnScroll } from '@/components/animate-on-scroll/AnimateOnScroll';
 import { Container } from '@/components/container/Container';
 import { SectionWrapper } from '@/components/section-wrapper/SectionWrapper';
 import {
@@ -21,41 +22,35 @@ export function FaqSection({ blok }: { blok: FaqSectionSbContent }) {
       {...storyblokEditable(blok)}
     >
       <Container>
-        <div className='grid grid-cols-1 gap-12 lg:grid-cols-[300px_1fr] lg:gap-16'>
-          {/* Title on the left */}
-          {blok.title && (
-            <div className='flex items-center'>
-              {renderHeadingLg(blok.title, 'h2')}
-            </div>
-          )}
+        <AnimateOnScroll>
+          <div className='mx-auto max-w-3xl'>
+            {/* Title */}
+            {blok.title && (
+              <div className='mb-12 text-center'>
+                {renderHeadingMd(blok.title, 'h3')}
+              </div>
+            )}
 
-          {/* Accordion on the right */}
-          <Accordion
-            type='single'
-            collapsible
-            className='flex w-full flex-col gap-8'
-            defaultValue='item-0'
-          >
-            {blok.faqItems.map(({ _uid, question, answer }, idx) => (
-              <AccordionItem
-                key={_uid}
-                value={`item-${idx}`}
-                className='rounded-[10px] border-2 border-gray-300 bg-white px-6 py-6'
-              >
-                {question && (
-                  <AccordionTrigger className='gap-4 hover:no-underline'>
-                    {renderTextLg(question)}
-                  </AccordionTrigger>
-                )}
-                {answer && (
-                  <AccordionContent className='max-w-[80ch] pt-2'>
-                    {renderText(answer)}
-                  </AccordionContent>
-                )}
-              </AccordionItem>
-            ))}
-          </Accordion>
-        </div>
+            {/* Accordion list */}
+            <Accordion type='single' collapsible defaultValue='item-0'>
+              {blok.faqItems.map(({ _uid, question, answer }, idx) => (
+                <AccordionItem key={_uid} value={`item-${idx}`}>
+                  {question && (
+                    <AccordionTrigger className='text-left text-base font-semibold hover:no-underline md:text-lg'>
+                      {renderTextLg(question)}
+                    </AccordionTrigger>
+                  )}
+
+                  {answer && (
+                    <AccordionContent className='text-muted-foreground'>
+                      {renderText(answer)}
+                    </AccordionContent>
+                  )}
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </div>
+        </AnimateOnScroll>
       </Container>
     </SectionWrapper>
   );
