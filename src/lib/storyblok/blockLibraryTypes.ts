@@ -33,7 +33,7 @@ export interface CategorySbContent {
 
 export interface CtaLinkSbContent {
   name?: string;
-  type?: "" | "default" | "secondary" | "outline" | "ghost" | "link";
+  type?: "" | "default" | "secondary" | "outline" | "ghost" | "link" | "accent";
   link?: SbMultilink;
   _uid: string;
   component: "CtaLink";
@@ -155,6 +155,8 @@ export interface HeroSectionSbContent {
   [k: string]: any;
 }
 
+export type HeroSplitSectionCtaLinksBlockType = "CtaLink";
+
 export type HeroSplitSectionRightSideBlockType = "Image" | "ImageCardLink" | "FeaturedAuthorStory";
 
 export type HeroSplitSectionRightSideFillBlockType = "Image";
@@ -162,6 +164,7 @@ export type HeroSplitSectionRightSideFillBlockType = "Image";
 export interface HeroSplitSectionSbContent {
   title?: SbRichtext;
   text?: SbRichtext;
+  ctaLinks?: CtaLinkSbContent[];
   rightSide?: (ImageSbContent | ImageCardLinkSbContent)[];
   rightSideFill?: ImageSbContent[];
   _uid: string;
@@ -317,28 +320,40 @@ export interface SplitContentSectionSbContent {
   [k: string]: any;
 }
 
-export type SplitSectionLeftContentBlockType = "Image" | "TitleAndText" | "FeaturedAuthorStory" | "ImageCardLink";
+export type SplitSectionLeftContentBlockType =
+  | "Image"
+  | "TitleAndText"
+  | "FeaturedAuthorStory"
+  | "ImageCardLink"
+  | "CtaLink";
 
 export type SplitSectionRightContentBlockType =
   | "Image"
   | "TitleAndText"
   | "FeaturedAuthorStory"
   | "ImageCardLink"
-  | "NestedGrid";
+  | "NestedGrid"
+  | "CtaLink";
 
 export interface SplitSectionSbContent {
+  backgroundColor?: Colors;
+  spacingTop?: Spacing;
+  spacingBottom?: Spacing;
   title?: SbRichtext;
-  leftContent?: (ImageSbContent | TitleAndTextSbContent | ImageCardLinkSbContent)[];
+  leftContent?: (
+    | ImageSbContent
+    | TitleAndTextSbContent
+    | ImageCardLinkSbContent
+    | CtaLinkSbContent
+  )[];
   rightContent?: (
     | ImageSbContent
     | TitleAndTextSbContent
     | ImageCardLinkSbContent
+    | CtaLinkSbContent
   )[];
   proportions?: "" | "33/66" | "50/50" | "66/33";
   mobileOrder?: "" | "left on top" | "right on top";
-  backgroundColor?: Colors;
-  spacingTop?: Spacing;
-  spacingBottom?: Spacing;
   _uid: string;
   component: "SplitSection";
   [k: string]: any;

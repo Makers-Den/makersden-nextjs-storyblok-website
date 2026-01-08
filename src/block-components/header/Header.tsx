@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from 'react';
 import clsxm from '@/lib/clsxm';
 import { type LinkSbContent, type NavSectionSbContent } from '@/lib/storyblok';
 
+import { ButtonLink } from '@/components/button';
 import { Container } from '@/components/container/Container';
 import { SvgIcon } from '@/components/icons/SvgIcon';
 import { StoryblokLink } from '@/components/storyblok-link/StoryblokLink';
@@ -99,8 +100,7 @@ export function Header({
     return () => window.removeEventListener('keydown', handleEscape);
   }, [isMenuOpen]);
 
-  const isTextWhite = navType !== 'white';
-  const isTextDark = navType === 'white';
+  const isTextWhite = navType === 'black';
 
   return (
     <>
@@ -111,89 +111,95 @@ export function Header({
           'z-40',
           navType === 'transparent' && 'bg-transparent',
           navType === 'black' && 'bg-black',
-          navType === 'white' && 'bg-white',
-          'py-2 md:py-12',
+          navType === 'white' && 'bg-background',
+          'py-3 md:py-5',
         )}
       >
         <Container className='flex w-full items-center justify-between'>
-          {/* Logo and Navigation Container */}
-          <div className='flex flex-1 items-center justify-between'>
-            {/* Logo */}
-            <Link
+          {/* Left: Logo */}
+          <Link
+            className={clsxm(
+              'flex shrink-0 items-center gap-2',
+              isTextWhite ? 'text-white' : 'text-black',
+            )}
+            href='/'
+          >
+            <div
               className={clsxm(
-                'flex shrink-0 items-center gap-3',
+                'flex h-10 w-10 shrink-0 items-center justify-center rounded-lg font-bold',
+                isTextWhite ? 'bg-white text-black' : 'bg-black text-white',
+              )}
+            >
+              <span className='text-lg'>L</span>
+            </div>
+            <span className='text-xl font-semibold'>ACME</span>
+          </Link>
+
+          {/* Center: Navigation Items */}
+          {layoutType === 'default' && (
+            <nav
+              className={clsxm(
+                'absolute left-1/2 hidden -translate-x-1/2 items-center gap-8 lg:flex',
                 isTextWhite ? 'text-white' : 'text-black',
               )}
-              href='/'
             >
-              {/* TODO: Replace with your logo component or image */}
-              <div
-                className={clsxm(
-                  'flex h-[60px] w-[60px] shrink-0 items-center justify-center rounded-lg font-bold md:h-[80px] md:w-[80px]',
-                  isTextWhite ? 'bg-white text-black' : 'bg-black text-white',
-                )}
-              >
-                <span className='text-[24px] md:text-[32px]'>L</span>
-              </div>
-              <span className='color-inherit text-[32px] leading-normal font-semibold whitespace-nowrap'>
-                ACME
-              </span>
-            </Link>
+              {navItems.map((item) => {
+                if (isLink(item)) {
+                  return (
+                    <StoryblokLink
+                      className='px-2 py-1 text-base font-normal text-inherit transition-colors hover:opacity-70'
+                      link={item.link}
+                      key={item._uid}
+                    >
+                      {item.name}
+                    </StoryblokLink>
+                  );
+                }
 
-            {/* Navigation Items */}
+                if (isNavSection(item)) {
+                  return (
+                    <NavSection
+                      key={item._uid}
+                      blok={item}
+                      textColor={isTextWhite ? 'white' : 'black'}
+                    />
+                  );
+                }
+
+                return null;
+              })}
+            </nav>
+          )}
+
+          {/* Right: CTA Button + Mobile Menu */}
+          <div className='flex items-center gap-4'>
             {layoutType === 'default' && (
-              <nav
-                className={clsxm(
-                  'hidden flex-1 items-center justify-end lg:flex lg:gap-[18px]',
-                  isTextWhite && 'text-white',
-                  isTextDark && 'text-black',
-                )}
+              <ButtonLink
+                href='/'
+                size='pill'
+                className='hidden lg:inline-flex'
               >
-                {navItems.map((item) => {
-                  if (isLink(item)) {
-                    return (
-                      <StoryblokLink
-                        className='rounded-lg px-5 py-4 text-[20px] leading-normal font-medium text-inherit transition-colors hover:bg-gray-100 hover:text-black'
-                        link={item.link}
-                        key={item._uid}
-                      >
-                        {item.name}
-                      </StoryblokLink>
-                    );
-                  }
+                Get Started
+              </ButtonLink>
+            )}
 
-                  if (isNavSection(item)) {
-                    return (
-                      <NavSection
-                        key={item._uid}
-                        blok={item}
-                        textColor={isTextWhite ? 'white' : 'black'}
-                      />
-                    );
-                  }
-
-                  return null;
-                })}
-              </nav>
+            {/* Mobile Menu Button */}
+            {layoutType === 'default' && (
+              <button
+                onClick={() => setIsMenuOpen(true)}
+                className='p-2 lg:hidden'
+                aria-label='Open menu'
+              >
+                <SvgIcon
+                  name='Menu'
+                  className={clsxm(
+                    'h-6 w-6',
+                    isTextWhite ? 'text-white' : 'text-black',
+                  )}
+                />
+              </button>
             )}
           </div>
-
-          {/* Mobile Menu Button */}
-          {layoutType === 'default' && (
-            <button
-              onClick={() => setIsMenuOpen(true)}
-              className='p-2 lg:hidden'
-              aria-label='Open menu'
-            >
-              <SvgIcon
-                name='Menu'
-                className={clsxm(
-                  'h-8 w-8',
-                  isTextWhite ? 'text-white' : 'text-black',
-                )}
-              />
-            </button>
-          )}
         </Container>
       </header>
 
@@ -201,74 +207,80 @@ export function Header({
       <header
         className={clsxm(
           'fixed top-0 right-0 left-0 z-50',
-          'bg-white shadow-[0px_1.2px_6.66px_0px_rgba(0,0,0,0.2)]',
-          'py-2 md:py-4',
+          'bg-background shadow-[0px_1.2px_6.66px_0px_rgba(0,0,0,0.1)]',
+          'py-3 md:py-4',
           'transition-transform duration-300',
-          showStickyHeader ? 'translate-y-0' : 'translate-y-[-100%]',
+          showStickyHeader ? 'translate-y-0' : '-translate-y-full',
         )}
       >
         <Container className='flex w-full items-center justify-between'>
-          {/* Logo and Navigation Container */}
-          <div className='flex flex-1 items-center'>
-            {/* Logo */}
-            <Link className='flex shrink-0 items-center gap-2' href='/'>
-              {/* TODO: Replace with your logo component or image */}
-              <div className='flex h-[60px] w-[60px] shrink-0 items-center justify-center rounded-lg bg-black font-bold text-white md:h-[80px] md:w-[80px]'>
-                <span className='text-[24px] md:text-[32px]'>L</span>
-              </div>
-              <span className='text-[32px] leading-normal font-semibold whitespace-nowrap text-black'>
-                ACME
-              </span>
-            </Link>
+          {/* Left: Logo */}
+          <Link
+            className='flex shrink-0 items-center gap-2 text-black'
+            href='/'
+          >
+            <div className='flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-black font-bold text-white'>
+              <span className='text-lg'>L</span>
+            </div>
+            <span className='text-xl font-semibold'>ACME</span>
+          </Link>
 
-            {/* Navigation Items */}
+          {/* Center: Navigation Items */}
+          {layoutType === 'default' && (
+            <nav className='absolute left-1/2 hidden -translate-x-1/2 items-center gap-8 text-black lg:flex'>
+              {navItems.map((item) => {
+                if (isLink(item)) {
+                  return (
+                    <StoryblokLink
+                      className='px-2 py-1 text-base font-normal text-inherit transition-colors hover:opacity-70'
+                      link={item.link}
+                      key={item._uid}
+                    >
+                      {item.name}
+                    </StoryblokLink>
+                  );
+                }
+
+                if (isNavSection(item)) {
+                  return (
+                    <NavSection key={item._uid} blok={item} textColor='black' />
+                  );
+                }
+
+                return null;
+              })}
+            </nav>
+          )}
+
+          {/* Right: CTA Button + Mobile Menu */}
+          <div className='flex items-center gap-4'>
             {layoutType === 'default' && (
-              <nav className='hidden flex-1 items-center justify-end gap-3 text-black lg:flex'>
-                {navItems.map((item) => {
-                  if (isLink(item)) {
-                    return (
-                      <StoryblokLink
-                        className='rounded-lg px-5 py-4 text-[20px] leading-normal font-medium text-inherit transition-colors hover:bg-gray-100 hover:text-black'
-                        link={item.link}
-                        key={item._uid}
-                      >
-                        {item.name}
-                      </StoryblokLink>
-                    );
-                  }
+              <ButtonLink
+                href='/'
+                size='pill'
+                className='hidden lg:inline-flex'
+              >
+                Get Started
+              </ButtonLink>
+            )}
 
-                  if (isNavSection(item)) {
-                    return (
-                      <NavSection
-                        key={item._uid}
-                        blok={item}
-                        textColor='black'
-                      />
-                    );
-                  }
-
-                  return null;
-                })}
-              </nav>
+            {/* Mobile Menu Button */}
+            {layoutType === 'default' && (
+              <button
+                onClick={() => setIsMenuOpen(true)}
+                className='p-2 lg:hidden'
+                aria-label='Open menu'
+              >
+                <SvgIcon name='Menu' className='h-6 w-6 text-black' />
+              </button>
             )}
           </div>
-
-          {/* Mobile Menu Button */}
-          {layoutType === 'default' && (
-            <button
-              onClick={() => setIsMenuOpen(true)}
-              className='p-2 lg:hidden'
-              aria-label='Open menu'
-            >
-              <SvgIcon name='Menu' className={clsxm('h-8 w-8', 'text-black')} />
-            </button>
-          )}
         </Container>
       </header>
 
       {/* Mobile Menu Overlay */}
       {isMenuOpen && (
-        <div className='fixed inset-0 z-[60] bg-white md:hidden'>
+        <div className='fixed inset-0 z-60 bg-white md:hidden'>
           <MobileNav
             navItems={navItems}
             onClose={() => setIsMenuOpen(false)}
