@@ -10,7 +10,6 @@ export const BackgroundMuxVideo = (props: BackgroundMuxVideoProps) => {
       loop={true}
       playsInline={true}
       style={{
-        // @ts-expect-error css vars
         '--controls': 'none',
         '--media-object-fit': 'cover',
         '--media-object-position': 'center',
