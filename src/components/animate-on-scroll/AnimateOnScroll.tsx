@@ -40,7 +40,7 @@ export function AnimateOnScroll({
       whileInView={variant.visible}
       viewport={{
         once: true,
-        margin: '-150px',
+        margin: '-50px',
       }}
       transition={{
         duration,

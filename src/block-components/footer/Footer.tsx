@@ -28,9 +28,9 @@ type FooterProps = {
 const isSocialLink = (blok: unknown): blok is SocialLinkSbContent => {
   return Boolean(
     blok &&
-      typeof blok === 'object' &&
-      'component' in blok &&
-      (blok as { component?: string }).component === 'SocialLink',
+    typeof blok === 'object' &&
+    'component' in blok &&
+    (blok as { component?: string }).component === 'SocialLink',
   );
 };
 
