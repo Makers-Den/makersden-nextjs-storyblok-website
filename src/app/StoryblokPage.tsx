@@ -16,7 +16,7 @@ import { type PageProps } from '@/types';
 type LayoutType = 'default' | 'leadPage';
 type NavType = 'white' | 'black' | 'transparent';
 
-export async function StoryblokPage({ params, searchParams }: PageProps) {
+export async function StoryblokPage({ params }: PageProps) {
   const { slug, locale } = await params;
   const pathname = slug?.length ? '/' + slug?.join('/') : '';
 
@@ -44,7 +44,6 @@ export async function StoryblokPage({ params, searchParams }: PageProps) {
           bridgeOptions={{ resolveRelations: RESOLVED_RELATIONS }}
           story={data.story}
           translations={translations}
-          searchParams={searchParams}
         />
       </Layout>
     </CommonContextProviders>
