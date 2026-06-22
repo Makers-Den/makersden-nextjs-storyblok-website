@@ -40,6 +40,13 @@
   /* Utility colors */
   --color-black: var(--black);
   --color-white: var(--white);
+
+  /* Astro template aliases */
+  --color-canvas: var(--background);
+  --color-panel: var(--card);
+  --color-ink: var(--foreground);
+  --color-line: var(--border);
+  --color-accent-ink: var(--accent);
 }
 
 :root {
