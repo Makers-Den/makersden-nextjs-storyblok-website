@@ -35,6 +35,17 @@ cp .env.local.example .env.local
 # Edit .env.local with your Storyblok credentials
 ```
 
+Required environment variables:
+
+| Variable                      | Purpose                                                         |
+| ----------------------------- | --------------------------------------------------------------- |
+| `STORYBLOK_SPACE_ID`          | Storyblok template space ID                                     |
+| `NEXT_PUBLIC_STORYBLOK_TOKEN` | Public Storyblok Content Delivery API token                     |
+| `NEXT_PUBLIC_SITE_URL`        | Canonical site URL, such as `http://localhost:3000` locally     |
+| `PREVIEW_SECRET`              | Server-only secret used to authorize Storyblok preview requests |
+
+Use a long, random value for `PREVIEW_SECRET` and configure the same value in the Storyblok Visual Editor preview URL. Do not expose it through a `NEXT_PUBLIC_` variable.
+
 ### Development
 
 ```bash

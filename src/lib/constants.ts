@@ -10,9 +10,6 @@ export const isDevelopment = process.env.NODE_ENV === 'development';
 export const isProduction = process.env.NODE_ENV === 'production';
 export const isPreviewEnv = process.env.VERCEL_ENV === 'preview';
 
-/** Configured in CMS preview url as a query param */
-export const PREVIEW_SECRET = '1337_m4k3r5_c0d1nG';
-
 /**
  * Google Tag Manager id. https://tagmanager.google.com
  * IMPORTANT: this should always be the CLIENT container (NOT server)

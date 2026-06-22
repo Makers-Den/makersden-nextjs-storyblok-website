@@ -509,6 +509,8 @@ GET /api/preview?slug=/about&secret=YOUR_SECRET
 // Response: Sets draft mode cookie, redirects to slug
 ```
 
+`secret` must match the server-only `PREVIEW_SECRET` environment variable. Configure the same value in the Storyblok Visual Editor preview URL and never expose it through a `NEXT_PUBLIC_` variable.
+
 ### Disabling Preview
 
 **Route**: `/api/exit-preview`
