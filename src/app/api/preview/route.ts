@@ -2,7 +2,7 @@ import { draftMode } from 'next/headers';
 import { cookies } from 'next/headers';
 import { type NextRequest, NextResponse } from 'next/server';
 
-import { PREVIEW_SECRET } from '@/lib/constants';
+import { env } from '@/env';
 
 export const GET = async (req: NextRequest) => {
   const slug = req.nextUrl.searchParams.get('slug') ?? '';
@@ -18,7 +18,7 @@ export const GET = async (req: NextRequest) => {
 
   // Check the secret and next parameters
   // This secret should only be known to this API route and the CMS
-  if (secret !== PREVIEW_SECRET) {
+  if (secret !== env.PREVIEW_SECRET) {
     return new Response('Invalid token', { status: 401 });
   }
 

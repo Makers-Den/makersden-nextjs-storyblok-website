@@ -4,6 +4,7 @@ import { z } from 'zod';
 
 export const env = createEnv({
   server: {
+    PREVIEW_SECRET: z.string().min(1),
     STORYBLOK_SPACE_ID: z.string().min(1),
   },
   client: {
@@ -12,6 +13,7 @@ export const env = createEnv({
   },
   // If you're using Next.js < 13.4.4, you'll need to specify the runtimeEnv manually
   runtimeEnv: {
+    PREVIEW_SECRET: process.env.PREVIEW_SECRET,
     STORYBLOK_SPACE_ID: process.env.STORYBLOK_SPACE_ID,
     NEXT_PUBLIC_SITE_URL: process.env.NEXT_PUBLIC_SITE_URL,
     NEXT_PUBLIC_STORYBLOK_TOKEN: process.env.NEXT_PUBLIC_STORYBLOK_TOKEN,
