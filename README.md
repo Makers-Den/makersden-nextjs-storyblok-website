@@ -92,6 +92,7 @@ For comprehensive documentation, see:
 - **[AGENTS.md](./AGENTS.md)** - Development guidelines and coding standards for contributors
 - **[docs/](./docs/)** - Detailed technical documentation:
   - [Architecture](./docs/architecture.md) - System architecture and routing
+  - [Storyblok Contract](./docs/storyblok-contract.md) - Canonical lean template schema contract
   - [Storyblok Integration](./docs/storyblok-integration.md) - CMS integration patterns
   - [Component Patterns](./docs/component-patterns.md) - Component structure and conventions
   - [Styling](./docs/styling.md) - Tailwind CSS patterns
