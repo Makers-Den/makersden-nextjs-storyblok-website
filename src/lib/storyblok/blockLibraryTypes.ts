@@ -105,7 +105,7 @@ export type GlobalSettingsFooterBottomLinksBlockType = "Link";
 
 export type GlobalSettingsFooterSocialLinksBlockType = "SocialLink";
 
-export type GlobalSettingsNavItemsBlockType = "Link" | "NavSection" | "NavJournalSection";
+export type GlobalSettingsNavItemsBlockType = "Link" | "NavSection";
 
 export type GlobalSettingsRedirectsBlockType = "RedirectItem";
 
@@ -157,7 +157,7 @@ export interface HeroSectionSbContent {
 
 export type HeroSplitSectionCtaLinksBlockType = "CtaLink";
 
-export type HeroSplitSectionRightSideBlockType = "Image" | "ImageCardLink" | "FeaturedAuthorStory";
+export type HeroSplitSectionRightSideBlockType = "Image" | "ImageCardLink";
 
 export type HeroSplitSectionRightSideFillBlockType = "Image";
 
@@ -255,10 +255,41 @@ export interface NavSectionLinkItemSbContent {
   [k: string]: any;
 }
 
+export type PageBodyBlockType =
+  | "HeroSection"
+  | "HeroNarrowSection"
+  | "HeroSplitSection"
+  | "CtaSection"
+  | "GridSection"
+  | "FaqSection"
+  | "FeaturedArticle"
+  | "Image"
+  | "LogosSection"
+  | "PaginatedSection"
+  | "RichTextContent"
+  | "SplitContentSection"
+  | "SplitSection"
+  | "Teaser";
+
 export type PageAdditionalMetadataBlockType = "JsonLdMetadata";
 
 export interface PageSbContent {
-  body?: any[];
+  body?: (
+    | HeroSectionSbContent
+    | HeroNarrowSectionSbContent
+    | HeroSplitSectionSbContent
+    | CtaSectionSbContent
+    | GridSectionSbContent
+    | FaqSectionSbContent
+    | FeaturedArticleSbContent
+    | ImageSbContent
+    | LogosSectionSbContent
+    | PaginatedSectionSbContent
+    | RichTextContentSbContent
+    | SplitContentSectionSbContent
+    | SplitSectionSbContent
+    | TeaserSbContent
+  )[];
   title?: string;
   description?: string;
   nonIndexable?: boolean;
@@ -320,38 +351,17 @@ export interface SplitContentSectionSbContent {
   [k: string]: any;
 }
 
-export type SplitSectionLeftContentBlockType =
-  | "Image"
-  | "TitleAndText"
-  | "FeaturedAuthorStory"
-  | "ImageCardLink"
-  | "CtaLink";
+export type SplitSectionLeftContentBlockType = "Image" | "TitleAndText" | "ImageCardLink" | "CtaLink";
 
-export type SplitSectionRightContentBlockType =
-  | "Image"
-  | "TitleAndText"
-  | "FeaturedAuthorStory"
-  | "ImageCardLink"
-  | "NestedGrid"
-  | "CtaLink";
+export type SplitSectionRightContentBlockType = "Image" | "TitleAndText" | "ImageCardLink" | "CtaLink";
 
 export interface SplitSectionSbContent {
   backgroundColor?: Colors;
   spacingTop?: Spacing;
   spacingBottom?: Spacing;
   title?: SbRichtext;
-  leftContent?: (
-    | ImageSbContent
-    | TitleAndTextSbContent
-    | ImageCardLinkSbContent
-    | CtaLinkSbContent
-  )[];
-  rightContent?: (
-    | ImageSbContent
-    | TitleAndTextSbContent
-    | ImageCardLinkSbContent
-    | CtaLinkSbContent
-  )[];
+  leftContent?: (ImageSbContent | TitleAndTextSbContent | ImageCardLinkSbContent | CtaLinkSbContent)[];
+  rightContent?: (ImageSbContent | TitleAndTextSbContent | ImageCardLinkSbContent | CtaLinkSbContent)[];
   proportions?: "" | "33/66" | "50/50" | "66/33";
   mobileOrder?: "" | "left on top" | "right on top";
   _uid: string;

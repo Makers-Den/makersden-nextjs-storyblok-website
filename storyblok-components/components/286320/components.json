@@ -578,7 +578,7 @@
     "display_name": null,
     "description": null,
     "created_at": "2024-05-07T07:56:35.615Z",
-    "updated_at": "2025-11-28T14:39:43.412Z",
+    "updated_at": "2026-06-02T07:09:24.136Z",
     "id": 5758880,
     "schema": {
       "footerSections": {
@@ -623,8 +623,12 @@
         "pos": 5,
         "restrict_type": "",
         "restrict_components": true,
-        "component_whitelist": ["Link", "NavSection", "NavJournalSection"],
-        "id": "teyINGmuQr6X_X5o20Cgbg"
+        "component_whitelist": ["Link", "NavSection"],
+        "id": "teyINGmuQr6X_X5o20Cgbg",
+        "component_group_whitelist": [],
+        "component_denylist": [],
+        "component_group_denylist": [],
+        "description": "Primary navigation items. Use Link for direct links and NavSection for grouped links."
       },
       "redirects": {
         "type": "bloks",
@@ -870,7 +874,7 @@
     "display_name": null,
     "description": "",
     "created_at": "2025-11-28T14:39:42.735Z",
-    "updated_at": "2025-12-15T17:33:52.875Z",
+    "updated_at": "2026-06-02T07:09:24.220Z",
     "id": 117355244488512,
     "schema": {
       "title": {
@@ -909,12 +913,11 @@
         "id": "X-NGAt3CTbeV3vtKSToo-A",
         "restrict_type": "",
         "restrict_components": true,
-        "component_whitelist": [
-          "Image",
-          "ImageCardLink",
-          "FeaturedAuthorStory"
-        ],
-        "description": "Content placed on the right side within content container"
+        "component_whitelist": ["Image", "ImageCardLink"],
+        "description": "Content placed on the right side within the content container.",
+        "component_group_whitelist": [],
+        "component_denylist": [],
+        "component_group_denylist": []
       },
       "rightSideFill": {
         "type": "bloks",
@@ -1369,20 +1372,36 @@
     "display_name": "",
     "description": null,
     "created_at": "2024-04-25T10:25:56.142Z",
-    "updated_at": "2025-12-11T17:54:42.874Z",
+    "updated_at": "2026-06-02T07:09:24.037Z",
     "id": 5708684,
     "schema": {
       "body": {
         "type": "bloks",
-        "restrict_type": "groups",
-        "restrict_components": false,
-        "component_whitelist": [],
-        "component_group_whitelist": ["50ca5cce-644a-4acc-ae72-2df68aa836cc"],
+        "restrict_type": "",
+        "restrict_components": true,
+        "component_whitelist": [
+          "HeroSection",
+          "HeroNarrowSection",
+          "HeroSplitSection",
+          "CtaSection",
+          "GridSection",
+          "FaqSection",
+          "FeaturedArticle",
+          "Image",
+          "LogosSection",
+          "PaginatedSection",
+          "RichTextContent",
+          "SplitContentSection",
+          "SplitSection",
+          "Teaser"
+        ],
+        "component_group_whitelist": [],
         "id": "3ze7ojdMQNqfAkt19UGOnQ",
         "component_denylist": [],
         "component_group_denylist": [],
         "component_tag_whitelist": [],
-        "component_tag_denylist": []
+        "component_tag_denylist": [],
+        "description": "Reusable page sections rendered in order. Only lean template block components are allowed."
       },
       "tab-0afb0a79-9125-4513-a7c3-8cab38289c04": {
         "display_name": "SEO",
@@ -1759,7 +1778,7 @@
     "display_name": null,
     "description": null,
     "created_at": "2025-11-28T14:39:43.584Z",
-    "updated_at": "2025-12-15T19:44:19.234Z",
+    "updated_at": "2026-06-02T07:09:24.304Z",
     "id": 117355247970115,
     "schema": {
       "backgroundColor": {
@@ -1808,13 +1827,15 @@
         "component_whitelist": [
           "Image",
           "TitleAndText",
-          "FeaturedAuthorStory",
           "ImageCardLink",
           "CtaLink"
         ],
         "id": "E54TOG5nTiSRt6ZKH-OQiw",
         "pos": 5,
-        "component_denylist": []
+        "component_denylist": [],
+        "component_group_whitelist": [],
+        "component_group_denylist": [],
+        "description": "Blocks rendered in the left column."
       },
       "rightContent": {
         "type": "bloks",
@@ -1824,14 +1845,15 @@
         "component_whitelist": [
           "Image",
           "TitleAndText",
-          "FeaturedAuthorStory",
           "ImageCardLink",
-          "NestedGrid",
           "CtaLink"
         ],
         "id": "HMJo1NjdRM6mWfTEQYfRMg",
         "pos": 6,
-        "component_denylist": []
+        "component_denylist": [],
+        "component_group_whitelist": [],
+        "component_group_denylist": [],
+        "description": "Blocks rendered in the right column."
       },
       "proportions": {
         "type": "option",
