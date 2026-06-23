@@ -7,6 +7,7 @@ import { type LinkSbContent, type NavSectionSbContent } from '@/lib/storyblok';
 
 import { ButtonLink } from '@/components/button';
 import { Container } from '@/components/container/Container';
+import { MakersDenFullLogo } from '@/components/icons/MakersDenFullLogo';
 import { SvgIcon } from '@/components/icons/SvgIcon';
 import { StoryblokLink } from '@/components/storyblok-link/StoryblokLink';
 
@@ -15,6 +16,8 @@ import { type Locale } from '@/i18n/config';
 import { Link } from '@/i18n/navigation';
 
 import { MobileNav } from './MobileNav';
+
+const MAKERS_DEN_CONTACT_URL = 'https://makersden.io/contact';
 
 // Type guards
 function isLink(
@@ -119,20 +122,13 @@ export function Header({
           {/* Left: Logo */}
           <Link
             className={clsxm(
-              'flex shrink-0 items-center gap-2',
+              'flex shrink-0 items-center',
               isTextWhite ? 'text-white' : 'text-black',
             )}
             href='/'
+            aria-label='Makers Den home'
           >
-            <div
-              className={clsxm(
-                'flex h-10 w-10 shrink-0 items-center justify-center rounded-lg font-bold',
-                isTextWhite ? 'bg-white text-black' : 'bg-black text-white',
-              )}
-            >
-              <span className='text-lg'>L</span>
-            </div>
-            <span className='text-xl font-semibold'>ACME</span>
+            <MakersDenFullLogo className='h-5 w-[136px] md:h-6 md:w-[164px]' />
           </Link>
 
           {/* Center: Navigation Items */}
@@ -175,11 +171,11 @@ export function Header({
           <div className='flex items-center gap-4'>
             {layoutType === 'default' && (
               <ButtonLink
-                href='/'
+                href={MAKERS_DEN_CONTACT_URL}
                 size='pill'
                 className='hidden lg:inline-flex'
               >
-                Get Started
+                Talk to Makers Den
               </ButtonLink>
             )}
 
@@ -216,13 +212,11 @@ export function Header({
         <Container className='flex w-full items-center justify-between'>
           {/* Left: Logo */}
           <Link
-            className='flex shrink-0 items-center gap-2 text-black'
+            className='flex shrink-0 items-center text-black'
             href='/'
+            aria-label='Makers Den home'
           >
-            <div className='flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-black font-bold text-white'>
-              <span className='text-lg'>L</span>
-            </div>
-            <span className='text-xl font-semibold'>ACME</span>
+            <MakersDenFullLogo className='h-5 w-[136px] md:h-6 md:w-[164px]' />
           </Link>
 
           {/* Center: Navigation Items */}
@@ -256,11 +250,11 @@ export function Header({
           <div className='flex items-center gap-4'>
             {layoutType === 'default' && (
               <ButtonLink
-                href='/'
+                href={MAKERS_DEN_CONTACT_URL}
                 size='pill'
                 className='hidden lg:inline-flex'
               >
-                Get Started
+                Talk to Makers Den
               </ButtonLink>
             )}
 

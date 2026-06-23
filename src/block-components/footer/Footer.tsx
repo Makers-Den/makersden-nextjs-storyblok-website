@@ -11,10 +11,11 @@ import {
 } from '@/lib/storyblok';
 
 import { Container } from '@/components/container/Container';
+import { MakersDenFullLogo } from '@/components/icons/MakersDenFullLogo';
 import { SvgIcon } from '@/components/icons/SvgIcon';
 import { StoryblokImage } from '@/components/images/StoryblokImage';
 import { StoryblokLink } from '@/components/storyblok-link/StoryblokLink';
-import { HeadingSm, Text, TextSm } from '@/components/typography/Typography';
+import { Text, TextSm } from '@/components/typography/Typography';
 
 type FooterProps = {
   footerSections?: FooterSectionSbContent[];
@@ -82,7 +83,7 @@ export function Footer({
   const showBottomRow = Boolean(copyrightNotice) || legalLinks.length > 0;
 
   return (
-    <footer className='bg-slate-900 text-white'>
+    <footer className='bg-black text-white'>
       <Container className='px-2 py-12 md:px-3 md:py-16'>
         <div className='mb-12 flex flex-col gap-8 md:mb-16 md:gap-12 lg:flex-row lg:justify-between'>
           {/* Left Section: Logo */}
@@ -97,9 +98,13 @@ export function Footer({
                   height={32}
                 />
               ) : (
-                <HeadingSm as='span' className='font-semibold'>
-                  ACME Industries
-                </HeadingSm>
+                <>
+                  <MakersDenFullLogo className='h-6 w-[164px]' />
+                  <TextSm as='p' className='max-w-sm text-white/65'>
+                    Reusable Storyblok website templates shaped by Makers Den
+                    for fast editorial launches.
+                  </TextSm>
+                </>
               )}
             </div>
 
@@ -126,7 +131,7 @@ export function Footer({
                         key={social._uid}
                         link={social.link}
                         aria-label={social.name ?? 'Social link'}
-                        className='flex h-10 w-10 items-center justify-center rounded-full border border-slate-700 bg-slate-800 text-white transition-colors hover:bg-slate-700'
+                        className='flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/5 text-white transition-colors hover:bg-white/10'
                       >
                         {innerContent}
                       </StoryblokLink>
@@ -136,7 +141,7 @@ export function Footer({
                   return (
                     <span
                       key={social._uid}
-                      className='flex h-10 w-10 items-center justify-center rounded-full border border-slate-700 bg-slate-800 text-slate-400'
+                      className='flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/5 text-white/55'
                     >
                       {innerContent}
                     </span>
@@ -156,7 +161,7 @@ export function Footer({
                     <Accordion.Item
                       key={column._uid}
                       value={column._uid}
-                      className='border-b border-slate-700'
+                      className='border-b border-white/15'
                     >
                       <Accordion.Header className='flex'>
                         <Accordion.Trigger
@@ -200,12 +205,12 @@ export function Footer({
                                   {hasUsableLink(link.link) ? (
                                     <StoryblokLink
                                       link={link.link}
-                                      className='text-slate-400 transition-colors hover:text-white'
+                                      className='text-white/65 transition-colors hover:text-white'
                                     >
                                       <Text as='span'>{label}</Text>
                                     </StoryblokLink>
                                   ) : (
-                                    <Text as='span' className='text-slate-500'>
+                                    <Text as='span' className='text-white/40'>
                                       {label}
                                     </Text>
                                   )}
@@ -243,12 +248,12 @@ export function Footer({
                               {hasUsableLink(link.link) ? (
                                 <StoryblokLink
                                   link={link.link}
-                                  className='text-slate-400 transition-colors hover:text-white'
+                                  className='text-white/65 transition-colors hover:text-white'
                                 >
                                   <Text as='span'>{label}</Text>
                                 </StoryblokLink>
                               ) : (
-                                <Text as='span' className='text-slate-500'>
+                                <Text as='span' className='text-white/40'>
                                   {label}
                                 </Text>
                               )}
@@ -266,10 +271,10 @@ export function Footer({
 
         {/* Bottom Section: Copyright and Legal Links */}
         {showBottomRow && (
-          <div className='flex flex-col items-start justify-between gap-4 border-t border-slate-700 pt-6 md:flex-row md:items-center md:pt-8'>
+          <div className='flex flex-col items-start justify-between gap-4 border-t border-white/15 pt-6 md:flex-row md:items-center md:pt-8'>
             {/* Copyright */}
             {copyrightNotice && (
-              <TextSm as='p' className='text-slate-400'>
+              <TextSm as='p' className='text-white/55'>
                 {copyrightNotice}
               </TextSm>
             )}
@@ -284,12 +289,12 @@ export function Footer({
                       {hasUsableLink(link.link) ? (
                         <StoryblokLink
                           link={link.link}
-                          className='text-slate-400 transition-colors hover:text-white'
+                          className='text-white/55 transition-colors hover:text-white'
                         >
                           <TextSm as='span'>{label}</TextSm>
                         </StoryblokLink>
                       ) : (
-                        <TextSm as='span' className='text-slate-500'>
+                        <TextSm as='span' className='text-white/40'>
                           {label}
                         </TextSm>
                       )}

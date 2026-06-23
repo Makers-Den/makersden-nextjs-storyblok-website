@@ -55,17 +55,17 @@ export const variantToClasses: Record<TypographyVariant, string[]> = {
     'text-xs',
     'leading-[1.25] md:leading-[2.08]',
     'text-current',
-    'font-primary',
+    'font-sans',
   ],
   text: [
     'text-sm md:text-base',
     'leading-[1.43] md:leading-[1.56]',
-    'font-primary',
+    'font-sans',
   ],
   textLg: [
     'text-base md:text-lg',
     'leading-[1.38] md:leading-[1.44]',
-    'font-primary',
+    'font-sans',
   ],
   heading2Xl: [
     'text-current',
@@ -83,7 +83,6 @@ export const variantToClasses: Record<TypographyVariant, string[]> = {
     'text-current',
     'font-display',
     'font-black',
-    'text-superWhite',
     'uppercase',
     'antialiased',
     'text-[clamp(3.125rem,6.5vw,5.75rem)]',
@@ -127,7 +126,7 @@ export const variantToClasses: Record<TypographyVariant, string[]> = {
     'md:text-base',
     'font-normal',
     'text-current',
-    'font-tag',
+    'font-mono',
     'leading-[1.14] md:leading-[1]',
   ],
   tagTextSm: [
@@ -135,14 +134,14 @@ export const variantToClasses: Record<TypographyVariant, string[]> = {
     'md:text-sm',
     'font-light',
     'text-current',
-    'font-tag',
+    'font-mono',
     'leading-[1.14] md:leading-[1]',
   ],
   quotation: ['text-xl', 'font-normal', 'leading-[1.5] italic'],
   bold: ['font-semibold', 'not-italic'],
   italic: ['px-1', 'italic'],
-  lightEmphasis: ['font-primary', 'not-italic', 'text-green-400'],
-  darkEmphasis: ['bg-dullViolet', 'not-italic', 'text-white', 'font-semibold'],
+  lightEmphasis: ['font-sans', 'not-italic', 'text-green-400'],
+  darkEmphasis: ['bg-accent', 'not-italic', 'text-white', 'font-semibold'],
 };
 /**
  * Simple typography component

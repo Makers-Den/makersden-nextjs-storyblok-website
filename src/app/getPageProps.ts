@@ -194,7 +194,7 @@ export const getMetadata = async ({
     metadataBase: new URL(defaultMeta.url),
     title,
     description,
-    robots: nonIndexable ? 'noindex' : 'follow, follow',
+    robots: nonIndexable ? 'noindex, nofollow' : defaultMeta.robots,
     openGraph: {
       title,
       images: ogImage,
