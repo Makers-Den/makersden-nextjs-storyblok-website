@@ -1,4 +1,4 @@
-import { Inter as FontSans } from 'next/font/google';
+import localFont from 'next/font/local';
 import { draftMode } from 'next/headers';
 import { NextIntlClientProvider } from 'next-intl';
 import { type ReactNode, Suspense } from 'react';
@@ -11,9 +11,22 @@ import { GTMScripts } from '@/components/gtm-scripts/GTMScripts';
 import { OrganizationSchema } from '@/components/json-ld/OrganizationSchema';
 import StoryblokProvider from '@/components/storyblok/StoryblokProvider';
 
-const fontSans = FontSans({
-  subsets: ['latin'],
+const fontSans = localFont({
+  src: '../../public/fonts/MD-Formula.woff2',
   variable: '--font-sans',
+  fallback: ['Arial', 'sans-serif'],
+});
+
+const fontDisplay = localFont({
+  src: '../../public/fonts/PPFormula-Variable.woff',
+  variable: '--font-display',
+  fallback: ['Arial', 'sans-serif'],
+});
+
+const fontMono = localFont({
+  src: '../../public/fonts/IBMPlexMono-Regular-Latin1.woff2',
+  variable: '--font-mono',
+  fallback: ['monospace'],
 });
 
 type Favicons = {
@@ -84,6 +97,8 @@ export async function BasicLayout({
         className={clsxm(
           'bg-background min-h-screen font-sans antialiased',
           fontSans.variable,
+          fontDisplay.variable,
+          fontMono.variable,
         )}
       >
         <NextIntlClientProvider>

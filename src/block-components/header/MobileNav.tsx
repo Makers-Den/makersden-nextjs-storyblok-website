@@ -1,8 +1,7 @@
-import { FaBeer } from '@react-icons/all-files/fa/FaBeer';
-
 import clsxm from '@/lib/clsxm';
 import { type LinkSbContent, type NavSectionSbContent } from '@/lib/storyblok';
 
+import { MakersDenFullLogo } from '@/components/icons/MakersDenFullLogo';
 import { SvgIcon } from '@/components/icons/SvgIcon';
 import { StoryblokLink } from '@/components/storyblok-link/StoryblokLink';
 
@@ -35,14 +34,12 @@ export function MobileNav({ navItems, onClose, onLinkClick }: MobileNavProps) {
       {/* Header with Logo and Close Button */}
       <div className='flex items-center justify-between border-b border-gray-200 px-5 py-2'>
         <Link
-          className='flex shrink-0 items-center gap-3'
+          className='flex shrink-0 items-center text-black'
           href='/'
           onClick={onLinkClick}
+          aria-label='Makers Den home'
         >
-          <FaBeer className='h-[60px] w-[60px] md:h-[80px] md:w-[80px]' />
-          <span className='text-[32px] leading-normal font-semibold whitespace-nowrap text-black'>
-            ACME
-          </span>
+          <MakersDenFullLogo className='h-6 w-[164px]' />
         </Link>
         <button
           onClick={onClose}

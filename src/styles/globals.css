@@ -30,6 +30,10 @@
 
   /* Typography */
   --font-sans: var(--font-sans);
+  --font-display: var(--font-display);
+  --font-mono: var(--font-mono);
+  --font-primary: var(--font-sans);
+  --font-tag: var(--font-mono);
 
   /* Border radius scale */
   --radius-sm: calc(var(--radius) - 4px);
@@ -44,49 +48,49 @@
 
 :root {
   /* Base colors - Light Mode */
-  --background: oklch(0.965 0.006 90);
-  --foreground: oklch(0.1858 0 0);
+  --background: oklch(0.966 0.012 92);
+  --foreground: oklch(0.17 0.004 260);
 
   /* Primary - Main brand color (dark buttons like header CTA) */
-  --primary: oklch(0.18 0 0);
-  --primary-foreground: oklch(0.98 0 0);
+  --primary: oklch(0.18 0.006 260);
+  --primary-foreground: oklch(0.985 0.006 92);
 
   /* Secondary - Subtle backgrounds, secondary buttons */
-  --secondary: oklch(0.88 0.025 85);
-  --secondary-foreground: oklch(0.25 0 0);
+  --secondary: oklch(0.9 0.018 92);
+  --secondary-foreground: oklch(0.22 0.006 260);
 
   /* Muted - Disabled states, subtle backgrounds */
-  --muted: oklch(0.94 0.015 90);
-  --muted-foreground: oklch(0.45 0.01 261);
+  --muted: oklch(0.93 0.014 92);
+  --muted-foreground: oklch(0.43 0.012 260);
 
   /* Accent - Primary CTA buttons */
-  --accent: oklch(0.55 0.2 265);
+  --accent: oklch(0.56 0.235 261);
   --accent-foreground: oklch(1 0 0);
 
   /* Card - Elevated surfaces (same as base colors for cohesion) */
-  --card: oklch(1 0 261);
-  --card-foreground: oklch(0.1858 0 0);
+  --card: oklch(0.99 0.004 92);
+  --card-foreground: oklch(0.17 0.004 260);
 
   /* Destructive - Error states, dangerous actions */
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.9843 0 0);
 
   /* UI Elements */
-  --border: oklch(0.9176 0 0);
-  --input: oklch(0.9176 0 0);
-  --ring: oklch(0.1858 0 0);
+  --border: oklch(0.88 0.012 92);
+  --input: oklch(0.88 0.012 92);
+  --ring: oklch(0.56 0.235 261);
 
   /* Border radius */
   --radius: 0.625rem;
 
   /* Additional color palette */
-  --red: oklch(0.5632 0.2565 29.23);
-  --green: oklch(0.5632 0.2164 147.71);
-  --blue: oklch(0.5632 0.2417 261);
-  --black: oklch(0 0 261);
-  --white: oklch(1 0 261);
+  --red: oklch(0.57 0.22 29);
+  --green: oklch(0.58 0.17 150);
+  --blue: oklch(0.56 0.235 261);
+  --black: oklch(0.13 0.004 260);
+  --white: oklch(0.99 0.004 92);
   --transparent: transparent;
-  --gray: oklch(0.5314 0 261);
+  --gray: oklch(0.53 0.006 260);
 }
 
 .dark {
