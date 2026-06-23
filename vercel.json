@@ -1,0 +1,27 @@
+{
+  "crons": [
+    {
+      "path": "/api/cron/publish-stories",
+      "schedule": "* * * * *"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "CDN-Cache-Control",
+          "value": "s-maxage=300, stale-while-revalidate=1500"
+        },
+        {
+          "key": "Vercel-CDN-Cache-Control",
+          "value": "s-maxage=300, stale-while-revalidate=1500"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "s-maxage=300, stale-while-revalidate=1500"
+        }
+      ]
+    }
+  ]
+}
