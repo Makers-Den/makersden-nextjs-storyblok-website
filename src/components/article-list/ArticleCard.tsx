@@ -28,7 +28,7 @@ export function ArticleCard({ article, isOnlyItem }: ArticleCardProps) {
   return (
     <article
       className={clsxm(
-        'group bg-card flex flex-col overflow-hidden rounded-lg shadow-lg transition-shadow',
+        'group border-brand-green/15 bg-panel hover:border-brand-green/45 flex flex-col overflow-hidden rounded-lg border shadow-[0_24px_80px_rgba(10,14,26,0.18)] transition-colors',
         isOnlyItem && 'lg:flex-row',
       )}
     >
@@ -51,7 +51,7 @@ export function ArticleCard({ article, isOnlyItem }: ArticleCardProps) {
             }
           />
         ) : (
-          <div className='bg-muted flex h-full w-full items-center justify-center'>
+          <div className='bg-brand-navy-soft flex h-full w-full items-center justify-center'>
             <Text className='text-muted-foreground'>No image</Text>
           </div>
         )}
@@ -75,7 +75,7 @@ export function ArticleCard({ article, isOnlyItem }: ArticleCardProps) {
         <HeadingSm className='mb-8'>{article.content.title}</HeadingSm>
 
         {/* Divider */}
-        <div className='bg-border mb-10 h-px' />
+        <div className='bg-line mb-10 h-px' />
 
         {/* Description */}
         {article.content.intro && (
@@ -87,7 +87,7 @@ export function ArticleCard({ article, isOnlyItem }: ArticleCardProps) {
         {/* Read More Link */}
         <Link
           href={`/${article.full_slug}`}
-          className='mt-auto inline-flex items-center gap-2 font-medium hover:underline'
+          className='text-brand-green mt-auto inline-flex items-center gap-2 font-semibold transition-colors group-hover:text-white'
         >
           Read More
           <ArrowRightIcon className='h-5 w-5' />

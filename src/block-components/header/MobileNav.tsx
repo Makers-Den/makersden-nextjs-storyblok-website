@@ -30,11 +30,11 @@ interface MobileNavProps {
 
 export function MobileNav({ navItems, onClose, onLinkClick }: MobileNavProps) {
   return (
-    <div className='flex h-full flex-col bg-white'>
+    <div className='bg-brand-navy flex h-full flex-col text-white'>
       {/* Header with Logo and Close Button */}
-      <div className='flex items-center justify-between border-b border-gray-200 px-5 py-2'>
+      <div className='flex items-center justify-between border-b border-white/10 px-5 py-2'>
         <Link
-          className='flex shrink-0 items-center text-black'
+          className='flex shrink-0 items-center text-white'
           href='/'
           onClick={onLinkClick}
           aria-label='Makers Den home'
@@ -43,10 +43,10 @@ export function MobileNav({ navItems, onClose, onLinkClick }: MobileNavProps) {
         </Link>
         <button
           onClick={onClose}
-          className='rounded-lg p-2 transition-colors hover:bg-gray-100'
+          className='hover:bg-brand-green/10 rounded-md p-2 transition-colors'
           aria-label='Close menu'
         >
-          <SvgIcon name='Close' className='h-5 w-5 text-black' />
+          <SvgIcon name='Close' className='h-5 w-5 text-white' />
         </button>
       </div>
 
@@ -58,8 +58,8 @@ export function MobileNav({ navItems, onClose, onLinkClick }: MobileNavProps) {
               return (
                 <StoryblokLink
                   className={clsxm(
-                    'rounded-lg text-[20px] leading-[24px] font-medium text-black',
-                    'hover:text-blue transition-colors',
+                    'rounded-md text-[20px] leading-[24px] font-medium text-white',
+                    'hover:text-brand-green transition-colors',
                   )}
                   link={item.link}
                   key={item._uid}

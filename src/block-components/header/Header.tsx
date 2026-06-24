@@ -103,7 +103,12 @@ export function Header({
     return () => window.removeEventListener('keydown', handleEscape);
   }, [isMenuOpen]);
 
-  const isTextWhite = navType === 'black';
+  const navClass =
+    navType === 'transparent'
+      ? 'bg-transparent'
+      : navType === 'black'
+        ? 'bg-brand-navy'
+        : 'bg-brand-navy/95 backdrop-blur';
 
   return (
     <>
@@ -111,20 +116,15 @@ export function Header({
       <header
         ref={originalHeaderRef}
         className={clsxm(
-          'z-40',
-          navType === 'transparent' && 'bg-transparent',
-          navType === 'black' && 'bg-black',
-          navType === 'white' && 'bg-background',
+          'z-40 border-b border-white/10',
+          navClass,
           'py-3 md:py-5',
         )}
       >
         <Container className='flex w-full items-center justify-between'>
           {/* Left: Logo */}
           <Link
-            className={clsxm(
-              'flex shrink-0 items-center',
-              isTextWhite ? 'text-white' : 'text-black',
-            )}
+            className='flex shrink-0 items-center text-white'
             href='/'
             aria-label='Makers Den home'
           >
@@ -133,17 +133,12 @@ export function Header({
 
           {/* Center: Navigation Items */}
           {layoutType === 'default' && (
-            <nav
-              className={clsxm(
-                'absolute left-1/2 hidden -translate-x-1/2 items-center gap-8 lg:flex',
-                isTextWhite ? 'text-white' : 'text-black',
-              )}
-            >
+            <nav className='absolute left-1/2 hidden -translate-x-1/2 items-center gap-8 text-white lg:flex'>
               {navItems.map((item) => {
                 if (isLink(item)) {
                   return (
                     <StoryblokLink
-                      className='px-2 py-1 text-base font-normal text-inherit transition-colors hover:opacity-70'
+                      className='hover:text-brand-green px-2 py-1 text-base font-normal text-inherit transition-colors'
                       link={item.link}
                       key={item._uid}
                     >
@@ -154,11 +149,7 @@ export function Header({
 
                 if (isNavSection(item)) {
                   return (
-                    <NavSection
-                      key={item._uid}
-                      blok={item}
-                      textColor={isTextWhite ? 'white' : 'black'}
-                    />
+                    <NavSection key={item._uid} blok={item} textColor='white' />
                   );
                 }
 
@@ -186,13 +177,7 @@ export function Header({
                 className='p-2 lg:hidden'
                 aria-label='Open menu'
               >
-                <SvgIcon
-                  name='Menu'
-                  className={clsxm(
-                    'h-6 w-6',
-                    isTextWhite ? 'text-white' : 'text-black',
-                  )}
-                />
+                <SvgIcon name='Menu' className='h-6 w-6 text-white' />
               </button>
             )}
           </div>
@@ -203,7 +188,7 @@ export function Header({
       <header
         className={clsxm(
           'fixed top-0 right-0 left-0 z-50',
-          'bg-background shadow-[0px_1.2px_6.66px_0px_rgba(0,0,0,0.1)]',
+          'border-brand-green/15 bg-brand-navy/95 border-b text-white shadow-[0_12px_30px_rgba(10,14,26,0.24)] backdrop-blur',
           'py-3 md:py-4',
           'transition-transform duration-300',
           showStickyHeader ? 'translate-y-0' : '-translate-y-full',
@@ -212,7 +197,7 @@ export function Header({
         <Container className='flex w-full items-center justify-between'>
           {/* Left: Logo */}
           <Link
-            className='flex shrink-0 items-center text-black'
+            className='flex shrink-0 items-center text-white'
             href='/'
             aria-label='Makers Den home'
           >
@@ -221,12 +206,12 @@ export function Header({
 
           {/* Center: Navigation Items */}
           {layoutType === 'default' && (
-            <nav className='absolute left-1/2 hidden -translate-x-1/2 items-center gap-8 text-black lg:flex'>
+            <nav className='absolute left-1/2 hidden -translate-x-1/2 items-center gap-8 text-white lg:flex'>
               {navItems.map((item) => {
                 if (isLink(item)) {
                   return (
                     <StoryblokLink
-                      className='px-2 py-1 text-base font-normal text-inherit transition-colors hover:opacity-70'
+                      className='hover:text-brand-green px-2 py-1 text-base font-normal text-inherit transition-colors'
                       link={item.link}
                       key={item._uid}
                     >
@@ -237,7 +222,7 @@ export function Header({
 
                 if (isNavSection(item)) {
                   return (
-                    <NavSection key={item._uid} blok={item} textColor='black' />
+                    <NavSection key={item._uid} blok={item} textColor='white' />
                   );
                 }
 
@@ -265,7 +250,7 @@ export function Header({
                 className='p-2 lg:hidden'
                 aria-label='Open menu'
               >
-                <SvgIcon name='Menu' className='h-6 w-6 text-black' />
+                <SvgIcon name='Menu' className='h-6 w-6 text-white' />
               </button>
             )}
           </div>
@@ -274,7 +259,7 @@ export function Header({
 
       {/* Mobile Menu Overlay */}
       {isMenuOpen && (
-        <div className='fixed inset-0 z-60 bg-white md:hidden'>
+        <div className='bg-brand-navy fixed inset-0 z-60 md:hidden'>
           <MobileNav
             navItems={navItems}
             onClose={() => setIsMenuOpen(false)}

@@ -9,9 +9,18 @@ interface StoryBlokImageProps extends Omit<ImageProps, 'src' | 'alt'> {
   fallbackImage?: { filename: string; alt: string };
 }
 
+type StoryblokAssetWithSource = SbAsset & {
+  source?: string;
+};
+
+const FALLBACK_IMAGE_DIMENSIONS = {
+  width: 1200,
+  height: 900,
+} as const;
+
 const calcWidthOrHeight = (
   givenWidth: string | number | undefined,
-  parsedWidth: number,
+  parsedWidth: number | undefined,
   fill: ImageProps['fill'],
 ): number | undefined => {
   if (fill) {
@@ -22,7 +31,17 @@ const calcWidthOrHeight = (
     return Number(givenWidth);
   }
 
-  return !isNaN(parsedWidth) ? parsedWidth : undefined;
+  return parsedWidth;
+};
+
+const getValidDimensions = (filename?: string) => {
+  const dimensions = getDimensionsFromStoryblokAssetFilename(filename ?? '');
+
+  if (Number.isFinite(dimensions.width) && Number.isFinite(dimensions.height)) {
+    return dimensions;
+  }
+
+  return undefined;
 };
 
 /** When passing svg it fallback to image.
@@ -39,6 +58,8 @@ export const StoryblokImage = ({
   ...props
 }: StoryBlokImageProps) => {
   const { filename, alt } = storyblokImage ?? fallbackImage ?? {};
+  const source = (storyblokImage as StoryblokAssetWithSource | undefined)
+    ?.source;
 
   const isSvg = filename?.includes('.svg');
 
@@ -53,9 +74,11 @@ export const StoryblokImage = ({
     computedFilename = 'https:' + filename;
   }
 
-  const dimensions = getDimensionsFromStoryblokAssetFilename(
-    computedFilename ?? '',
-  );
+  const dimensions =
+    getValidDimensions(computedFilename) ??
+    getValidDimensions(source) ??
+    FALLBACK_IMAGE_DIMENSIONS;
+
   return (
     <>
       {!isSvg && (

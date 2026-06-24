@@ -12,7 +12,7 @@ export function ImageAndTextCard({
 }) {
   return (
     <div
-      className='flex w-auto max-w-[280px] flex-shrink-0 flex-col gap-[15px] overflow-hidden rounded-lg border-[1.5px] border-gray-200 bg-white'
+      className='border-line bg-card flex w-auto max-w-[280px] flex-shrink-0 flex-col gap-[15px] overflow-hidden rounded-lg border-[1.5px]'
       {...storyblokEditable(blok)}
     >
       {/* Card Image with desaturated blueish filter */}
@@ -34,7 +34,9 @@ export function ImageAndTextCard({
             {blok.title}
           </HeadingSm>
         )}
-        {blok.text && <Text className='text-foreground'>{blok.text}</Text>}
+        {blok.text && (
+          <Text className='text-muted-foreground'>{blok.text}</Text>
+        )}
       </div>
     </div>
   );

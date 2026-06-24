@@ -14,8 +14,8 @@ export function NavSection({ blok, textColor }: NavSectionProps) {
       {/* Trigger Button */}
       <button
         className={clsxm(
-          'cursor-pointer px-2 py-1 text-base font-normal transition-colors hover:opacity-70',
-          textColor === 'white' ? 'text-white' : 'text-black',
+          'hover:text-brand-green cursor-pointer px-2 py-1 text-base font-normal transition-colors',
+          textColor === 'white' ? 'text-white' : 'text-brand-navy',
         )}
         aria-haspopup='true'
       >
@@ -36,7 +36,7 @@ export function NavSection({ blok, textColor }: NavSectionProps) {
           'hidden group-hover:block',
 
           // Appearance
-          'z-50 min-w-[280px] rounded-lg bg-white p-6 shadow-lg',
+          'border-brand-green/20 bg-brand-navy z-50 min-w-[280px] rounded-md border p-3 text-white shadow-[0_24px_60px_rgba(10,14,26,0.28)]',
         )}
       >
         {/* Menu Items */}

@@ -95,7 +95,7 @@ export async function BasicLayout({
 
       <body
         className={clsxm(
-          'bg-background min-h-screen font-sans antialiased',
+          'makers-den-canvas bg-brand-navy text-foreground min-h-screen font-sans antialiased',
           fontSans.variable,
           fontDisplay.variable,
           fontMono.variable,

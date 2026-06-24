@@ -49,7 +49,7 @@ export function IconAndTextCard({
               : 'min-h-[60px] items-center justify-center p-10 md:min-h-[90px]',
           )}
         >
-          <HeadingSm as='h3' className='text-center text-[#212849]'>
+          <HeadingSm as='h3' className='text-foreground text-center'>
             {blok.title}
           </HeadingSm>
         </div>
@@ -59,7 +59,7 @@ export function IconAndTextCard({
       {blok.text && (
         <Text
           className={clsxm(
-            'w-full text-[#212849]',
+            'text-muted-foreground w-full',
             isNested ? '' : 'items-center px-3 text-center',
           )}
         >

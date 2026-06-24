@@ -5,26 +5,27 @@ import * as React from 'react';
 import clsxm from '@/lib/clsxm';
 
 const buttonVariants = cva(
-  'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0',
+  'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-semibold transition-all duration-300 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0',
   {
     variants: {
       variant: {
         default:
-          'bg-primary text-primary-foreground shadow hover:bg-primary/90',
+          'border border-brand-green bg-brand-green text-brand-navy shadow-[0_0_0_1px_rgb(var(--accent-ink-rgb)_/_0.08)] hover:bg-brand-green/90 hover:shadow-[0_0_18px_rgb(var(--accent-ink-rgb)_/_0.35)]',
         destructive:
-          'bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90',
+          'border border-destructive bg-destructive text-destructive-foreground hover:bg-destructive/90',
         outline:
-          'border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground',
+          'border border-brand-green/80 bg-transparent text-brand-green hover:border-brand-green hover:bg-brand-green hover:text-brand-navy hover:shadow-[0_0_18px_rgb(var(--accent-ink-rgb)_/_0.24)]',
         secondary:
-          'bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80',
-        accent: 'bg-accent text-accent-foreground shadow hover:bg-accent/90',
-        ghost: 'hover:bg-accent hover:text-accent-foreground',
-        link: 'text-primary underline-offset-4 hover:underline',
+          'border border-line bg-secondary text-secondary-foreground hover:border-brand-green/50 hover:bg-brand-green/10',
+        accent:
+          'border border-brand-violet bg-brand-violet text-accent-foreground hover:bg-brand-purple',
+        ghost: 'text-current hover:bg-brand-green/10 hover:text-brand-green',
+        link: 'text-brand-violet underline-offset-4 hover:text-brand-purple hover:underline',
       },
       size: {
-        default: 'h-9 px-4 py-2',
+        default: 'h-10 px-5 py-2',
         sm: 'h-8 rounded-md px-3 text-xs',
-        lg: 'h-10 rounded-md px-8',
+        lg: 'h-11 rounded-md px-8',
         pill: 'h-12 px-8 py-3 rounded-full',
         icon: 'h-9 w-9',
         'icon-sm': 'h-8 w-8',

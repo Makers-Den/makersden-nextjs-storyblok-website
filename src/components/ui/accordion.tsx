@@ -15,7 +15,7 @@ function AccordionItem({
   return (
     <AccordionPrimitive.Item
       data-slot='accordion-item'
-      className={clsxm('border-b', className)}
+      className={clsxm('border-line/70 border-b', className)}
       {...props}
     />
   );
@@ -34,12 +34,13 @@ function AccordionTrigger({
         data-slot='accordion-trigger'
         className={clsxm(
           'flex flex-1 cursor-pointer items-center justify-between py-4 font-medium transition-all hover:underline [&[data-state=open]>svg]:rotate-180',
+          'hover:text-brand-green',
           className,
         )}
         {...props}
       >
         {children}
-        <ChevronDown className='h-4 w-4 shrink-0 transition-transform duration-200' />
+        <ChevronDown className='text-brand-green h-4 w-4 shrink-0 transition-transform duration-200' />
       </AccordionPrimitive.Trigger>
     </AccordionPrimitive.Header>
   );
@@ -58,7 +59,7 @@ function AccordionContent({
       className='data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down overflow-hidden text-sm transition-all'
       {...props}
     >
-      <div className={clsxm('pt-0 pb-4', className)}>{children}</div>
+      <div className={clsxm('pt-0 pb-5', className)}>{children}</div>
     </AccordionPrimitive.Content>
   );
 }

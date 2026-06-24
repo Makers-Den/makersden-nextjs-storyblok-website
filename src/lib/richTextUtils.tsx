@@ -126,7 +126,7 @@ export const defaultRenderOptions: RenderOptions = {
   blokResolvers: {},
   markResolvers: {
     [MARK_BOLD]: (children) => (
-      <strong className='text-grey-100 font-bold'>{children}</strong>
+      <strong className='font-bold text-current'>{children}</strong>
     ),
     [MARK_UNDERLINE]: (children) => (
       <u className='text-primary-600'>{children}</u>
@@ -146,14 +146,16 @@ export const defaultRenderOptions: RenderOptions = {
 
       if (cls === 'highlightBox') {
         return (
-          <span className='border-grey-400 bg-grey-200 text-grey-900 block rounded-sm border p-3 font-bold'>
+          <span className='border-brand-green/35 bg-panel text-foreground block rounded-sm border p-3 font-bold'>
             {children}
           </span>
         );
       }
 
       if (cls === 'markGreen') {
-        return <span className='text-green inline-block'>{children}</span>;
+        return (
+          <span className='text-brand-green inline-block'>{children}</span>
+        );
       }
 
       if (cls === 'quoteRight') {
@@ -175,18 +177,20 @@ export const defaultRenderOptions: RenderOptions = {
   },
   nodeResolvers: {
     [NODE_QUOTE]: (children) => (
-      <blockquote className='border-gray mb-5 pl-4 text-black italic'>
+      <blockquote className='border-line mb-5 border-l pl-4 text-current italic'>
         {children}
       </blockquote>
     ),
     [NODE_PARAGRAPH]: (children) => (
-      <Text className='text-grey-200 my-7'>{children}</Text>
+      <Text className='my-7 text-current/75'>{children}</Text>
     ),
     [NODE_UL]: (children) => (
-      <ul className='ml-[1rem] list-disc'>{children}</ul>
+      <ul className='ml-[1rem] list-disc text-current/75'>{children}</ul>
     ),
     [NODE_OL]: (children) => (
-      <ol className='ml-[1rem] list-decimal font-normal'>{children}</ol>
+      <ol className='ml-[1rem] list-decimal font-normal text-current/75'>
+        {children}
+      </ol>
     ),
     // Negative vertical margins is to counter the spacing from the paragraphs.
     // Storyblok Rich Text Editor always wraps the content in a paragraph which adds unnecessary spacing.
@@ -281,8 +285,10 @@ const mergeInOverrides = (overrides: RenderOptions) => {
  * Default rich text rendering function.
  * It'll use our default config, but allow you to override specific options with overrides.
  */
-export const renderText = (text: SbRichtext, overrides: RenderOptions = {}) =>
-  render(text, mergeInOverrides(overrides));
+export const renderText = (
+  text: SbRichtext,
+  overrides: RenderOptions = {},
+): ReactNode => render(text, mergeInOverrides(overrides));
 
 /** Renders paragraphs as large text */
 export const renderTextLg = (text: SbRichtext) =>
@@ -315,11 +321,15 @@ export const renderHeadingXl = (text: SbRichtext, tag: Tag = 'p') =>
   });
 
 /** Render paragraphs as visual big headings, but still remain semantic paragraphs by default */
-export const renderHeadingLg = (text: SbRichtext, tag: Tag = 'p') =>
+export const renderHeadingLg = (
+  text: SbRichtext,
+  tag: Tag = 'p',
+  className?: string,
+) =>
   renderText(text, {
     nodeResolvers: {
       [NODE_PARAGRAPH]: (children) => (
-        <HeadingLg as={tag} className='my-0'>
+        <HeadingLg as={tag} className={clsxm('my-0', className)}>
           {children}
         </HeadingLg>
       ),
@@ -352,7 +362,7 @@ export const renderTextWithOptions = (
       [NODE_PARAGRAPH]: (children) => (
         <Typography
           useBalancer={useBalancer}
-          className={clsxm('text-grey-200 my-2', className)}
+          className={clsxm('my-2 text-current/75', className)}
           variant={variant}
         >
           {children}
