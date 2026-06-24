@@ -35,10 +35,10 @@ export function GridSection({ blok }: { blok: GridSectionSbContent }) {
       spacingBottom={blok.spacingBottom}
       {...storyblokEditable(blok)}
     >
-      <Container className='flex flex-col items-center gap-12'>
+      <Container className='flex flex-col items-start gap-10 md:gap-12'>
         {/* Section Title */}
         {blok.title && (
-          <div className='text-center'>{renderHeadingLg(blok.title, 'h2')}</div>
+          <div className='max-w-4xl'>{renderHeadingLg(blok.title, 'h2')}</div>
         )}
 
         {/* Cards Grid */}
@@ -46,7 +46,7 @@ export function GridSection({ blok }: { blok: GridSectionSbContent }) {
           <div
             className={clsxm(
               gridClasses,
-              'w-full justify-items-center gap-6 md:gap-8',
+              'w-full items-stretch gap-5 md:gap-6',
             )}
           >
             {blok.cards.map((card) => (

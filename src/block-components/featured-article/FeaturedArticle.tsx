@@ -44,12 +44,12 @@ export function FeaturedArticle({ blok }: { blok: FeaturedArticleSbContent }) {
       {...storyblokEditable(blok)}
     >
       <Container>
-        <div className='border-brand-green/15 bg-panel flex flex-col items-center gap-8 rounded-lg border p-5 lg:flex-row lg:gap-12 lg:p-14'>
+        <div className='flex flex-col items-center gap-8 overflow-hidden rounded-md p-5 lg:flex-row lg:gap-12 lg:p-10'>
           <AnimateOnScroll
             animationType='fade'
             delay={0.1}
             className={clsxm(
-              'border-line/70 relative h-[400px] w-full overflow-hidden rounded-lg border',
+              'relative h-[400px] w-full overflow-hidden rounded-sm',
               'lg:h-[500px] lg:w-1/2',
             )}
           >
@@ -63,7 +63,7 @@ export function FeaturedArticle({ blok }: { blok: FeaturedArticleSbContent }) {
                 storyblokImage={article.content.image}
               />
             ) : (
-              <div className='bg-brand-navy-soft flex h-full w-full items-center justify-center'>
+              <div className='flex h-full w-full items-center justify-center'>
                 <Text className='text-muted-foreground'>No image</Text>
               </div>
             )}
@@ -102,8 +102,8 @@ export function FeaturedArticle({ blok }: { blok: FeaturedArticleSbContent }) {
               <Link
                 href={`/${article.full_slug}`}
                 className={clsxm(
-                  'border-brand-green bg-brand-green text-brand-navy border',
-                  'inline-flex items-center gap-2 rounded-md px-6 py-3 leading-none',
+                  'bg-brand-green text-brand-navy',
+                  'inline-flex items-center gap-2 rounded-full px-8 py-3 leading-none',
                   'hover:bg-brand-green/90 font-semibold transition-colors',
                 )}
               >

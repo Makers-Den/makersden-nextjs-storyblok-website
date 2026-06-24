@@ -44,8 +44,8 @@ const PaginationButton = ({ isActive, ...props }: PaginationButtonProps) => (
     aria-current={isActive ? 'page' : undefined}
     className={clsxm(
       variantToClasses.textLg,
-      'text-primary/40 cursor-pointer rounded-sm px-4 py-3 font-medium transition-all disabled:cursor-default disabled:opacity-70',
-      { 'text-primary': isActive },
+      'text-brand-green/45 cursor-pointer rounded-sm px-4 py-3 font-medium transition-all disabled:cursor-default disabled:opacity-70',
+      { 'bg-brand-green/10 text-brand-green': isActive },
     )}
     {...props}
   />
@@ -59,8 +59,8 @@ const PaginationPrevious = ({
   <PaginationButton
     aria-label='Go to previous page'
     className={clsxm(
-      'text-primary cursor-pointer align-middle',
-      'disabled:text-primary/40 disabled:cursor-default',
+      'text-brand-green cursor-pointer align-middle',
+      'disabled:text-brand-green/35 disabled:cursor-default',
       className,
     )}
     {...props}
@@ -77,8 +77,8 @@ const PaginationNext = ({
   <PaginationButton
     aria-label='Go to next page'
     className={clsxm(
-      'text-primary cursor-pointer align-middle',
-      'disabled:text-primary/40 disabled:cursor-default',
+      'text-brand-green cursor-pointer align-middle',
+      'disabled:text-brand-green/35 disabled:cursor-default',
       className,
     )}
     {...props}

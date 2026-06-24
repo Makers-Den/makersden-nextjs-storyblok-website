@@ -23,12 +23,10 @@ export function FaqSection({ blok }: { blok: FaqSectionSbContent }) {
     >
       <Container>
         <AnimateOnScroll>
-          <div className='mx-auto max-w-3xl'>
+          <div className='mx-auto max-w-4xl'>
             {/* Title */}
             {blok.title && (
-              <div className='mb-12 text-center'>
-                {renderHeadingMd(blok.title, 'h3')}
-              </div>
+              <div className='mb-10'>{renderHeadingMd(blok.title, 'h3')}</div>
             )}
 
             {/* Accordion list */}
@@ -36,13 +34,13 @@ export function FaqSection({ blok }: { blok: FaqSectionSbContent }) {
               type='single'
               collapsible
               defaultValue='item-0'
-              className='border-brand-green/15 bg-panel rounded-md border px-5 md:px-8'
+              className='space-y-4'
             >
               {blok.faqItems.map(({ _uid, question, answer }, idx) => (
                 <AccordionItem
                   key={_uid}
                   value={`item-${idx}`}
-                  className='last:border-b-0'
+                  className='py-1'
                 >
                   {question && (
                     <AccordionTrigger className='py-5 text-left text-base font-semibold hover:no-underline md:text-lg'>
@@ -51,7 +49,7 @@ export function FaqSection({ blok }: { blok: FaqSectionSbContent }) {
                   )}
 
                   {answer && (
-                    <AccordionContent className='text-muted-foreground'>
+                    <AccordionContent className='max-w-2xl text-current/70'>
                       {renderText(answer)}
                     </AccordionContent>
                   )}

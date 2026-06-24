@@ -20,7 +20,7 @@ export function ImageCardLink({ blok }: { blok: ImageCardLinkSbContent }) {
     <CardWrapper
       {...wrapperProps}
       {...storyblokEditable(blok)}
-      className='relative block overflow-hidden rounded-[10px] transition-transform duration-200 hover:scale-[1.02]'
+      className='relative block overflow-hidden rounded-md transition-opacity hover:opacity-90'
     >
       {/* Cover Image */}
       <div className='relative aspect-video w-full'>
@@ -34,8 +34,8 @@ export function ImageCardLink({ blok }: { blok: ImageCardLinkSbContent }) {
 
       {/* Pill Badge */}
       {blok.pillText && (
-        <div className='border-brand-green bg-brand-navy absolute top-[14px] left-4 rounded-[32px] border-2 px-8 py-4'>
-          <span className='font-display text-xl leading-[20px] font-medium text-white'>
+        <div className='bg-brand-navy absolute top-4 left-4 rounded-sm px-4 py-2'>
+          <span className='font-display text-sm leading-none font-bold text-white'>
             {blok.pillText}
           </span>
         </div>

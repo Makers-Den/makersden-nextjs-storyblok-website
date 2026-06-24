@@ -14,7 +14,10 @@ import { ImageAndTextCard } from '@/block-components/image-and-text-card/ImageAn
 import { ImageCardLink } from '@/block-components/image-card-link/ImageCardLink';
 import { LogosSection } from '@/block-components/logos-section/LogosSection';
 import { PaginatedSection } from '@/block-components/paginated-section/PaginatedSection';
+import { RichTextContent } from '@/block-components/rich-text-content/RichTextContent';
+import { SplitContentSection } from '@/block-components/split-content-section/SplitContentSection';
 import { SplitSection } from '@/block-components/split-section/SplitSection';
+import { Teaser } from '@/block-components/teaser/Teaser';
 import { TitleAndText } from '@/block-components/title-and-text/TitleAndText';
 import { env } from '@/env';
 import ArticlePage from '@/page-components/ArticlePage';
@@ -47,7 +50,10 @@ export const getStoryblokApi = storyblokInit({
     LogosSection: LogosSection,
     Page: Page,
     PaginatedSection: PaginatedSection,
+    RichTextContent: RichTextContent,
+    SplitContentSection: SplitContentSection,
     SplitSection: SplitSection,
+    Teaser: Teaser,
     TitleAndText: TitleAndText,
     ...dynamicComponents,
   },

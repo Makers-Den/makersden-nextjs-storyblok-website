@@ -83,7 +83,7 @@ export function Footer({
   const showBottomRow = Boolean(copyrightNotice) || legalLinks.length > 0;
 
   return (
-    <footer className='border-brand-green/15 bg-brand-navy border-t text-white'>
+    <footer className='bg-brand-navy text-white'>
       <Container className='px-2 py-12 md:px-3 md:py-16'>
         <div className='mb-12 flex flex-col gap-8 md:mb-16 md:gap-12 lg:flex-row lg:justify-between'>
           {/* Left Section: Logo */}
@@ -131,7 +131,7 @@ export function Footer({
                         key={social._uid}
                         link={social.link}
                         aria-label={social.name ?? 'Social link'}
-                        className='border-brand-green/25 bg-panel hover:border-brand-green hover:bg-brand-green hover:text-brand-navy flex h-10 w-10 items-center justify-center rounded-full border text-white transition-colors'
+                        className='hover:bg-brand-green hover:text-brand-navy flex h-10 w-10 items-center justify-center rounded-full text-white transition-colors'
                       >
                         {innerContent}
                       </StoryblokLink>
@@ -141,7 +141,7 @@ export function Footer({
                   return (
                     <span
                       key={social._uid}
-                      className='border-brand-green/15 bg-panel flex h-10 w-10 items-center justify-center rounded-full border text-white/55'
+                      className='flex h-10 w-10 items-center justify-center rounded-full text-white/55'
                     >
                       {innerContent}
                     </span>
@@ -161,7 +161,7 @@ export function Footer({
                     <Accordion.Item
                       key={column._uid}
                       value={column._uid}
-                      className='border-brand-green/15 border-b'
+                      className=''
                     >
                       <Accordion.Header className='flex'>
                         <Accordion.Trigger
@@ -271,7 +271,7 @@ export function Footer({
 
         {/* Bottom Section: Copyright and Legal Links */}
         {showBottomRow && (
-          <div className='border-brand-green/15 flex flex-col items-start justify-between gap-4 border-t pt-6 md:flex-row md:items-center md:pt-8'>
+          <div className='flex flex-col items-start justify-between gap-4 pt-6 md:flex-row md:items-center md:pt-8'>
             {/* Copyright */}
             {copyrightNotice && (
               <TextSm as='p' className='text-white/55'>

@@ -33,7 +33,7 @@ export function Image({ blok }: { blok: ImageSbContent }) {
         className={clsxm(
           isFullWidth && 'w-full',
           isFullHeight && 'h-full',
-          !blok.noRounding && 'rounded-lg',
+          !blok.noRounding && 'rounded-md',
           fitClass,
         )}
         sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 1000px'

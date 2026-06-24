@@ -54,10 +54,10 @@ export function SplitSection({ blok }: { blok: SplitSectionSbContent }) {
     >
       <Container>
         <AnimateOnScroll>
-          <div className={clsxm(hasTitle && 'flex flex-col gap-10 md:gap-20')}>
+          <div className={clsxm(hasTitle && 'flex flex-col gap-10 md:gap-16')}>
             {/* Title */}
             {hasTitle && (
-              <div className='text-center'>
+              <div className='max-w-4xl'>
                 {renderHeadingLg(blok.title!, 'h2')}
               </div>
             )}
@@ -65,7 +65,7 @@ export function SplitSection({ blok }: { blok: SplitSectionSbContent }) {
             {/* Split Grid */}
             <div
               className={clsxm(
-                'grid grid-cols-1 items-center gap-8 md:gap-12',
+                'grid grid-cols-1 items-center gap-6 md:gap-10',
                 getProportionClasses(),
               )}
             >

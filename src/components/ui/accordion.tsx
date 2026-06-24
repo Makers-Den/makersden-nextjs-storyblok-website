@@ -15,7 +15,7 @@ function AccordionItem({
   return (
     <AccordionPrimitive.Item
       data-slot='accordion-item'
-      className={clsxm('border-line/70 border-b', className)}
+      className={clsxm(className)}
       {...props}
     />
   );
@@ -33,7 +33,7 @@ function AccordionTrigger({
       <AccordionPrimitive.Trigger
         data-slot='accordion-trigger'
         className={clsxm(
-          'flex flex-1 cursor-pointer items-center justify-between py-4 font-medium transition-all hover:underline [&[data-state=open]>svg]:rotate-180',
+          'font-display flex flex-1 cursor-pointer items-center justify-between gap-6 py-6 text-left text-[clamp(1.25rem,2vw,1.875rem)] leading-[1.15] font-bold tracking-normal transition-all [&[data-state=open]>svg]:rotate-180',
           'hover:text-brand-green',
           className,
         )}
