@@ -103,7 +103,7 @@ export function FeaturedArticle({ blok }: { blok: FeaturedArticleSbContent }) {
                 href={`/${article.full_slug}`}
                 className={clsxm(
                   'border-brand-green bg-brand-green text-brand-navy border',
-                  'inline-flex items-center gap-2 rounded-md px-6 py-3',
+                  'inline-flex items-center gap-2 rounded-md px-6 py-3 leading-none',
                   'hover:bg-brand-green/90 font-semibold transition-colors',
                 )}
               >
