@@ -29,7 +29,7 @@ export function HeroSplitSection({
         <div className='pointer-events-none absolute inset-y-0 left-1/2 hidden w-full max-w-[1920px] -translate-x-1/2 lg:block'>
           <div className='ml-auto h-full w-1/2'>
             <AnimateOnScroll animationType='fadeLeft' delay={0.5}>
-              <div className='h-full w-full [&_img]:h-full [&_img]:w-full [&_img]:rounded-none [&_img]:object-cover'>
+              <div className='flex h-full w-full items-center justify-center px-[clamp(2rem,5vw,6rem)] py-[clamp(3rem,8vh,8rem)] [&_img]:h-auto [&_img]:max-h-[min(62vh,38rem)] [&_img]:w-auto [&_img]:max-w-[min(84%,46rem)] [&_img]:rounded-none [&_img]:object-contain'>
                 {blok.rightSideFill?.map((fillBlok) => (
                   <StoryblokServerComponent
                     blok={fillBlok}
@@ -104,7 +104,7 @@ export function HeroSplitSection({
                 </AnimateOnScroll>
               )}
               {hasRightSideFill && !hasRightSide && (
-                <div className='relative z-10 flex flex-col gap-6 lg:hidden'>
+                <div className='relative z-10 flex flex-col items-center justify-center gap-6 lg:hidden [&_img]:h-auto [&_img]:max-h-[22rem] [&_img]:w-auto [&_img]:max-w-full [&_img]:object-contain'>
                   {blok.rightSideFill?.map((fillBlok) => (
                     <StoryblokServerComponent
                       blok={fillBlok}
