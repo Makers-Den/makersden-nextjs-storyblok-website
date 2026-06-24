@@ -44,7 +44,7 @@ export function FeaturedArticle({ blok }: { blok: FeaturedArticleSbContent }) {
       {...storyblokEditable(blok)}
     >
       <Container>
-        <div className='border-brand-green/15 bg-panel flex flex-col items-center gap-8 rounded-lg border p-5 shadow-[0_24px_80px_rgba(10,14,26,0.24)] lg:flex-row lg:gap-12 lg:p-14'>
+        <div className='border-brand-green/15 bg-panel flex flex-col items-center gap-8 rounded-lg border p-5 lg:flex-row lg:gap-12 lg:p-14'>
           <AnimateOnScroll
             animationType='fade'
             delay={0.1}
@@ -104,7 +104,7 @@ export function FeaturedArticle({ blok }: { blok: FeaturedArticleSbContent }) {
                 className={clsxm(
                   'border-brand-green bg-brand-green text-brand-navy border',
                   'inline-flex items-center gap-2 rounded-md px-6 py-3',
-                  'hover:bg-brand-green/90 font-semibold transition-all hover:shadow-[0_0_18px_rgba(109,218,132,0.3)]',
+                  'hover:bg-brand-green/90 font-semibold transition-colors',
                 )}
               >
                 Read More

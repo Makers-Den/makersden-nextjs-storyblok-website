@@ -28,7 +28,7 @@ export function ArticleCard({ article, isOnlyItem }: ArticleCardProps) {
   return (
     <article
       className={clsxm(
-        'group border-brand-green/15 bg-panel hover:border-brand-green/45 flex flex-col overflow-hidden rounded-lg border shadow-[0_24px_80px_rgba(10,14,26,0.18)] transition-colors',
+        'group border-brand-green/15 bg-panel hover:border-brand-green/45 flex flex-col overflow-hidden rounded-lg border transition-colors',
         isOnlyItem && 'lg:flex-row',
       )}
     >

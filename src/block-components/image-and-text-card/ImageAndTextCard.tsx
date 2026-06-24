@@ -15,12 +15,12 @@ export function ImageAndTextCard({
       className='border-line bg-card flex w-auto max-w-[280px] flex-shrink-0 flex-col gap-[15px] overflow-hidden rounded-lg border-[1.5px]'
       {...storyblokEditable(blok)}
     >
-      {/* Card Image with desaturated blueish filter */}
+      {/* Card Image */}
       {blok.image && (
         <div className='relative h-[177px] w-full overflow-hidden rounded-t-lg'>
           <StoryblokImage
             storyblokImage={blok.image}
-            className='object-cover opacity-80 saturate-[0.7] [filter:sepia(1)_hue-rotate(190deg)]'
+            className='object-cover'
             fill
             sizes='280px'
           />

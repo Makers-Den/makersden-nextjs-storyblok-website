@@ -34,8 +34,8 @@ const animationVariants: Record<AnimationType, AnimationVariant> = {
     visible: { opacity: 1, x: 0 },
   },
   blur: {
-    hidden: { opacity: 0, filter: 'blur(10px)' },
-    visible: { opacity: 1, filter: 'blur(0px)' },
+    hidden: { opacity: 0 },
+    visible: { opacity: 1 },
   },
   scale: {
     hidden: { opacity: 0, scale: 0.9 },

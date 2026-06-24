@@ -3,7 +3,6 @@ import {
   StoryblokServerComponent,
 } from '@storyblok/react/rsc';
 
-import clsxm from '@/lib/clsxm';
 import { renderHeading2Xl } from '@/lib/richTextUtils';
 import { type HeroSectionSbContent } from '@/lib/storyblok';
 
@@ -29,28 +28,14 @@ export function HeroSection({ blok }: { blok: HeroSectionSbContent }) {
         </div>
       )}
       <div
-        className='pointer-events-none absolute inset-0 z-0 bg-[linear-gradient(180deg,rgba(19,24,37,0.42)_0%,rgba(19,24,37,0.74)_55%,rgba(19,24,37,0.96)_100%)]'
-        aria-hidden='true'
-      />
-      <div
-        className='via-brand-green/60 pointer-events-none absolute inset-x-0 bottom-0 z-0 h-px bg-gradient-to-r from-transparent to-transparent'
+        className='bg-brand-navy/80 pointer-events-none absolute inset-0 z-0'
         aria-hidden='true'
       />
 
       <Container className='relative z-10 flex flex-col items-center gap-8 py-16 text-center md:py-20 lg:gap-12 lg:py-24'>
         {/* Title */}
         {blok.title && (
-          <div
-            className={clsxm(
-              'max-w-4xl',
-              // Text shadow for readability on background
-              '[text-shadow:0_4px_4px_rgba(0,0,0,0.55),0_10px_10px_rgba(0,0,0,0.25)]',
-              // Typography - match Figma design
-              'text-4xl leading-tight font-extralight tracking-wide text-white',
-              'md:text-5xl',
-              'lg:text-6xl lg:leading-none',
-            )}
-          >
+          <div className='max-w-4xl text-white'>
             {renderHeading2Xl(blok.title)}
           </div>
         )}
