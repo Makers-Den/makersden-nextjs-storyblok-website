@@ -72,7 +72,7 @@ export async function PaginatedSection({
         <AnimateOnScroll animationType='fadeUp' delay={0.1} className='mb-12'>
           <div className='mb-8'>
             <HeadingMd className='mb-4'>{blok.title}</HeadingMd>
-            <div className='bg-border h-px w-40' />
+            <div className='bg-brand-green h-px w-40' />
           </div>
 
           {blok.description && isRichtextNotEmpty(blok.description) && (

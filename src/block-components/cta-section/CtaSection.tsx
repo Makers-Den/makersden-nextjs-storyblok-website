@@ -20,7 +20,7 @@ export function CtaSection({ blok }: { blok: CtaSectionSbContent }) {
       {...storyblokEditable(blok)}
     >
       <Container className='text-center'>
-        <AnimateOnScroll className='flex flex-col items-center gap-2'>
+        <AnimateOnScroll className='border-brand-green/15 bg-panel/60 mx-auto flex max-w-5xl flex-col items-center gap-4 rounded-lg border px-5 py-12 shadow-[0_24px_80px_rgba(10,14,26,0.18)] md:px-10 md:py-16'>
           {/* Title */}
           {blok.title && isRichtextNotEmpty(blok.title) && (
             <div className='max-w-4xl'>{renderHeadingLg(blok.title, 'h2')}</div>

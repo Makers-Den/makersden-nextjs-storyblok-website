@@ -22,6 +22,19 @@
   --color-card-foreground: var(--card-foreground);
   --color-destructive: var(--destructive);
   --color-destructive-foreground: var(--destructive-foreground);
+  --color-ink: rgb(var(--ink-rgb) / <alpha-value>);
+  --color-line: rgb(var(--line-rgb) / <alpha-value>);
+  --color-panel: rgb(var(--panel-rgb) / <alpha-value>);
+  --color-panel-strong: rgb(var(--panel-strong-rgb) / <alpha-value>);
+  --color-accent-ink: rgb(var(--accent-ink-rgb) / <alpha-value>);
+  --color-brand-green: var(--makers-den-green);
+  --color-brand-violet: var(--makers-den-purple);
+  --color-brand-purple: var(--makers-den-dark-purple);
+  --color-brand-navy: var(--makers-den-navy);
+  --color-brand-navy-soft: var(--makers-den-navy-soft);
+  --color-makersden-green: var(--makers-den-green);
+  --color-makersden-purple: var(--makers-den-purple);
+  --color-makersden-darkpurple: var(--makers-den-dark-purple);
 
   /* UI Elements */
   --color-border: var(--border);
@@ -47,85 +60,105 @@
 }
 
 :root {
+  --makers-den-green: #6dda84;
+  --makers-den-purple: #7313eb;
+  --makers-den-dark-purple: #590bb2;
+  --makers-den-navy: #131825;
+  --makers-den-navy-soft: #1d2230;
+
   /* Base colors - Light Mode */
-  --background: oklch(0.966 0.012 92);
-  --foreground: oklch(0.17 0.004 260);
+  --background: oklch(0.18 0.019 266);
+  --foreground: oklch(0.966 0.01 135);
 
   /* Primary - Main brand color (dark buttons like header CTA) */
-  --primary: oklch(0.18 0.006 260);
-  --primary-foreground: oklch(0.985 0.006 92);
+  --primary: var(--makers-den-green);
+  --primary-foreground: var(--makers-den-navy);
 
   /* Secondary - Subtle backgrounds, secondary buttons */
-  --secondary: oklch(0.9 0.018 92);
-  --secondary-foreground: oklch(0.22 0.006 260);
+  --secondary: oklch(0.245 0.02 266);
+  --secondary-foreground: oklch(0.966 0.01 135);
 
   /* Muted - Disabled states, subtle backgrounds */
-  --muted: oklch(0.93 0.014 92);
-  --muted-foreground: oklch(0.43 0.012 260);
+  --muted: oklch(0.245 0.02 266);
+  --muted-foreground: oklch(0.72 0.018 135);
 
   /* Accent - Primary CTA buttons */
-  --accent: oklch(0.56 0.235 261);
-  --accent-foreground: oklch(1 0 0);
+  --accent: var(--makers-den-purple);
+  --accent-foreground: oklch(0.985 0.008 135);
 
   /* Card - Elevated surfaces (same as base colors for cohesion) */
-  --card: oklch(0.99 0.004 92);
-  --card-foreground: oklch(0.17 0.004 260);
+  --card: oklch(0.205 0.02 266);
+  --card-foreground: oklch(0.966 0.01 135);
 
   /* Destructive - Error states, dangerous actions */
   --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.9843 0 0);
+  --destructive-foreground: oklch(0.984 0.005 30);
 
   /* UI Elements */
-  --border: oklch(0.88 0.012 92);
-  --input: oklch(0.88 0.012 92);
-  --ring: oklch(0.56 0.235 261);
+  --border: oklch(0.34 0.025 266);
+  --input: oklch(0.34 0.025 266);
+  --ring: var(--makers-den-green);
 
   /* Border radius */
-  --radius: 0.625rem;
+  --radius: 0.5rem;
 
   /* Additional color palette */
-  --red: oklch(0.57 0.22 29);
-  --green: oklch(0.58 0.17 150);
-  --blue: oklch(0.56 0.235 261);
-  --black: oklch(0.13 0.004 260);
-  --white: oklch(0.99 0.004 92);
+  --red: oklch(0.42 0.16 29.23);
+  --green: var(--makers-den-green);
+  --blue: var(--makers-den-purple);
+  --black: var(--makers-den-navy);
+  --white: oklch(0.985 0.008 135);
   --transparent: transparent;
-  --gray: oklch(0.53 0.006 260);
+  --gray: rgb(35 42 58);
+
+  --canvas-rgb: 19 24 37;
+  --panel-rgb: 29 34 48;
+  --panel-strong-rgb: 35 42 58;
+  --ink-rgb: 246 249 244;
+  --line-rgb: 74 85 104;
+  --accent-ink-rgb: 109 218 132;
 }
 
 .dark {
   /* Base colors - Dark Mode */
-  --background: oklch(0.1373 0.004 261);
-  --foreground: oklch(0.9686 0.01 95);
+  --background: oklch(0.18 0.019 266);
+  --foreground: oklch(0.966 0.01 135);
 
   /* Primary - Main brand color (buttons, links) */
-  --primary: oklch(0.9529 0.014 95);
-  --primary-foreground: oklch(0.1373 0.004 261);
+  --primary: var(--makers-den-green);
+  --primary-foreground: var(--makers-den-navy);
 
   /* Secondary - Subtle backgrounds, secondary buttons */
-  --secondary: oklch(0.2078 0.004 261);
-  --secondary-foreground: oklch(0.9686 0.01 95);
+  --secondary: oklch(0.245 0.02 266);
+  --secondary-foreground: oklch(0.966 0.01 135);
 
   /* Muted - Disabled states, subtle backgrounds */
-  --muted: oklch(0.2078 0.004 261);
-  --muted-foreground: oklch(0.6667 0 0);
+  --muted: oklch(0.245 0.02 266);
+  --muted-foreground: oklch(0.72 0.018 135);
 
   /* Accent - Highlights, hover states */
-  --accent: oklch(0.55 0.2 260);
-  --accent-foreground: oklch(1 0 0);
+  --accent: var(--makers-den-purple);
+  --accent-foreground: oklch(0.985 0.008 135);
 
   /* Card - Elevated surfaces (same as base colors for cohesion) */
-  --card: oklch(0.1373 0.004 261);
-  --card-foreground: oklch(0.9686 0.01 95);
+  --card: oklch(0.205 0.02 266);
+  --card-foreground: oklch(0.966 0.01 135);
 
   /* Destructive - Error states, dangerous actions */
   --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.9843 0 0);
+  --destructive-foreground: oklch(0.984 0.005 30);
 
   /* UI Elements */
-  --border: oklch(0.2941 0.012 261);
-  --input: oklch(0.2941 0.012 261);
-  --ring: oklch(0.9529 0.014 95);
+  --border: oklch(0.34 0.025 266);
+  --input: oklch(0.34 0.025 266);
+  --ring: var(--makers-den-green);
+
+  --canvas-rgb: 19 24 37;
+  --panel-rgb: 29 34 48;
+  --panel-strong-rgb: 35 42 58;
+  --ink-rgb: 246 249 244;
+  --line-rgb: 74 85 104;
+  --accent-ink-rgb: 109 218 132;
 }
 
 @layer base {
@@ -134,5 +167,27 @@
   }
   body {
     @apply bg-background text-foreground;
+    background:
+      radial-gradient(
+        circle at 12% 8%,
+        rgb(115 19 235 / 0.18),
+        transparent 24rem
+      ),
+      radial-gradient(
+        circle at 88% 12%,
+        rgb(109 218 132 / 0.12),
+        transparent 22rem
+      ),
+      linear-gradient(180deg, rgb(var(--canvas-rgb)) 0%, rgb(10 14 26) 100%),
+      var(--background);
   }
+}
+
+::selection {
+  background: var(--makers-den-purple);
+  color: oklch(0.985 0.008 135);
+}
+
+.text-shadow-green {
+  text-shadow: 0 0 8px var(--makers-den-green);
 }

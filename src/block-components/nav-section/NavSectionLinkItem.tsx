@@ -10,11 +10,11 @@ export function NavSectionLinkItem({ blok }: NavSectionLinkItemProps) {
   return (
     <StoryblokLink
       link={blok.link}
-      className='block rounded-md p-4 hover:bg-gray-50'
+      className='hover:bg-brand-green/10 block rounded-md p-4 transition-colors'
     >
-      <div className='font-semibold text-black'>{blok.title}</div>
+      <div className='font-semibold text-current'>{blok.title}</div>
       {blok.description && (
-        <div className='text-text-muted text-sm'>{blok.description}</div>
+        <div className='text-sm text-current/65'>{blok.description}</div>
       )}
     </StoryblokLink>
   );

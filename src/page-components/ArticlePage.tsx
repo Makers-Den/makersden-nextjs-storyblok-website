@@ -27,7 +27,10 @@ export default function ArticlePage({
       : null;
 
   return (
-    <main {...storyblokEditable(blok)}>
+    <main
+      className='bg-brand-navy text-foreground'
+      {...storyblokEditable(blok)}
+    >
       {/* Hero Section with Overlaid Content */}
       <section className='relative'>
         <div className='grid'>
@@ -47,7 +50,7 @@ export default function ArticlePage({
               />
 
               {/* Overlay */}
-              <div className='absolute inset-0 bg-black/50' />
+              <div className='bg-brand-navy/65 absolute inset-0' />
             </AnimateOnScroll>
           )}
 
@@ -58,9 +61,7 @@ export default function ArticlePage({
               <AnimateOnScroll delay={0.1} duration={0.6}>
                 <div className='mb-4 flex items-center gap-3'>
                   {category && isStoryblokStory(category) && (
-                    <Badge className='border-transparent bg-white/20 py-1 text-white backdrop-blur-sm'>
-                      {category.content.name}
-                    </Badge>
+                    <Badge className='py-1'>{category.content.name}</Badge>
                   )}
 
                   {blok.date && (
@@ -86,7 +87,7 @@ export default function ArticlePage({
               {/* Subtitle/Intro */}
               {blok.intro && isRichtextNotEmpty(blok.intro) && (
                 <AnimateOnScroll delay={0.3} duration={0.6}>
-                  <div className='prose prose-lg mb-8 max-w-3xl text-white/90'>
+                  <div className='prose prose-invert prose-p:text-white/90 mb-8 max-w-3xl'>
                     {renderText(blok.intro)}
                   </div>
                 </AnimateOnScroll>
@@ -126,7 +127,7 @@ export default function ArticlePage({
           <AnimateOnScroll delay={0.2} duration={0.8}>
             <div className='mx-auto max-w-3xl'>
               {blok.content && isRichtextNotEmpty(blok.content) && (
-                <div className='prose prose-lg max-w-none [&>*:first-child]:mt-4'>
+                <div className='prose prose-invert prose-lg prose-headings:text-current prose-p:text-current/75 prose-a:text-brand-green prose-strong:text-current prose-li:text-current/75 max-w-none [&>*:first-child]:mt-4'>
                   {renderText(blok.content)}
                 </div>
               )}

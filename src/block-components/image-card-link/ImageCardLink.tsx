@@ -34,7 +34,7 @@ export function ImageCardLink({ blok }: { blok: ImageCardLinkSbContent }) {
 
       {/* Pill Badge */}
       {blok.pillText && (
-        <div className='absolute top-[14px] left-4 rounded-[32px] border-2 border-white bg-black px-8 py-4'>
+        <div className='border-brand-green bg-brand-navy absolute top-[14px] left-4 rounded-[32px] border-2 px-8 py-4'>
           <span className='font-display text-xl leading-[20px] font-medium text-white'>
             {blok.pillText}
           </span>

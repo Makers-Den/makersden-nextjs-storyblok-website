@@ -12,7 +12,7 @@ export function HeroNarrowSection({
 }) {
   return (
     <section
-      className='relative flex min-h-[180px] items-center justify-center bg-black py-14 text-white'
+      className='bg-brand-navy relative flex min-h-[180px] items-center justify-center py-14 text-white'
       {...storyblokEditable(blok)}
     >
       {/* Content Container */}
