@@ -171,28 +171,11 @@
 }
 
 .makers-den-canvas {
-  background:
-    radial-gradient(
-      circle at 12% 8%,
-      rgb(115 19 235 / 0.18),
-      transparent 24rem
-    ),
-    radial-gradient(
-      circle at 88% 12%,
-      rgb(109 218 132 / 0.12),
-      transparent 22rem
-    ),
-    linear-gradient(180deg, rgb(var(--canvas-rgb)) 0%, rgb(10 14 26) 100%),
-    var(--background);
-  background-attachment: fixed;
+  background: rgb(var(--canvas-rgb));
   color: var(--foreground);
 }
 
 ::selection {
   background: var(--makers-den-purple);
   color: oklch(0.985 0.008 135);
-}
-
-.text-shadow-green {
-  text-shadow: 0 0 8px var(--makers-den-green);
 }

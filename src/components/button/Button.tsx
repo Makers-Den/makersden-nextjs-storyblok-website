@@ -5,16 +5,16 @@ import * as React from 'react';
 import clsxm from '@/lib/clsxm';
 
 const buttonVariants = cva(
-  'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-semibold transition-all duration-300 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0',
+  'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-semibold transition-colors focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0',
   {
     variants: {
       variant: {
         default:
-          'border border-brand-green bg-brand-green text-brand-navy shadow-[0_0_0_1px_rgb(var(--accent-ink-rgb)_/_0.08)] hover:bg-brand-green/90 hover:shadow-[0_0_18px_rgb(var(--accent-ink-rgb)_/_0.35)]',
+          'border border-brand-green bg-brand-green text-brand-navy hover:bg-brand-green/90',
         destructive:
           'border border-destructive bg-destructive text-destructive-foreground hover:bg-destructive/90',
         outline:
-          'border border-brand-green/80 bg-transparent text-brand-green hover:border-brand-green hover:bg-brand-green hover:text-brand-navy hover:shadow-[0_0_18px_rgb(var(--accent-ink-rgb)_/_0.24)]',
+          'border border-brand-green/80 bg-transparent text-brand-green hover:border-brand-green hover:bg-brand-green hover:text-brand-navy',
         secondary:
           'border border-line bg-secondary text-secondary-foreground hover:border-brand-green/50 hover:bg-brand-green/10',
         accent:

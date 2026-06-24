@@ -36,7 +36,7 @@ export function FaqSection({ blok }: { blok: FaqSectionSbContent }) {
               type='single'
               collapsible
               defaultValue='item-0'
-              className='border-brand-green/15 bg-panel/55 rounded-md border px-5 md:px-8'
+              className='border-brand-green/15 bg-panel rounded-md border px-5 md:px-8'
             >
               {blok.faqItems.map(({ _uid, question, answer }, idx) => (
                 <AccordionItem

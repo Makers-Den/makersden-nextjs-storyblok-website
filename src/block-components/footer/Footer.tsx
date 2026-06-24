@@ -131,7 +131,7 @@ export function Footer({
                         key={social._uid}
                         link={social.link}
                         aria-label={social.name ?? 'Social link'}
-                        className='border-brand-green/25 hover:border-brand-green hover:bg-brand-green hover:text-brand-navy flex h-10 w-10 items-center justify-center rounded-full border bg-white/5 text-white transition-colors'
+                        className='border-brand-green/25 bg-panel hover:border-brand-green hover:bg-brand-green hover:text-brand-navy flex h-10 w-10 items-center justify-center rounded-full border text-white transition-colors'
                       >
                         {innerContent}
                       </StoryblokLink>
@@ -141,7 +141,7 @@ export function Footer({
                   return (
                     <span
                       key={social._uid}
-                      className='border-brand-green/15 flex h-10 w-10 items-center justify-center rounded-full border bg-white/5 text-white/55'
+                      className='border-brand-green/15 bg-panel flex h-10 w-10 items-center justify-center rounded-full border text-white/55'
                     >
                       {innerContent}
                     </span>

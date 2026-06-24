@@ -36,7 +36,7 @@ export function NavSection({ blok, textColor }: NavSectionProps) {
           'hidden group-hover:block',
 
           // Appearance
-          'border-brand-green/20 bg-brand-navy z-50 min-w-[280px] rounded-md border p-3 text-white shadow-[0_24px_60px_rgba(10,14,26,0.28)]',
+          'border-brand-green/20 bg-brand-navy z-50 min-w-[280px] rounded-md border p-3 text-white',
         )}
       >
         {/* Menu Items */}

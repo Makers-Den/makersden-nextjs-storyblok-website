@@ -108,7 +108,7 @@ export function Header({
       ? 'bg-transparent'
       : navType === 'black'
         ? 'bg-brand-navy'
-        : 'bg-brand-navy/95 backdrop-blur';
+        : 'bg-brand-navy';
 
   return (
     <>
@@ -188,9 +188,9 @@ export function Header({
       <header
         className={clsxm(
           'fixed top-0 right-0 left-0 z-50',
-          'border-brand-green/15 bg-brand-navy/95 border-b text-white shadow-[0_12px_30px_rgba(10,14,26,0.24)] backdrop-blur',
+          'border-brand-green/15 bg-brand-navy border-b text-white',
           'py-3 md:py-4',
-          'transition-transform duration-300',
+          'transition-transform',
           showStickyHeader ? 'translate-y-0' : '-translate-y-full',
         )}
       >
