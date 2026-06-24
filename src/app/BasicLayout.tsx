@@ -9,6 +9,7 @@ import clsxm from '@/lib/clsxm';
 
 import { GTMScripts } from '@/components/gtm-scripts/GTMScripts';
 import { OrganizationSchema } from '@/components/json-ld/OrganizationSchema';
+import { StoryblokPreviewStatus } from '@/components/storyblok/StoryblokPreviewStatus';
 import StoryblokProvider from '@/components/storyblok/StoryblokProvider';
 
 const fontSans = localFont({
@@ -71,9 +72,11 @@ const favicons: Array<Favicons> = [
 export async function BasicLayout({
   children,
   locale,
+  previewSlug,
 }: {
   locale: string;
   children: ReactNode;
+  previewSlug?: string;
 }) {
   const isPreview = (await draftMode()).isEnabled;
 
@@ -104,6 +107,7 @@ export async function BasicLayout({
         <NextIntlClientProvider>
           <StoryblokProvider>{children}</StoryblokProvider>
         </NextIntlClientProvider>
+        <StoryblokPreviewStatus slug={previewSlug} />
       </body>
     </html>
   );

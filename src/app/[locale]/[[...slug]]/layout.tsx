@@ -10,16 +10,22 @@ async function LocaleLayout({
   params,
 }: {
   children: React.ReactNode;
-  params: Promise<{ locale: string }>;
+  params: Promise<{ locale: string; slug?: string[] }>;
 }) {
-  const { locale } = await params;
+  const { locale, slug } = await params;
   if (!hasLocale(routing.locales, locale)) {
     notFound();
   }
 
   setRequestLocale(locale);
 
-  return <BasicLayout locale={locale}>{children}</BasicLayout>;
+  const previewSlug = slug?.length ? slug.join('/') : 'home';
+
+  return (
+    <BasicLayout locale={locale} previewSlug={previewSlug}>
+      {children}
+    </BasicLayout>
+  );
 }
 
 export default LocaleLayout;
