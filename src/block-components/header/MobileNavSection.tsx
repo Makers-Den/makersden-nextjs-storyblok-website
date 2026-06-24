@@ -1,4 +1,5 @@
 import * as Accordion from '@radix-ui/react-accordion';
+import { useTranslations } from 'next-intl';
 
 import clsxm from '@/lib/clsxm';
 import { type NavSectionSbContent } from '@/lib/storyblok';
@@ -13,6 +14,8 @@ interface MobileNavSectionProps {
 }
 
 export function MobileNavSection({ blok, onLinkClick }: MobileNavSectionProps) {
+  const t = useTranslations('navigation');
+
   return (
     <Accordion.Root type='single' collapsible>
       <Accordion.Item value={blok._uid} className='border-b-0'>
@@ -56,7 +59,7 @@ export function MobileNavSection({ blok, onLinkClick }: MobileNavSectionProps) {
               ))
             ) : (
               <div className='text-sm font-medium text-white/55 uppercase'>
-                No items
+                {t('noItems')}
               </div>
             )}
           </div>

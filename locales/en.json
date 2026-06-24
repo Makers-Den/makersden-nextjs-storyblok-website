@@ -1,3 +1,6 @@
 {
-  "hello": "Heya"
+  "hello": "Heya",
+  "navigation": {
+    "noItems": "No items"
+  }
 }

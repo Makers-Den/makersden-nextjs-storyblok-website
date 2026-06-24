@@ -1,3 +1,6 @@
 {
-  "hello": "GUTEN TAG!"
+  "hello": "GUTEN TAG!",
+  "navigation": {
+    "noItems": "Keine Einträge"
+  }
 }

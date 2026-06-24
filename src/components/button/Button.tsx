@@ -10,11 +10,11 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default:
-          'border border-brand-green bg-brand-green text-brand-navy shadow-[0_0_0_1px_rgba(109,218,132,0.08)] hover:bg-brand-green/90 hover:shadow-[0_0_18px_rgba(109,218,132,0.35)]',
+          'border border-brand-green bg-brand-green text-brand-navy shadow-[0_0_0_1px_rgb(var(--accent-ink-rgb)_/_0.08)] hover:bg-brand-green/90 hover:shadow-[0_0_18px_rgb(var(--accent-ink-rgb)_/_0.35)]',
         destructive:
           'border border-destructive bg-destructive text-destructive-foreground hover:bg-destructive/90',
         outline:
-          'border border-brand-green/80 bg-transparent text-brand-green hover:border-brand-green hover:bg-brand-green hover:text-brand-navy hover:shadow-[0_0_18px_rgba(109,218,132,0.24)]',
+          'border border-brand-green/80 bg-transparent text-brand-green hover:border-brand-green hover:bg-brand-green hover:text-brand-navy hover:shadow-[0_0_18px_rgb(var(--accent-ink-rgb)_/_0.24)]',
         secondary:
           'border border-line bg-secondary text-secondary-foreground hover:border-brand-green/50 hover:bg-brand-green/10',
         accent:

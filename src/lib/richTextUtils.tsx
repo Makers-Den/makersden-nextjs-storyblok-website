@@ -321,11 +321,15 @@ export const renderHeadingXl = (text: SbRichtext, tag: Tag = 'p') =>
   });
 
 /** Render paragraphs as visual big headings, but still remain semantic paragraphs by default */
-export const renderHeadingLg = (text: SbRichtext, tag: Tag = 'p') =>
+export const renderHeadingLg = (
+  text: SbRichtext,
+  tag: Tag = 'p',
+  className?: string,
+) =>
   renderText(text, {
     nodeResolvers: {
       [NODE_PARAGRAPH]: (children) => (
-        <HeadingLg as={tag} className='my-0'>
+        <HeadingLg as={tag} className={clsxm('my-0', className)}>
           {children}
         </HeadingLg>
       ),

@@ -1,19 +1,15 @@
 import clsxm from '@/lib/clsxm';
-import { toCssVariableName } from '@/lib/colors';
 import { toTailwindSpacingBottom, toTailwindSpacingTop } from '@/lib/spacing';
 import { type Colors, type Spacing } from '@/lib/storyblok';
 
 const sectionColorClasses: Partial<Record<Colors, string>> = {
-  red: 'text-white',
-  green: 'text-brand-navy',
-  blue: 'text-white',
-  black: 'text-white',
+  red: 'bg-[var(--red)] text-white',
+  green: 'bg-[var(--green)] text-brand-navy',
+  blue: 'bg-[var(--blue)] text-white',
+  black: 'bg-[var(--black)] text-white',
   white: 'bg-panel text-white',
-  gray: 'text-white',
-};
-
-const sectionColorValues: Partial<Record<Colors, string>> = {
-  white: 'rgb(var(--panel-rgb))',
+  gray: 'bg-[var(--gray)] text-white',
+  transparent: 'bg-transparent',
 };
 
 export type SectionWrapperProps = {
@@ -41,11 +37,6 @@ export function SectionWrapper({
         color && sectionColorClasses[color],
         className,
       )}
-      style={{
-        backgroundColor:
-          color &&
-          (sectionColorValues[color] ?? `var(${toCssVariableName(color)})`),
-      }}
     >
       {children}
     </section>
