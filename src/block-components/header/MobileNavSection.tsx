@@ -21,8 +21,8 @@ export function MobileNavSection({ blok, onLinkClick }: MobileNavSectionProps) {
           <Accordion.Trigger
             className={clsxm(
               'flex w-full items-center justify-between',
-              'text-[20px] leading-[24px] font-medium text-black',
-              'hover:text-blue transition-colors',
+              'text-[20px] leading-[24px] font-medium text-white',
+              'hover:text-brand-green transition-colors',
               'group',
             )}
           >
@@ -31,7 +31,7 @@ export function MobileNavSection({ blok, onLinkClick }: MobileNavSectionProps) {
               <SvgIcon
                 name='ChevronDown'
                 className={clsxm(
-                  'h-4 w-4 text-black transition-transform duration-200',
+                  'h-4 w-4 text-current transition-transform duration-200',
                   'group-data-[state=open]:rotate-180',
                 )}
               />
@@ -55,7 +55,7 @@ export function MobileNavSection({ blok, onLinkClick }: MobileNavSectionProps) {
                 </div>
               ))
             ) : (
-              <div className='text-text-muted text-sm font-medium uppercase'>
+              <div className='text-sm font-medium text-white/55 uppercase'>
                 No items
               </div>
             )}

@@ -32,11 +32,20 @@ export function FaqSection({ blok }: { blok: FaqSectionSbContent }) {
             )}
 
             {/* Accordion list */}
-            <Accordion type='single' collapsible defaultValue='item-0'>
+            <Accordion
+              type='single'
+              collapsible
+              defaultValue='item-0'
+              className='border-brand-green/15 bg-panel/55 rounded-md border px-5 md:px-8'
+            >
               {blok.faqItems.map(({ _uid, question, answer }, idx) => (
-                <AccordionItem key={_uid} value={`item-${idx}`}>
+                <AccordionItem
+                  key={_uid}
+                  value={`item-${idx}`}
+                  className='last:border-b-0'
+                >
                   {question && (
-                    <AccordionTrigger className='text-left text-base font-semibold hover:no-underline md:text-lg'>
+                    <AccordionTrigger className='py-5 text-left text-base font-semibold hover:no-underline md:text-lg'>
                       {renderTextLg(question)}
                     </AccordionTrigger>
                   )}

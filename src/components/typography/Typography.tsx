@@ -140,8 +140,13 @@ export const variantToClasses: Record<TypographyVariant, string[]> = {
   quotation: ['text-xl', 'font-normal', 'leading-[1.5] italic'],
   bold: ['font-semibold', 'not-italic'],
   italic: ['px-1', 'italic'],
-  lightEmphasis: ['font-sans', 'not-italic', 'text-green-400'],
-  darkEmphasis: ['bg-accent', 'not-italic', 'text-white', 'font-semibold'],
+  lightEmphasis: ['font-sans', 'not-italic', 'text-brand-green'],
+  darkEmphasis: [
+    'bg-brand-violet',
+    'not-italic',
+    'text-white',
+    'font-semibold',
+  ],
 };
 /**
  * Simple typography component
