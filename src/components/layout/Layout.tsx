@@ -30,7 +30,7 @@ export function Layout({
   } = globalSettings.content;
 
   return (
-    <div className='flex min-h-screen flex-col'>
+    <div className='makers-den-canvas flex min-h-screen flex-col'>
       <Header
         navItems={navItems}
         locale={locale}

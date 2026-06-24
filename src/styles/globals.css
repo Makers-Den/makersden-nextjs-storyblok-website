@@ -167,20 +167,25 @@
   }
   body {
     @apply bg-background text-foreground;
-    background:
-      radial-gradient(
-        circle at 12% 8%,
-        rgb(115 19 235 / 0.18),
-        transparent 24rem
-      ),
-      radial-gradient(
-        circle at 88% 12%,
-        rgb(109 218 132 / 0.12),
-        transparent 22rem
-      ),
-      linear-gradient(180deg, rgb(var(--canvas-rgb)) 0%, rgb(10 14 26) 100%),
-      var(--background);
   }
+}
+
+.makers-den-canvas {
+  background:
+    radial-gradient(
+      circle at 12% 8%,
+      rgb(115 19 235 / 0.18),
+      transparent 24rem
+    ),
+    radial-gradient(
+      circle at 88% 12%,
+      rgb(109 218 132 / 0.12),
+      transparent 22rem
+    ),
+    linear-gradient(180deg, rgb(var(--canvas-rgb)) 0%, rgb(10 14 26) 100%),
+    var(--background);
+  background-attachment: fixed;
+  color: var(--foreground);
 }
 
 ::selection {
