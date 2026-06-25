@@ -308,7 +308,7 @@ export interface MyComponentSbContent {
   spacingBottom?: Spacing;
   // ... other fields
   _uid: string;
-  component: "MyComponent";
+  component: 'MyComponent';
 }
 ```
 
@@ -1017,6 +1017,7 @@ export function InteractiveSection({ blok }: { blok: InteractiveSectionSbContent
 ```
 
 **Why this fails:**
+
 - `richTextUtils.tsx` imports `'server-only'` (line 20)
 - Server-only modules cannot be imported in client components
 - This will throw a build error

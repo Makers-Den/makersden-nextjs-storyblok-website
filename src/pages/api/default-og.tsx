@@ -26,34 +26,32 @@ const handler = async (req: NextRequest) => {
   const image = decodeURIComponent(searchParams.get('imageUrl') ?? '');
 
   return new ImageResponse(
-    (
-      <div tw='flex h-full w-full bg-[#131825] text-white items-center justify-center'>
-        <div tw='absolute w-full h-full flex'>
-          <BackgroundGrid />
-        </div>
-        <div tw='flex flex-col p-10 w-full h-full items-center justify-center text-white p-24'>
-          <MakersDenFullLogo width='1000' />
+    <div tw='flex h-full w-full bg-[#131825] text-white items-center justify-center'>
+      <div tw='absolute w-full h-full flex'>
+        <BackgroundGrid />
+      </div>
+      <div tw='flex flex-col p-10 w-full h-full items-center justify-center text-white p-24'>
+        <MakersDenFullLogo width='1000' />
 
-          <div tw='flex justify-between w-full mt-8'>
-            <div tw='flex flex-col w-2/3 h-64 justify-center'>
-              <p
-                tw='text-6xl text-left justify-start -mb-2'
-                style={{ fontFamily: '"PPFormula"' }}
-              >
-                <span tw='text-[#6DDA84] mr-3'>ReactJS</span>
-                focused dev
-              </p>
-              <p tw='text-6xl' style={{ fontFamily: '"PPFormula"' }}>
-                agency for web & apps
-              </p>
-            </div>
-
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={image} alt='' tw='h-64 mr-7' />
+        <div tw='flex justify-between w-full mt-8'>
+          <div tw='flex flex-col w-2/3 h-64 justify-center'>
+            <p
+              tw='text-6xl text-left justify-start -mb-2'
+              style={{ fontFamily: '"PPFormula"' }}
+            >
+              <span tw='text-[#6DDA84] mr-3'>ReactJS</span>
+              focused dev
+            </p>
+            <p tw='text-6xl' style={{ fontFamily: '"PPFormula"' }}>
+              agency for web & apps
+            </p>
           </div>
+
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={image} alt='' tw='h-64 mr-7' />
         </div>
       </div>
-    ),
+    </div>,
     {
       width: 1200,
       height: 630,

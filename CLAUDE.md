@@ -378,6 +378,7 @@ export function Grid({ blok }: { blok: GridSbContent }) {
 **🚨 CRITICAL: `richTextUtils.tsx` is SERVER-ONLY**
 
 Cannot be imported in client components! If you need interactivity + rich text:
+
 1. Pre-render rich text in Server Component
 2. Pass rendered content to Client Component as `ReactNode` prop
 
