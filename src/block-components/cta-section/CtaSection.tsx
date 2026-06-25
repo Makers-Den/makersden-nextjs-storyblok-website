@@ -20,7 +20,7 @@ export function CtaSection({ blok }: { blok: CtaSectionSbContent }) {
       {...storyblokEditable(blok)}
     >
       <Container className='text-center'>
-        <AnimateOnScroll className='border-brand-green/15 bg-panel mx-auto flex max-w-5xl flex-col items-center gap-4 rounded-lg border px-5 py-12 md:px-10 md:py-16'>
+        <AnimateOnScroll className='mx-auto flex max-w-5xl flex-col items-center gap-5 px-6 py-14 md:px-12 md:py-[4.5rem]'>
           {/* Title */}
           {blok.title && isRichtextNotEmpty(blok.title) && (
             <div className='max-w-4xl'>{renderHeadingLg(blok.title, 'h2')}</div>
@@ -28,14 +28,14 @@ export function CtaSection({ blok }: { blok: CtaSectionSbContent }) {
 
           {/* Description */}
           {blok.text && isRichtextNotEmpty(blok.text) && (
-            <div className='text-muted-foreground max-w-xl'>
+            <div className='max-w-xl text-current/70'>
               {renderText(blok.text)}
             </div>
           )}
 
           {/* CTA Button(s) */}
           {blok.ctaLink && blok.ctaLink.length > 0 && (
-            <div className='flex items-center gap-5'>
+            <div className='flex flex-wrap items-center justify-center gap-4 pt-2 md:gap-5'>
               {blok.ctaLink.map((cta) => (
                 <StoryblokServerComponent blok={cta} key={cta._uid} />
               ))}

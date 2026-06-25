@@ -28,7 +28,7 @@ export function ArticleCard({ article, isOnlyItem }: ArticleCardProps) {
   return (
     <article
       className={clsxm(
-        'group border-brand-green/15 bg-panel hover:border-brand-green/45 flex flex-col overflow-hidden rounded-lg border transition-colors',
+        'group flex flex-col overflow-hidden rounded-md transition-opacity hover:opacity-90',
         isOnlyItem && 'lg:flex-row',
       )}
     >
@@ -51,7 +51,7 @@ export function ArticleCard({ article, isOnlyItem }: ArticleCardProps) {
             }
           />
         ) : (
-          <div className='bg-brand-navy-soft flex h-full w-full items-center justify-center'>
+          <div className='flex h-full w-full items-center justify-center'>
             <Text className='text-muted-foreground'>No image</Text>
           </div>
         )}
@@ -75,8 +75,6 @@ export function ArticleCard({ article, isOnlyItem }: ArticleCardProps) {
         <HeadingSm className='mb-8'>{article.content.title}</HeadingSm>
 
         {/* Divider */}
-        <div className='bg-line mb-10 h-px' />
-
         {/* Description */}
         {article.content.intro && (
           <Text className='text-muted-foreground mb-10 line-clamp-3 leading-relaxed'>

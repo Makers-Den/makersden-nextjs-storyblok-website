@@ -5,17 +5,17 @@ import * as React from 'react';
 import clsxm from '@/lib/clsxm';
 
 const pillVariants = cva(
-  'inline-flex items-center justify-center text-white font-medium transition-colors capitalize',
+  'inline-flex items-center justify-center font-medium text-white transition-colors capitalize',
   {
     variants: {
       variant: {
-        default: 'bg-grey hover:bg-black',
-        active: 'bg-black',
-        muted: 'bg-muted hover:bg-muted/80',
+        default: 'bg-transparent hover:bg-brand-green/10',
+        active: 'bg-brand-green text-brand-navy',
+        muted: 'bg-transparent hover:bg-brand-green/10',
       },
       size: {
         sm: 'rounded-sm px-2 py-0.5 text-sm leading-5',
-        md: 'rounded-xl px-6 py-3 text-base',
+        md: 'rounded-full px-6 py-3 text-base',
       },
     },
     defaultVariants: {

@@ -28,7 +28,7 @@ export function AnimateOnScroll({
       '(prefers-reduced-motion: reduce)',
     ).matches;
     if (prefersReducedMotion) {
-      return <>{children}</>;
+      return <div className={clsxm(className)}>{children}</div>;
     }
   }
 

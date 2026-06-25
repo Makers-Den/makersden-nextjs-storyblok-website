@@ -115,11 +115,7 @@ export function Header({
       {/* Original Header - Full size, scrolls naturally */}
       <header
         ref={originalHeaderRef}
-        className={clsxm(
-          'z-40 border-b border-white/10',
-          navClass,
-          'py-3 md:py-5',
-        )}
+        className={clsxm('z-40', navClass, 'py-3 md:py-5')}
       >
         <Container className='flex w-full items-center justify-between'>
           {/* Left: Logo */}
@@ -188,7 +184,7 @@ export function Header({
       <header
         className={clsxm(
           'fixed top-0 right-0 left-0 z-50',
-          'border-brand-green/15 bg-brand-navy border-b text-white',
+          'bg-brand-navy text-white',
           'py-3 md:py-4',
           'transition-transform',
           showStickyHeader ? 'translate-y-0' : '-translate-y-full',

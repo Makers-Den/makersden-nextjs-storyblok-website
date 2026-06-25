@@ -12,12 +12,12 @@ export function ImageAndTextCard({
 }) {
   return (
     <div
-      className='border-line bg-card flex w-auto max-w-[280px] flex-shrink-0 flex-col gap-[15px] overflow-hidden rounded-lg border-[1.5px]'
+      className='group flex h-full w-full max-w-sm flex-shrink-0 flex-col overflow-hidden rounded-md'
       {...storyblokEditable(blok)}
     >
       {/* Card Image */}
       {blok.image && (
-        <div className='relative h-[177px] w-full overflow-hidden rounded-t-lg'>
+        <div className='relative h-48 w-full overflow-hidden'>
           <StoryblokImage
             storyblokImage={blok.image}
             className='object-cover'
@@ -28,9 +28,9 @@ export function ImageAndTextCard({
       )}
 
       {/* Card Content */}
-      <div className='flex flex-col gap-[6px] px-[25px] pb-[15px]'>
+      <div className='flex flex-1 flex-col gap-4 p-6'>
         {blok.title && (
-          <HeadingSm as='h3' className='text-foreground text-center'>
+          <HeadingSm as='h3' className='text-foreground text-left'>
             {blok.title}
           </HeadingSm>
         )}

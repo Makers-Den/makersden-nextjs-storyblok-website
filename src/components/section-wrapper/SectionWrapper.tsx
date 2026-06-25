@@ -3,13 +3,13 @@ import { toTailwindSpacingBottom, toTailwindSpacingTop } from '@/lib/spacing';
 import { type Colors, type Spacing } from '@/lib/storyblok';
 
 const sectionColorClasses: Partial<Record<Colors, string>> = {
-  red: 'bg-[var(--red)] text-white',
-  green: 'bg-[var(--green)] text-brand-navy',
-  blue: 'bg-[var(--blue)] text-white',
-  black: 'bg-[var(--black)] text-white',
-  white: 'bg-panel text-white',
-  gray: 'bg-[var(--gray)] text-white',
-  transparent: 'bg-transparent',
+  red: '',
+  green: '',
+  blue: '',
+  black: '',
+  white: '',
+  gray: '',
+  transparent: '',
 };
 
 export type SectionWrapperProps = {

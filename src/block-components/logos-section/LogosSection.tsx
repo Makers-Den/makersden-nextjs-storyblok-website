@@ -24,10 +24,10 @@ export function LogosSection({ blok }: { blok: LogosSectionSbContent }) {
       {...storyblokEditable(blok)}
     >
       <Container className='py-12 md:py-16'>
-        <div className='flex flex-col items-center gap-8 md:gap-12'>
+        <div className='flex flex-col items-start gap-8 md:gap-12'>
           {/* Title */}
           {hasTitle && (
-            <div className='text-center'>
+            <div className='max-w-4xl'>
               {renderHeadingLg(blok.title!, 'h2')}
             </div>
           )}
@@ -37,11 +37,11 @@ export function LogosSection({ blok }: { blok: LogosSectionSbContent }) {
             <div className='relative w-full'>
               {/* Scrollable logos container */}
               <div className='scrollbar-hide overflow-x-auto'>
-                <div className='flex items-center justify-start gap-8 px-8 py-4 md:justify-center md:gap-12 md:px-12'>
+                <div className='flex items-center justify-start gap-10 px-6 py-8 md:justify-center md:gap-14 md:px-12'>
                   {blok.logos!.map((logo) => (
                     <div
                       key={logo.id}
-                      className='relative h-16 w-32 flex-shrink-0 md:h-20 md:w-40'
+                      className='relative h-14 w-32 flex-shrink-0 opacity-85 transition-opacity hover:opacity-100 md:h-16 md:w-40'
                     >
                       <StoryblokImage
                         storyblokImage={logo}

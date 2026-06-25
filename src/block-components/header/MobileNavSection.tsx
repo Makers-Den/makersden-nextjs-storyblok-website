@@ -18,7 +18,7 @@ export function MobileNavSection({ blok, onLinkClick }: MobileNavSectionProps) {
 
   return (
     <Accordion.Root type='single' collapsible>
-      <Accordion.Item value={blok._uid} className='border-b-0'>
+      <Accordion.Item value={blok._uid}>
         {/* Trigger */}
         <Accordion.Header className='flex'>
           <Accordion.Trigger

@@ -38,14 +38,9 @@ export function HeroSplitSection({
 
   return (
     <section
-      className='border-brand-green/10 bg-brand-navy relative isolate overflow-hidden border-b text-white'
+      className='bg-brand-navy relative isolate overflow-hidden text-white'
       {...storyblokEditable(blok)}
     >
-      <div
-        className='bg-brand-green/35 pointer-events-none absolute inset-x-0 bottom-0 h-px'
-        aria-hidden='true'
-      />
-
       <Container className='relative z-10'>
         <div
           className={clsxm(
@@ -61,13 +56,7 @@ export function HeroSplitSection({
               <div className='flex max-w-[42rem] flex-col gap-6 text-center md:text-left'>
                 {/* Title */}
                 {renderedTitle && (
-                  <div className='relative'>
-                    <div
-                      className='bg-brand-green mx-auto mb-7 h-px w-20 md:mx-0'
-                      aria-hidden='true'
-                    />
-                    {renderedTitle}
-                  </div>
+                  <div className='relative'>{renderedTitle}</div>
                 )}
 
                 {/* Text */}

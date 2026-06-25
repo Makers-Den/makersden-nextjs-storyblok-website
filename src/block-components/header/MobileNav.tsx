@@ -32,7 +32,7 @@ export function MobileNav({ navItems, onClose, onLinkClick }: MobileNavProps) {
   return (
     <div className='bg-brand-navy flex h-full flex-col text-white'>
       {/* Header with Logo and Close Button */}
-      <div className='flex items-center justify-between border-b border-white/10 px-5 py-2'>
+      <div className='flex items-center justify-between px-5 py-2'>
         <Link
           className='flex shrink-0 items-center text-white'
           href='/'

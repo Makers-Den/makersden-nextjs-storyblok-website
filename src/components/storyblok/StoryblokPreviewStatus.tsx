@@ -50,7 +50,7 @@ export async function StoryblokPreviewStatus({
   return (
     <div
       aria-live='polite'
-      className='border-brand-green text-brand-navy ring-brand-green/35 pointer-events-none fixed right-3 bottom-3 z-[100] flex max-w-[calc(100vw-1.5rem)] items-center gap-2 rounded-md border bg-[rgb(var(--ink-rgb)/0.96)] px-3 py-2 font-mono text-[11px] leading-none font-semibold shadow-[0_18px_48px_rgba(0,0,0,0.6)] ring-2 backdrop-blur-md md:right-4 md:bottom-4'
+      className='text-brand-navy pointer-events-none fixed right-3 bottom-3 z-[100] flex max-w-[calc(100vw-1.5rem)] items-center gap-2 rounded-md bg-[rgb(var(--ink-rgb)/0.96)] px-3 py-2 font-mono text-[11px] leading-none font-semibold shadow-[0_18px_48px_rgba(0,0,0,0.6)] backdrop-blur-md md:right-4 md:bottom-4'
       data-nosnippet
       role='status'
     >
@@ -67,7 +67,7 @@ export async function StoryblokPreviewStatus({
       >
         {storyLabel}
       </span>
-      <span className='border-brand-navy/10 bg-brand-navy rounded-sm border px-1.5 py-1 text-[rgb(var(--ink-rgb))]'>
+      <span className='bg-brand-navy rounded-sm px-1.5 py-1 text-[rgb(var(--ink-rgb))]'>
         env: {environmentLabel}
       </span>
     </div>

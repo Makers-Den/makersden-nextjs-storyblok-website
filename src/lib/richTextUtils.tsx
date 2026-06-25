@@ -129,7 +129,7 @@ export const defaultRenderOptions: RenderOptions = {
       <strong className='font-bold text-current'>{children}</strong>
     ),
     [MARK_UNDERLINE]: (children) => (
-      <u className='text-primary-600'>{children}</u>
+      <u className='text-brand-green'>{children}</u>
     ),
     [MARK_STYLED]: (children, { class: cls }) => {
       if (cls === 'subscript') {
@@ -146,7 +146,7 @@ export const defaultRenderOptions: RenderOptions = {
 
       if (cls === 'highlightBox') {
         return (
-          <span className='border-brand-green/35 bg-panel text-foreground block rounded-sm border p-3 font-bold'>
+          <span className='text-foreground block rounded-sm p-3 font-bold'>
             {children}
           </span>
         );
@@ -177,7 +177,7 @@ export const defaultRenderOptions: RenderOptions = {
   },
   nodeResolvers: {
     [NODE_QUOTE]: (children) => (
-      <blockquote className='border-line mb-5 border-l pl-4 text-current italic'>
+      <blockquote className='mb-5 pl-4 text-current italic'>
         {children}
       </blockquote>
     ),
