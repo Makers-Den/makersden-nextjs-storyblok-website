@@ -2,6 +2,12 @@ import { type Metadata } from 'next';
 import { draftMode } from 'next/headers';
 import { notFound, redirect, RedirectType } from 'next/navigation';
 
+import {
+  BRAND_NAME,
+  BRAND_TITLE_SUFFIX,
+  SITE_DESCRIPTION,
+  SITE_NAME,
+} from '@/lib/brand';
 import { buildOgImageUrl } from '@/lib/buildOgImageUrl';
 import { CANONICAL_BASE_URL_NO_SLASH } from '@/lib/constants';
 import { isRichtextNotEmpty } from '@/lib/isRichtext';
@@ -127,10 +133,9 @@ export const getPageProps = async (
 };
 
 const defaultMeta = {
-  title: "Makers' Den - Your ReactJS Agency for Web & Apps in Berlin.",
-  siteName: "Makers' Den",
-  description:
-    "Makers' Den is your ReactJS Development Agency for Web & Apps. Talk to us about Frontend or Full-stack ReactJS, React Native Mobile Apps and Fast Headless CMS based Websites.",
+  title: SITE_NAME,
+  siteName: SITE_NAME,
+  description: SITE_DESCRIPTION,
   /** Without additional '/' on the end */
   url: CANONICAL_BASE_URL_NO_SLASH,
   type: 'website',
@@ -179,8 +184,8 @@ export const getMetadata = async ({
     title = `Latest ${name} posts`;
   }
 
-  if (!title.includes("Makers' Den")) {
-    title = `${title} - Makers' Den`;
+  if (!title.includes(BRAND_NAME)) {
+    title = `${title}${BRAND_TITLE_SUFFIX}`;
   }
 
   let description = contentDescription ?? defaultMeta.description;

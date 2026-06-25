@@ -214,6 +214,7 @@ export function InteractiveSectionClient({ content }: { content: ReactNode }) {
 **Component Splitting Rule:**
 
 If a component needs:
+
 - ✅ **Only data/rich text** → Server Component
 - ✅ **Only interactivity** → Client Component
 - ⚠️ **Both interactivity + rich text** → **Split into Server (wrapper) + Client (interactive)**

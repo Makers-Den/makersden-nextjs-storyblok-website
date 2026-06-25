@@ -1,9 +1,0 @@
-# *
-User-agent: *
-Allow: /
-
-# Host
-Host: https://makersden.io
-
-# Sitemaps
-Sitemap: https://makersden.io/sitemap.xml
