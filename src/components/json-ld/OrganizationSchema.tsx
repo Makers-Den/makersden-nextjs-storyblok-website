@@ -19,7 +19,7 @@ export function OrganizationSchema() {
         // TODO: Add logo URL once available
         // logo: `${CANONICAL_BASE_URL_NO_SLASH}/logo.png`,
         description:
-          'Reusable Storyblok website templates shaped by Makers Den for fast editorial launches.',
+          'A reusable Next.js and Storyblok website template shaped by Makers Den for fast editorial launches.',
         // TODO: Add social media profiles
         // sameAs: [
         //   'https://twitter.com/acme',
@@ -36,7 +36,7 @@ export function OrganizationSchema() {
       {
         '@type': 'WebSite',
         '@id': `${CANONICAL_BASE_URL_NO_SLASH}/#website`,
-        name: 'Makers Den Storyblok Website Templates',
+        name: 'Makers Den Storyblok Website Template',
         url: CANONICAL_BASE_URL_NO_SLASH,
         publisher: {
           '@id': `${CANONICAL_BASE_URL_NO_SLASH}/#organization`,
