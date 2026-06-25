@@ -1,3 +1,4 @@
+import { BRAND_NAME, SITE_DESCRIPTION, SITE_NAME } from '@/lib/brand';
 import { CANONICAL_BASE_URL_NO_SLASH } from '@/lib/constants';
 
 /**
@@ -14,12 +15,11 @@ export function OrganizationSchema() {
       {
         '@type': 'Organization',
         '@id': `${CANONICAL_BASE_URL_NO_SLASH}/#organization`,
-        name: 'Makers Den',
+        name: BRAND_NAME,
         url: CANONICAL_BASE_URL_NO_SLASH,
         // TODO: Add logo URL once available
         // logo: `${CANONICAL_BASE_URL_NO_SLASH}/logo.png`,
-        description:
-          'A reusable Next.js and Storyblok website template shaped by Makers Den for fast editorial launches.',
+        description: SITE_DESCRIPTION,
         // TODO: Add social media profiles
         // sameAs: [
         //   'https://twitter.com/acme',
@@ -36,7 +36,7 @@ export function OrganizationSchema() {
       {
         '@type': 'WebSite',
         '@id': `${CANONICAL_BASE_URL_NO_SLASH}/#website`,
-        name: 'Makers Den Storyblok Website Template',
+        name: SITE_NAME,
         url: CANONICAL_BASE_URL_NO_SLASH,
         publisher: {
           '@id': `${CANONICAL_BASE_URL_NO_SLASH}/#organization`,
