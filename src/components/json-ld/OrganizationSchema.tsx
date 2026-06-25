@@ -14,12 +14,12 @@ export function OrganizationSchema() {
       {
         '@type': 'Organization',
         '@id': `${CANONICAL_BASE_URL_NO_SLASH}/#organization`,
-        name: 'Acme Industries',
+        name: 'Makers Den',
         url: CANONICAL_BASE_URL_NO_SLASH,
         // TODO: Add logo URL once available
         // logo: `${CANONICAL_BASE_URL_NO_SLASH}/logo.png`,
         description:
-          'Leading publisher of peer-reviewed medical and health research journals',
+          'Reusable Storyblok website templates shaped by Makers Den for fast editorial launches.',
         // TODO: Add social media profiles
         // sameAs: [
         //   'https://twitter.com/acme',
@@ -36,7 +36,7 @@ export function OrganizationSchema() {
       {
         '@type': 'WebSite',
         '@id': `${CANONICAL_BASE_URL_NO_SLASH}/#website`,
-        name: 'Acme Industries',
+        name: 'Makers Den Storyblok Website Templates',
         url: CANONICAL_BASE_URL_NO_SLASH,
         publisher: {
           '@id': `${CANONICAL_BASE_URL_NO_SLASH}/#organization`,

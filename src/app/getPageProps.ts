@@ -127,10 +127,10 @@ export const getPageProps = async (
 };
 
 const defaultMeta = {
-  title: "Makers' Den - Your ReactJS Agency for Web & Apps in Berlin.",
-  siteName: "Makers' Den",
+  title: 'Makers Den Storyblok Website Template',
+  siteName: 'Makers Den Storyblok Website Template',
   description:
-    "Makers' Den is your ReactJS Development Agency for Web & Apps. Talk to us about Frontend or Full-stack ReactJS, React Native Mobile Apps and Fast Headless CMS based Websites.",
+    'A reusable Next.js and Storyblok website template shaped by Makers Den for fast editorial launches.',
   /** Without additional '/' on the end */
   url: CANONICAL_BASE_URL_NO_SLASH,
   type: 'website',
@@ -179,8 +179,8 @@ export const getMetadata = async ({
     title = `Latest ${name} posts`;
   }
 
-  if (!title.includes("Makers' Den")) {
-    title = `${title} - Makers' Den`;
+  if (!title.includes('Makers Den')) {
+    title = `${title} - Makers Den`;
   }
 
   let description = contentDescription ?? defaultMeta.description;
