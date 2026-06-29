@@ -1,7 +1,7 @@
 import Link, { type LinkProps } from 'next/link';
 import * as React from 'react';
 
-import { Button, type ButtonProps } from '@/components/button';
+import { Button, type ButtonProps } from '@/components/ui/button';
 
 type ButtonLinkProps = ButtonProps &
   Omit<React.ComponentPropsWithoutRef<'a'>, keyof LinkProps | 'children'> & {

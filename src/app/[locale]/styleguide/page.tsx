@@ -10,6 +10,10 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '@/components/ui/accordion';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { ButtonLink } from '@/components/ui/button-link';
+import { Card, CardContent, CardHeader } from '@/components/ui/card';
 
 import { BasicLayout } from '@/app/BasicLayout';
 
@@ -17,10 +21,38 @@ function StyleguidePage() {
   return (
     <BasicLayout locale='en'>
       <Container>
-        <HeadingXl>Styleguide2</HeadingXl>
+        <HeadingXl>Styleguide</HeadingXl>
         <TextLg>
           Sometimes its convenient to develop components in isolation
         </TextLg>
+        <section className='mt-12 space-y-6'>
+          <HeadingLg>Buttons</HeadingLg>
+          <div className='flex flex-wrap items-center gap-4'>
+            <Button>Default</Button>
+            <Button variant='outline'>Outline</Button>
+            <Button variant='secondary'>Secondary</Button>
+            <Button variant='accent'>Accent</Button>
+            <Button variant='ghost'>Ghost</Button>
+            <ButtonLink href='/' size='pill'>
+              Button Link
+            </ButtonLink>
+          </div>
+        </section>
+        <section className='mt-12 space-y-6'>
+          <HeadingLg>Badge & Card</HeadingLg>
+          <Card className='border-border/30 bg-card/30 max-w-sm'>
+            <CardHeader>
+              <Badge className='w-fit'>Makers Den</Badge>
+            </CardHeader>
+            <CardContent>
+              <HeadingLg as='h3'>Reusable primitive</HeadingLg>
+              <TextLg className='text-muted-foreground mt-4'>
+                The card, badge, and button primitives use the template theme
+                tokens.
+              </TextLg>
+            </CardContent>
+          </Card>
+        </section>
         <section>
           <HeadingLg>Accordion</HeadingLg>
           <Accordion type='single' collapsible className='w-full'>

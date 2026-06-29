@@ -2,7 +2,8 @@ import { storyblokEditable } from '@storyblok/react/rsc';
 
 import { type CtaLinkSbContent, sbLinkToHref } from '@/lib/storyblok';
 
-import { ButtonLink, type ButtonProps } from '@/components/button';
+import { type ButtonProps } from '@/components/ui/button';
+import { ButtonLink } from '@/components/ui/button-link';
 
 export function CtaLink({ blok }: { blok: CtaLinkSbContent }) {
   const href = sbLinkToHref(blok.link);

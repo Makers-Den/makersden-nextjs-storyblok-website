@@ -1,8 +1,5 @@
 'use client';
 
-import * as Accordion from '@radix-ui/react-accordion';
-
-import clsxm from '@/lib/clsxm';
 import {
   type FooterSectionSbContent,
   type LinkSbContent,
@@ -12,10 +9,15 @@ import {
 
 import { Container } from '@/components/container/Container';
 import { MakersDenFullLogo } from '@/components/icons/MakersDenFullLogo';
-import { SvgIcon } from '@/components/icons/SvgIcon';
 import { StoryblokImage } from '@/components/images/StoryblokImage';
 import { StoryblokLink } from '@/components/storyblok-link/StoryblokLink';
 import { Text, TextSm } from '@/components/typography/Typography';
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from '@/components/ui/accordion';
 
 type FooterProps = {
   footerSections?: FooterSectionSbContent[];
@@ -156,47 +158,21 @@ export function Footer({
             <>
               {/* Mobile Accordion */}
               <div className='md:hidden'>
-                <Accordion.Root type='single' collapsible>
+                <Accordion type='single' collapsible>
                   {linkColumns.map((column) => (
-                    <Accordion.Item
-                      key={column._uid}
-                      value={column._uid}
-                      className=''
-                    >
-                      <Accordion.Header className='flex'>
-                        <Accordion.Trigger
-                          className={clsxm(
-                            'group flex w-full items-center justify-between py-4',
-                            'transition-opacity hover:opacity-70',
-                          )}
+                    <AccordionItem key={column._uid} value={column._uid}>
+                      <AccordionTrigger className='py-4 transition-opacity hover:opacity-70'>
+                        <TextSm
+                          as='span'
+                          className='font-semibold tracking-wide text-white uppercase'
                         >
-                          <TextSm
-                            as='span'
-                            className='font-semibold tracking-wide text-white uppercase'
-                          >
-                            {column.title}
-                          </TextSm>
-                          <div className='flex h-8 w-8 items-center justify-center'>
-                            <SvgIcon
-                              name='ChevronDown'
-                              className={clsxm(
-                                'text-brand-green h-4 w-4 transition-transform duration-200',
-                                'group-data-[state=open]:rotate-180',
-                              )}
-                            />
-                          </div>
-                        </Accordion.Trigger>
-                      </Accordion.Header>
+                          {column.title}
+                        </TextSm>
+                      </AccordionTrigger>
 
-                      <Accordion.Content
-                        className={clsxm(
-                          'overflow-hidden',
-                          'data-[state=open]:animate-accordion-down',
-                          'data-[state=closed]:animate-accordion-up',
-                        )}
-                      >
+                      <AccordionContent className='pb-4'>
                         {column.links.length > 0 && (
-                          <ul className='space-y-3 pb-4'>
+                          <ul className='space-y-3'>
                             {column.links.map((link) => {
                               const label =
                                 link.name?.trim() || 'Untitled link';
@@ -219,10 +195,10 @@ export function Footer({
                             })}
                           </ul>
                         )}
-                      </Accordion.Content>
-                    </Accordion.Item>
+                      </AccordionContent>
+                    </AccordionItem>
                   ))}
-                </Accordion.Root>
+                </Accordion>
               </div>
 
               {/* Desktop: Link Columns */}

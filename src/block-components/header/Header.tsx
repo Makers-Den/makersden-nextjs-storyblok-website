@@ -5,11 +5,12 @@ import { useEffect, useRef, useState } from 'react';
 import clsxm from '@/lib/clsxm';
 import { type LinkSbContent, type NavSectionSbContent } from '@/lib/storyblok';
 
-import { ButtonLink } from '@/components/button';
 import { Container } from '@/components/container/Container';
 import { MakersDenFullLogo } from '@/components/icons/MakersDenFullLogo';
 import { SvgIcon } from '@/components/icons/SvgIcon';
 import { StoryblokLink } from '@/components/storyblok-link/StoryblokLink';
+import { Button } from '@/components/ui/button';
+import { ButtonLink } from '@/components/ui/button-link';
 
 import { NavSection } from '@/block-components/nav-section/NavSection';
 import { type Locale } from '@/i18n/config';
@@ -168,13 +169,15 @@ export function Header({
 
             {/* Mobile Menu Button */}
             {layoutType === 'default' && (
-              <button
+              <Button
+                variant='ghost'
+                size='icon'
                 onClick={() => setIsMenuOpen(true)}
-                className='p-2 lg:hidden'
+                className='lg:hidden'
                 aria-label='Open menu'
               >
                 <SvgIcon name='Menu' className='h-6 w-6 text-white' />
-              </button>
+              </Button>
             )}
           </div>
         </Container>
@@ -241,13 +244,15 @@ export function Header({
 
             {/* Mobile Menu Button */}
             {layoutType === 'default' && (
-              <button
+              <Button
+                variant='ghost'
+                size='icon'
                 onClick={() => setIsMenuOpen(true)}
-                className='p-2 lg:hidden'
+                className='lg:hidden'
                 aria-label='Open menu'
               >
                 <SvgIcon name='Menu' className='h-6 w-6 text-white' />
-              </button>
+              </Button>
             )}
           </div>
         </Container>

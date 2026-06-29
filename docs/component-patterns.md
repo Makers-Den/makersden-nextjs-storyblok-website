@@ -91,11 +91,11 @@ export function Container({ children, className }: ContainerProps) {
 ```
 
 ```typescript
-import { Button } from '@/components/button';
+import { Button } from '@/components/ui/button';
 
 <Button variant="default">Click me</Button>
 <Button variant="outline" size="sm">Small</Button>
-<Button variant="destructive">Delete</Button>
+<Button variant="accent">Accent</Button>
 ```
 
 **Characteristics**:
@@ -447,14 +447,14 @@ For images without Next.js Image wrapper (e.g., background images):
 
 ### Button System
 
-**File**: `src/components/button/Button.tsx`
+**File**: `src/components/ui/button.tsx`
 
 A versatile button component based on shadcn/ui with multiple variants and sizes, built using `class-variance-authority`.
 
 #### Basic Usage
 
 ```typescript
-import { Button } from '@/components/button';
+import { Button } from '@/components/ui/button';
 
 // Basic button
 <Button>Click me</Button>
@@ -462,8 +462,8 @@ import { Button } from '@/components/button';
 // With variants
 <Button variant="default">Primary</Button>
 <Button variant="outline">Outline</Button>
-<Button variant="destructive">Delete</Button>
 <Button variant="secondary">Secondary</Button>
+<Button variant="accent">Accent</Button>
 <Button variant="ghost">Ghost</Button>
 <Button variant="link">Link Style</Button>
 
@@ -481,9 +481,9 @@ import { Button } from '@/components/button';
 #### Available Variants
 
 - `default` - Primary button with solid background (uses `--primary`)
-- `destructive` - For destructive actions like delete (uses `--destructive`)
 - `outline` - Outlined button with transparent background
 - `secondary` - Secondary styling with muted colors
+- `accent` - Accent styling for secondary CTAs
 - `ghost` - Minimal styling, only visible on hover
 - `link` - Styled as a link with underline on hover
 
@@ -492,6 +492,7 @@ import { Button } from '@/components/button';
 - `default` - Standard size (h-9, px-4, py-2)
 - `sm` - Small (h-8, px-3, text-xs)
 - `lg` - Large (h-10, px-8)
+- `pill` - Rounded CTA size (h-12, px-8)
 - `icon` - Square for icons (h-9, w-9)
 - `icon-sm` - Small icon button (h-8, w-8)
 - `icon-lg` - Large icon button (h-10, w-10)
@@ -513,8 +514,8 @@ import { Button } from '@/components/button';
   <Button variant="outline" onClick={onCancel}>
     Cancel
   </Button>
-  <Button variant="destructive" onClick={onDelete}>
-    Delete
+  <Button variant="accent" onClick={onConfirm}>
+    Confirm
   </Button>
 </div>
 ```
@@ -555,14 +556,14 @@ Extends all native HTML button attributes:
 
 ### ButtonLink Component
 
-**File**: `src/components/button/ButtonLink.tsx`
+**File**: `src/components/ui/button-link.tsx`
 
 A convenience component that combines Button styling with Next.js Link navigation. Use this for internal navigation with button appearance.
 
 #### Usage
 
 ```typescript
-import { ButtonLink } from '@/components/button';
+import { ButtonLink } from '@/components/ui/button-link';
 
 // Navigation with button styling
 <ButtonLink href="/about">About Us</ButtonLink>

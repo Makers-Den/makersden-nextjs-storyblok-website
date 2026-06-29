@@ -4,6 +4,7 @@ import { type LinkSbContent, type NavSectionSbContent } from '@/lib/storyblok';
 import { MakersDenFullLogo } from '@/components/icons/MakersDenFullLogo';
 import { SvgIcon } from '@/components/icons/SvgIcon';
 import { StoryblokLink } from '@/components/storyblok-link/StoryblokLink';
+import { Button } from '@/components/ui/button';
 
 import { Link } from '@/i18n/navigation';
 
@@ -41,13 +42,15 @@ export function MobileNav({ navItems, onClose, onLinkClick }: MobileNavProps) {
         >
           <MakersDenFullLogo className='h-6 w-[164px]' />
         </Link>
-        <button
+        <Button
+          variant='ghost'
+          size='icon'
           onClick={onClose}
-          className='hover:bg-brand-green/10 rounded-md p-2 transition-colors'
+          className='text-white'
           aria-label='Close menu'
         >
           <SvgIcon name='Close' className='h-5 w-5 text-white' />
-        </button>
+        </Button>
       </div>
 
       {/* Navigation Items */}

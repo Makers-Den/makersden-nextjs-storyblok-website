@@ -95,20 +95,21 @@ Run through the checklist in [AGENTS.md](./AGENTS.md#summary-checklist).
 ### Button & ButtonLink
 
 ```typescript
-import { Button, ButtonLink } from '@/components/button';
+import { Button } from '@/components/ui/button';
+import { ButtonLink } from '@/components/ui/button-link';
 
 // Standard button
 <Button variant="default">Click me</Button>
 <Button variant="outline" size="sm">Small</Button>
-<Button variant="destructive">Delete</Button>
+<Button variant="accent">Accent</Button>
 
 // Link styled as button (for navigation)
 <ButtonLink href="/about">About Us</ButtonLink>
 <ButtonLink href="/contact" variant="outline">Contact</ButtonLink>
 ```
 
-**Available variants**: `default`, `outline`, `destructive`, `secondary`, `ghost`, `link`
-**Available sizes**: `default`, `sm`, `lg`, `icon`, `icon-sm`, `icon-lg`
+**Available variants**: `default`, `outline`, `secondary`, `accent`, `ghost`, `link`
+**Available sizes**: `default`, `sm`, `lg`, `pill`, `icon`, `icon-sm`, `icon-lg`
 
 See [component-patterns.md#button-component](./docs/component-patterns.md#button-component) for full documentation.
 
