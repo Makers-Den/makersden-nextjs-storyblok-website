@@ -1,7 +1,7 @@
 import { CANONICAL_BASE_URL_NO_SLASH } from '@/lib/constants';
 
 import { type Locale } from '@/i18n/config';
-import { buildLocalizedPath } from '@/i18n/paths';
+import { buildLocalizedPath, stripLocalePrefix } from '@/i18n/paths';
 
 const SITEMAP_EXCLUDED_SLUGS = ['home', 'not-found', 'dev-page'];
 
@@ -22,7 +22,7 @@ export function isSitemapStoryIndexable(story: SitemapStory): boolean {
     return false;
   }
 
-  const cleanSlug = story.full_slug.replace(/^\/+|\/+$/g, '');
+  const cleanSlug = stripLocalePrefix(story.full_slug);
   if (!cleanSlug || cleanSlug.startsWith('globals/')) {
     return false;
   }

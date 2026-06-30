@@ -1,11 +1,11 @@
 'use client';
 
-import Link from 'next/link';
+import { useTranslations } from 'next-intl';
 
 import clsxm from '@/lib/clsxm';
 
 import { type Locale, locales } from '@/i18n/config';
-import { usePathname } from '@/i18n/navigation';
+import { Link, usePathname } from '@/i18n/navigation';
 import { buildLocalizedPath } from '@/i18n/paths';
 
 const localeLabels: Record<Locale, string> = {
@@ -23,10 +23,11 @@ export default function LocaleSwitcher({
   className?: string;
 }) {
   const pathname = usePathname();
+  const t = useTranslations('language');
 
   return (
     <div
-      aria-label='Language'
+      aria-label={t('label')}
       className={clsxm(
         'inline-flex h-9 shrink-0 items-center rounded-full border border-white/18 bg-white/7 p-1 text-[12px] font-semibold tracking-wide text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.16)] backdrop-blur',
         className,
@@ -50,7 +51,7 @@ export default function LocaleSwitcher({
               key={loc}
               aria-disabled='true'
               className={itemClassName}
-              title={`${localeLabels[loc]} unavailable`}
+              title={t('unavailable', { language: t(`names.${loc}`) })}
             >
               {localeLabels[loc]}
             </span>
@@ -62,7 +63,7 @@ export default function LocaleSwitcher({
             key={loc}
             href={buildLocalizedPath(pathname || '/', loc)}
             aria-current={isActive ? 'true' : undefined}
-            aria-label={`Switch language to ${loc === 'en' ? 'English' : 'German'}`}
+            aria-label={t('switchTo', { language: t(`names.${loc}`) })}
             className={itemClassName}
           >
             {localeLabels[loc]}

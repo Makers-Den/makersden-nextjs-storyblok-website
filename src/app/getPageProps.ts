@@ -23,8 +23,12 @@ import {
   RESOLVED_RELATIONS,
 } from '@/lib/storyblok/storyblokRepository';
 
-import { defaultLocale, locales } from '@/i18n/config';
-import { buildLocalizedPath, getLanguageAlternates } from '@/i18n/paths';
+import { defaultLocale, type Locale } from '@/i18n/config';
+import {
+  buildLocalizedPath,
+  getAvailableLocalesForStory,
+  getLanguageAlternatesForLocales,
+} from '@/i18n/paths';
 
 import { type PageProps, type StoryContent } from '@/types';
 
@@ -117,6 +121,10 @@ export const getPageProps = async (
       story: pageStory,
       preview: !!isPreview,
       locale,
+      availableLocales: getAvailableLocalesForStory(
+        pageStory,
+        (locale ?? defaultLocale) as Locale,
+      ),
     };
   } catch (err) {
     // No story exists for this slug
@@ -156,13 +164,12 @@ export const getMetadata = async ({
     pathname || 'home',
     locale ?? defaultLocale,
   );
-  const languages = getLanguageAlternates(pathname || 'home');
   const pageProps = await getPageProps({
     slug: pathname,
     locale: locale,
   });
 
-  const { globalSettingsStory, story } = pageProps;
+  const { availableLocales, globalSettingsStory, story } = pageProps;
 
   if (!story || !globalSettingsStory) {
     return {};
@@ -203,6 +210,11 @@ export const getMetadata = async ({
     description = richtextToString(intro);
   }
 
+  const languages = getLanguageAlternatesForLocales(
+    pathname || 'home',
+    availableLocales,
+  );
+
   const ogType = 'article';
   return {
     metadataBase: new URL(defaultMeta.url),
@@ -217,7 +229,7 @@ export const getMetadata = async ({
       url: `${defaultMeta.url}${canonicalPath}`,
       type: ogType,
       locale: locale === 'de' ? 'de_DE' : 'en_US',
-      alternateLocale: locales
+      alternateLocale: availableLocales
         .filter((loc) => loc !== (locale ?? defaultLocale))
         .map((loc) => (loc === 'de' ? 'de_DE' : 'en_US')),
     },

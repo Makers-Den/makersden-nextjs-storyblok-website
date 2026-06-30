@@ -1,5 +1,8 @@
 import { type SbMultilink } from '../storyblok/sbInternalTypes';
-import { sbLinkToHref } from '../storyblok/sbLinkToHref';
+import {
+  sbLinkToButtonLinkProps,
+  sbLinkToHref,
+} from '../storyblok/sbLinkToHref';
 
 describe('sbLinkToHref', () => {
   test.each([
@@ -65,6 +68,18 @@ describe('sbLinkToHref', () => {
     };
 
     expect(sbLinkToHref(input, 'de')).toEqual('/de/about/team');
+  });
+
+  it('should pass locale through button link props for story links', () => {
+    const input: SbMultilink = {
+      linktype: 'story',
+      cached_url: 'about/team',
+    };
+
+    expect(sbLinkToButtonLinkProps(input, 'Team', 'de')).toMatchObject({
+      href: '/de/about/team',
+      children: 'Team',
+    });
   });
 
   it('should handle undefined input', () => {

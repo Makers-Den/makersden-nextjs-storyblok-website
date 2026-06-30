@@ -50,4 +50,23 @@ describe('localized sitemap entries', () => {
       'https://template.example/articles/hello',
     ]);
   });
+
+  it('filters localized globals after stripping locale prefixes', () => {
+    const entries = getSitemapEntries(
+      [
+        {
+          locale: 'de',
+          stories: [
+            { full_slug: 'de/globals/settings', content: {} },
+            { full_slug: 'de/about', content: {} },
+          ],
+        },
+      ],
+      'https://template.example',
+    );
+
+    expect(entries.map((entry) => entry.url)).toEqual([
+      'https://template.example/de/about',
+    ]);
+  });
 });

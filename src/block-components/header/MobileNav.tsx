@@ -30,6 +30,7 @@ function isNavSection(
 interface MobileNavProps {
   navItems: (LinkSbContent | NavSectionSbContent)[];
   locale: Locale;
+  availableLocales: readonly Locale[];
   onClose: () => void;
   onLinkClick: () => void;
 }
@@ -37,6 +38,7 @@ interface MobileNavProps {
 export function MobileNav({
   navItems,
   locale,
+  availableLocales,
   onClose,
   onLinkClick,
 }: MobileNavProps) {
@@ -48,7 +50,7 @@ export function MobileNav({
       <div className='flex items-center justify-between px-5 py-2'>
         <Link
           className='flex shrink-0 items-center text-white'
-          href='/'
+          href={locale === 'de' ? '/de' : '/'}
           onClick={onLinkClick}
           aria-label={t('homeLabel')}
         >
@@ -66,7 +68,7 @@ export function MobileNav({
       </div>
 
       <div className='px-6 pt-4'>
-        <LocaleSwitcher locale={locale} />
+        <LocaleSwitcher locale={locale} availableLocales={availableLocales} />
       </div>
 
       {/* Navigation Items */}

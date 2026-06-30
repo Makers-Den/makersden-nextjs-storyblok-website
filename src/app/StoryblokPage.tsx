@@ -25,7 +25,7 @@ export async function StoryblokPage({ params }: PageProps) {
     locale,
   });
 
-  const { globalSettingsStory, translations, story } = data;
+  const { availableLocales, globalSettingsStory, translations, story } = data;
 
   if (!story || !globalSettingsStory) {
     notFound();
@@ -37,6 +37,7 @@ export async function StoryblokPage({ params }: PageProps) {
       <Layout
         locale={locale ?? defaultLocale}
         globalSettings={globalSettingsStory}
+        availableLocales={availableLocales}
         layoutType={(story.content.layoutType || 'default') as LayoutType}
         navType={(story.content.navType || 'white') as NavType}
       >

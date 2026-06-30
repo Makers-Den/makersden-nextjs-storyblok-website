@@ -41,6 +41,15 @@
     "openMenu": "Open menu",
     "talkToMakersDen": "Talk to Makers Den"
   },
+  "language": {
+    "label": "Language",
+    "names": {
+      "de": "German",
+      "en": "English"
+    },
+    "switchTo": "Switch language to {language}",
+    "unavailable": "{language} unavailable"
+  },
   "footer": {
     "linkFallback": "Untitled link",
     "socialLink": "Social link",

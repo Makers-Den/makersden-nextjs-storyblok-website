@@ -140,7 +140,7 @@ export function Footer({
                         key={social._uid}
                         link={social.link}
                         locale={locale}
-                        aria-label={social.name ?? t('socialLink')}
+                        aria-label={social.name?.trim() || t('socialLink')}
                         className='hover:bg-brand-green hover:text-brand-navy flex h-10 w-10 items-center justify-center rounded-full text-white transition-colors'
                       >
                         {innerContent}

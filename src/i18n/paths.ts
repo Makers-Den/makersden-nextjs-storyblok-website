@@ -1,3 +1,5 @@
+import { type StoryblokStory } from '@/lib/storyblok';
+
 import { defaultLocale, type Locale, locales } from './config';
 
 export function isLocale(value: string | undefined): value is Locale {
@@ -30,11 +32,42 @@ export function buildLocalizedPath(
 }
 
 export function getLanguageAlternates(pathOrSlug: string) {
+  return getLanguageAlternatesForLocales(pathOrSlug, locales);
+}
+
+export function getLanguageAlternatesForLocales(
+  pathOrSlug: string,
+  availableLocales: readonly Locale[],
+) {
   const defaultPath = buildLocalizedPath(pathOrSlug, defaultLocale);
 
   return {
-    en: defaultPath,
-    de: buildLocalizedPath(pathOrSlug, 'de'),
+    ...Object.fromEntries(
+      availableLocales.map((locale) => [
+        locale,
+        buildLocalizedPath(pathOrSlug, locale),
+      ]),
+    ),
     'x-default': defaultPath,
   };
+}
+
+export function getAvailableLocalesForStory(
+  story: Pick<StoryblokStory, 'alternates'>,
+  locale: Locale,
+) {
+  return Array.from(
+    new Set<Locale>([
+      locale,
+      ...(story.alternates ?? []).flatMap((alternate) => {
+        if (!alternate.published) return [];
+
+        const localePrefix = alternate.full_slug
+          .replace(/^\/+|\/+$/g, '')
+          .split('/')
+          .find(isLocale);
+        return localePrefix ? [localePrefix] : [];
+      }),
+    ]),
+  );
 }

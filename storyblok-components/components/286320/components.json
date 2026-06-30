@@ -24,9 +24,7 @@
         "required": true,
         "source": "internal_stories",
         "folder_slug": "blog/authors",
-        "filter_content_type": [
-          "Author"
-        ]
+        "filter_content_type": ["Author"]
       },
       "date": {
         "type": "datetime",
@@ -40,9 +38,7 @@
         "id": "SNjZvR1tQ9-ZLCaGNhs1Dw",
         "required": true,
         "description": "This will be the above-the-fold image we lead with, and also the open graph image visible when sharing the post url.",
-        "filetypes": [
-          "images"
-        ]
+        "filetypes": ["images"]
       },
       "intro": {
         "type": "richtext",
@@ -62,12 +58,7 @@
           }
         ],
         "customize_toolbar": true,
-        "toolbar": [
-          "bold",
-          "color",
-          "italic",
-          "underline"
-        ],
+        "toolbar": ["bold", "color", "italic", "underline"],
         "translatable": true
       },
       "content": {
@@ -109,9 +100,7 @@
         "id": "kiZ-T0JMSG2Q_g6vFPLcrA",
         "source": "internal_stories",
         "folder_slug": "{0}/categories/",
-        "filter_content_type": [
-          "Category"
-        ]
+        "filter_content_type": ["Category"]
       }
     },
     "image": null,
@@ -141,9 +130,7 @@
       "image": {
         "type": "asset",
         "pos": 0,
-        "filetypes": [
-          "images"
-        ],
+        "filetypes": ["images"],
         "id": "eKYg2ZZqSWaFHpyl9xt2Hw"
       },
       "name": {
@@ -307,12 +294,7 @@
             "value": "text-blue"
           }
         ],
-        "toolbar": [
-          "h2",
-          "h3",
-          "h4",
-          "paragraph"
-        ],
+        "toolbar": ["h2", "h3", "h4", "paragraph"],
         "translatable": true
       },
       "text": {
@@ -320,10 +302,7 @@
         "pos": 1,
         "id": "yn1xGgYYThOG0zEkLEz8NQ",
         "customize_toolbar": true,
-        "toolbar": [
-          "bold",
-          "paragraph"
-        ],
+        "toolbar": ["bold", "paragraph"],
         "translatable": true
       },
       "backgroundColor": {
@@ -341,9 +320,7 @@
         "maximum": 2,
         "restrict_type": "",
         "restrict_components": true,
-        "component_whitelist": [
-          "CtaLink"
-        ],
+        "component_whitelist": ["CtaLink"],
         "id": "9N7JJdMlQ06J6lA4fdRcpg"
       },
       "spacingTop": {
@@ -364,11 +341,7 @@
       },
       "tab-15438331-3ba0-4d6d-993d-55af8f8b76c3": {
         "display_name": "Styles",
-        "keys": [
-          "spacingTop",
-          "spacingBottom",
-          "backgroundColor"
-        ],
+        "keys": ["spacingTop", "spacingBottom", "backgroundColor"],
         "pos": 6,
         "type": "tab",
         "id": "FUODMTugTW2ZPVWvj4t2ww"
@@ -401,20 +374,14 @@
       "question": {
         "type": "richtext",
         "customize_toolbar": true,
-        "toolbar": [
-          "bold"
-        ],
+        "toolbar": ["bold"],
         "translatable": true,
         "id": "yeFjcM1GTIStTO0X7w9b1Q"
       },
       "answer": {
         "type": "richtext",
         "customize_toolbar": true,
-        "toolbar": [
-          "bold",
-          "list",
-          "paragraph"
-        ],
+        "toolbar": ["bold", "list", "paragraph"],
         "translatable": true,
         "id": "fu0sm7NoSr-tis498Qr-GA"
       }
@@ -470,10 +437,7 @@
       "title": {
         "type": "richtext",
         "customize_toolbar": true,
-        "toolbar": [
-          "bold",
-          "paragraph"
-        ],
+        "toolbar": ["bold", "paragraph"],
         "translatable": true,
         "id": "j_exU-dtQFeEHBh5zd9Ibw",
         "pos": 3
@@ -484,19 +448,13 @@
         "minimum": 1,
         "restrict_type": "",
         "restrict_components": true,
-        "component_whitelist": [
-          "FaqItem"
-        ],
+        "component_whitelist": ["FaqItem"],
         "id": "61yDvfJwSxifk9idy6BkRw",
         "pos": 4
       },
       "tab-75278396-3ba0-4d6d-993d-55af8f8b76c4": {
         "display_name": "Styles",
-        "keys": [
-          "spacingTop",
-          "spacingBottom",
-          "backgroundColor"
-        ],
+        "keys": ["spacingTop", "spacingBottom", "backgroundColor"],
         "pos": 5,
         "type": "tab",
         "id": "dSeDljugTW2ZPVWvj4t2xA"
@@ -532,18 +490,12 @@
         "use_uuid": true,
         "required": true,
         "source": "internal_stories",
-        "filter_content_type": [
-          "Article"
-        ],
+        "filter_content_type": ["Article"],
         "id": "y5rjmDpeRSiczwWsOown6A"
       },
       "tab-1a195b70-cb1b-4864-8a48-ba4f460b6dfd": {
         "display_name": "Styles",
-        "keys": [
-          "backgroundColor",
-          "spacingTop",
-          "spacingBottom"
-        ],
+        "keys": ["backgroundColor", "spacingTop", "spacingBottom"],
         "pos": 0,
         "type": "tab",
         "id": "GhlbcMsbSGSKSLpPRgtt_Q"
@@ -608,9 +560,7 @@
         "pos": 1,
         "restrict_type": "",
         "restrict_components": true,
-        "component_whitelist": [
-          "Link"
-        ],
+        "component_whitelist": ["Link"],
         "id": "EMUiVRm9SHi4hKXuvSNczg"
       }
     },
@@ -643,9 +593,7 @@
         "pos": 0,
         "restrict_type": "",
         "restrict_components": true,
-        "component_whitelist": [
-          "FooterSection"
-        ],
+        "component_whitelist": ["FooterSection"],
         "id": "_-rYCLEHSs6Vn5KkGF5vVw"
       },
       "footerBottomLinks": {
@@ -653,9 +601,7 @@
         "pos": 1,
         "restrict_type": "",
         "restrict_components": true,
-        "component_whitelist": [
-          "Link"
-        ],
+        "component_whitelist": ["Link"],
         "id": "j2mDlzKoQWSczldqDv4Iqw"
       },
       "footerSocialLinks": {
@@ -664,9 +610,7 @@
         "id": "Wpf8IdvRRFaCA6lRByA3WQ",
         "restrict_type": "",
         "restrict_components": true,
-        "component_whitelist": [
-          "SocialLink"
-        ]
+        "component_whitelist": ["SocialLink"]
       },
       "footerCopyrightNotice": {
         "type": "text",
@@ -676,9 +620,7 @@
       },
       "tab-3a2ef750-3fbf-4f25-8f66-73d400a2eb4a": {
         "display_name": "Nav",
-        "keys": [
-          "navItems"
-        ],
+        "keys": ["navItems"],
         "pos": 4,
         "type": "tab",
         "name": "tab-3a2ef750-3fbf-4f25-8f66-73d400a2eb4a",
@@ -689,10 +631,7 @@
         "pos": 5,
         "restrict_type": "",
         "restrict_components": true,
-        "component_whitelist": [
-          "Link",
-          "NavSection"
-        ],
+        "component_whitelist": ["Link", "NavSection"],
         "id": "teyINGmuQr6X_X5o20Cgbg",
         "component_group_whitelist": [],
         "component_denylist": [],
@@ -703,25 +642,19 @@
         "type": "bloks",
         "restrict_type": "",
         "restrict_components": true,
-        "component_whitelist": [
-          "RedirectItem"
-        ],
+        "component_whitelist": ["RedirectItem"],
         "id": "zWaIZRj1SFewMC_mHlYUtA",
         "pos": 6
       },
       "logo": {
         "type": "asset",
-        "filetypes": [
-          "images"
-        ],
+        "filetypes": ["images"],
         "id": "R9HSCEasQKKyOiXnkC3TfQ",
         "pos": 7
       },
       "illustration": {
         "type": "asset",
-        "filetypes": [
-          "images"
-        ],
+        "filetypes": ["images"],
         "id": "oiETaiPPQv2_UDsYnB8JGA",
         "pos": 8
       },
@@ -740,9 +673,7 @@
       },
       "tab-aaf5a952-bc6c-4f60-bbc0-c96cb2d4f7a6": {
         "display_name": "Redirects",
-        "keys": [
-          "redirects"
-        ],
+        "keys": ["redirects"],
         "pos": 10,
         "type": "tab",
         "name": "tab-aaf5a952-bc6c-4f60-bbc0-c96cb2d4f7a6",
@@ -750,10 +681,7 @@
       },
       "tab-7a86758a-0873-485d-b11a-def792a1de4d": {
         "display_name": "SEO",
-        "keys": [
-          "logo",
-          "illustration"
-        ],
+        "keys": ["logo", "illustration"],
         "pos": 11,
         "type": "tab",
         "name": "tab-7a86758a-0873-485d-b11a-def792a1de4d",
@@ -789,11 +717,7 @@
         "pos": 0,
         "id": "hR8hywVqQKuytxB5dX1YNA",
         "customize_toolbar": true,
-        "toolbar": [
-          "h2",
-          "h3",
-          "paragraph"
-        ],
+        "toolbar": ["h2", "h3", "paragraph"],
         "style_options": [
           {
             "_uid": "e9a05bd0-e599-4a35-9f05-f9fc6de1f8e3",
@@ -809,10 +733,7 @@
         "id": "F9MP1kU8TvyDVUXO_-UdQQ",
         "restrict_type": "",
         "restrict_components": true,
-        "component_whitelist": [
-          "ImageAndTextCard",
-          "IconAndTextCard"
-        ]
+        "component_whitelist": ["ImageAndTextCard", "IconAndTextCard"]
       },
       "backgroundColor": {
         "type": "option",
@@ -840,11 +761,7 @@
       },
       "tab-75222396-3ba0-4d6d-993d-55af8f8b76c3": {
         "display_name": "Styles",
-        "keys": [
-          "spacingTop",
-          "spacingBottom",
-          "backgroundColor"
-        ],
+        "keys": ["spacingTop", "spacingBottom", "backgroundColor"],
         "pos": 6,
         "type": "tab",
         "id": "dSIjljugTW2ZPVWvj4t2ww"
@@ -930,10 +847,7 @@
         "pos": 0,
         "id": "_U696Ie5SNWBs0VukwC2wA",
         "customize_toolbar": true,
-        "toolbar": [
-          "paragraph",
-          "paste-action"
-        ],
+        "toolbar": ["paragraph", "paste-action"],
         "translatable": true
       },
       "backgroundImage": {
@@ -946,9 +860,7 @@
         "pos": 2,
         "restrict_type": "",
         "restrict_components": true,
-        "component_whitelist": [
-          "CtaLink"
-        ],
+        "component_whitelist": ["CtaLink"],
         "id": "5mCn8ugOSyqKRhCgAZCDZQ"
       }
     },
@@ -988,12 +900,7 @@
             "value": "text-blue"
           }
         ],
-        "toolbar": [
-          "h1",
-          "h2",
-          "h3",
-          "paragraph"
-        ],
+        "toolbar": ["h1", "h2", "h3", "paragraph"],
         "translatable": true
       },
       "text": {
@@ -1001,13 +908,7 @@
         "pos": 1,
         "id": "MU-srYuDRUCNJCJUf_BAJA",
         "customize_toolbar": true,
-        "toolbar": [
-          "bold",
-          "blok",
-          "olist",
-          "paragraph",
-          "list"
-        ],
+        "toolbar": ["bold", "blok", "olist", "paragraph", "list"],
         "translatable": true
       },
       "ctaLinks": {
@@ -1015,9 +916,7 @@
         "pos": 2,
         "restrict_type": "",
         "restrict_components": true,
-        "component_whitelist": [
-          "CtaLink"
-        ],
+        "component_whitelist": ["CtaLink"],
         "component_denylist": [],
         "id": "XFPOwwKRTwWnl2vqIauFNw"
       },
@@ -1027,10 +926,7 @@
         "id": "X-NGAt3CTbeV3vtKSToo-A",
         "restrict_type": "",
         "restrict_components": true,
-        "component_whitelist": [
-          "Image",
-          "ImageCardLink"
-        ],
+        "component_whitelist": ["Image", "ImageCardLink"],
         "description": "Content placed on the right side within the content container.",
         "component_group_whitelist": [],
         "component_denylist": [],
@@ -1041,9 +937,7 @@
         "pos": 4,
         "restrict_type": "",
         "restrict_components": true,
-        "component_whitelist": [
-          "Image"
-        ],
+        "component_whitelist": ["Image"],
         "id": "Q8znjKfVSMCr9vQqlYvpSw",
         "description": "Content placed on right side that fills to the edge of viewport."
       }
@@ -1075,9 +969,7 @@
       "icon": {
         "type": "asset",
         "pos": 0,
-        "filetypes": [
-          "images"
-        ],
+        "filetypes": ["images"],
         "id": "WZsQ_2ZQQfGHJDg_j8IqoA"
       },
       "title": {
@@ -1358,18 +1250,14 @@
         "type": "richtext",
         "pos": 0,
         "customize_toolbar": true,
-        "toolbar": [
-          "paragraph"
-        ],
+        "toolbar": ["paragraph"],
         "id": "xUYQbfFLSO2AcrqWhxkR7g",
         "translatable": true
       },
       "logos": {
         "type": "multiasset",
         "pos": 1,
-        "filetypes": [
-          "images"
-        ],
+        "filetypes": ["images"],
         "id": "aUbN5prKQk6gMRJX8y9ysA"
       },
       "backgroundColor": {
@@ -1398,11 +1286,7 @@
       },
       "tab-15118331-3ba0-4d6d-993d-55af8f8b76c3": {
         "display_name": "Styles",
-        "keys": [
-          "spacingTop",
-          "spacingBottom",
-          "backgroundColor"
-        ],
+        "keys": ["spacingTop", "spacingBottom", "backgroundColor"],
         "pos": 6,
         "type": "tab",
         "id": "FRGDMTugTW2ZPVWvj4t2ww"
@@ -1444,9 +1328,7 @@
         "id": "A3WgLndATcSrAye_cO85Vg",
         "restrict_type": "",
         "restrict_components": true,
-        "component_whitelist": [
-          "NavSectionLinkItem"
-        ]
+        "component_whitelist": ["NavSectionLinkItem"]
       }
     },
     "image": null,
@@ -1517,22 +1399,14 @@
     "schema": {
       "tab-0afb0a79-9125-4513-a7c3-8cab38289c04": {
         "display_name": "SEO",
-        "keys": [
-          "title",
-          "description",
-          "nonIndexable",
-          "additionalMetadata"
-        ],
+        "keys": ["title", "description", "nonIndexable", "additionalMetadata"],
         "pos": 0,
         "type": "tab",
         "id": "CvsKeZElRROnw4yrOCicBA"
       },
       "tab-cadda495-3fd8-4f2f-9396-a4c5e11fcf1b": {
         "display_name": "Styles",
-        "keys": [
-          "navType",
-          "layoutType"
-        ],
+        "keys": ["navType", "layoutType"],
         "pos": 0,
         "type": "tab",
         "id": "yt2klT_YTy-TlqTF4R_PGw"
@@ -1635,9 +1509,7 @@
         "type": "bloks",
         "restrict_type": "",
         "restrict_components": true,
-        "component_whitelist": [
-          "JsonLdMetadata"
-        ],
+        "component_whitelist": ["JsonLdMetadata"],
         "id": "X95AZhVzSkG4mMepqYqpHA"
       }
     },
@@ -1682,11 +1554,7 @@
       },
       "tab-5de9dbcf-733a-4991-bb24-a2611444520c": {
         "display_name": "Styles",
-        "keys": [
-          "backgroundColor",
-          "spacingTop",
-          "spacingBottom"
-        ],
+        "keys": ["backgroundColor", "spacingTop", "spacingBottom"],
         "pos": 0,
         "type": "tab",
         "id": "Xenbz3M6SZG7JKJhFERSDA"
@@ -1906,18 +1774,14 @@
         "maximum": 1,
         "restrict_type": "",
         "restrict_components": true,
-        "component_whitelist": [
-          "RichTextContent"
-        ]
+        "component_whitelist": ["RichTextContent"]
       },
       "rightSection": {
         "type": "bloks",
         "maximum": 1,
         "restrict_type": "",
         "restrict_components": true,
-        "component_whitelist": [
-          "RichTextContent"
-        ]
+        "component_whitelist": ["RichTextContent"]
       }
     },
     "image": null,
@@ -1973,12 +1837,7 @@
         "pos": 4,
         "id": "SeW-IaUUSgue8ZdrNkog-w",
         "customize_toolbar": true,
-        "toolbar": [
-          "h2",
-          "h3",
-          "h4",
-          "paragraph"
-        ],
+        "toolbar": ["h2", "h3", "h4", "paragraph"],
         "style_options": [
           {
             "_uid": "5ac41dec-02c5-4b91-99fb-49121a76b868",
@@ -2069,11 +1928,7 @@
       },
       "tab-75278336-3ba0-4d6d-993d-55af8f8b76c3": {
         "display_name": "Styles",
-        "keys": [
-          "spacingTop",
-          "spacingBottom",
-          "backgroundColor"
-        ],
+        "keys": ["spacingTop", "spacingBottom", "backgroundColor"],
         "pos": 9,
         "type": "tab",
         "id": "dSeDNjugTW2ZPVWvj4t2ww"
@@ -2137,13 +1992,7 @@
         "pos": 0,
         "id": "v0n40u1KSWW7PhU5OQEWrg",
         "customize_toolbar": true,
-        "toolbar": [
-          "h2",
-          "h3",
-          "h4",
-          "h5",
-          "paragraph"
-        ],
+        "toolbar": ["h2", "h3", "h4", "h5", "paragraph"],
         "style_options": [
           {
             "_uid": "652e2d3b-c65c-4151-8270-db1b448ae9c6",
@@ -2178,9 +2027,7 @@
         ],
         "restrict_type": "",
         "restrict_components": true,
-        "component_whitelist": [
-          "CtaLink"
-        ],
+        "component_whitelist": ["CtaLink"],
         "allow_target_blank": true,
         "translatable": true
       }

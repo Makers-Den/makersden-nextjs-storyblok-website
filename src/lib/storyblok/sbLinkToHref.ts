@@ -69,6 +69,7 @@ export const sbLinkToHref = (
 export const sbLinkToButtonLinkProps = (
   sbLink: LinkSbContent['link'] | undefined,
   name: string | undefined,
+  locale: Locale = defaultLocale,
   props?: Omit<LinkProps, 'href' | 'children'>,
 ): LinkProps | undefined => {
   if (!sbLink) {
@@ -89,7 +90,7 @@ export const sbLinkToButtonLinkProps = (
   }
 
   if (isLinkStory(sbLink)) {
-    return { href: sbLinkToHref(sbLink), children: name, ...props };
+    return { href: sbLinkToHref(sbLink, locale), children: name, ...props };
   }
 
   return undefined;
@@ -97,6 +98,7 @@ export const sbLinkToButtonLinkProps = (
 
 export const linkContentsToButtonLinkProps = (
   linkContents: LinkSbContent[] | undefined,
+  locale: Locale = defaultLocale,
 ): undefined | LinkProps => {
   if (!linkContents) {
     return undefined;
@@ -110,7 +112,7 @@ export const linkContentsToButtonLinkProps = (
 
   const { link, name, ...rest } = linkContent;
 
-  return sbLinkToButtonLinkProps(link, name, rest);
+  return sbLinkToButtonLinkProps(link, name, locale, rest);
 };
 
 /** Makes sure the href begins with a slash for internal links, useful when linking to stories by their `full_slug` */

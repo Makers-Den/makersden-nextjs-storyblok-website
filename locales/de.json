@@ -41,9 +41,18 @@
     "openMenu": "Menü öffnen",
     "talkToMakersDen": "Mit Makers Den sprechen"
   },
+  "language": {
+    "label": "Sprache",
+    "names": {
+      "de": "Deutsch",
+      "en": "Englisch"
+    },
+    "switchTo": "Sprache zu {language} wechseln",
+    "unavailable": "{language} nicht verfügbar"
+  },
   "footer": {
     "linkFallback": "Unbenannter Link",
-    "socialLink": "Social Link",
+    "socialLink": "Social-Media-Link",
     "tagline": "Wiederverwendbare Storyblok-Website-Templates von Makers Den für schnelle redaktionelle Launches."
   }
 }

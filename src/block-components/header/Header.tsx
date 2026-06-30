@@ -17,6 +17,7 @@ import { ButtonLink } from '@/components/ui/button-link';
 import { NavSection } from '@/block-components/nav-section/NavSection';
 import { type Locale } from '@/i18n/config';
 import { Link } from '@/i18n/navigation';
+import { buildLocalizedPath } from '@/i18n/paths';
 
 import { MobileNav } from './MobileNav';
 
@@ -38,11 +39,13 @@ function isNavSection(
 export function Header({
   navItems,
   locale,
+  availableLocales,
   layoutType,
   navType,
 }: {
   navItems: (LinkSbContent | NavSectionSbContent)[];
   locale: Locale;
+  availableLocales: readonly Locale[];
   layoutType: 'default' | 'leadPage';
   navType: 'white' | 'black' | 'transparent';
 }) {
@@ -125,7 +128,7 @@ export function Header({
           {/* Left: Logo */}
           <Link
             className='flex shrink-0 items-center text-white'
-            href='/'
+            href={buildLocalizedPath('home', locale)}
             aria-label={t('homeLabel')}
           >
             <MakersDenFullLogo className='h-5 w-[136px] md:h-6 md:w-[164px]' />
@@ -169,6 +172,7 @@ export function Header({
             {layoutType === 'default' && (
               <LocaleSwitcher
                 locale={locale}
+                availableLocales={availableLocales}
                 className='hidden lg:inline-flex'
               />
             )}
@@ -213,7 +217,7 @@ export function Header({
           {/* Left: Logo */}
           <Link
             className='flex shrink-0 items-center text-white'
-            href='/'
+            href={buildLocalizedPath('home', locale)}
             aria-label={t('homeLabel')}
           >
             <MakersDenFullLogo className='h-5 w-[136px] md:h-6 md:w-[164px]' />
@@ -257,6 +261,7 @@ export function Header({
             {layoutType === 'default' && (
               <LocaleSwitcher
                 locale={locale}
+                availableLocales={availableLocales}
                 className='hidden lg:inline-flex'
               />
             )}
@@ -293,6 +298,7 @@ export function Header({
           <MobileNav
             navItems={navItems}
             locale={locale}
+            availableLocales={availableLocales}
             onClose={() => setIsMenuOpen(false)}
             onLinkClick={() => setIsMenuOpen(false)}
           />

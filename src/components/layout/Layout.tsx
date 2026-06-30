@@ -9,6 +9,7 @@ type LayoutProps = {
   children: React.ReactNode;
   locale: Locale;
   globalSettings: StoryblokStory<GlobalSettingsSbContent>;
+  availableLocales: readonly Locale[];
   layoutType: 'default' | 'leadPage';
   navType: 'white' | 'black' | 'transparent';
 };
@@ -17,6 +18,7 @@ export function Layout({
   children,
   locale,
   globalSettings,
+  availableLocales,
   layoutType,
   navType,
 }: LayoutProps) {
@@ -34,6 +36,7 @@ export function Layout({
       <Header
         navItems={navItems}
         locale={locale}
+        availableLocales={availableLocales}
         layoutType={layoutType}
         navType={navType}
       />
