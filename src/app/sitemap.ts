@@ -1,44 +1,48 @@
 import { type MetadataRoute } from 'next';
 
-import { CANONICAL_BASE_URL_NO_SLASH } from '@/lib/constants';
+import { getSitemapEntries, type LocalizedSitemapStories } from '@/lib/sitemap';
+import { type PageSbContent, type StoryblokStory } from '@/lib/storyblok';
 import {
-  findAllPageStories,
-  SITEMAP_EXCLUDED_SLUGS,
+  ALL_PAGE_TYPES,
+  findStories,
 } from '@/lib/storyblok/storyblokRepository';
 
-const sitemap = async (): Promise<MetadataRoute.Sitemap> => {
-  // TODO: this should take locales into account
-  const allPageStories = await findAllPageStories();
-  const indexableStories = allPageStories
-    .flatMap((item) => item.stories)
-    .filter((story) => !story.content.nonIndexable);
+import { type Locale, locales } from '@/i18n/config';
 
-  const sitemapSlugs = indexableStories
-    .map((story) => story.full_slug)
-    .filter((slug) => {
-      const split = slug.split('/');
-      const lastSlugPart = split[split.length - 1];
-      return !SITEMAP_EXCLUDED_SLUGS.includes(lastSlugPart);
+const fetchStoriesForSitemap = async (
+  locale: Locale,
+  contentType: (typeof ALL_PAGE_TYPES)[number],
+) => {
+  const stories: StoryblokStory<PageSbContent>[] = [];
+  let page = 1;
+  let total = 0;
+
+  do {
+    const result = await findStories<StoryblokStory<PageSbContent>>({
+      contentType,
+      locale,
+      perPage: 100,
+      page,
     });
 
-  const sitemapFields = sitemapSlugs.map((sitemapSlug) => {
-    const slug = sitemapSlug.endsWith('/')
-      ? sitemapSlug.slice(0, -1)
-      : sitemapSlug;
+    stories.push(...result.stories);
+    total = result.total;
+    page += 1;
+  } while (stories.length < total);
 
-    return {
-      url: `${CANONICAL_BASE_URL_NO_SLASH}/${slug}`,
-      lastModified: new Date().toISOString(),
-    };
-  });
+  return { locale, stories };
+};
 
-  // Add home page index manually
-  sitemapFields.push({
-    url: `${CANONICAL_BASE_URL_NO_SLASH}/`,
-    lastModified: new Date().toISOString(),
-  });
+const sitemap = async (): Promise<MetadataRoute.Sitemap> => {
+  const storyResults = await Promise.all(
+    locales.flatMap((locale: Locale) =>
+      ALL_PAGE_TYPES.map((contentType) =>
+        fetchStoriesForSitemap(locale, contentType),
+      ),
+    ),
+  );
 
-  return sitemapFields;
+  return getSitemapEntries(storyResults as LocalizedSitemapStories[]);
 };
 
 export default sitemap;

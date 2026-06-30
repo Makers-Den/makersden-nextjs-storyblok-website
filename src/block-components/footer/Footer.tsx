@@ -1,5 +1,7 @@
 'use client';
 
+import { useTranslations } from 'next-intl';
+
 import {
   type FooterSectionSbContent,
   type LinkSbContent,
@@ -19,12 +21,15 @@ import {
   AccordionTrigger,
 } from '@/components/ui/accordion';
 
+import { defaultLocale, type Locale } from '@/i18n/config';
+
 type FooterProps = {
   footerSections?: FooterSectionSbContent[];
   footerBottomLinks?: LinkSbContent[];
   footerSocialLinks?: SocialLinkSbContent[];
   copyrightNotice?: string;
   logo?: SbAsset;
+  locale?: Locale;
   layoutType?: 'default' | 'leadPage';
 };
 
@@ -67,7 +72,10 @@ export function Footer({
   footerSocialLinks,
   copyrightNotice,
   logo,
+  locale = defaultLocale,
 }: FooterProps) {
+  const t = useTranslations('footer');
+
   // Create link columns from Storyblok sections
   const linkColumns = (footerSections ?? [])
     .map((section) => ({
@@ -103,8 +111,7 @@ export function Footer({
                 <>
                   <MakersDenFullLogo className='h-6 w-[164px]' />
                   <TextSm as='p' className='max-w-sm text-white/65'>
-                    Reusable Storyblok website templates shaped by Makers Den
-                    for fast editorial launches.
+                    {t('tagline')}
                   </TextSm>
                 </>
               )}
@@ -132,7 +139,8 @@ export function Footer({
                       <StoryblokLink
                         key={social._uid}
                         link={social.link}
-                        aria-label={social.name ?? 'Social link'}
+                        locale={locale}
+                        aria-label={social.name?.trim() || t('socialLink')}
                         className='hover:bg-brand-green hover:text-brand-navy flex h-10 w-10 items-center justify-center rounded-full text-white transition-colors'
                       >
                         {innerContent}
@@ -175,12 +183,13 @@ export function Footer({
                           <ul className='space-y-3'>
                             {column.links.map((link) => {
                               const label =
-                                link.name?.trim() || 'Untitled link';
+                                link.name?.trim() || t('linkFallback');
                               return (
                                 <li key={link._uid}>
                                   {hasUsableLink(link.link) ? (
                                     <StoryblokLink
                                       link={link.link}
+                                      locale={locale}
                                       className='hover:text-brand-green text-white/65 transition-colors'
                                     >
                                       <Text as='span'>{label}</Text>
@@ -217,20 +226,22 @@ export function Footer({
                     {column.links.length > 0 && (
                       <ul className='space-y-3'>
                         {column.links.map((link) => {
-                          const label = link.name?.trim() || 'Untitled link';
+                          const resolvedLabel =
+                            link.name?.trim() || t('linkFallback');
 
                           return (
                             <li key={link._uid}>
                               {hasUsableLink(link.link) ? (
                                 <StoryblokLink
                                   link={link.link}
+                                  locale={locale}
                                   className='hover:text-brand-green text-white/65 transition-colors'
                                 >
-                                  <Text as='span'>{label}</Text>
+                                  <Text as='span'>{resolvedLabel}</Text>
                                 </StoryblokLink>
                               ) : (
                                 <Text as='span' className='text-white/40'>
-                                  {label}
+                                  {resolvedLabel}
                                 </Text>
                               )}
                             </li>
@@ -259,12 +270,13 @@ export function Footer({
             {legalLinks.length > 0 && (
               <ul className='flex flex-wrap gap-6'>
                 {legalLinks.map((link) => {
-                  const label = link.name?.trim() || 'Untitled link';
+                  const label = link.name?.trim() || t('linkFallback');
                   return (
                     <li key={link._uid}>
                       {hasUsableLink(link.link) ? (
                         <StoryblokLink
                           link={link.link}
+                          locale={locale}
                           className='hover:text-brand-green text-white/55 transition-colors'
                         >
                           <TextSm as='span'>{label}</TextSm>

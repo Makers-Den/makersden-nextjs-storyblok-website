@@ -4,7 +4,7 @@
     "display_name": null,
     "description": "",
     "created_at": "2025-12-10T16:27:33.369Z",
-    "updated_at": "2025-12-10T21:55:42.777Z",
+    "updated_at": "2026-06-30T06:24:25.958Z",
     "id": 121628481011910,
     "schema": {
       "title": {
@@ -13,7 +13,8 @@
         "required": true,
         "description": "The H1 title of the article, also the meta title.",
         "max_length": 500,
-        "id": "dCfMPYZZS4GWem4hqWryiw"
+        "id": "dCfMPYZZS4GWem4hqWryiw",
+        "translatable": true
       },
       "author": {
         "type": "option",
@@ -57,7 +58,8 @@
           }
         ],
         "customize_toolbar": true,
-        "toolbar": ["bold", "color", "italic", "underline"]
+        "toolbar": ["bold", "color", "italic", "underline"],
+        "translatable": true
       },
       "content": {
         "type": "richtext",
@@ -89,7 +91,8 @@
           "undo",
           "quote",
           "paste"
-        ]
+        ],
+        "translatable": true
       },
       "categories": {
         "type": "options",
@@ -200,13 +203,14 @@
     "display_name": null,
     "description": "",
     "created_at": "2025-10-22T14:07:07.498Z",
-    "updated_at": "2025-12-15T20:29:48.676Z",
+    "updated_at": "2026-06-30T06:24:26.289Z",
     "id": 104253143036076,
     "schema": {
       "name": {
         "type": "text",
         "pos": 0,
-        "id": "r_iYFx0fT6SWjruckObCIA"
+        "id": "r_iYFx0fT6SWjruckObCIA",
+        "translatable": true
       },
       "type": {
         "type": "option",
@@ -275,7 +279,7 @@
     "display_name": null,
     "description": "",
     "created_at": "2025-11-28T14:39:42.074Z",
-    "updated_at": "2025-11-28T14:39:42.074Z",
+    "updated_at": "2026-06-30T06:24:26.615Z",
     "id": 117355241781053,
     "schema": {
       "title": {
@@ -290,14 +294,16 @@
             "value": "text-blue"
           }
         ],
-        "toolbar": ["h2", "h3", "h4", "paragraph"]
+        "toolbar": ["h2", "h3", "h4", "paragraph"],
+        "translatable": true
       },
       "text": {
         "type": "richtext",
         "pos": 1,
         "id": "yn1xGgYYThOG0zEkLEz8NQ",
         "customize_toolbar": true,
-        "toolbar": ["bold", "paragraph"]
+        "toolbar": ["bold", "paragraph"],
+        "translatable": true
       },
       "backgroundColor": {
         "type": "option",
@@ -540,13 +546,14 @@
     "display_name": null,
     "description": "",
     "created_at": "2025-11-28T14:39:42.398Z",
-    "updated_at": "2025-11-28T14:39:42.398Z",
+    "updated_at": "2026-06-30T06:24:26.940Z",
     "id": 117355243112254,
     "schema": {
       "title": {
         "type": "text",
         "pos": 0,
-        "id": "L3koeB9kRdy_KHNmXXjPFA"
+        "id": "L3koeB9kRdy_KHNmXXjPFA",
+        "translatable": true
       },
       "links": {
         "type": "bloks",
@@ -578,7 +585,7 @@
     "display_name": null,
     "description": null,
     "created_at": "2024-05-07T07:56:35.615Z",
-    "updated_at": "2026-06-02T07:09:24.136Z",
+    "updated_at": "2026-06-30T06:24:27.263Z",
     "id": 5758880,
     "schema": {
       "footerSections": {
@@ -608,7 +615,8 @@
       "footerCopyrightNotice": {
         "type": "text",
         "pos": 3,
-        "id": "_yhPT2z5RY2FdoRJwnbHkw"
+        "id": "_yhPT2z5RY2FdoRJwnbHkw",
+        "translatable": true
       },
       "tab-3a2ef750-3fbf-4f25-8f66-73d400a2eb4a": {
         "display_name": "Nav",
@@ -701,7 +709,7 @@
     "display_name": null,
     "description": "",
     "created_at": "2025-11-28T14:39:42.576Z",
-    "updated_at": "2025-11-28T14:39:42.576Z",
+    "updated_at": "2026-06-30T06:24:27.581Z",
     "id": 117355243837247,
     "schema": {
       "title": {
@@ -716,7 +724,8 @@
             "name": "text-blue",
             "value": "text-blue"
           }
-        ]
+        ],
+        "translatable": true
       },
       "cards": {
         "type": "bloks",
@@ -799,13 +808,14 @@
     "display_name": null,
     "description": "",
     "created_at": "2025-11-28T14:39:40.070Z",
-    "updated_at": "2025-11-28T14:39:40.070Z",
+    "updated_at": "2026-06-30T06:24:27.903Z",
     "id": 117355233576757,
     "schema": {
       "title": {
         "type": "textarea",
         "pos": 0,
-        "id": "gSLCOXLaRTKi0yXsmdzv7Q"
+        "id": "gSLCOXLaRTKi0yXsmdzv7Q",
+        "translatable": true
       }
     },
     "image": null,
@@ -829,7 +839,7 @@
     "display_name": null,
     "description": "",
     "created_at": "2025-10-22T10:30:34.059Z",
-    "updated_at": "2025-10-22T14:54:33.682Z",
+    "updated_at": "2026-06-30T06:24:28.227Z",
     "id": 104199921912729,
     "schema": {
       "title": {
@@ -837,7 +847,8 @@
         "pos": 0,
         "id": "_U696Ie5SNWBs0VukwC2wA",
         "customize_toolbar": true,
-        "toolbar": ["paragraph", "paste-action"]
+        "toolbar": ["paragraph", "paste-action"],
+        "translatable": true
       },
       "backgroundImage": {
         "type": "asset",
@@ -874,7 +885,7 @@
     "display_name": null,
     "description": "",
     "created_at": "2025-11-28T14:39:42.735Z",
-    "updated_at": "2026-06-02T07:09:24.220Z",
+    "updated_at": "2026-06-30T06:24:28.550Z",
     "id": 117355244488512,
     "schema": {
       "title": {
@@ -889,14 +900,16 @@
             "value": "text-blue"
           }
         ],
-        "toolbar": ["h1", "h2", "h3", "paragraph"]
+        "toolbar": ["h1", "h2", "h3", "paragraph"],
+        "translatable": true
       },
       "text": {
         "type": "richtext",
         "pos": 1,
         "id": "MU-srYuDRUCNJCJUf_BAJA",
         "customize_toolbar": true,
-        "toolbar": ["bold", "blok", "olist", "paragraph", "list"]
+        "toolbar": ["bold", "blok", "olist", "paragraph", "list"],
+        "translatable": true
       },
       "ctaLinks": {
         "type": "bloks",
@@ -950,7 +963,7 @@
     "display_name": null,
     "description": "",
     "created_at": "2025-11-28T14:39:40.225Z",
-    "updated_at": "2025-11-28T14:39:40.225Z",
+    "updated_at": "2026-06-30T06:24:28.872Z",
     "id": 117355234207542,
     "schema": {
       "icon": {
@@ -962,12 +975,14 @@
       "title": {
         "type": "text",
         "pos": 1,
-        "id": "JDIJxOvWSMC64eQn447rRA"
+        "id": "JDIJxOvWSMC64eQn447rRA",
+        "translatable": true
       },
       "text": {
         "type": "textarea",
         "pos": 2,
-        "id": "jMo0fq5LS_Cbao_QWdknZA"
+        "id": "jMo0fq5LS_Cbao_QWdknZA",
+        "translatable": true
       }
     },
     "image": null,
@@ -1077,7 +1092,7 @@
     "display_name": null,
     "description": "",
     "created_at": "2025-11-28T14:39:40.565Z",
-    "updated_at": "2025-11-28T14:39:40.565Z",
+    "updated_at": "2026-06-30T06:24:29.193Z",
     "id": 117355235600184,
     "schema": {
       "image": {
@@ -1088,12 +1103,14 @@
       "title": {
         "type": "text",
         "pos": 1,
-        "id": "P5yV8kvISISG9iHFBCUKEA"
+        "id": "P5yV8kvISISG9iHFBCUKEA",
+        "translatable": true
       },
       "text": {
         "type": "text",
         "pos": 2,
-        "id": "MuN68rT_QrCEk5mxms62vA"
+        "id": "MuN68rT_QrCEk5mxms62vA",
+        "translatable": true
       }
     },
     "image": null,
@@ -1117,7 +1134,7 @@
     "display_name": null,
     "description": "",
     "created_at": "2025-11-28T14:39:40.727Z",
-    "updated_at": "2025-11-28T14:39:40.727Z",
+    "updated_at": "2026-06-30T06:24:29.509Z",
     "id": 117355236263737,
     "schema": {
       "image": {
@@ -1133,7 +1150,8 @@
       "pillText": {
         "type": "text",
         "pos": 2,
-        "id": "2_Jz9tKCRimd9WpmYYHWQg"
+        "id": "2_Jz9tKCRimd9WpmYYHWQg",
+        "translatable": true
       }
     },
     "image": null,
@@ -1225,7 +1243,7 @@
     "display_name": null,
     "description": "",
     "created_at": "2025-11-28T14:39:41.221Z",
-    "updated_at": "2025-11-28T14:39:41.221Z",
+    "updated_at": "2026-06-30T06:24:29.823Z",
     "id": 117355238287162,
     "schema": {
       "title": {
@@ -1233,7 +1251,8 @@
         "pos": 0,
         "customize_toolbar": true,
         "toolbar": ["paragraph"],
-        "id": "xUYQbfFLSO2AcrqWhxkR7g"
+        "id": "xUYQbfFLSO2AcrqWhxkR7g",
+        "translatable": true
       },
       "logos": {
         "type": "multiasset",
@@ -1294,13 +1313,14 @@
     "display_name": null,
     "description": "",
     "created_at": "2025-11-28T14:39:42.910Z",
-    "updated_at": "2025-11-28T14:39:42.910Z",
+    "updated_at": "2026-06-30T06:24:30.153Z",
     "id": 117355245209409,
     "schema": {
       "title": {
         "type": "text",
         "pos": 1,
-        "id": "Um1Rpca3StWFxqvNd9Rq7Q"
+        "id": "Um1Rpca3StWFxqvNd9Rq7Q",
+        "translatable": true
       },
       "items": {
         "type": "bloks",
@@ -1332,18 +1352,20 @@
     "display_name": null,
     "description": "",
     "created_at": "2025-11-28T14:39:41.396Z",
-    "updated_at": "2025-11-28T14:39:41.396Z",
+    "updated_at": "2026-06-30T06:24:30.473Z",
     "id": 117355239003963,
     "schema": {
       "title": {
         "type": "text",
         "pos": 0,
-        "id": "S8c6rgRMRN6cS5sH3QUsBA"
+        "id": "S8c6rgRMRN6cS5sH3QUsBA",
+        "translatable": true
       },
       "description": {
         "type": "text",
         "pos": 1,
-        "id": "3xps8xaWQDmMst-Y5l5rpw"
+        "id": "3xps8xaWQDmMst-Y5l5rpw",
+        "translatable": true
       },
       "link": {
         "type": "multilink",
@@ -1372,69 +1394,15 @@
     "display_name": "",
     "description": null,
     "created_at": "2024-04-25T10:25:56.142Z",
-    "updated_at": "2026-06-02T07:09:24.037Z",
+    "updated_at": "2026-06-30T06:24:30.796Z",
     "id": 5708684,
     "schema": {
-      "body": {
-        "type": "bloks",
-        "restrict_type": "",
-        "restrict_components": true,
-        "component_whitelist": [
-          "HeroSection",
-          "HeroNarrowSection",
-          "HeroSplitSection",
-          "CtaSection",
-          "GridSection",
-          "FaqSection",
-          "FeaturedArticle",
-          "Image",
-          "LogosSection",
-          "PaginatedSection",
-          "RichTextContent",
-          "SplitContentSection",
-          "SplitSection",
-          "Teaser"
-        ],
-        "component_group_whitelist": [],
-        "id": "3ze7ojdMQNqfAkt19UGOnQ",
-        "component_denylist": [],
-        "component_group_denylist": [],
-        "component_tag_whitelist": [],
-        "component_tag_denylist": [],
-        "description": "Reusable page sections rendered in order. Only lean template block components are allowed."
-      },
       "tab-0afb0a79-9125-4513-a7c3-8cab38289c04": {
         "display_name": "SEO",
         "keys": ["title", "description", "nonIndexable", "additionalMetadata"],
         "pos": 0,
         "type": "tab",
         "id": "CvsKeZElRROnw4yrOCicBA"
-      },
-      "title": {
-        "type": "text",
-        "description": "This field holds the title of the web page, which appears in the browser tab and is used by search engines for the page's title in search results.\n\nEssential for SEO assessments and verifying that the correct page title is displayed depending on the context or user interaction within the application. Also used in automated tests to confirm page navigation accuracy.",
-        "tooltip": true,
-        "id": "iOHqcU4mRv2NzBMjTfPexQ"
-      },
-      "description": {
-        "type": "textarea",
-        "description": "It typically provides a brief summary of the page's content, used by search engines for page previews in search results.\n\nCrucially used in SEO analysis to ensure the meta description is effectively optimized for target keywords and accurately reflects the page content. Also used in UI testing to verify if the meta description adheres to best practices regarding length and relevance.",
-        "tooltip": true,
-        "id": "YzcWfGtOT72R2-y4oXNX4Q"
-      },
-      "nonIndexable": {
-        "type": "boolean",
-        "description": "Used in SEO compliance checks and automated testing to ensure that pages meant to be private or under development are not indexed by search engines. It helps in managing the visibility of web pages on the internet.",
-        "required": false,
-        "tooltip": true,
-        "id": "HYRtBp5qSbGG-U4HiYrDhA"
-      },
-      "additionalMetadata": {
-        "type": "bloks",
-        "restrict_type": "",
-        "restrict_components": true,
-        "component_whitelist": ["JsonLdMetadata"],
-        "id": "X95AZhVzSkG4mMepqYqpHA"
       },
       "tab-cadda495-3fd8-4f2f-9396-a4c5e11fcf1b": {
         "display_name": "Styles",
@@ -1487,6 +1455,62 @@
         "default_value": "default",
         "description": "Use lead page to hide nav/footer items to push users to primary CTAs in the page content.",
         "id": "QgR_7-sIQd6XzqxMhYFcXg"
+      },
+      "body": {
+        "type": "bloks",
+        "restrict_type": "",
+        "restrict_components": true,
+        "component_whitelist": [
+          "HeroSection",
+          "HeroNarrowSection",
+          "HeroSplitSection",
+          "CtaSection",
+          "GridSection",
+          "FaqSection",
+          "FeaturedArticle",
+          "Image",
+          "LogosSection",
+          "PaginatedSection",
+          "RichTextContent",
+          "SplitContentSection",
+          "SplitSection",
+          "Teaser"
+        ],
+        "component_group_whitelist": [],
+        "id": "3ze7ojdMQNqfAkt19UGOnQ",
+        "component_denylist": [],
+        "component_group_denylist": [],
+        "component_tag_whitelist": [],
+        "component_tag_denylist": [],
+        "description": "Reusable page sections rendered in order. Only lean template block components are allowed."
+      },
+      "title": {
+        "type": "text",
+        "description": "This field holds the title of the web page, which appears in the browser tab and is used by search engines for the page's title in search results.\n\nEssential for SEO assessments and verifying that the correct page title is displayed depending on the context or user interaction within the application. Also used in automated tests to confirm page navigation accuracy.",
+        "tooltip": true,
+        "id": "iOHqcU4mRv2NzBMjTfPexQ",
+        "translatable": true
+      },
+      "description": {
+        "type": "textarea",
+        "description": "It typically provides a brief summary of the page's content, used by search engines for page previews in search results.\n\nCrucially used in SEO analysis to ensure the meta description is effectively optimized for target keywords and accurately reflects the page content. Also used in UI testing to verify if the meta description adheres to best practices regarding length and relevance.",
+        "tooltip": true,
+        "id": "YzcWfGtOT72R2-y4oXNX4Q",
+        "translatable": true
+      },
+      "nonIndexable": {
+        "type": "boolean",
+        "description": "Used in SEO compliance checks and automated testing to ensure that pages meant to be private or under development are not indexed by search engines. It helps in managing the visibility of web pages on the internet.",
+        "required": false,
+        "tooltip": true,
+        "id": "HYRtBp5qSbGG-U4HiYrDhA"
+      },
+      "additionalMetadata": {
+        "type": "bloks",
+        "restrict_type": "",
+        "restrict_components": true,
+        "component_whitelist": ["JsonLdMetadata"],
+        "id": "X95AZhVzSkG4mMepqYqpHA"
       }
     },
     "image": null,
@@ -1648,11 +1672,13 @@
     "display_name": null,
     "description": null,
     "created_at": "2024-05-08T08:17:31.752Z",
-    "updated_at": "2024-05-13T04:45:08.081Z",
+    "updated_at": "2026-06-30T06:24:31.145Z",
     "id": 5767078,
     "schema": {
       "text": {
-        "type": "richtext"
+        "type": "richtext",
+        "translatable": true,
+        "id": "Th25UrmDT3y91La7TOjNdw"
       }
     },
     "image": null,
@@ -1676,13 +1702,14 @@
     "display_name": null,
     "description": "",
     "created_at": "2025-11-28T14:39:41.735Z",
-    "updated_at": "2025-11-28T14:39:41.735Z",
+    "updated_at": "2026-06-30T06:24:31.466Z",
     "id": 117355240396604,
     "schema": {
       "name": {
         "type": "text",
         "pos": 0,
-        "id": "0lq3wG10Riaxv_feidH4xw"
+        "id": "0lq3wG10Riaxv_feidH4xw",
+        "translatable": true
       },
       "icon": {
         "type": "asset",
@@ -1778,7 +1805,7 @@
     "display_name": null,
     "description": null,
     "created_at": "2025-11-28T14:39:43.584Z",
-    "updated_at": "2026-06-02T07:09:24.304Z",
+    "updated_at": "2026-06-30T06:24:31.787Z",
     "id": 117355247970115,
     "schema": {
       "backgroundColor": {
@@ -1817,7 +1844,8 @@
             "name": "text-blue",
             "value": "text-blue"
           }
-        ]
+        ],
+        "translatable": true
       },
       "leftContent": {
         "type": "bloks",
@@ -1956,7 +1984,7 @@
     "display_name": null,
     "description": "",
     "created_at": "2025-11-28T14:39:43.239Z",
-    "updated_at": "2025-11-28T14:39:43.239Z",
+    "updated_at": "2026-06-30T06:24:32.109Z",
     "id": 117355246552898,
     "schema": {
       "title": {
@@ -1971,7 +1999,8 @@
             "name": "text-blue",
             "value": "text-blue"
           }
-        ]
+        ],
+        "translatable": true
       },
       "text": {
         "type": "richtext",
@@ -1999,7 +2028,8 @@
         "restrict_type": "",
         "restrict_components": true,
         "component_whitelist": ["CtaLink"],
-        "allow_target_blank": true
+        "allow_target_blank": true,
+        "translatable": true
       }
     },
     "image": null,

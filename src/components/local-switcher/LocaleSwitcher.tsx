@@ -1,27 +1,75 @@
 'use client';
 
+import { useTranslations } from 'next-intl';
+
+import clsxm from '@/lib/clsxm';
+
 import { type Locale, locales } from '@/i18n/config';
-import { usePathname, useRouter } from '@/i18n/navigation';
+import { Link, usePathname } from '@/i18n/navigation';
+import { buildLocalizedPath } from '@/i18n/paths';
 
-export default function LocaleSwitcher({ locale }: { locale: Locale }) {
-  // `pathname` will contain the current route without the locale e.g. `/about`
+const localeLabels: Record<Locale, string> = {
+  en: 'EN',
+  de: 'DE',
+};
+
+export default function LocaleSwitcher({
+  locale,
+  availableLocales = locales,
+  className,
+}: {
+  locale: Locale;
+  availableLocales?: readonly Locale[];
+  className?: string;
+}) {
   const pathname = usePathname();
-  const router = useRouter();
-
-  const changeLocale = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    const newLocale = event.target.value as Locale;
-    router.replace(pathname, { locale: newLocale });
-  };
+  const t = useTranslations('language');
 
   return (
-    <div className='text-white'>
-      <select value={locale} onChange={changeLocale} className='...'>
-        {locales.map((loc) => (
-          <option key={loc} value={loc}>
-            {loc}
-          </option>
-        ))}
-      </select>
+    <div
+      aria-label={t('label')}
+      className={clsxm(
+        'inline-flex h-9 shrink-0 items-center rounded-full border border-white/18 bg-white/7 p-1 text-[12px] font-semibold tracking-wide text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.16)] backdrop-blur',
+        className,
+      )}
+    >
+      {locales.map((loc) => {
+        const isActive = locale === loc;
+        const isAvailable = availableLocales.includes(loc);
+        const itemClassName = clsxm(
+          'flex h-7 min-w-9 items-center justify-center rounded-full px-3 transition-colors',
+          'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-green focus-visible:ring-offset-2 focus-visible:ring-offset-brand-navy',
+          isActive
+            ? 'bg-brand-green text-brand-navy'
+            : 'text-white/70 hover:bg-white/10 hover:text-white',
+          !isAvailable && 'pointer-events-none opacity-35',
+        );
+
+        if (!isAvailable) {
+          return (
+            <span
+              key={loc}
+              aria-disabled='true'
+              className={itemClassName}
+              title={t('unavailable', { language: t(`names.${loc}`) })}
+            >
+              {localeLabels[loc]}
+            </span>
+          );
+        }
+
+        return (
+          <Link
+            key={loc}
+            href={buildLocalizedPath(pathname || '/', loc)}
+            aria-current={isActive ? 'true' : undefined}
+            aria-label={t('switchTo', { language: t(`names.${loc}`) })}
+            className={itemClassName}
+          >
+            {localeLabels[loc]}
+          </Link>
+        );
+      })}
     </div>
   );
 }

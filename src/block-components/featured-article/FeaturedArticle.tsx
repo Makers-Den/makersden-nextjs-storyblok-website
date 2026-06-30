@@ -21,7 +21,16 @@ import { Badge } from '@/components/ui/badge';
 import { ButtonLink } from '@/components/ui/button-link';
 import { Card } from '@/components/ui/card';
 
-export function FeaturedArticle({ blok }: { blok: FeaturedArticleSbContent }) {
+import { defaultLocale, type Locale } from '@/i18n/config';
+import { buildLocalizedPath } from '@/i18n/paths';
+
+export function FeaturedArticle({
+  blok,
+  locale = defaultLocale,
+}: {
+  blok: FeaturedArticleSbContent;
+  locale?: Locale;
+}) {
   const t = useTranslations('article');
 
   // Validate that the featured article relation is resolved
@@ -102,7 +111,10 @@ export function FeaturedArticle({ blok }: { blok: FeaturedArticleSbContent }) {
               )}
 
               {/* Read More Button */}
-              <ButtonLink href={`/${article.full_slug}`} size='pill'>
+              <ButtonLink
+                href={buildLocalizedPath(article.full_slug, locale)}
+                size='pill'
+              >
                 {t('readMore')}
                 <ArrowRightIcon className='h-5 w-5' />
               </ButtonLink>

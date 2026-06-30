@@ -14,14 +14,17 @@ import { HeadingSm, Text } from '@/components/typography/Typography';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
 
+import { type Locale } from '@/i18n/config';
 import { Link } from '@/i18n/navigation';
+import { buildLocalizedPath } from '@/i18n/paths';
 
 interface ArticleCardProps {
   article: StoryblokStory<ArticleSbContent & { intro?: string }>;
   isOnlyItem?: boolean;
+  locale: Locale;
 }
 
-export function ArticleCard({ article, isOnlyItem }: ArticleCardProps) {
+export function ArticleCard({ article, isOnlyItem, locale }: ArticleCardProps) {
   const t = useTranslations('article');
 
   const category =
@@ -90,7 +93,7 @@ export function ArticleCard({ article, isOnlyItem }: ArticleCardProps) {
 
           {/* Read More Link */}
           <Link
-            href={`/${article.full_slug}`}
+            href={buildLocalizedPath(article.full_slug, locale)}
             className='text-brand-green mt-auto inline-flex items-center gap-2 font-semibold transition-colors group-hover:text-white'
           >
             {t('readMore')}

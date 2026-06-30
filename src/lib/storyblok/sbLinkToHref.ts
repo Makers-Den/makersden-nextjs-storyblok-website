@@ -1,3 +1,6 @@
+import { defaultLocale, type Locale } from '@/i18n/config';
+import { buildLocalizedPath } from '@/i18n/paths';
+
 import type {
   LinkSbContent,
   SbAbstractLink,
@@ -18,56 +21,42 @@ type LinkProps = {
   children: React.ReactNode;
 };
 
-const removeTrailingSlash = (path: string) => {
-  if (path.endsWith('/')) {
-    return path.substring(0, path.length - 1);
-  }
+const appendAnchor = (href: string, anchor: string) => `${href}${anchor}`;
 
-  return path;
-};
-
-const prependSlash = (path: string) => {
-  if (path.startsWith('/')) {
-    return path;
-  }
-
-  return `/${path}`;
-};
-
-const computeLink = (link: string) => {
-  return removeTrailingSlash(prependSlash(link));
-};
-
-const generateHrefFromSbStoryLink = (sbLink: SbStoryLink, anchor: string) => {
-  const link = sbLink.story
-    ? computeLink(sbLink.story.full_slug)
-    : `${sbLink.cached_url ?? ''}`;
+const generateHrefFromSbStoryLink = (
+  sbLink: SbStoryLink,
+  anchor: string,
+  locale: Locale,
+) => {
+  const link = sbLink.story?.full_slug ?? sbLink.cached_url ?? '';
 
   // If it's an empty string then it hasn't been defined in CMS.
   if (link === '') {
     return '#';
   }
 
-  const storyLink = sbLink.story?.url ?? link;
-  return `${computeLink(storyLink)}${anchor}`;
+  return appendAnchor(buildLocalizedPath(link, locale), anchor);
 };
 
 /**
  * Converts a SbLink to a href compatible url
  * @param sbLink
  */
-export const sbLinkToHref = (sbLink: SbMultilink | undefined): string => {
+export const sbLinkToHref = (
+  sbLink: SbMultilink | undefined,
+  locale: Locale = defaultLocale,
+): string => {
   if (!sbLink) {
     return '';
   }
   const anchor = isLinkWithAnchor(sbLink) ? '#' + sbLink.anchor : '';
 
   if (isLinkAsset(sbLink) || isLinkUrl(sbLink)) {
-    return `${sbLink.url}${anchor}`;
+    return appendAnchor(sbLink.url ?? sbLink.cached_url ?? '#', anchor);
   }
 
   if (isLinkStory(sbLink)) {
-    return generateHrefFromSbStoryLink(sbLink, anchor);
+    return generateHrefFromSbStoryLink(sbLink, anchor, locale);
   }
 
   if (isLinkEmail(sbLink)) {
@@ -80,6 +69,7 @@ export const sbLinkToHref = (sbLink: SbMultilink | undefined): string => {
 export const sbLinkToButtonLinkProps = (
   sbLink: LinkSbContent['link'] | undefined,
   name: string | undefined,
+  locale: Locale = defaultLocale,
   props?: Omit<LinkProps, 'href' | 'children'>,
 ): LinkProps | undefined => {
   if (!sbLink) {
@@ -100,7 +90,7 @@ export const sbLinkToButtonLinkProps = (
   }
 
   if (isLinkStory(sbLink)) {
-    return { href: sbLinkToHref(sbLink), children: name, ...props };
+    return { href: sbLinkToHref(sbLink, locale), children: name, ...props };
   }
 
   return undefined;
@@ -108,6 +98,7 @@ export const sbLinkToButtonLinkProps = (
 
 export const linkContentsToButtonLinkProps = (
   linkContents: LinkSbContent[] | undefined,
+  locale: Locale = defaultLocale,
 ): undefined | LinkProps => {
   if (!linkContents) {
     return undefined;
@@ -121,7 +112,7 @@ export const linkContentsToButtonLinkProps = (
 
   const { link, name, ...rest } = linkContent;
 
-  return sbLinkToButtonLinkProps(link, name, rest);
+  return sbLinkToButtonLinkProps(link, name, locale, rest);
 };
 
 /** Makes sure the href begins with a slash for internal links, useful when linking to stories by their `full_slug` */

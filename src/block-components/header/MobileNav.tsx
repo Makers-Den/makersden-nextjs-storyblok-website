@@ -1,11 +1,15 @@
+import { useTranslations } from 'next-intl';
+
 import clsxm from '@/lib/clsxm';
 import { type LinkSbContent, type NavSectionSbContent } from '@/lib/storyblok';
 
 import { MakersDenFullLogo } from '@/components/icons/MakersDenFullLogo';
 import { SvgIcon } from '@/components/icons/SvgIcon';
+import LocaleSwitcher from '@/components/local-switcher/LocaleSwitcher';
 import { StoryblokLink } from '@/components/storyblok-link/StoryblokLink';
 import { Button } from '@/components/ui/button';
 
+import { type Locale } from '@/i18n/config';
 import { Link } from '@/i18n/navigation';
 
 import { MobileNavSection } from './MobileNavSection';
@@ -25,20 +29,30 @@ function isNavSection(
 
 interface MobileNavProps {
   navItems: (LinkSbContent | NavSectionSbContent)[];
+  locale: Locale;
+  availableLocales: readonly Locale[];
   onClose: () => void;
   onLinkClick: () => void;
 }
 
-export function MobileNav({ navItems, onClose, onLinkClick }: MobileNavProps) {
+export function MobileNav({
+  navItems,
+  locale,
+  availableLocales,
+  onClose,
+  onLinkClick,
+}: MobileNavProps) {
+  const t = useTranslations('navigation');
+
   return (
     <div className='bg-brand-navy flex h-full flex-col text-white'>
       {/* Header with Logo and Close Button */}
       <div className='flex items-center justify-between px-5 py-2'>
         <Link
           className='flex shrink-0 items-center text-white'
-          href='/'
+          href={locale === 'de' ? '/de' : '/'}
           onClick={onLinkClick}
-          aria-label='Makers Den home'
+          aria-label={t('homeLabel')}
         >
           <MakersDenFullLogo className='h-6 w-[164px]' />
         </Link>
@@ -47,10 +61,14 @@ export function MobileNav({ navItems, onClose, onLinkClick }: MobileNavProps) {
           size='icon'
           onClick={onClose}
           className='text-white'
-          aria-label='Close menu'
+          aria-label={t('closeMenu')}
         >
           <SvgIcon name='Close' className='h-5 w-5 text-white' />
         </Button>
+      </div>
+
+      <div className='px-6 pt-4'>
+        <LocaleSwitcher locale={locale} availableLocales={availableLocales} />
       </div>
 
       {/* Navigation Items */}
@@ -65,6 +83,7 @@ export function MobileNav({ navItems, onClose, onLinkClick }: MobileNavProps) {
                     'hover:text-brand-green transition-colors',
                   )}
                   link={item.link}
+                  locale={locale}
                   key={item._uid}
                   onClick={onLinkClick}
                 >
@@ -78,6 +97,7 @@ export function MobileNav({ navItems, onClose, onLinkClick }: MobileNavProps) {
                 <MobileNavSection
                   key={item._uid}
                   blok={item}
+                  locale={locale}
                   onLinkClick={onLinkClick}
                 />
               );

@@ -18,10 +18,14 @@ import { Container } from '@/components/container/Container';
 import { SectionWrapper } from '@/components/section-wrapper/SectionWrapper';
 import { HeadingMd } from '@/components/typography/Typography';
 
+import { defaultLocale, type Locale } from '@/i18n/config';
+
 export async function PaginatedSection({
   blok,
+  locale = defaultLocale,
 }: {
   blok: PaginatedSectionSbContent;
+  locale?: Locale;
 }) {
   // Fetch all articles
   const allArticles: StoryblokStory<ArticleSbContent>[] = [];
@@ -33,6 +37,7 @@ export async function PaginatedSection({
       StoryblokStory<ArticleSbContent>
     >({
       contentType: blok.contentType,
+      locale,
       resolveRelations: RESOLVED_RELATIONS,
       perPage: 100,
       sortBy: 'content.date:desc',
@@ -81,7 +86,7 @@ export async function PaginatedSection({
 
         {/* Article List */}
         <AnimateOnScroll animationType='fadeUp' delay={0.3}>
-          <ArticleList articles={articlesWithStringIntro} />
+          <ArticleList articles={articlesWithStringIntro} locale={locale} />
         </AnimateOnScroll>
       </Container>
     </SectionWrapper>

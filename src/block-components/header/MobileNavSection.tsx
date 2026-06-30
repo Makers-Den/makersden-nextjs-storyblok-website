@@ -10,13 +10,19 @@ import {
 } from '@/components/ui/accordion';
 
 import { NavSectionLinkItem } from '@/block-components/nav-section/NavSectionLinkItem';
+import { type Locale } from '@/i18n/config';
 
 interface MobileNavSectionProps {
   blok: NavSectionSbContent;
+  locale: Locale;
   onLinkClick: () => void;
 }
 
-export function MobileNavSection({ blok, onLinkClick }: MobileNavSectionProps) {
+export function MobileNavSection({
+  blok,
+  locale,
+  onLinkClick,
+}: MobileNavSectionProps) {
   const t = useTranslations('navigation');
 
   return (
@@ -33,7 +39,7 @@ export function MobileNavSection({ blok, onLinkClick }: MobileNavSectionProps) {
             {blok.items && blok.items.length > 0 ? (
               blok.items.map((item) => (
                 <div key={item._uid} onClick={onLinkClick}>
-                  <NavSectionLinkItem blok={item} />
+                  <NavSectionLinkItem blok={item} locale={locale} />
                 </div>
               ))
             ) : (

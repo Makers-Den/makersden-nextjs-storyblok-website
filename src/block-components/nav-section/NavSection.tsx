@@ -8,14 +8,17 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 
+import { type Locale } from '@/i18n/config';
+
 import { NavSectionLinkItem } from './NavSectionLinkItem';
 
 interface NavSectionProps {
   blok: NavSectionSbContent;
+  locale: Locale;
   textColor: 'white' | 'black';
 }
 
-export function NavSection({ blok, textColor }: NavSectionProps) {
+export function NavSection({ blok, locale, textColor }: NavSectionProps) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger
@@ -32,7 +35,7 @@ export function NavSection({ blok, textColor }: NavSectionProps) {
           <div className='space-y-2'>
             {blok.items.map((item) => (
               <DropdownMenuItem key={item._uid} asChild>
-                <NavSectionLinkItem blok={item} />
+                <NavSectionLinkItem blok={item} locale={locale} />
               </DropdownMenuItem>
             ))}
           </div>

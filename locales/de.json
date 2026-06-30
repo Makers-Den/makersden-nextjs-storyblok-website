@@ -1,6 +1,7 @@
 {
   "hello": "GUTEN TAG!",
   "article": {
+    "empty": "Keine Artikel gefunden.",
     "readMore": "Mehr lesen"
   },
   "styleguide": {
@@ -34,6 +35,24 @@
     }
   },
   "navigation": {
-    "noItems": "Keine Einträge"
+    "closeMenu": "Menü schließen",
+    "homeLabel": "Makers Den Startseite",
+    "noItems": "Keine Einträge",
+    "openMenu": "Menü öffnen",
+    "talkToMakersDen": "Mit Makers Den sprechen"
+  },
+  "language": {
+    "label": "Sprache",
+    "names": {
+      "de": "Deutsch",
+      "en": "Englisch"
+    },
+    "switchTo": "Sprache zu {language} wechseln",
+    "unavailable": "{language} nicht verfügbar"
+  },
+  "footer": {
+    "linkFallback": "Unbenannter Link",
+    "socialLink": "Social-Media-Link",
+    "tagline": "Wiederverwendbare Storyblok-Website-Templates von Makers Den für schnelle redaktionelle Launches."
   }
 }
