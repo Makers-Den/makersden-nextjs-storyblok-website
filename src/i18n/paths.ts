@@ -53,21 +53,30 @@ export function getLanguageAlternatesForLocales(
 }
 
 export function getAvailableLocalesForStory(
-  story: Pick<StoryblokStory, 'alternates'>,
+  story: Pick<StoryblokStory, 'alternates' | 'translated_slugs'>,
   locale: Locale,
 ) {
-  return Array.from(
-    new Set<Locale>([
-      locale,
-      ...(story.alternates ?? []).flatMap((alternate) => {
-        if (!alternate.published) return [];
+  const discoveredLocales = [
+    locale,
+    ...(story.translated_slugs ?? []).flatMap(({ lang }) =>
+      isLocale(lang) ? [lang] : [],
+    ),
+    ...(story.alternates ?? []).flatMap((alternate) => {
+      if (!alternate.published) return [];
 
-        const localePrefix = alternate.full_slug
-          .replace(/^\/+|\/+$/g, '')
-          .split('/')
-          .find(isLocale);
-        return localePrefix ? [localePrefix] : [];
-      }),
-    ]),
-  );
+      const localePrefix = alternate.full_slug
+        .replace(/^\/+|\/+$/g, '')
+        .split('/')
+        .find(isLocale);
+      return localePrefix ? [localePrefix] : [];
+    }),
+  ];
+
+  const uniqueLocales = Array.from(new Set<Locale>(discoveredLocales));
+
+  if (uniqueLocales.length <= 1) {
+    return [...locales];
+  }
+
+  return uniqueLocales;
 }

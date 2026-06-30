@@ -6,7 +6,6 @@ import clsxm from '@/lib/clsxm';
 
 import { type Locale, locales } from '@/i18n/config';
 import { Link, usePathname } from '@/i18n/navigation';
-import { buildLocalizedPath } from '@/i18n/paths';
 
 const localeLabels: Record<Locale, string> = {
   en: 'EN',
@@ -61,7 +60,8 @@ export default function LocaleSwitcher({
         return (
           <Link
             key={loc}
-            href={buildLocalizedPath(pathname || '/', loc)}
+            href={pathname || '/'}
+            locale={isActive ? undefined : loc}
             aria-current={isActive ? 'true' : undefined}
             aria-label={t('switchTo', { language: t(`names.${loc}`) })}
             className={itemClassName}
