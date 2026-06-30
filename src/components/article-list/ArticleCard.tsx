@@ -1,4 +1,5 @@
 import { ArrowRightIcon } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 
 import clsxm from '@/lib/clsxm';
 import {
@@ -21,6 +22,8 @@ interface ArticleCardProps {
 }
 
 export function ArticleCard({ article, isOnlyItem }: ArticleCardProps) {
+  const t = useTranslations('article');
+
   const category =
     article.content.categories && article.content.categories.length > 0
       ? (article.content.categories[0] as StoryblokStory<CategorySbContent>)
@@ -90,7 +93,7 @@ export function ArticleCard({ article, isOnlyItem }: ArticleCardProps) {
             href={`/${article.full_slug}`}
             className='text-brand-green mt-auto inline-flex items-center gap-2 font-semibold transition-colors group-hover:text-white'
           >
-            Read More
+            {t('readMore')}
             <ArrowRightIcon className='h-5 w-5' />
           </Link>
         </CardContent>

@@ -1,9 +1,21 @@
 import { render, screen } from '@testing-library/react';
-import { createElement } from 'react';
+import { type AnchorHTMLAttributes, createElement } from 'react';
 
 import { type CtaLinkSbContent } from '@/lib/storyblok';
 
 import { CtaLink } from './CtaLink';
+
+jest.mock('@/i18n/navigation', () => ({
+  Link: ({
+    children,
+    href,
+    ...props
+  }: AnchorHTMLAttributes<HTMLAnchorElement> & { href: string }) => (
+    <a href={href} {...props}>
+      {children}
+    </a>
+  ),
+}));
 
 jest.mock('@storyblok/react/rsc', () => ({
   storyblokEditable: (blok: { _uid: string }) => ({

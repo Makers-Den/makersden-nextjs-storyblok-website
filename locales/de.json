@@ -1,5 +1,38 @@
 {
   "hello": "GUTEN TAG!",
+  "article": {
+    "readMore": "Mehr lesen"
+  },
+  "styleguide": {
+    "title": "Styleguide",
+    "description": "Manchmal ist es praktisch, Komponenten isoliert zu entwickeln",
+    "buttons": {
+      "title": "Buttons",
+      "default": "Standard",
+      "outline": "Kontur",
+      "secondary": "Sekundär",
+      "accent": "Akzent",
+      "ghost": "Ghost",
+      "link": "Button-Link"
+    },
+    "badgeCard": {
+      "title": "Badge & Card",
+      "badge": "Makers Den",
+      "heading": "Wiederverwendbares Primitive",
+      "description": "Die Card-, Badge- und Button-Primitives verwenden die Theme-Tokens des Templates."
+    },
+    "accordion": {
+      "title": "Accordion",
+      "accessible": {
+        "question": "Ist es barrierefrei?",
+        "answer": "Ja. Es folgt dem WAI-ARIA-Entwurfsmuster."
+      },
+      "styled": {
+        "question": "Ist es gestaltet?",
+        "answer": "Ja. Es bringt Standardstile mit, die zur Ästhetik der anderen Komponenten passen."
+      }
+    }
+  },
   "navigation": {
     "noItems": "Keine Einträge"
   }

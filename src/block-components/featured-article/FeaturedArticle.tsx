@@ -1,5 +1,6 @@
 import { storyblokEditable } from '@storyblok/react/rsc';
 import { ArrowRightIcon } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 
 import clsxm from '@/lib/clsxm';
 import { isRichtextNotEmpty } from '@/lib/isRichtext';
@@ -21,6 +22,8 @@ import { ButtonLink } from '@/components/ui/button-link';
 import { Card } from '@/components/ui/card';
 
 export function FeaturedArticle({ blok }: { blok: FeaturedArticleSbContent }) {
+  const t = useTranslations('article');
+
   // Validate that the featured article relation is resolved
   if (blok.featuredArticle && !isStoryblokStory(blok.featuredArticle)) {
     throw new Error(
@@ -100,7 +103,7 @@ export function FeaturedArticle({ blok }: { blok: FeaturedArticleSbContent }) {
 
               {/* Read More Button */}
               <ButtonLink href={`/${article.full_slug}`} size='pill'>
-                Read More
+                {t('readMore')}
                 <ArrowRightIcon className='h-5 w-5' />
               </ButtonLink>
             </div>

@@ -1,7 +1,19 @@
 import { render, screen } from '@testing-library/react';
-import { createElement } from 'react';
+import { type AnchorHTMLAttributes, createElement } from 'react';
 
 import { ButtonLink } from './button-link';
+
+jest.mock('@/i18n/navigation', () => ({
+  Link: ({
+    children,
+    href,
+    ...props
+  }: AnchorHTMLAttributes<HTMLAnchorElement> & { href: string }) => (
+    <a href={href} {...props}>
+      {children}
+    </a>
+  ),
+}));
 
 describe('ButtonLink', () => {
   it('renders a link with button styling and the requested href', () => {

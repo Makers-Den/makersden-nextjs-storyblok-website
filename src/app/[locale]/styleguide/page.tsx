@@ -1,3 +1,7 @@
+import { notFound } from 'next/navigation';
+import { hasLocale } from 'next-intl';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
+
 import { Container } from '@/components/container/Container';
 import {
   HeadingLg,
@@ -16,57 +20,71 @@ import { ButtonLink } from '@/components/ui/button-link';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 
 import { BasicLayout } from '@/app/BasicLayout';
+import { routing } from '@/i18n/routing';
 
-function StyleguidePage() {
+async function StyleguidePage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  if (!hasLocale(routing.locales, locale)) {
+    notFound();
+  }
+
+  setRequestLocale(locale);
+
+  const t = await getTranslations('styleguide');
+
   return (
-    <BasicLayout locale='en'>
+    <BasicLayout locale={locale}>
       <Container>
-        <HeadingXl>Styleguide</HeadingXl>
-        <TextLg>
-          Sometimes its convenient to develop components in isolation
-        </TextLg>
+        <HeadingXl>{t('title')}</HeadingXl>
+        <TextLg>{t('description')}</TextLg>
         <section className='mt-12 space-y-6'>
-          <HeadingLg>Buttons</HeadingLg>
+          <HeadingLg>{t('buttons.title')}</HeadingLg>
           <div className='flex flex-wrap items-center gap-4'>
-            <Button>Default</Button>
-            <Button variant='outline'>Outline</Button>
-            <Button variant='secondary'>Secondary</Button>
-            <Button variant='accent'>Accent</Button>
-            <Button variant='ghost'>Ghost</Button>
+            <Button>{t('buttons.default')}</Button>
+            <Button variant='outline'>{t('buttons.outline')}</Button>
+            <Button variant='secondary'>{t('buttons.secondary')}</Button>
+            <Button variant='accent'>{t('buttons.accent')}</Button>
+            <Button variant='ghost'>{t('buttons.ghost')}</Button>
             <ButtonLink href='/' size='pill'>
-              Button Link
+              {t('buttons.link')}
             </ButtonLink>
           </div>
         </section>
         <section className='mt-12 space-y-6'>
-          <HeadingLg>Badge & Card</HeadingLg>
+          <HeadingLg>{t('badgeCard.title')}</HeadingLg>
           <Card className='border-border/30 bg-card/30 max-w-sm'>
             <CardHeader>
-              <Badge className='w-fit'>Makers Den</Badge>
+              <Badge className='w-fit'>{t('badgeCard.badge')}</Badge>
             </CardHeader>
             <CardContent>
-              <HeadingLg as='h3'>Reusable primitive</HeadingLg>
+              <HeadingLg as='h3'>{t('badgeCard.heading')}</HeadingLg>
               <TextLg className='text-muted-foreground mt-4'>
-                The card, badge, and button primitives use the template theme
-                tokens.
+                {t('badgeCard.description')}
               </TextLg>
             </CardContent>
           </Card>
         </section>
         <section>
-          <HeadingLg>Accordion</HeadingLg>
+          <HeadingLg>{t('accordion.title')}</HeadingLg>
           <Accordion type='single' collapsible className='w-full'>
             <AccordionItem value='item-1'>
-              <AccordionTrigger>Is it accessible?</AccordionTrigger>
+              <AccordionTrigger>
+                {t('accordion.accessible.question')}
+              </AccordionTrigger>
               <AccordionContent>
-                Yes. It adheres to the WAI-ARIA design pattern.
+                {t('accordion.accessible.answer')}
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value='item-2'>
-              <AccordionTrigger>Is it styled?</AccordionTrigger>
+              <AccordionTrigger>
+                {t('accordion.styled.question')}
+              </AccordionTrigger>
               <AccordionContent>
-                Yes. It comes with default styles that matches the other
-                components&apos; aesthetic.
+                {t('accordion.styled.answer')}
               </AccordionContent>
             </AccordionItem>
           </Accordion>
