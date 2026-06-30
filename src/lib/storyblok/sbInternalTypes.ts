@@ -38,11 +38,13 @@ export interface StoryblokStory<TContent = SbCommonContent> {
     parent_id: number;
   }[];
   default_full_slug: string;
-  translated_slugs: {
-    path: string;
-    name: string | null;
-    lang: string;
-  }[];
+  translated_slugs:
+    | {
+        path: string;
+        name: string | null;
+        lang: string;
+      }[]
+    | null;
   _stopResolving?: boolean;
 }
 

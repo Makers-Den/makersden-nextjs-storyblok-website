@@ -1,5 +1,6 @@
 import {
   buildLocalizedPath,
+  getAvailableLocalesForStory,
   getLanguageAlternates,
   getLanguageAlternatesForLocales,
   stripLocalePrefix,
@@ -33,5 +34,45 @@ describe('i18n paths', () => {
       en: '/about',
       'x-default': '/about',
     });
+  });
+
+  it('uses all configured locales when Storyblok field translations have no alternates', () => {
+    expect(
+      getAvailableLocalesForStory(
+        { alternates: [], translated_slugs: null },
+        'en',
+      ),
+    ).toEqual(['en', 'de']);
+  });
+
+  it('derives available locales from translated slugs and published alternates', () => {
+    expect(
+      getAvailableLocalesForStory(
+        {
+          translated_slugs: [{ lang: 'de', name: null, path: 'de/about' }],
+          alternates: [
+            {
+              id: 1,
+              name: 'About',
+              slug: 'about',
+              published: true,
+              full_slug: 'en/about',
+              is_folder: false,
+              parent_id: 0,
+            },
+            {
+              id: 2,
+              name: 'Draft',
+              slug: 'draft',
+              published: false,
+              full_slug: 'fr/draft',
+              is_folder: false,
+              parent_id: 0,
+            },
+          ],
+        },
+        'en',
+      ),
+    ).toEqual(['en', 'de']);
   });
 });

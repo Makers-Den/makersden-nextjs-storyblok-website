@@ -3,18 +3,13 @@ import { cookies } from 'next/headers';
 import { type NextRequest, NextResponse } from 'next/server';
 
 import { env } from '@/env';
+import { defaultLocale } from '@/i18n/config';
+import { buildLocalizedPath, isLocale } from '@/i18n/paths';
 
 export const GET = async (req: NextRequest) => {
   const slug = req.nextUrl.searchParams.get('slug') ?? '';
   const secret = req.nextUrl.searchParams.get('secret');
-  const url = req.url || '';
-
-  // get the storyblok params for the bridge to work
-  // NOTE: I don't think we need the query params for the sb bridge anymore
-  const queryParamsAsStr = url.split('?')[1];
   const storyblokLang = req.nextUrl.searchParams.get('_storyblok_lang');
-
-  const isDefaultLocale = storyblokLang === 'default' || !storyblokLang;
 
   // Check the secret and next parameters
   // This secret should only be known to this API route and the CMS
@@ -35,6 +30,8 @@ export const GET = async (req: NextRequest) => {
   }
 
   const urlBase = req.nextUrl.origin;
+  const requestedLocale = storyblokLang ?? undefined;
+  const locale = isLocale(requestedLocale) ? requestedLocale : defaultLocale;
 
   // Hack to force it to use the local ssl proxy on localhost
   const computedOrigin = urlBase.startsWith('https')
@@ -42,16 +39,9 @@ export const GET = async (req: NextRequest) => {
       urlBase.replace('https://localhost:3000', 'https://localhost:3010')
     : urlBase.replace('http://localhost:3000', 'https://localhost:3010');
 
-  let computedSlug = slug;
+  const redirectUrl = new URL(computedOrigin);
+  redirectUrl.pathname = buildLocalizedPath(slug, locale);
+  redirectUrl.search = req.nextUrl.search;
 
-  if (!isDefaultLocale) {
-    // Storyblok will tweak slug to contain locale, but not for home
-    if (!slug.startsWith(`${storyblokLang}`)) {
-      computedSlug = `${storyblokLang}/${slug}`;
-    }
-  }
-
-  return NextResponse.redirect(
-    `${computedOrigin}/${computedSlug}?${queryParamsAsStr}`,
-  );
+  return NextResponse.redirect(redirectUrl);
 };
