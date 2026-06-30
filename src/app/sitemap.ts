@@ -1,44 +1,27 @@
 import { type MetadataRoute } from 'next';
 
-import { CANONICAL_BASE_URL_NO_SLASH } from '@/lib/constants';
+import { getSitemapEntries, type LocalizedSitemapStories } from '@/lib/sitemap';
 import {
-  findAllPageStories,
-  SITEMAP_EXCLUDED_SLUGS,
+  ALL_PAGE_TYPES,
+  findStories,
 } from '@/lib/storyblok/storyblokRepository';
 
+import { type Locale, locales } from '@/i18n/config';
+
 const sitemap = async (): Promise<MetadataRoute.Sitemap> => {
-  // TODO: this should take locales into account
-  const allPageStories = await findAllPageStories();
-  const indexableStories = allPageStories
-    .flatMap((item) => item.stories)
-    .filter((story) => !story.content.nonIndexable);
+  const storyResults = await Promise.all(
+    locales.flatMap((locale: Locale) =>
+      ALL_PAGE_TYPES.map((contentType) =>
+        findStories({
+          contentType,
+          locale,
+          perPage: 100,
+        }).then(({ stories }) => ({ locale, stories })),
+      ),
+    ),
+  );
 
-  const sitemapSlugs = indexableStories
-    .map((story) => story.full_slug)
-    .filter((slug) => {
-      const split = slug.split('/');
-      const lastSlugPart = split[split.length - 1];
-      return !SITEMAP_EXCLUDED_SLUGS.includes(lastSlugPart);
-    });
-
-  const sitemapFields = sitemapSlugs.map((sitemapSlug) => {
-    const slug = sitemapSlug.endsWith('/')
-      ? sitemapSlug.slice(0, -1)
-      : sitemapSlug;
-
-    return {
-      url: `${CANONICAL_BASE_URL_NO_SLASH}/${slug}`,
-      lastModified: new Date().toISOString(),
-    };
-  });
-
-  // Add home page index manually
-  sitemapFields.push({
-    url: `${CANONICAL_BASE_URL_NO_SLASH}/`,
-    lastModified: new Date().toISOString(),
-  });
-
-  return sitemapFields;
+  return getSitemapEntries(storyResults as LocalizedSitemapStories[]);
 };
 
 export default sitemap;

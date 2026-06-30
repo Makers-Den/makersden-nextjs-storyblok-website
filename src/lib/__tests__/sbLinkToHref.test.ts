@@ -18,7 +18,14 @@ describe('sbLinkToHref', () => {
         },
         cached_url: 'https://example.com',
       } as SbMultilink,
-      expectedOutput: '/home',
+      expectedOutput: '/',
+    },
+    {
+      input: {
+        linktype: 'story',
+        cached_url: 'en/about',
+      } as SbMultilink,
+      expectedOutput: '/about',
     },
     {
       input: {
@@ -49,6 +56,15 @@ describe('sbLinkToHref', () => {
       cached_url: '',
     };
     expect(sbLinkToHref(input)).toEqual('#');
+  });
+
+  it('should prefix internal story links for German', () => {
+    const input: SbMultilink = {
+      linktype: 'story',
+      cached_url: 'about/team',
+    };
+
+    expect(sbLinkToHref(input, 'de')).toEqual('/de/about/team');
   });
 
   it('should handle undefined input', () => {

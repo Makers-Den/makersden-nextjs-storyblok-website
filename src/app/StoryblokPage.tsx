@@ -43,6 +43,7 @@ export async function StoryblokPage({ params }: PageProps) {
         <StoryblokStory
           bridgeOptions={{ resolveRelations: RESOLVED_RELATIONS }}
           story={data.story}
+          locale={locale ?? defaultLocale}
           translations={translations}
         />
       </Layout>

@@ -7,15 +7,23 @@ import { StoryblokLink } from '@/components/storyblok-link/StoryblokLink';
 import { Badge } from '@/components/ui/badge';
 import { Card } from '@/components/ui/card';
 
-export function ImageCardLink({ blok }: { blok: ImageCardLinkSbContent }) {
+import { defaultLocale, type Locale } from '@/i18n/config';
+
+export function ImageCardLink({
+  blok,
+  locale = defaultLocale,
+}: {
+  blok: ImageCardLinkSbContent;
+  locale?: Locale;
+}) {
   if (!blok.image) {
     return null;
   }
 
-  const href = sbLinkToHref(blok.link);
+  const href = sbLinkToHref(blok.link, locale);
   const hasLink = Boolean(href && href !== '#');
   const CardWrapper = hasLink ? StoryblokLink : 'div';
-  const wrapperProps = hasLink ? { link: blok.link! } : {};
+  const wrapperProps = hasLink ? { link: blok.link!, locale } : {};
 
   return (
     <Card

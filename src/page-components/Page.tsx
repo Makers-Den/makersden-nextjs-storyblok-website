@@ -6,7 +6,11 @@ import { HeadingLg } from '@/components/typography/Typography';
 
 import { type PageComponentProps } from '@/types';
 
-function Page({ blok, translations }: PageComponentProps<PageSbContent>) {
+function Page({
+  blok,
+  locale,
+  translations,
+}: PageComponentProps<PageSbContent>) {
   return (
     <>
       {blok.additionalMetadata?.map((el: JsonLdMetadataSbContent) => (
@@ -22,6 +26,7 @@ function Page({ blok, translations }: PageComponentProps<PageSbContent>) {
           <GenericStoryblokComponent
             blok={nestedBlok}
             key={nestedBlok._uid}
+            locale={locale}
             translations={translations}
           />
         ))}

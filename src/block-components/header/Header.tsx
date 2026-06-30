@@ -1,5 +1,6 @@
 'use client';
 
+import { useTranslations } from 'next-intl';
 import { useEffect, useRef, useState } from 'react';
 
 import clsxm from '@/lib/clsxm';
@@ -8,6 +9,7 @@ import { type LinkSbContent, type NavSectionSbContent } from '@/lib/storyblok';
 import { Container } from '@/components/container/Container';
 import { MakersDenFullLogo } from '@/components/icons/MakersDenFullLogo';
 import { SvgIcon } from '@/components/icons/SvgIcon';
+import LocaleSwitcher from '@/components/local-switcher/LocaleSwitcher';
 import { StoryblokLink } from '@/components/storyblok-link/StoryblokLink';
 import { Button } from '@/components/ui/button';
 import { ButtonLink } from '@/components/ui/button-link';
@@ -35,7 +37,7 @@ function isNavSection(
 
 export function Header({
   navItems,
-  locale: _locale,
+  locale,
   layoutType,
   navType,
 }: {
@@ -44,6 +46,7 @@ export function Header({
   layoutType: 'default' | 'leadPage';
   navType: 'white' | 'black' | 'transparent';
 }) {
+  const t = useTranslations('navigation');
   const [showStickyHeader, setShowStickyHeader] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const originalHeaderRef = useRef<HTMLHeadingElement>(null);
@@ -123,7 +126,7 @@ export function Header({
           <Link
             className='flex shrink-0 items-center text-white'
             href='/'
-            aria-label='Makers Den home'
+            aria-label={t('homeLabel')}
           >
             <MakersDenFullLogo className='h-5 w-[136px] md:h-6 md:w-[164px]' />
           </Link>
@@ -137,6 +140,7 @@ export function Header({
                     <StoryblokLink
                       className='hover:text-brand-green px-2 py-1 text-base font-normal text-inherit transition-colors'
                       link={item.link}
+                      locale={locale}
                       key={item._uid}
                     >
                       {item.name}
@@ -146,7 +150,12 @@ export function Header({
 
                 if (isNavSection(item)) {
                   return (
-                    <NavSection key={item._uid} blok={item} textColor='white' />
+                    <NavSection
+                      key={item._uid}
+                      blok={item}
+                      locale={locale}
+                      textColor='white'
+                    />
                   );
                 }
 
@@ -158,12 +167,19 @@ export function Header({
           {/* Right: CTA Button + Mobile Menu */}
           <div className='flex items-center gap-4'>
             {layoutType === 'default' && (
+              <LocaleSwitcher
+                locale={locale}
+                className='hidden lg:inline-flex'
+              />
+            )}
+
+            {layoutType === 'default' && (
               <ButtonLink
                 href={MAKERS_DEN_CONTACT_URL}
                 size='pill'
                 className='hidden lg:inline-flex'
               >
-                Talk to Makers Den
+                {t('talkToMakersDen')}
               </ButtonLink>
             )}
 
@@ -174,7 +190,7 @@ export function Header({
                 size='icon'
                 onClick={() => setIsMenuOpen(true)}
                 className='lg:hidden'
-                aria-label='Open menu'
+                aria-label={t('openMenu')}
               >
                 <SvgIcon name='Menu' className='h-6 w-6 text-white' />
               </Button>
@@ -198,7 +214,7 @@ export function Header({
           <Link
             className='flex shrink-0 items-center text-white'
             href='/'
-            aria-label='Makers Den home'
+            aria-label={t('homeLabel')}
           >
             <MakersDenFullLogo className='h-5 w-[136px] md:h-6 md:w-[164px]' />
           </Link>
@@ -212,6 +228,7 @@ export function Header({
                     <StoryblokLink
                       className='hover:text-brand-green px-2 py-1 text-base font-normal text-inherit transition-colors'
                       link={item.link}
+                      locale={locale}
                       key={item._uid}
                     >
                       {item.name}
@@ -221,7 +238,12 @@ export function Header({
 
                 if (isNavSection(item)) {
                   return (
-                    <NavSection key={item._uid} blok={item} textColor='white' />
+                    <NavSection
+                      key={item._uid}
+                      blok={item}
+                      locale={locale}
+                      textColor='white'
+                    />
                   );
                 }
 
@@ -233,12 +255,19 @@ export function Header({
           {/* Right: CTA Button + Mobile Menu */}
           <div className='flex items-center gap-4'>
             {layoutType === 'default' && (
+              <LocaleSwitcher
+                locale={locale}
+                className='hidden lg:inline-flex'
+              />
+            )}
+
+            {layoutType === 'default' && (
               <ButtonLink
                 href={MAKERS_DEN_CONTACT_URL}
                 size='pill'
                 className='hidden lg:inline-flex'
               >
-                Talk to Makers Den
+                {t('talkToMakersDen')}
               </ButtonLink>
             )}
 
@@ -249,7 +278,7 @@ export function Header({
                 size='icon'
                 onClick={() => setIsMenuOpen(true)}
                 className='lg:hidden'
-                aria-label='Open menu'
+                aria-label={t('openMenu')}
               >
                 <SvgIcon name='Menu' className='h-6 w-6 text-white' />
               </Button>
@@ -260,9 +289,10 @@ export function Header({
 
       {/* Mobile Menu Overlay */}
       {isMenuOpen && (
-        <div className='bg-brand-navy fixed inset-0 z-60 md:hidden'>
+        <div className='bg-brand-navy fixed inset-0 z-60 lg:hidden'>
           <MobileNav
             navItems={navItems}
+            locale={locale}
             onClose={() => setIsMenuOpen(false)}
             onLinkClick={() => setIsMenuOpen(false)}
           />

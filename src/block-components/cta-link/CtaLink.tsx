@@ -5,8 +5,16 @@ import { type CtaLinkSbContent, sbLinkToHref } from '@/lib/storyblok';
 import { type ButtonProps } from '@/components/ui/button';
 import { ButtonLink } from '@/components/ui/button-link';
 
-export function CtaLink({ blok }: { blok: CtaLinkSbContent }) {
-  const href = sbLinkToHref(blok.link);
+import { defaultLocale, type Locale } from '@/i18n/config';
+
+export function CtaLink({
+  blok,
+  locale = defaultLocale,
+}: {
+  blok: CtaLinkSbContent;
+  locale?: Locale;
+}) {
+  const href = sbLinkToHref(blok.link, locale);
 
   // Don't render if there's no valid link or no name
   if (!href || href === '#' || !blok.name) {

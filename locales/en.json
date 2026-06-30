@@ -1,6 +1,7 @@
 {
   "hello": "Heya",
   "article": {
+    "empty": "No articles found.",
     "readMore": "Read More"
   },
   "styleguide": {
@@ -34,6 +35,15 @@
     }
   },
   "navigation": {
-    "noItems": "No items"
+    "closeMenu": "Close menu",
+    "homeLabel": "Makers Den home",
+    "noItems": "No items",
+    "openMenu": "Open menu",
+    "talkToMakersDen": "Talk to Makers Den"
+  },
+  "footer": {
+    "linkFallback": "Untitled link",
+    "socialLink": "Social link",
+    "tagline": "Reusable Storyblok website templates shaped by Makers Den for fast editorial launches."
   }
 }

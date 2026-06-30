@@ -1,5 +1,6 @@
 'use client';
 
+import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 
 import clsxm from '@/lib/clsxm';
@@ -7,15 +8,19 @@ import { type ArticleSbContent, type StoryblokStory } from '@/lib/storyblok';
 
 import { PaginatedList } from '@/components/pagination/PaginatedList';
 
+import { type Locale } from '@/i18n/config';
+
 import { ArticleCard } from './ArticleCard';
 
 const ITEMS_PER_PAGE = 6;
 
 interface ArticleListProps {
   articles: StoryblokStory<ArticleSbContent & { intro?: string }>[];
+  locale: Locale;
 }
 
-export function ArticleList({ articles }: ArticleListProps) {
+export function ArticleList({ articles, locale }: ArticleListProps) {
+  const t = useTranslations('article');
   const [currentPage, setCurrentPage] = useState(0);
 
   return (
@@ -24,7 +29,7 @@ export function ArticleList({ articles }: ArticleListProps) {
       itemsPerPage={ITEMS_PER_PAGE}
       currentPage={currentPage}
       onPageChange={setCurrentPage}
-      emptyMessage='No articles found.'
+      emptyMessage={t('empty')}
       renderItems={(currentArticles) => {
         const isOnlyItem = currentArticles.length === 1;
 
@@ -41,6 +46,7 @@ export function ArticleList({ articles }: ArticleListProps) {
                 key={article.id}
                 article={article}
                 isOnlyItem={isOnlyItem}
+                locale={locale}
               />
             ))}
           </div>

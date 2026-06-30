@@ -23,6 +23,9 @@ import {
   RESOLVED_RELATIONS,
 } from '@/lib/storyblok/storyblokRepository';
 
+import { defaultLocale, locales } from '@/i18n/config';
+import { buildLocalizedPath, getLanguageAlternates } from '@/i18n/paths';
+
 import { type PageProps, type StoryContent } from '@/types';
 
 export const getPageProps = async (
@@ -55,6 +58,7 @@ export const getPageProps = async (
       StoryblokStory<GlobalSettingsSbContent>
     >({
       slug: 'globals/settings',
+      locale,
       isPreview,
       resolveLinks: 'url',
     });
@@ -148,6 +152,11 @@ export const getMetadata = async ({
   const { slug, locale } = await params;
 
   const pathname = slug?.length ? '/' + slug?.join('/') : '';
+  const canonicalPath = buildLocalizedPath(
+    pathname || 'home',
+    locale ?? defaultLocale,
+  );
+  const languages = getLanguageAlternates(pathname || 'home');
   const pageProps = await getPageProps({
     slug: pathname,
     locale: locale,
@@ -205,8 +214,12 @@ export const getMetadata = async ({
       images: ogImage,
       siteName: defaultMeta.siteName,
       description,
-      url: `${defaultMeta.url}${pathname}`,
+      url: `${defaultMeta.url}${canonicalPath}`,
       type: ogType,
+      locale: locale === 'de' ? 'de_DE' : 'en_US',
+      alternateLocale: locales
+        .filter((loc) => loc !== (locale ?? defaultLocale))
+        .map((loc) => (loc === 'de' ? 'de_DE' : 'en_US')),
     },
     twitter: {
       card: 'summary_large_image',
@@ -216,7 +229,8 @@ export const getMetadata = async ({
       images: ogImage,
     },
     alternates: {
-      canonical: pathname,
+      canonical: canonicalPath,
+      languages,
     },
   };
 };

@@ -44,6 +44,7 @@ export function Layout({
         footerSocialLinks={footerSocialLinks}
         copyrightNotice={footerCopyrightNotice}
         logo={logo}
+        locale={locale}
       />
     </div>
   );
