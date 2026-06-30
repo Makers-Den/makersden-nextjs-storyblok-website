@@ -101,4 +101,17 @@ describe('preview route', () => {
       'https://example.com/de/services?slug=de%2Fservices&_storyblok_lang=de',
     );
   });
+
+  it('forwards the normalized locale when Storyblok sends an unsupported language', async () => {
+    const request = new NextRequest(
+      'https://example.com/api/preview?slug=about&secret=test-preview-secret&_storyblok_lang=fr',
+    );
+
+    const response = await GET(request);
+
+    expect(response.status).toBe(307);
+    expect(response.headers.get('location')).toBe(
+      'https://example.com/about?slug=about&_storyblok_lang=en',
+    );
+  });
 });

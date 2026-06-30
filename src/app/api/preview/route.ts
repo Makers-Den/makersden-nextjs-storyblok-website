@@ -46,7 +46,7 @@ export const GET = async (req: NextRequest) => {
   redirectSearchParams.set('slug', slug);
 
   if (storyblokLang) {
-    redirectSearchParams.set('_storyblok_lang', storyblokLang);
+    redirectSearchParams.set('_storyblok_lang', locale);
   }
 
   redirectUrl.search = redirectSearchParams.toString();
