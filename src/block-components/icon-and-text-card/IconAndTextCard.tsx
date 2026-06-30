@@ -5,6 +5,7 @@ import { type IconAndTextCardSbContent } from '@/lib/storyblok';
 
 import { StoryblokImage } from '@/components/images/StoryblokImage';
 import { HeadingSm, Text } from '@/components/typography/Typography';
+import { Card } from '@/components/ui/card';
 
 export function IconAndTextCard({
   blok,
@@ -14,10 +15,12 @@ export function IconAndTextCard({
   isNested?: boolean;
 }) {
   return (
-    <div
+    <Card
       className={clsxm(
         'flex h-full w-full max-w-sm flex-col items-start text-left',
-        isNested ? 'gap-4' : 'gap-5 rounded-md p-6',
+        isNested
+          ? 'gap-4 border-0 bg-transparent'
+          : 'border-border/30 bg-card/30 gap-5 p-6',
       )}
       {...storyblokEditable(blok)}
     >
@@ -57,6 +60,6 @@ export function IconAndTextCard({
           {blok.text}
         </Text>
       )}
-    </div>
+    </Card>
   );
 }

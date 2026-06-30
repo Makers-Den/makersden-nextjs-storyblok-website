@@ -1,12 +1,14 @@
-import Link, { type LinkProps } from 'next/link';
 import * as React from 'react';
 
-import { Button, type ButtonProps } from '@/components/button';
+import { Button, type ButtonProps } from '@/components/ui/button';
 
+import { Link } from '@/i18n/navigation';
+
+type LocaleLinkProps = React.ComponentPropsWithoutRef<typeof Link>;
 type ButtonLinkProps = ButtonProps &
-  Omit<React.ComponentPropsWithoutRef<'a'>, keyof LinkProps | 'children'> & {
-    href: LinkProps['href'];
-    prefetch?: LinkProps['prefetch'];
+  Omit<LocaleLinkProps, keyof ButtonProps | 'children'> & {
+    href: LocaleLinkProps['href'];
+    prefetch?: LocaleLinkProps['prefetch'];
   };
 
 export const ButtonLink = React.forwardRef<HTMLAnchorElement, ButtonLinkProps>(

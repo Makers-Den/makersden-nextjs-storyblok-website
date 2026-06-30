@@ -4,6 +4,7 @@ import { type ImageAndTextCardSbContent } from '@/lib/storyblok';
 
 import { StoryblokImage } from '@/components/images/StoryblokImage';
 import { HeadingSm, Text } from '@/components/typography/Typography';
+import { Card, CardContent } from '@/components/ui/card';
 
 export function ImageAndTextCard({
   blok,
@@ -11,8 +12,8 @@ export function ImageAndTextCard({
   blok: ImageAndTextCardSbContent;
 }) {
   return (
-    <div
-      className='group flex h-full w-full max-w-sm flex-shrink-0 flex-col overflow-hidden rounded-md'
+    <Card
+      className='group border-border/30 bg-card/30 flex h-full w-full max-w-sm flex-shrink-0 flex-col'
       {...storyblokEditable(blok)}
     >
       {/* Card Image */}
@@ -28,7 +29,7 @@ export function ImageAndTextCard({
       )}
 
       {/* Card Content */}
-      <div className='flex flex-1 flex-col gap-4 p-6'>
+      <CardContent className='flex flex-1 flex-col gap-4 p-6'>
         {blok.title && (
           <HeadingSm as='h3' className='text-foreground text-left'>
             {blok.title}
@@ -37,7 +38,7 @@ export function ImageAndTextCard({
         {blok.text && (
           <Text className='text-muted-foreground'>{blok.text}</Text>
         )}
-      </div>
-    </div>
+      </CardContent>
+    </Card>
   );
 }

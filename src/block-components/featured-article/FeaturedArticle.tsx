@@ -1,5 +1,6 @@
 import { storyblokEditable } from '@storyblok/react/rsc';
 import { ArrowRightIcon } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 
 import clsxm from '@/lib/clsxm';
 import { isRichtextNotEmpty } from '@/lib/isRichtext';
@@ -17,10 +18,12 @@ import { StoryblokImage } from '@/components/images/StoryblokImage';
 import { SectionWrapper } from '@/components/section-wrapper/SectionWrapper';
 import { HeadingMd, Text } from '@/components/typography/Typography';
 import { Badge } from '@/components/ui/badge';
-
-import { Link } from '@/i18n/navigation';
+import { ButtonLink } from '@/components/ui/button-link';
+import { Card } from '@/components/ui/card';
 
 export function FeaturedArticle({ blok }: { blok: FeaturedArticleSbContent }) {
+  const t = useTranslations('article');
+
   // Validate that the featured article relation is resolved
   if (blok.featuredArticle && !isStoryblokStory(blok.featuredArticle)) {
     throw new Error(
@@ -44,7 +47,7 @@ export function FeaturedArticle({ blok }: { blok: FeaturedArticleSbContent }) {
       {...storyblokEditable(blok)}
     >
       <Container>
-        <div className='flex flex-col items-center gap-8 overflow-hidden rounded-md p-5 lg:flex-row lg:gap-12 lg:p-10'>
+        <Card className='border-border/30 bg-card/30 flex flex-col items-center gap-8 p-5 lg:flex-row lg:gap-12 lg:p-10'>
           <AnimateOnScroll
             animationType='fade'
             delay={0.1}
@@ -99,20 +102,13 @@ export function FeaturedArticle({ blok }: { blok: FeaturedArticleSbContent }) {
               )}
 
               {/* Read More Button */}
-              <Link
-                href={`/${article.full_slug}`}
-                className={clsxm(
-                  'bg-brand-green text-brand-navy',
-                  'inline-flex items-center gap-2 rounded-full px-8 py-3 leading-none',
-                  'hover:bg-brand-green/90 font-semibold transition-colors',
-                )}
-              >
-                Read More
+              <ButtonLink href={`/${article.full_slug}`} size='pill'>
+                {t('readMore')}
                 <ArrowRightIcon className='h-5 w-5' />
-              </Link>
+              </ButtonLink>
             </div>
           </AnimateOnScroll>
-        </div>
+        </Card>
       </Container>
     </SectionWrapper>
   );

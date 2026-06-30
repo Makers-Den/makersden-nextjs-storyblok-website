@@ -1,5 +1,38 @@
 {
   "hello": "Heya",
+  "article": {
+    "readMore": "Read More"
+  },
+  "styleguide": {
+    "title": "Styleguide",
+    "description": "Sometimes its convenient to develop components in isolation",
+    "buttons": {
+      "title": "Buttons",
+      "default": "Default",
+      "outline": "Outline",
+      "secondary": "Secondary",
+      "accent": "Accent",
+      "ghost": "Ghost",
+      "link": "Button Link"
+    },
+    "badgeCard": {
+      "title": "Badge & Card",
+      "badge": "Makers Den",
+      "heading": "Reusable primitive",
+      "description": "The card, badge, and button primitives use the template theme tokens."
+    },
+    "accordion": {
+      "title": "Accordion",
+      "accessible": {
+        "question": "Is it accessible?",
+        "answer": "Yes. It adheres to the WAI-ARIA design pattern."
+      },
+      "styled": {
+        "question": "Is it styled?",
+        "answer": "Yes. It comes with default styles that match the other components' aesthetic."
+      }
+    }
+  },
   "navigation": {
     "noItems": "No items"
   }

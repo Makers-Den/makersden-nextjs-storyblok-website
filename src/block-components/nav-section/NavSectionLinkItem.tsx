@@ -1,16 +1,30 @@
+import { type ComponentPropsWithoutRef } from 'react';
+
+import clsxm from '@/lib/clsxm';
 import { type NavSectionLinkItemSbContent } from '@/lib/storyblok';
 
 import { StoryblokLink } from '@/components/storyblok-link/StoryblokLink';
 
-interface NavSectionLinkItemProps {
+interface NavSectionLinkItemProps extends Omit<
+  ComponentPropsWithoutRef<typeof StoryblokLink>,
+  'children' | 'link'
+> {
   blok: NavSectionLinkItemSbContent;
 }
 
-export function NavSectionLinkItem({ blok }: NavSectionLinkItemProps) {
+export function NavSectionLinkItem({
+  blok,
+  className,
+  ...props
+}: NavSectionLinkItemProps) {
   return (
     <StoryblokLink
       link={blok.link}
-      className='hover:bg-brand-green/10 block rounded-md p-4 transition-colors'
+      className={clsxm(
+        'hover:bg-brand-green/10 block rounded-md p-4 transition-colors',
+        className,
+      )}
+      {...props}
     >
       <div className='font-semibold text-current'>{blok.title}</div>
       {blok.description && (

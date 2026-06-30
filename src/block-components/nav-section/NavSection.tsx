@@ -1,6 +1,13 @@
 import clsxm from '@/lib/clsxm';
 import { type NavSectionSbContent } from '@/lib/storyblok';
 
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
+
 import { NavSectionLinkItem } from './NavSectionLinkItem';
 
 interface NavSectionProps {
@@ -10,44 +17,27 @@ interface NavSectionProps {
 
 export function NavSection({ blok, textColor }: NavSectionProps) {
   return (
-    <div className='group relative'>
-      {/* Trigger Button */}
-      <button
+    <DropdownMenu>
+      <DropdownMenuTrigger
         className={clsxm(
           'hover:text-brand-green cursor-pointer px-2 py-1 text-base font-normal transition-colors',
           textColor === 'white' ? 'text-white' : 'text-brand-navy',
         )}
-        aria-haspopup='true'
       >
         {blok.title}
-      </button>
+      </DropdownMenuTrigger>
 
-      {/* Dropdown Panel */}
-      <div
-        className={clsxm(
-          // Positioning
-          'absolute top-full right-0 mt-2',
-
-          // Invisible bridge using pseudo-element to prevent hover break
-          'before:absolute before:right-0 before:left-0',
-          'before:top-[-30px] before:h-8 before:content-[""]',
-
-          // Visibility
-          'hidden group-hover:block',
-
-          // Appearance
-          'bg-brand-navy z-50 min-w-[280px] rounded-md p-3 text-white',
-        )}
-      >
-        {/* Menu Items */}
+      <DropdownMenuContent>
         {blok.items && blok.items.length > 0 && (
           <div className='space-y-2'>
             {blok.items.map((item) => (
-              <NavSectionLinkItem key={item._uid} blok={item} />
+              <DropdownMenuItem key={item._uid} asChild>
+                <NavSectionLinkItem blok={item} />
+              </DropdownMenuItem>
             ))}
           </div>
         )}
-      </div>
-    </div>
+      </DropdownMenuContent>
+    </DropdownMenu>
   );
 }
