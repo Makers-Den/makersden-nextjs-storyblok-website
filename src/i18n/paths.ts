@@ -72,9 +72,11 @@ export function getAvailableLocalesForStory(
     }),
   ];
 
-  if (discoveredLocales.length <= 1) {
+  const uniqueLocales = Array.from(new Set<Locale>(discoveredLocales));
+
+  if (uniqueLocales.length <= 1) {
     return [...locales];
   }
 
-  return Array.from(new Set<Locale>(discoveredLocales));
+  return uniqueLocales;
 }

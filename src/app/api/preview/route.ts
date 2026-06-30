@@ -41,7 +41,15 @@ export const GET = async (req: NextRequest) => {
 
   const redirectUrl = new URL(computedOrigin);
   redirectUrl.pathname = buildLocalizedPath(slug, locale);
-  redirectUrl.search = req.nextUrl.search;
+
+  const redirectSearchParams = new URLSearchParams();
+  redirectSearchParams.set('slug', slug);
+
+  if (storyblokLang) {
+    redirectSearchParams.set('_storyblok_lang', storyblokLang);
+  }
+
+  redirectUrl.search = redirectSearchParams.toString();
 
   return NextResponse.redirect(redirectUrl);
 };

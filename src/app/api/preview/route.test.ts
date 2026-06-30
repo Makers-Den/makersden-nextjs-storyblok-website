@@ -46,7 +46,7 @@ describe('preview route', () => {
     expect(mockEnable).toHaveBeenCalledTimes(1);
     expect(response.status).toBe(307);
     expect(response.headers.get('location')).toBe(
-      'https://example.com/about?slug=about&secret=test-preview-secret',
+      'https://example.com/about?slug=about',
     );
   });
 
@@ -59,7 +59,7 @@ describe('preview route', () => {
 
     expect(response.status).toBe(307);
     expect(response.headers.get('location')).toBe(
-      'https://example.com/?slug=home&secret=test-preview-secret',
+      'https://example.com/?slug=home',
     );
   });
 
@@ -72,7 +72,7 @@ describe('preview route', () => {
 
     expect(response.status).toBe(307);
     expect(response.headers.get('location')).toBe(
-      'https://example.com/de?slug=home&secret=test-preview-secret&_storyblok_lang=de',
+      'https://example.com/de?slug=home&_storyblok_lang=de',
     );
   });
 
@@ -85,7 +85,7 @@ describe('preview route', () => {
 
     expect(response.status).toBe(307);
     expect(response.headers.get('location')).toBe(
-      'https://example.com/de/services?slug=/services&secret=test-preview-secret&_storyblok_lang=de',
+      'https://example.com/de/services?slug=%2Fservices&_storyblok_lang=de',
     );
   });
 
@@ -98,7 +98,7 @@ describe('preview route', () => {
 
     expect(response.status).toBe(307);
     expect(response.headers.get('location')).toBe(
-      'https://example.com/de/services?slug=de/services&secret=test-preview-secret&_storyblok_lang=de',
+      'https://example.com/de/services?slug=de%2Fservices&_storyblok_lang=de',
     );
   });
 });

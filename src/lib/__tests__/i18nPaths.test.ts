@@ -45,6 +45,28 @@ describe('i18n paths', () => {
     ).toEqual(['en', 'de']);
   });
 
+  it('uses all configured locales when discovered alternates only duplicate the current locale', () => {
+    expect(
+      getAvailableLocalesForStory(
+        {
+          translated_slugs: null,
+          alternates: [
+            {
+              id: 1,
+              name: 'About',
+              slug: 'about',
+              published: true,
+              full_slug: 'en/about',
+              is_folder: false,
+              parent_id: 0,
+            },
+          ],
+        },
+        'en',
+      ),
+    ).toEqual(['en', 'de']);
+  });
+
   it('derives available locales from translated slugs and published alternates', () => {
     expect(
       getAvailableLocalesForStory(
