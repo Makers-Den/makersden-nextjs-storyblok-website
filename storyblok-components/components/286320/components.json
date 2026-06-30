@@ -1399,7 +1399,14 @@
     "schema": {
       "tab-0afb0a79-9125-4513-a7c3-8cab38289c04": {
         "display_name": "SEO",
-        "keys": ["title", "description", "nonIndexable", "additionalMetadata"],
+        "keys": [
+          "title",
+          "description",
+          "ogImage",
+          "illustration",
+          "nonIndexable",
+          "additionalMetadata"
+        ],
         "pos": 0,
         "type": "tab",
         "id": "CvsKeZElRROnw4yrOCicBA"
@@ -1503,14 +1510,30 @@
         "description": "Used in SEO compliance checks and automated testing to ensure that pages meant to be private or under development are not indexed by search engines. It helps in managing the visibility of web pages on the internet.",
         "required": false,
         "tooltip": true,
-        "id": "HYRtBp5qSbGG-U4HiYrDhA"
+        "id": "HYRtBp5qSbGG-U4HiYrDhA",
+        "translatable": false
       },
       "additionalMetadata": {
         "type": "bloks",
         "restrict_type": "",
         "restrict_components": true,
         "component_whitelist": ["JsonLdMetadata"],
-        "id": "X95AZhVzSkG4mMepqYqpHA"
+        "id": "X95AZhVzSkG4mMepqYqpHA",
+        "translatable": false
+      },
+      "ogImage": {
+        "type": "asset",
+        "pos": 9,
+        "display_name": "",
+        "description": "Direct Open Graph image used when sharing this page. Use a 1200x630 image when possible.",
+        "translatable": false
+      },
+      "illustration": {
+        "type": "asset",
+        "pos": 10,
+        "display_name": "",
+        "description": "Optional illustration used by the generated Open Graph image when no direct OG image is selected.",
+        "translatable": false
       }
     },
     "image": null,

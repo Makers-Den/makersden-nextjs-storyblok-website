@@ -274,6 +274,8 @@ export type PageBodyBlockType =
 export type PageAdditionalMetadataBlockType = "JsonLdMetadata";
 
 export interface PageSbContent {
+  navType?: "" | "white" | "black" | "transparent";
+  layoutType?: "" | "default" | "lead page";
   body?: (
     | HeroSectionSbContent
     | HeroNarrowSectionSbContent
@@ -294,8 +296,8 @@ export interface PageSbContent {
   description?: string;
   nonIndexable?: boolean;
   additionalMetadata?: JsonLdMetadataSbContent[];
-  navType?: "" | "white" | "black" | "transparent";
-  layoutType?: "" | "default" | "lead page";
+  ogImage?: SbAsset;
+  illustration?: SbAsset;
   _uid: string;
   component: "Page";
   [k: string]: any;

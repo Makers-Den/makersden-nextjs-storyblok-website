@@ -1,9 +1,5 @@
 import { type Locale } from './i18n/config';
-import type {
-  SbAsset,
-  SbRichtext,
-  TranslationsSbContent,
-} from './lib/storyblok';
+import type { SbRichtext, TranslationsSbContent } from './lib/storyblok';
 
 export type WithClassName = { className: string };
 
@@ -74,17 +70,6 @@ export type GetPropsFromSbContent<T> = Omit<T, 'component' | '_uid'> &
 export interface PageProps {
   params: Promise<{ slug: string[]; locale?: Locale }>;
   searchParams: Promise<Record<string, string>>;
-}
-
-export interface StoryContent {
-  title?: string;
-  description?: string;
-  nonIndexable?: boolean;
-  ogImage?: SbAsset;
-  illustration?: SbAsset;
-  component?: string;
-  name?: string;
-  intro?: string;
 }
 
 type NoStringIndex<T> = {
