@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'motion/react';
+import { motion, useReducedMotion } from 'motion/react';
 import { type ReactNode } from 'react';
 
 import clsxm from '@/lib/clsxm';
@@ -13,6 +13,9 @@ interface AnimateOnScrollProps {
   delay?: number;
   duration?: number;
   className?: string;
+  once?: boolean;
+  amount?: number;
+  viewportMargin?: string;
 }
 
 export function AnimateOnScroll({
@@ -21,33 +24,33 @@ export function AnimateOnScroll({
   delay = 0.2,
   duration = 0.8,
   className,
+  once = true,
+  amount = 0.2,
+  viewportMargin = '0px 0px -12% 0px',
 }: AnimateOnScrollProps) {
-  // Respect reduced motion preference
-  if (typeof window !== 'undefined') {
-    const prefersReducedMotion = window.matchMedia(
-      '(prefers-reduced-motion: reduce)',
-    ).matches;
-    if (prefersReducedMotion) {
-      return <div className={clsxm(className)}>{children}</div>;
-    }
-  }
-
+  const prefersReducedMotion = useReducedMotion();
+  const shouldReduceMotion = prefersReducedMotion === true;
   const variant = getAnimationVariant(animationType);
 
   return (
     <motion.div
-      initial={variant.hidden}
-      whileInView={variant.visible}
+      initial={shouldReduceMotion ? false : variant.hidden}
+      whileInView={shouldReduceMotion ? undefined : variant.visible}
       viewport={{
-        once: true,
-        margin: '-50px',
+        once,
+        amount,
+        margin: viewportMargin,
       }}
-      transition={{
-        duration,
-        delay,
-        ease: [0.25, 0.1, 0.25, 1],
-      }}
-      className={clsxm(className)}
+      transition={
+        shouldReduceMotion
+          ? { duration: 0 }
+          : {
+              duration,
+              delay,
+              ease: [0.16, 1, 0.3, 1],
+            }
+      }
+      className={clsxm('transform-gpu', className)}
     >
       {children}
     </motion.div>
