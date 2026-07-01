@@ -2,17 +2,9 @@ import { type Metadata } from 'next';
 import { draftMode } from 'next/headers';
 import { notFound, redirect, RedirectType } from 'next/navigation';
 
+import { buildStoryblokMetadata } from '@/lib/metadata/buildStoryblokMetadata';
 import {
-  BRAND_NAME,
-  BRAND_TITLE_SUFFIX,
-  SITE_DESCRIPTION,
-  SITE_NAME,
-} from '@/lib/brand';
-import { buildOgImageUrl } from '@/lib/buildOgImageUrl';
-import { CANONICAL_BASE_URL_NO_SLASH } from '@/lib/constants';
-import { isRichtextNotEmpty } from '@/lib/isRichtext';
-import { richtextToString } from '@/lib/richTextUtils';
-import {
+  type ArticleSbContent,
   type GlobalSettingsSbContent,
   type PageSbContent,
   type StoryblokStory,
@@ -30,7 +22,9 @@ import {
   getLanguageAlternatesForLocales,
 } from '@/i18n/paths';
 
-import { type PageProps, type StoryContent } from '@/types';
+import { type PageProps } from '@/types';
+
+type StoryPageContent = PageSbContent | ArticleSbContent;
 
 export const getPageProps = async (
   args: {
@@ -102,7 +96,7 @@ export const getPageProps = async (
   const redirectItem = redirectItems.find((item) => item.from === slug);
 
   try {
-    const pageData = await findStory<StoryblokStory<PageSbContent>>({
+    const pageData = await findStory<StoryblokStory<StoryPageContent>>({
       slug,
       locale,
       isPreview,
@@ -144,16 +138,6 @@ export const getPageProps = async (
   }
 };
 
-const defaultMeta = {
-  title: SITE_NAME,
-  siteName: SITE_NAME,
-  description: SITE_DESCRIPTION,
-  /** Without additional '/' on the end */
-  url: CANONICAL_BASE_URL_NO_SLASH,
-  type: 'website',
-  robots: 'follow, index',
-} as const;
-
 export const getMetadata = async ({
   params,
 }: Omit<PageProps, 'searchParams'>): Promise<Metadata> => {
@@ -175,74 +159,17 @@ export const getMetadata = async ({
     return {};
   }
 
-  const {
-    title: contentTitle,
-    description: contentDescription,
-    ogImage: image,
-    illustration,
-    nonIndexable,
-    component,
-    name,
-    intro,
-  }: StoryContent = story.content;
-
-  const ogImage = buildOgImageUrl({
-    title: contentTitle,
-    image: image?.filename,
-    illustration:
-      illustration?.filename ??
-      globalSettingsStory.content.illustration?.filename,
-  });
-
-  let title = contentTitle ?? defaultMeta.title;
-
-  if (component === 'Category') {
-    title = `Latest ${name} posts`;
-  }
-
-  if (!title.includes(BRAND_NAME)) {
-    title = `${title}${BRAND_TITLE_SUFFIX}`;
-  }
-
-  let description = contentDescription ?? defaultMeta.description;
-
-  if (component === 'Post' && isRichtextNotEmpty(intro)) {
-    description = richtextToString(intro);
-  }
-
   const languages = getLanguageAlternatesForLocales(
     pathname || 'home',
     availableLocales,
   );
 
-  const ogType = 'article';
-  return {
-    metadataBase: new URL(defaultMeta.url),
-    title,
-    description,
-    robots: nonIndexable ? 'noindex, nofollow' : defaultMeta.robots,
-    openGraph: {
-      title,
-      images: ogImage,
-      siteName: defaultMeta.siteName,
-      description,
-      url: `${defaultMeta.url}${canonicalPath}`,
-      type: ogType,
-      locale: locale === 'de' ? 'de_DE' : 'en_US',
-      alternateLocale: availableLocales
-        .filter((loc) => loc !== (locale ?? defaultLocale))
-        .map((loc) => (loc === 'de' ? 'de_DE' : 'en_US')),
-    },
-    twitter: {
-      card: 'summary_large_image',
-      site: '@makersden',
-      title: title,
-      description,
-      images: ogImage,
-    },
-    alternates: {
-      canonical: canonicalPath,
-      languages,
-    },
-  };
+  return buildStoryblokMetadata({
+    availableLocales,
+    canonicalPath,
+    content: story.content,
+    globalSettings: globalSettingsStory.content,
+    languages,
+    locale,
+  });
 };

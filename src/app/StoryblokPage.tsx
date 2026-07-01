@@ -31,6 +31,15 @@ export async function StoryblokPage({ params }: PageProps) {
     notFound();
   }
 
+  const layoutType =
+    story.content.component === 'Page'
+      ? ((story.content.layoutType || 'default') as LayoutType)
+      : 'default';
+  const navType =
+    story.content.component === 'Page'
+      ? ((story.content.navType || 'white') as NavType)
+      : 'white';
+
   return (
     <CommonContextProviders>
       <BreadcrumbListSchema story={story} locale={locale ?? defaultLocale} />
@@ -38,8 +47,8 @@ export async function StoryblokPage({ params }: PageProps) {
         locale={locale ?? defaultLocale}
         globalSettings={globalSettingsStory}
         availableLocales={availableLocales}
-        layoutType={(story.content.layoutType || 'default') as LayoutType}
-        navType={(story.content.navType || 'white') as NavType}
+        layoutType={layoutType}
+        navType={navType}
       >
         <StoryblokStory
           bridgeOptions={{ resolveRelations: RESOLVED_RELATIONS }}
